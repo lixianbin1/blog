@@ -6,16 +6,16 @@
   <meta name="author" content="饿包子" />
   
   
-  <title>归档: 2020 | 饿包子博客</title>
+  <title>项目执行错误及解决方案 | 饿包子博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="博客,饿包子" />
+    <meta name="keywords" content="疑难杂症," />
   
 
   
-  <meta name="description" content="饿包子的博客">
+  <meta name="description" content="各种乱七八糟的问题及解决方案">
 
   
   
@@ -65,7 +65,7 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-06-10",
     passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "饿包子",
     share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
@@ -166,72 +166,54 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 63篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-05-07
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"><i class="fa fa-bookmark"></i>疑难杂症</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-5-7 11:23 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    项目执行错误及解决方案
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2020</h3>
-    
-    <div class="timeline-item">
-      <time>2020-12-22</time>
-      <a target="_self" href="/blog/2020/12/22/Vue%20%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">Vue 碰到的问题和解决办法</a>
-    </div>
+  <article class="passage-article">
+    <p>各种乱七八糟的问题及解决方案</p>
+<h2 id="Error-Cannot-find-module-‘Y-vue-cli-service-bin-vue-cli-service-js’"><a href="#Error-Cannot-find-module-‘Y-vue-cli-service-bin-vue-cli-service-js’" class="headerlink" title="Error: Cannot find module ‘Y:@vue\cli-service\bin\vue-cli-service.js’"></a>Error: Cannot find module ‘Y:@vue\cli-service\bin\vue-cli-service.js’</h2><p>在执行 <code>npm run serve</code> 后 运行项目，出现如下错误：</p>
+<p><img src="/blog/images/list/2021050701.png" alt="Bubbling"></p>
+<p>原因在于 npm 无法找到该文件，项目路径有特殊字符；</p>
+<p><img src="/blog/images/list/2021050702.png" alt="Bubbling"></p>
+<p>将项目的路径中的特殊字符去除，即可执行</p>
+<p><img src="/blog/images/list/2021050703.png" alt="Bubbling"></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Cannot-find-module-%E2%80%98Y-vue-cli-service-bin-vue-cli-service-js%E2%80%99"><span class="toc-text">Error: Cannot find module ‘Y:@vue\cli-service\bin\vue-cli-service.js’</span></a></li></ol>
+  </div>
+</aside>
+
   
-    
-    <div class="timeline-item">
-      <time>2020-12-15</time>
-      <a target="_self" href="/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/">开发环境的构建及相关配置</a>
-    </div>
   
-    
-    <div class="timeline-item">
-      <time>2020-12-11</time>
-      <a target="_self" href="/blog/2020/12/11/Git%20%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/">Git 的命令集合及相关的问题</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-12-10</time>
-      <a target="_self" href="/blog/2020/12/10/NPM%20%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/">NPM 的命令集合及相关的问题</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-12-10</time>
-      <a target="_self" href="/blog/2020/12/10/Yarn%20%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/">Yarn 的命令集合及相关的问题</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-12-09</time>
-      <a target="_self" href="/blog/2020/12/09/Vue%20%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%E5%92%8C%E6%89%A9%E5%B1%95%E9%97%AE%E9%A2%98/">Vue 项目的开始和扩展问题</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-12-09</time>
-      <a target="_self" href="/blog/2020/12/09/%E5%8F%91%E5%B8%83%E5%92%8C%E7%BB%B4%E6%8A%A4%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84NPM%E5%8C%85/">发布和维护属于自己的NPM包</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-11-19</time>
-      <a target="_self" href="/blog/2020/11/19/ReactNative%20%E4%B9%8B%E5%BC%80%E5%8F%91%E9%85%8D%E7%BD%AE/">ReactNative 之开发配置</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-11-13</time>
-      <a target="_self" href="/blog/2020/11/13/%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%89%91%E7%9B%BE%E6%94%BB%E7%95%A5/">宝可梦剑盾攻略</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2020-11-13</time>
-      <a target="_self" href="/blog/2020/11/13/%E8%A3%85%E6%9C%BA%E6%A8%A1%E6%8B%9F%E5%99%A8%E6%94%BB%E7%95%A5/">装机模拟器攻略</a>
-    </div>
   
 </div>
+
     </main>
     
     
@@ -241,7 +223,7 @@
     <a class="left" href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a class="right" href="/blog/archives/2020/page/2/" data-enable="true">
+    <a class="right" href="/blog/2021/04/13/uni-app%20%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
@@ -353,7 +335,7 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/blog/archives/2020/page/2/" data-enable="true">
+    <a href="/blog/2021/04/13/uni-app%20%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
 -->
@@ -363,11 +345,11 @@
   
   
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
