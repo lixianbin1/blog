@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>JS 的设计模式介绍（一） | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设计模式,Javascript," />
+  
+
+  
+  <meta name="description" content="一直以来，设计模式就像是蒙上了一层纱，似梦似幻，朦胧模糊，总感觉有些保留，借着文章对设计模式进行一次整理，看看自己还有那些没弄明白的地方.希望能让我看清设计模式的面容">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-06-02
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="fa fa-bookmark"></i>设计模式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-12-30 16:45 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    JS 的设计模式介绍（一）
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2019081902.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <h2 id="你可能需要了解的"><a href="#你可能需要了解的" class="headerlink" title="你可能需要了解的"></a>你可能需要了解的</h2><blockquote>
+<p>什么是设计模式</p>
+</blockquote>
+<p><strong>设计模式是一种思想，代表着最佳的实践方案。</strong>设计模式是开发人员在开发过程中面临对一般问题对解决方案，这些解决方案是众多开发人员经过实践和错误总结所归纳出来的</p>
+<blockquote>
+<p>什么是 反模式？</p>
+</blockquote>
+<p>如果我们认为模式是一种最佳的解决方案，那么反模式则代表着一次教训，反模式有两个概念：描述对于一个特殊的问题，提出一个糟糕的解决方案，得到一个糟糕的结果；描述如何解决上述方案，并提出一个好的解决方案</p>
+<blockquote>
+<p>设计模式的目的</p>
+</blockquote>
+<p>为了解决问题，为了重用代码，让代码能更好的被理解。为了保证代码的可靠性，让代码编制实现工程化，设计模式提供了一个标准的术语系统，且具体到特定的情景</p>
+<blockquote>
+<p>GOF （四人帮）</p>
+</blockquote>
+<p>在 1994 年，由 Erich Gamma、Richard Helm、Ralph Johnson 和 John Vlissides 四人合著出版了一本名为 Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素） 的书，该书首次提到了软件开发中设计模式的概念。</p>
+<p><strong>四位作者合称 GOF（四人帮，全拼 Gang of Four）。</strong></p>
+<blockquote>
+<p>设计模式的类型</p>
+</blockquote>
+<p>根据设计模式参考书中所提到的23种设计模式，它们分为三大类，创建型模式（Creational Patterns）、结构型模式（Structural Patterns）、行为型模式（Behavioral Patterns）</p>
+<table>
+<thead>
+<tr>
+<th align="center">创建型</th>
+<th align="center">结构型</th>
+<th align="center">行为型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单例模式</td>
+<td align="center">适配器模式</td>
+<td align="center">观察者模式</td>
+</tr>
+<tr>
+<td align="center">原型模式</td>
+<td align="center">装饰器模式</td>
+<td align="center">迭代器模式</td>
+</tr>
+<tr>
+<td align="center">工厂模式</td>
+<td align="center">代理模式</td>
+<td align="center">策略模式</td>
+</tr>
+<tr>
+<td align="center">抽象工厂模式</td>
+<td align="center">外观模式</td>
+<td align="center">模板方法模式</td>
+</tr>
+<tr>
+<td align="center">建造者模式</td>
+<td align="center">桥接模式</td>
+<td align="center">职责链模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">组合模式</td>
+<td align="center">命令模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">享元模式</td>
+<td align="center">备忘录模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">状态模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">访问者模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">中介者模式</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">解释器模式</td>
+</tr>
+</tbody></table>
+<p>在实际生产中，设计模式并不是千篇一律的照搬，也存在着许许多多的变体，有的在不同的编程环境中可能就不太适用，看自己的需求来。</p>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>单例模式的定义：保证一个类仅一个实例，并提供一个访问它的全局变量。实现原理并不复杂，无非是用一个变量来标准是否已经为某个类创建过实例，如果是则返回之前创建的对象，（应用场景：提示弹窗；点击多少次都只出现一个弹窗。）</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">优点</td>
+<td align="left">划分命名空间，减少全局变量。避免对共享资源的多重占用，节约系统资源</td>
+</tr>
+<tr>
+<td align="center">缺点</td>
+<td align="left">可能导致模块间的强耦合，不利于单元测试；不适用于变化的对象；</td>
+</tr>
+</tbody></table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var Siglecon=(function()&#123;</span><br><span class="line">    var instance;</span><br><span class="line">    function init()&#123;</span><br><span class="line">        // 私有方法和变量</span><br><span class="line">        var _string=&quot;私有变量&quot;;</span><br><span class="line">        var _random=Math.random();</span><br><span class="line">        function _log()&#123;</span><br><span class="line">          console.log(_string)</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123; </span><br><span class="line">            // 公有变量和方法</span><br><span class="line">            getName:function()&#123;</span><br><span class="line">              return _string</span><br><span class="line">            &#125;,</span><br><span class="line">            log:&quot;公有变量&quot;,</span><br><span class="line">        &#125;;      </span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">        // 如果存在实例，则指向同一个实例</span><br><span class="line">        getInstance:function()&#123;</span><br><span class="line">            if(!instance)&#123;</span><br><span class="line">                instance=init();</span><br><span class="line">            &#125;;</span><br><span class="line">            return instance;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var sigle=Siglecon.getInstance()</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造器模式"><a href="#构造器模式" class="headerlink" title="构造器模式"></a>构造器模式</h2><p>在面向对象中，构造器是一个新建对象的内存被分配后，用来初始化该对象的一个特殊函数，js 通过 <code>new</code> 关键字调用一个函数，这个函数被当做构造器来使用，我们则通过<code>this</code>来实现构造函数的运用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Gender(x)&#123;</span><br><span class="line">  this.gender=x</span><br><span class="line">&#125;</span><br><span class="line">Gender.prototype.toString=function()&#123;</span><br><span class="line">  return &#x27;此人性别为&#x27;+this.gender</span><br><span class="line">&#125;</span><br><span class="line">let Jack=new Gender(&#x27;男&#x27;)</span><br><span class="line">Jack.toString()</span><br></pre></td></tr></table></figure>
+
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>“四人帮”称原型模式是一种基于现有对象模板，通过克隆方式创建对象的模式；那么js中则是指用原型实例指向创建对象的种类，并且通过拷贝这些原型创建新的对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var car=&#123;</span><br><span class="line">    name:&#x27;大众&#x27;,</span><br><span class="line">    toLog:function()&#123;</span><br><span class="line">        console.log(&#x27;汽车&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__</span><br><span class="line">var youCar=Object.create(car)</span><br><span class="line"></span><br><span class="line">// Object.create()方法可以传入第二个参数来实现对新创建对象属性的添加</span><br><span class="line">var myCar=Object.create(car,&#123;</span><br><span class="line">    id:&#123;</span><br><span class="line">        value:&#x27;asd&#x27;,   // 值</span><br><span class="line">        writable:false, // 可写</span><br><span class="line">        configurable:true // 能否使用delete、能否需改属性特性、或能否修改访问器属性</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式是用于创建对象（视为工厂里的产品）的设计模式，其创建对象时无需指定创建对象的具体类。既提供一个创建对象的公共接口</p>
+<p>工厂模式定义一个用于创建对象的接口，这个接口由子类决定实例化哪一个类。该模式使一个类的实例化延迟到了子类。而子类可以重写接口方法以便创建的时候指定自己的对象类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">let  factory=function(role) &#123;</span><br><span class="line">    function superman() &#123;</span><br><span class="line">        this.name =&#x27;超级管理员&#x27;,</span><br><span class="line">        this.role = [&#x27;修改密码&#x27;, &#x27;发布消息&#x27;, &#x27;查看主页&#x27;]</span><br><span class="line">    &#125;</span><br><span class="line">    function commonMan() &#123;</span><br><span class="line">        this.name = &#x27;普通游客&#x27;,</span><br><span class="line">        this.role = [&#x27;查看主页&#x27;]</span><br><span class="line">    &#125;</span><br><span class="line">    switch(role) &#123;</span><br><span class="line">        case &#x27;superman&#x27;:</span><br><span class="line">        return new superman();</span><br><span class="line">        break;</span><br><span class="line">        case &#x27;man&#x27;:</span><br><span class="line">        return new commonMan();</span><br><span class="line">        break;</span><br><span class="line">        default:</span><br><span class="line">        throw new Error(&#x27;参数错误&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 根据参数的不同创建不同的对象</span><br><span class="line">let superman = factory(&#x27;superman&#x27;);</span><br><span class="line">let man = factory(&#x27;man&#x27;);</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%A0%E5%8F%AF%E8%83%BD%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84"><span class="toc-text">你可能需要了解的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E6%A8%A1%E5%BC%8F"><span class="toc-text">构造器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F"><span class="toc-text">原型模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F"><span class="toc-text">工厂模式</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/06/02/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Javascript/"><i class="fa fa-tags"></i>Javascript</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2019/06/03/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2019/05/30/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2019/06/03/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2019/05/30/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
