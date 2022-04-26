@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>ES6 的学习笔记（三） | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,ES6," />
+  
+
+  
+  <meta name="description" content="书接上回，看到ES6 的Generator 函数，也许三嫌太麻烦或者其他原因，ES6 推出了Generator 的分支版本 async .它相比较 Generator 可以不需要 next 方法或co 模块就可以执行（就和普通函数一样），它的返回值是Promise ，且具备更好的语义和适用性。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-06-03
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:NaN-NaN-NaN NaN:NaN 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    ES6 的学习笔记（三）
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="异步编程相关-async"><a href="#异步编程相关-async" class="headerlink" title="异步编程相关 async"></a>异步编程相关 async</h2><p>async 函数返回一个 Promise 对象，可以使用<code>then</code>方法添加回调函数。当函数执行的时候，一旦遇到<code>await</code>就会先返回，等到异步操作完成，再接着执行函数体内后面的语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">async function timeout(ms) &#123;</span><br><span class="line">  await new Promise((resolve) =&gt; &#123;</span><br><span class="line">    setTimeout(resolve, ms);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function asyncPrint(value, ms) &#123;</span><br><span class="line">  await timeout(ms);</span><br><span class="line">  console.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncPrint(&#x27;hello world&#x27;, 50);// 50毫秒后，打印hello word</span><br><span class="line"></span><br><span class="line">// 函数声明式</span><br><span class="line">async function foo() &#123;&#125;</span><br><span class="line">// 函数表达式</span><br><span class="line">const foo = async function () &#123;&#125;;</span><br><span class="line">// 箭头函数</span><br><span class="line">const foo = async () =&gt; &#123;&#125;;</span><br><span class="line">// 对象的方法</span><br><span class="line">let obj = &#123; async foo() &#123;&#125; &#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="async-的数据处理"><a href="#async-的数据处理" class="headerlink" title="async 的数据处理"></a>async 的数据处理</h3><p>async函数返回的 Promise 对象，必须等到内部所有await命令后面的 Promise 对象执行完，才会发生状态改变，除非遇到return语句或者抛出错误,任何一个await语句后面的 Promise 对象变为reject状态，那么整个async函数都会中断执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">async function f() &#123;</span><br><span class="line">  await Promise.reject(&#x27;出错了&#x27;);</span><br><span class="line">  await Promise.resolve(&#x27;hello world&#x27;); // 不会执行</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">async function f() &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    await Promise.reject(&#x27;出错了&#x27;);</span><br><span class="line">  &#125; catch(e) &#123;</span><br><span class="line">    ···</span><br><span class="line">  &#125;</span><br><span class="line">  return await Promise.resolve(&#x27;hello world&#x27;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Class-的基本语法"><a href="#Class-的基本语法" class="headerlink" title="Class 的基本语法"></a>Class 的基本语法</h2><p>ES6 的class可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的class写法只是让对象原型的写法更加清晰、更像面向对象编程的语法。Class里的方法不可枚举</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Bar &#123;</span><br><span class="line">  hello() &#123;</span><br><span class="line">    console.log(&#x27;hello word&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line">  string(name)&#123;</span><br><span class="line">    this.name=name</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 表达式的形式</span><br><span class="line">const Bar = class Me &#123;</span><br><span class="line">  getClassName() &#123; // 只能在类内部使用Me名称。外界new 需要使用 Bar</span><br><span class="line">    return Me.name; </span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var b = new Bar();</span><br><span class="line">b.hello() // &quot;hello word&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>constructor 类的默认方法</p>
+</blockquote>
+<p>通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor方法，如果没有显式定义，一个空的constructor方法会被默认添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Point &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 等同于</span><br><span class="line">class Point &#123;</span><br><span class="line">  constructor() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>get 和 set ：拦截和存储</p>
+</blockquote>
+<p>在“类”的内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class MyClass &#123;</span><br><span class="line">  constructor() &#123;</span><br><span class="line">    // ...</span><br><span class="line">  &#125;</span><br><span class="line">  get prop() &#123;</span><br><span class="line">    return &#x27;getter&#x27;; // 在读取 prop 属性的时候，返回</span><br><span class="line">  &#125;</span><br><span class="line">  set prop(value) &#123;  // 在设置 prop 属性的时候，打印</span><br><span class="line">    console.log(&#x27;setter: &#x27;+value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let inst = new MyClass();</span><br><span class="line">inst.prop = 123;  // setter: 123</span><br><span class="line">inst.prop  // &#x27;getter&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><strong>类必须使用new调用，否则会报错</strong></li>
+</ul>
+<h2 id="不被继承的静态方法"><a href="#不被继承的静态方法" class="headerlink" title="不被继承的静态方法"></a>不被继承的静态方法</h2><p>所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上<code>static</code>关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Foo &#123;</span><br><span class="line">  static classMethod() &#123; // 静态方法</span><br><span class="line">    return &#x27;hello&#x27;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 可以直接调用</span><br><span class="line">Foo.classMethod() // &#x27;hello&#x27;</span><br><span class="line"></span><br><span class="line">var foo = new Foo();</span><br><span class="line">foo.classMethod() </span><br><span class="line">// TypeError: foo.classMethod is not a function</span><br><span class="line"></span><br><span class="line">// 如果静态方法包含this关键字，这个this指的是类，而不是实例</span><br><span class="line">class Foo &#123;</span><br><span class="line">  static bar() &#123;</span><br><span class="line">    this.baz();</span><br><span class="line">  &#125;</span><br><span class="line">  static baz() &#123;</span><br><span class="line">    console.log(&#x27;hello&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line">  baz() &#123;</span><br><span class="line">    console.log(&#x27;world&#x27;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">Foo.bar() // hello</span><br></pre></td></tr></table></figure>
+
+<h2 id="模块体系的加载"><a href="#模块体系的加载" class="headerlink" title="模块体系的加载"></a>模块体系的加载</h2><p>ES6 模块不是对象，而是通过export命令显式指定输出的代码，再通过import命令输入.export命令除了输出变量，还可以输出函数或类（class）,import的加载方式都是编译时加载,所以不可以有算术表达式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//整体加载</span><br><span class="line">import * as React from &#x27;react&#x27;</span><br><span class="line">// 用星号（*）指定一个对象，所有输出值都加载在这个对象上面</span><br><span class="line"></span><br><span class="line">//静态加载</span><br><span class="line">import &#123; stat, exists, readFile &#125; from &#x27;fs&#x27;;</span><br><span class="line">// 上面代码的实质是从fs模块加载 3 个方法，其他方法不加载。这种加载称为“编译时加载”或者静态加载</span><br><span class="line"></span><br><span class="line">//匿名加载</span><br><span class="line">import customName from &#x27;./export-default&#x27;;</span><br><span class="line">// 上面的代码会加载导入文件中的默认输出 即 export default ,且可以随意为默认输出指定名称</span><br><span class="line"></span><br><span class="line">//兼容加载</span><br><span class="line">import load, &#123; each, forEach &#125; from &#x27;lodash&#x27;;</span><br><span class="line">// 如果想同时加载默认输出和其他接口,可以写成如上形式</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>export default 命令:为模块指定默认输出</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">export default function () &#123;</span><br><span class="line">  console.log(&#x27;foo&#x27;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 写法一</span><br><span class="line">export function m()&#123;</span><br><span class="line">  console.log(&#x27;1&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 写法二</span><br><span class="line">var m = function()&#123;</span><br><span class="line">  console.log(&#x27;2&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">export &#123;m&#125;;</span><br><span class="line"></span><br><span class="line">// 写法三</span><br><span class="line">export &#123;n as m&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="浏览器的加载体系"><a href="#浏览器的加载体系" class="headerlink" title="浏览器的加载体系"></a>浏览器的加载体系</h2><p>浏览器脚本的默认语言是 JavaScript，默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到<script>标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。所以就有异步加载的需求</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 异步加载</span><br><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; defer&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=&quot;path/to/myModule.js&quot; async&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当浏览器遇到标签存在 <code>defer</code> 或 <code>async</code> 属性，脚本就会异步加载（不会等它下载和执行，而是直接执行后面的脚本）。<code>defer</code> 是“渲染完再执行”，<code>async</code> 是“下载完就执行”。因此 <code>async</code> 不能保证加载的顺序</p>
+<blockquote>
+<p>ES6模块的加载</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// ES6 模块的加载属于异步执行</span><br><span class="line">&lt;script type=&quot;module&quot; src=&quot;./foo.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>与君共勉</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3-async"><span class="toc-text">异步编程相关 async</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#async-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">async 的数据处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Class-%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-text">Class 的基本语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%A2%AB%E7%BB%A7%E6%89%BF%E7%9A%84%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-text">不被继承的静态方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BD%93%E7%B3%BB%E7%9A%84%E5%8A%A0%E8%BD%BD"><span class="toc-text">模块体系的加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%BD%93%E7%B3%BB"><span class="toc-text">浏览器的加载体系</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/06/03/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/ES6/"><i class="fa fa-tags"></i>ES6</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2019/06/21/%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%8F%82%E8%80%83%E5%92%8C%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2019/06/02/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2019/06/21/%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%A0%B7%E5%BC%8F%E7%9A%84%E5%8F%82%E8%80%83%E5%92%8C%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2019/06/02/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
