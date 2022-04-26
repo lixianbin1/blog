@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>开发环境的构建及相关配置 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="参考手册," />
+  
+
+  
+  <meta name="description" content="一三五数总皆春，后地先天见老君。花发西川铺锦绣，月明北海庆风云。好抛生计于斯觅，莫逞浮华向外营。念念不忘尘境灭， 静中更有别乾坤。吕洞宾 《指玄篇 上篇 其五》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-15
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"><i class="fa fa-bookmark"></i>参考手册</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-1-12 10:17 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    开发环境的构建及相关配置
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2020121003.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <h2 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h2><h3 id="Node-Git-Yarn"><a href="#Node-Git-Yarn" class="headerlink" title="Node Git Yarn"></a>Node Git Yarn</h3><blockquote>
+<p><strong>检查基本环境软件</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">git --version</span><br><span class="line">yarn -v  (小写)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>下载安装软件</strong></p>
+</blockquote>
+<ul>
+<li><p>Node <a target="_blank" rel="noopener" href="http://nodejs.cn/download/">http://nodejs.cn/download/</a></p>
+</li>
+<li><p>Git  <a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<figure class="highlight shell"><figcaption><span>yarn</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yarn</span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>Git生成秘钥ssh</p>
+</blockquote>
+<h3 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h3><blockquote>
+<p><strong>下载浏览器</strong></p>
+</blockquote>
+<ul>
+<li><p>谷歌Google <a target="_blank" rel="noopener" href="https://www.google.cn/intl/zh-CN/chrome/">https://www.google.cn/intl/zh-CN/chrome/</a></p>
+</li>
+<li><p>火狐Firefox <a target="_blank" rel="noopener" href="http://www.firefox.com.cn/">http://www.firefox.com.cn/</a></p>
+</li>
+<li><p>IE Internet <a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads">https://support.microsoft.com/zh-cn/help/17621/internet-explorer-downloads</a></p>
+</li>
+</ul>
+<h3 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h3><blockquote>
+<p><strong>下载编辑器</strong></p>
+</blockquote>
+<ul>
+<li><p>微信开发者工具 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html</a></p>
+</li>
+<li><p>Sublime编辑器 <a href="/blog/2022/02/17/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90-sublime%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" title="sublime使用过程的相关整理">sublime使用过程的相关整理</a></p>
+</li>
+</ul>
+<h2 id="库包"><a href="#库包" class="headerlink" title="库包"></a>库包</h2><blockquote>
+<p><strong>检查基本库包</strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vue -V</span><br><span class="line">create-react-app -V</span><br><span class="line">nrm -V</span><br><span class="line">ncu -V</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>安装库包</strong></p>
+</blockquote>
+<figure class="highlight shell"><figcaption><span>@vue/cli</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">OR</span></span><br><span class="line">yarn global add @vue/cli</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><figcaption><span>create-react-app</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g create-react-app</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">OR</span></span><br><span class="line">yarn global add create-react-app</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><figcaption><span>nrm</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">OR</span></span><br><span class="line">yarn global add nrm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><figcaption><span>ncu</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npm-check-updates</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">OR</span></span><br><span class="line">yarn global add npm-check-updates</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6"><span class="toc-text">软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-Git-Yarn"><span class="toc-text">Node Git Yarn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">浏览器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8"><span class="toc-text">编辑器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93%E5%8C%85"><span class="toc-text">库包</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2020/12/22/Vue%20%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2020/12/11/Git-%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2020/12/22/Vue%20%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2020/12/11/Git-%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

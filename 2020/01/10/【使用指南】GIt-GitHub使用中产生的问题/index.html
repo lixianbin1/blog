@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>GIt和GitHub使用中产生的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南," />
+  
+
+  
+  <meta name="description" content="Git 是开发或学习的工具之一，这记录了我在使用过程中遇到的问题和解决的办法；（最好的办法就是不使用，哈哈）">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-10
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2020-1-13 14:10 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    GIt和GitHub使用中产生的问题
+  </h1>
+  
+  <article class="passage-article">
+    <h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git-控制台中文名称显示乱码"><a href="#Git-控制台中文名称显示乱码" class="headerlink" title="Git 控制台中文名称显示乱码"></a>Git 控制台中文名称显示乱码</h2><p>当控制路径中的字符大于 0x80 的时候，转义路径字符，将编码显示设置为 false ，将不转义；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 运行以下命令</span><br><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件名包含空格导致添加失败"><a href="#文件名包含空格导致添加失败" class="headerlink" title="文件名包含空格导致添加失败"></a>文件名包含空格导致添加失败</h2><p>当文件夹名称或者文件名称包含空格的时候，git add 会提示文件匹配不上，导致git add 命令失败</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 添加的时候，推荐用 &#x27;&#x27; 包裹路径</span><br><span class="line">git  add &#x27;port/我的文件 名有 空格.avi&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略文件失效"><a href="#忽略文件失效" class="headerlink" title="忽略文件失效"></a>忽略文件失效</h2><p>原因在于追踪文件已经记录了并且正在追踪</p>
+<p>解决办法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 清楚追踪文件，不删除本地文件（注意：语句后面有一点）</span><br><span class="line">git rm -r --cached .</span><br><span class="line">// 添加所有文件，忽略文件除外</span><br><span class="line">git add .</span><br><span class="line">// commit</span><br><span class="line">git commit -m &#x27;update .gitignore&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="文件名大小写被忽略"><a href="#文件名大小写被忽略" class="headerlink" title="文件名大小写被忽略"></a>文件名大小写被忽略</h2><p>GIt默认忽略文件名大小写，导致修改文件夹之类的大小的名称时候；会和远程不一致</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">//设置false来关闭大写忽略</span><br><span class="line">git config core.ignorecase false</span><br></pre></td></tr></table></figure>
+
+<h1 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h1><h2 id="请求-Github仓库的数据失败"><a href="#请求-Github仓库的数据失败" class="headerlink" title="请求 Github仓库的数据失败"></a>请求 Github仓库的数据失败</h2><p>当你 pull 或者 push 链接失败，报错：Connection reset by 192.30.253.112 port 22 fatal: Could not read from remote repository. 哦豁，怎么办？原因有多种；</p>
+<ul>
+<li>没有权限拉取仓库的数据</li>
+</ul>
+<p>没有权限的解决办法很简单，如果你是用 ssh 链接，那么叫仓库管理把你的key加上就好，如果用的是https 链接，在拉取的时候把仓库管理的账号密码填上就好。</p>
+<ul>
+<li>22 端口被占用或堵塞</li>
+</ul>
+<p>如果是设置过端口禁用的不想换端口就去防火墙设置一下入；GitHub 的的建议是 替换端口 443</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 运行以下命令</span><br><span class="line">$ ssh -T -p 443 git@ssh.github.com</span><br><span class="line"></span><br><span class="line">// 如果出现以下提示，代表可以用 443 替换默认的 22 端口</span><br><span class="line">&gt; Hi username! You&#x27;ve successfully authenticated, but GitHub does not</span><br><span class="line">&gt; provide shell access.</span><br><span class="line"></span><br><span class="line">// 首先在 ~/.ssh/ 目录下找到 config 文件，如果没有可以新建，然后添加以下内容</span><br><span class="line">Host github.com</span><br><span class="line">  Hostname ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure>
+
+<p>参考链接：<a target="_blank" rel="noopener" href="https://help.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port">GitHub Help</a></p>
+<h2 id="请求-Github仓库的速度很慢"><a href="#请求-Github仓库的速度很慢" class="headerlink" title="请求 Github仓库的速度很慢"></a>请求 Github仓库的速度很慢</h2><p>当你 pull 或者 push 的时候，你会发现，它的速度只有 100kb/s 甚至更慢，拉取一个稍微大一点的仓库，拉取了一两个小时都未必能拉取成功，造成这样的原因同样也有很多：</p>
+<ul>
+<li><p>自身网络问题：自身网络过差，运营商限速，路由中毒等等</p>
+</li>
+<li><p>github.global.ssl.fastly.net域名被限制</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 打开 C:\Windows\System32\drivers\etc 里面的hosts 文件;然后添加以下内容</span><br><span class="line">192.30.253.112 github.com</span><br><span class="line">151.101.185.194 github.global-ssl.fastly.net</span><br><span class="line"></span><br><span class="line">// 保存后，打开 命令控制台执行 ipconfig/flushdns 清除缓存即可</span><br></pre></td></tr></table></figure>
+
+<h2 id="GitHub提交的commit未被统计"><a href="#GitHub提交的commit未被统计" class="headerlink" title="GitHub提交的commit未被统计"></a>GitHub提交的commit未被统计</h2><ul>
+<li>检查提交的用户和邮件是否为GitHub上的用户名和邮件</li>
+</ul>
+<blockquote>
+<p>git config user.name<br>  git config user.email</p>
+</blockquote>
+<ul>
+<li>提交是否在默认分支 或 gh-page；</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git"><span class="toc-text">Git</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E6%8E%A7%E5%88%B6%E5%8F%B0%E4%B8%AD%E6%96%87%E5%90%8D%E7%A7%B0%E6%98%BE%E7%A4%BA%E4%B9%B1%E7%A0%81"><span class="toc-text">Git 控制台中文名称显示乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E5%8C%85%E5%90%AB%E7%A9%BA%E6%A0%BC%E5%AF%BC%E8%87%B4%E6%B7%BB%E5%8A%A0%E5%A4%B1%E8%B4%A5"><span class="toc-text">文件名包含空格导致添加失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6%E5%A4%B1%E6%95%88"><span class="toc-text">忽略文件失效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%90%8D%E5%A4%A7%E5%B0%8F%E5%86%99%E8%A2%AB%E5%BF%BD%E7%95%A5"><span class="toc-text">文件名大小写被忽略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#GitHub"><span class="toc-text">GitHub</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82-Github%E4%BB%93%E5%BA%93%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%B1%E8%B4%A5"><span class="toc-text">请求 Github仓库的数据失败</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82-Github%E4%BB%93%E5%BA%93%E7%9A%84%E9%80%9F%E5%BA%A6%E5%BE%88%E6%85%A2"><span class="toc-text">请求 Github仓库的速度很慢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub%E6%8F%90%E4%BA%A4%E7%9A%84commit%E6%9C%AA%E8%A2%AB%E7%BB%9F%E8%AE%A1"><span class="toc-text">GitHub提交的commit未被统计</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2020/01/10/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91GIt-GitHub%E4%BD%BF%E7%94%A8%E4%B8%AD%E4%BA%A7%E7%94%9F%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2020/05/05/%E3%80%90%E6%97%A5%E8%AE%B0%E3%80%912020%E5%B9%B45%E6%9C%885%E6%97%A5/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2020/01/07/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A1%AB%E5%85%85/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2020/05/05/%E3%80%90%E6%97%A5%E8%AE%B0%E3%80%912020%E5%B9%B45%E6%9C%885%E6%97%A5/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2020/01/07/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A1%AB%E5%85%85/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
