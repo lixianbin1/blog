@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>React在开发中遇到的需求与问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="React," />
+  
+
+  
+  <meta name="description" content="在开发过程中遇到的一些问题，网上存在一些不相关的回答，本着解决问题的想法记下自己的答案，希望以后不在重蹈覆辙也希望能帮助到别人，当然不同的需求存在的问题可能会有不同。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-07-08
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-7-9 17:18 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    React在开发中遇到的需求与问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="需求：点击按钮出现弹窗，点击空白地方弹窗消失"><a href="#需求：点击按钮出现弹窗，点击空白地方弹窗消失" class="headerlink" title="需求：点击按钮出现弹窗，点击空白地方弹窗消失"></a>需求：点击按钮出现弹窗，点击空白地方弹窗消失</h2><h3 id="关联的问题：e-stopPropgation-不起作用；"><a href="#关联的问题：e-stopPropgation-不起作用；" class="headerlink" title="关联的问题：e.stopPropgation() 不起作用；"></a>关联的问题：e.stopPropgation() 不起作用；</h3><p>这种需求在我看来说很简单的，给document 绑定 click事件，点击后选择关闭弹窗，在窗体使用 e.stopPropgation() 来阻止冒泡行为。思路是这样，但是在React 中却不能单纯如此，因为e.stopPropgation() 不能阻止冒泡行为的发生，原因在于react 把事件绑定委托给document ，当你阻止冒泡的时候，document 早就接受到了点击事件，需要使用React 的e.nativeEvent</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const [show,setShow]=useState(false)</span><br><span class="line">const Clik=(e)=&gt;&#123;</span><br><span class="line">  e.stopImmediatePropagation()</span><br><span class="line">  setShow(false)</span><br><span class="line">&#125;</span><br><span class="line">useEffect(()=&gt;&#123;</span><br><span class="line">  document.addEventListener(&#x27;click&#x27;,Clik)</span><br><span class="line">  return ()=&gt;&#123;document.removeEventListener(&#x27;click&#x27;,Clik)&#125;</span><br><span class="line">&#125;,[show])</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// 以show 作为关闭窗口的开关 </span><br><span class="line">&#123;show?</span><br><span class="line">  &lt;div onClick=(e)=&gt;&#123;e.nativeEvent.stopImmediatePropagation();&#125; &gt;窗体&lt;/div&gt;:</span><br><span class="line">&#x27;&#x27;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当然在开发过程中遇到了一些问题，如：react 在 document 上绑定事件的时候，获取的 state 是初始化的，react 在路由改变后重新进入的时候，绑定的改变状态的事件还在，组件却不对其做出改变了，当然这些问题与需求是 Hooks 的使用不规范所导致的问题，在你将其不规范的地方改正后，这些问题都会消失</p>
+<h2 id="问题：用户短时间内点击多次所产生的多次请求的问题"><a href="#问题：用户短时间内点击多次所产生的多次请求的问题" class="headerlink" title="问题：用户短时间内点击多次所产生的多次请求的问题"></a>问题：用户短时间内点击多次所产生的多次请求的问题</h2><h3 id="关联的问题：中断之前的网络请求；防止用户的多次点击-函数节流与防抖"><a href="#关联的问题：中断之前的网络请求；防止用户的多次点击-函数节流与防抖" class="headerlink" title="关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖"></a>关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖</h3><p>这样的问题，在很多情况下都会出现，这涉及到前端的一些解决思路节流和防抖。</p>
+<blockquote>
+<p>以按钮点击来举例节流和防抖</p>
+</blockquote>
+<p>函数节流：以固定的频率执行执行函数，不管你点击多快，没达到设定的时间就不执行<br>函数防抖：类似游戏的释放法术，只要你点击了就会重新读条，读条完成才会执行函数</p>
+<blockquote>
+<p>中断网络请求</p>
+</blockquote>
+<p>不同的框架封装着不同的打断方式，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">JS与JQ</span><br><span class="line">//方法就是将XHR对象指向currentAjax，再调用currentAjax的.abort()来中止请求 </span><br><span class="line"></span><br><span class="line">var currentAjax = null;  </span><br><span class="line">function startAjax()&#123;  </span><br><span class="line">  if(currentAjax) &#123;currentAjax.abort();&#125; </span><br><span class="line">  currentAjax = $.ajax(&#123;</span><br><span class="line">    type:&#x27;POST&#x27;,</span><br><span class="line">    beforeSend:function()&#123;&#125;,  </span><br><span class="line">    url:&#x27;test.php&#x27;,  </span><br><span class="line">    data:&#x27;username=xxx&#x27;,  </span><br><span class="line">    dataType:&#x27;JSON&#x27;,  </span><br><span class="line">    error:function()&#123;alert(&#x27;error&#x27;)&#125;,  </span><br><span class="line">    success:function(data)&#123;alert(data)&#125;  </span><br><span class="line">  &#125;);  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">Angular</span><br><span class="line">//通过注入 `$q` 服务，使用`$q.defer`来停止</span><br><span class="line"></span><br><span class="line">var _enj;</span><br><span class="line">$scope.clconversations=function()&#123;</span><br><span class="line">    if(_enj)&#123;_enj.resolve()&#125;;</span><br><span class="line">    _enj = $q.defer();</span><br><span class="line">    $http.get(&#x27;/Iridium/public/tcpanalysis/getconversations&#x27;,&#123;</span><br><span class="line">        params:&#123;</span><br><span class="line">            start_time: $scope.start_time,</span><br><span class="line">            end_time:$scope.end_time,</span><br><span class="line">        &#125;,</span><br><span class="line">        timeout:_enj.promise</span><br><span class="line">    &#125;).then(function(response)&#123;</span><br><span class="line">        console.log(&#x27;&#x27;)</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随"><a href="#需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随" class="headerlink" title="需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随"></a>需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随</h2><h3 id="关联的问题，传统表格中-display：table-系列和高度产生滚动条的冲突"><a href="#关联的问题，传统表格中-display：table-系列和高度产生滚动条的冲突" class="headerlink" title="关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突"></a>关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突</h3><p>这样的问题在很多时候我们都会遇到，在 Html 中，可以通过 html + js 的方式创建 div 模拟 table 表格来进行展示。<br>在react中，我需要把它单独抽出，这样其他地方时候也能用到。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line">import * as React from &#x27;react&#x27;</span><br><span class="line">var $ = require(&#x27;jquery&#x27;)</span><br><span class="line">export class LTable extends React.Component&lt;any,any&gt;&#123;</span><br><span class="line">  constructor(props:any) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">    this.resize=this.resize.bind(this)</span><br><span class="line">    this.state = &#123;</span><br><span class="line">      id:this.props.id||&#x27;l_&#x27;+(new Date().getTime()+Math.random()).toFixed(3),</span><br><span class="line">      clas:this.props.className||&#x27;&#x27;,</span><br><span class="line">      height:this.props.height||&#x27;300px&#x27;,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  static contextTypes=&#123;  </span><br><span class="line">    router: function()&#123;</span><br><span class="line">      return null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  mounted = false;</span><br><span class="line">  componentWillMount()&#123;</span><br><span class="line">    this.mounted = true;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    window.addEventListener(&#x27;resize&#x27;, this.resize)</span><br><span class="line">    this.resize()</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate()&#123;</span><br><span class="line">    this.resize()</span><br><span class="line">  &#125;</span><br><span class="line">  componentWillUnmount()&#123;</span><br><span class="line">    window.removeEventListener(&#x27;resize&#x27;,this.resize);</span><br><span class="line">    this.mounted = false;</span><br><span class="line">  &#125;</span><br><span class="line">  resize()&#123;</span><br><span class="line">    let id=this.state.id</span><br><span class="line">    let tbody=this.props.tbody</span><br><span class="line">    if(tbody.length&gt;0)&#123;</span><br><span class="line">      let ltable=document.getElementById(id)!.getElementsByTagName(&#x27;table&#x27;)</span><br><span class="line">      let thead0=ltable[0].getElementsByTagName(&#x27;thead&#x27;)[0]</span><br><span class="line">      let thead1=ltable[1].getElementsByTagName(&#x27;thead&#x27;)[0]</span><br><span class="line">      let ltbody=document.getElementById(id)!.getElementsByClassName(&#x27;l_table_body&#x27;)[0]</span><br><span class="line">      let th0=thead0.getElementsByTagName(&#x27;th&#x27;)</span><br><span class="line">      let th1=thead1.getElementsByTagName(&#x27;th&#x27;)</span><br><span class="line">      thead0.style.minWidth=thead1.offsetWidth+&#x27;px&#x27;</span><br><span class="line">      ltable[0].style.width=ltable[1].offsetWidth+&#x27;px&#x27;</span><br><span class="line">      for(let i=0;i&lt;th1.length;i++)&#123;</span><br><span class="line">        th0[i].style.width=th1[i].offsetWidth+&#x27;px&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">      $(ltbody).scroll(function(e:any)&#123;</span><br><span class="line">        let div=document.getElementById(id)!.getElementsByClassName(&#x27;l_table_head&#x27;)[0]</span><br><span class="line">        div.scrollLeft=e.target.scrollLeft</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">    let thead=this.props.thead,tbody=this.props.tbody</span><br><span class="line">    return (</span><br><span class="line">    &lt;div id=&#123;this.state.id&#125; className=&#123;&quot;l_table &quot;+this.state.clas&#125;&gt;</span><br><span class="line">      &#123;this.props.title?</span><br><span class="line">        &lt;h3 className=&quot;l_table_title&quot;&gt;&#123;this.props.title&#125;&lt;/h3&gt;:&#x27;&#x27;</span><br><span class="line">      &#125;</span><br><span class="line">      &lt;div className=&quot;l_table_head l_scroll_hide&quot;&gt;</span><br><span class="line">        &lt;table&gt;</span><br><span class="line">          &lt;thead&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">            &#123;thead.map((e:any,i:any)=&gt;</span><br><span class="line">              &lt;th key=&#123;i&#125;&gt;&#123;e.title&#125;&lt;/th&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">          &lt;/thead&gt;</span><br><span class="line">        &lt;/table&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">      &lt;div className=&quot;l_table_body&quot; style=&#123;&#123;height:this.state.height&#125;&#125;&gt;</span><br><span class="line">        &#123;tbody.length&gt;0?</span><br><span class="line">        &lt;table&gt;</span><br><span class="line">          &lt;thead&gt;</span><br><span class="line">            &lt;tr&gt;</span><br><span class="line">            &#123;thead.map((e:any,i:any)=&gt;</span><br><span class="line">              &lt;th key=&#123;i&#125;&gt;&#123;e.title&#125;&lt;/th&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">            &lt;/tr&gt;</span><br><span class="line">          &lt;/thead&gt;</span><br><span class="line">          &lt;tbody&gt;</span><br><span class="line">            &#123;tbody.map((tr:any,a:any)=&gt;</span><br><span class="line">              &lt;tr key=&#123;a&#125;&gt;</span><br><span class="line">              &#123;thead.map((td:any,b:any)=&gt;&#123;</span><br><span class="line">                if(td.render)&#123;</span><br><span class="line">                  return &lt;td key=&#123;b&#125;&gt;&#123;td.render(tr)&#125;&lt;/td&gt;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                  return &lt;td key=&#123;b&#125;&gt;&#123;td.title&#125;&lt;/td&gt;</span><br><span class="line">                &#125;</span><br><span class="line">              &#125;)&#125;</span><br><span class="line">              &lt;/tr&gt;</span><br><span class="line">            )&#125;</span><br><span class="line">          &lt;/tbody&gt;</span><br><span class="line">        &lt;/table&gt;:</span><br><span class="line">        &lt;div className=&quot;l_nodata&quot;&gt;</span><br><span class="line">          &lt;span&gt;No Date&lt;/span&gt;</span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E5%87%BA%E7%8E%B0%E5%BC%B9%E7%AA%97%EF%BC%8C%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%9C%B0%E6%96%B9%E5%BC%B9%E7%AA%97%E6%B6%88%E5%A4%B1"><span class="toc-text">需求：点击按钮出现弹窗，点击空白地方弹窗消失</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9Ae-stopPropgation-%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%EF%BC%9B"><span class="toc-text">关联的问题：e.stopPropgation() 不起作用；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E7%94%A8%E6%88%B7%E7%9F%AD%E6%97%B6%E9%97%B4%E5%86%85%E7%82%B9%E5%87%BB%E5%A4%9A%E6%AC%A1%E6%89%80%E4%BA%A7%E7%94%9F%E7%9A%84%E5%A4%9A%E6%AC%A1%E8%AF%B7%E6%B1%82%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">问题：用户短时间内点击多次所产生的多次请求的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%E4%B8%AD%E6%96%AD%E4%B9%8B%E5%89%8D%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%EF%BC%9B%E9%98%B2%E6%AD%A2%E7%94%A8%E6%88%B7%E7%9A%84%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB-%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E4%B8%8E%E9%98%B2%E6%8A%96"><span class="toc-text">关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%A6%81%E6%B1%82%E7%AB%96%E5%90%91%E6%BB%9A%E5%8A%A8%EF%BC%8C%E8%A1%A8%E5%A4%B4%E5%9B%BA%E5%AE%9A%EF%BC%8C%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8%EF%BC%8C%E8%A1%A8%E5%A4%B4%E8%83%BD%E8%B7%9F%E9%9A%8F"><span class="toc-text">需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BC%A0%E7%BB%9F%E8%A1%A8%E6%A0%BC%E4%B8%AD-display%EF%BC%9Atable-%E7%B3%BB%E5%88%97%E5%92%8C%E9%AB%98%E5%BA%A6%E4%BA%A7%E7%94%9F%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E5%86%B2%E7%AA%81"><span class="toc-text">关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/07/08/React%E5%9C%A8%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%9C%80%E6%B1%82%E4%B8%8E%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/React/"><i class="fa fa-tags"></i>React</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2019/07/24/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91Node.js%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2019/06/21/%E3%80%90%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3%E3%80%91%E6%A0%B7%E5%BC%8F%E5%92%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%8F%82%E8%80%83%E5%92%8C%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2019/07/24/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91Node.js%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2019/06/21/%E3%80%90%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3%E3%80%91%E6%A0%B7%E5%BC%8F%E5%92%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%8F%82%E8%80%83%E5%92%8C%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

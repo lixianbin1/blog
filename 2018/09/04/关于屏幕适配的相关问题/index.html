@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>关于屏幕适配的相关问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="参考手册," />
+  
+
+  
+  <meta name="description" content="饿包子的博客">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2018-09-04
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"><i class="fa fa-bookmark"></i>参考手册</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-4-9 10:14 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    关于屏幕适配的相关问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="关于页面的相关设置"><a href="#关于页面的相关设置" class="headerlink" title="关于页面的相关设置"></a>关于页面的相关设置</h2><p>lang 属性可用于大部分 HTML 标签，当html 标记为 en 时，谷歌会提醒翻译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;zh-CN&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关键字，关键词:对搜索引擎友好，在爬虫进行网站收录时会进行标记</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;关键字1,关键字2,关键字3&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>网站内容描述</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;description&quot; content=&quot;对页面的简单的一句话描述&quot;&gt; </span><br></pre></td></tr></table></figure>
+
+<p>标注页面的作者</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;author&quot; content=&quot;Xianbin Li&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>设置手机页面的 viewport 缩放比例</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta  name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="常见屏幕大小参考"><a href="#常见屏幕大小参考" class="headerlink" title="常见屏幕大小参考"></a>常见屏幕大小参考</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* device-width 真实显示屏大小 */</span></span><br><span class="line"><span class="comment">/* width 浏览器大小 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*彩色设备 and 大于等于1920px的屏幕*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1920px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*小于于等于1920px的屏幕 and 大于等于1680px的屏幕*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1920px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1680px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1680px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1366px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1366px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1024px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1024px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ipad pro*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">1024px</span>) <span class="keyword">and</span> (<span class="attribute">min-device-width</span>:<span class="number">769px</span>) &#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">1024px</span>) &#123; &#125;</span><br><span class="line"><span class="comment">/*ipad*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">768px</span>) <span class="keyword">and</span> (<span class="attribute">min-device-width</span>:<span class="number">450px</span>) &#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">768px</span>) &#123; &#125;</span><br><span class="line"><span class="comment">/*大部分手机*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">450px</span>)&#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">450px</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="title function_">test</span>(navigator.<span class="property">userAgent</span>) ? <span class="string">&quot;https://www.baidu.com/&quot;</span> :  <span class="string">&quot;http://news.baidu.com/&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是手机端则去百度，不是则去新闻</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关于屏幕大小属性参考"><a href="#关于屏幕大小属性参考" class="headerlink" title="关于屏幕大小属性参考"></a>关于屏幕大小属性参考</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 浏览器窗口大小（包括工具栏）</span><br><span class="line">window.outerHeight</span><br><span class="line">window.outerWidth</span><br><span class="line"></span><br><span class="line"># 窗口文档显示区（不包含滚动条）</span><br><span class="line">window.innerWidth</span><br><span class="line">window.innerHeight</span><br><span class="line"></span><br><span class="line"># 元素级内部大小（不包含滚动条）</span><br><span class="line">clientWidth</span><br><span class="line">clientHeight</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于手机横竖屏的判断"><a href="#关于手机横竖屏的判断" class="headerlink" title="关于手机横竖屏的判断"></a>关于手机横竖屏的判断</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 手机转向角度</span><br><span class="line">window.orientation</span><br><span class="line"></span><br><span class="line"># PC 端为 undefined；90或-90为横屏幕，剩下则是竖屏</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于屏幕的相关说明"><a href="#关于屏幕的相关说明" class="headerlink" title="关于屏幕的相关说明"></a>关于屏幕的相关说明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">手机的像素  分辨率在640*1136是物理像素</span><br><span class="line">电脑上的px  逻辑像素，浏览器使用的抽象像素</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>手机浏览器默认做了两件事<br>【1】页面渲染在一个980px(ios)的 viewport；【2】缩放</p>
+</blockquote>
+<p>DPI：打印机每英寸可以喷的墨汁点<br>PPI：屏幕每英寸的像素数量，即单位英寸的像素密度，PPI越高，图像越清楚</p>
+<table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">ldpi(流畅)</th>
+<th align="center">mdpi(普通)</th>
+<th align="center">hdpi(高清)</th>
+<th align="center">xhdpi(超清)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ppi</td>
+<td align="center">120</td>
+<td align="center">160</td>
+<td align="center">240</td>
+<td align="center">320</td>
+</tr>
+<tr>
+<td align="center">dpr</td>
+<td align="center">0.75</td>
+<td align="center">1.0</td>
+<td align="center">1.5</td>
+<td align="center">2.0</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：高清屏默认缩放比都是2.0</p>
+</blockquote>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-text">关于页面的相关设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F%E5%8F%82%E8%80%83"><span class="toc-text">常见屏幕大小参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E5%92%8C-PC-%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机和 PC 的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83"><span class="toc-text">关于屏幕大小属性参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E6%A8%AA%E7%AB%96%E5%B1%8F%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机横竖屏的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E"><span class="toc-text">关于屏幕的相关说明</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2019/04/25/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Hexo%E5%9C%A8%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2018/06/03/CSS%E5%8F%98%E9%87%8F%E7%9A%84%E5%8E%86%E5%8F%B2%E5%92%8C%E5%85%BC%E5%AE%B9%E6%80%A7/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2019/04/25/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Hexo%E5%9C%A8%E4%BD%BF%E7%94%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2018/06/03/CSS%E5%8F%98%E9%87%8F%E7%9A%84%E5%8E%86%E5%8F%B2%E5%92%8C%E5%85%BC%E5%AE%B9%E6%80%A7/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

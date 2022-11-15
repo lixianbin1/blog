@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>高德地图在实际应用的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="参考手册," />
+  
+
+  
+  <meta name="description" content="金麟岂是池中物，一遇风云便化龙，九霄龙吟惊天变，风云际会浅水游。马荣成 《风云》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-07-20
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"><i class="fa fa-bookmark"></i>参考手册</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-7-21 10:37 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    高德地图在实际应用的问题
+  </h1>
+  
+  <article class="passage-article">
+    <ol>
+<li>首先，注册开发者账号，成为高德开放平台开发者</li>
+<li>登陆之后，在进入「应用管理」 页面「创建新应用」</li>
+<li>为应用添加 Key，「服务平台」一项请选择「 Web 端 ( JSAPI )</li>
+</ol>
+<h2 id="引入项目"><a href="#引入项目" class="headerlink" title="引入项目"></a>引入项目</h2><h3 id="JS-API-引入"><a href="#JS-API-引入" class="headerlink" title="JS API 引入"></a>JS API 引入</h3><p>在 <code>html</code> 文件 通过 <code>&lt;script&gt;</code> 引入;</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-id">#container</span> &#123;<span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>: <span class="number">180px</span>; &#125;  </span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">window</span>.<span class="property">onLoad</span>  = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> map = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Map</span>(<span class="string">&#x27;container&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> url = <span class="string">&#x27;https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值&amp;callback=onLoad&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">  <span class="keyword">var</span> jsapi = doc.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">  jsapi.<span class="property">charset</span> = <span class="string">&#x27;utf-8&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">  jsapi.<span class="property">src</span> = url;</span></span><br><span class="line"><span class="language-javascript">  <span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(jsapi);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="Require-JS-引入"><a href="#Require-JS-引入" class="headerlink" title="Require JS 引入"></a>Require JS 引入</h3><p>通过 <code>npm</code> 安装库引入项目，再通过 import 引入</p>
+<blockquote>
+<p>npm install @amap/amap-jsapi-loader</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">AMapLoader</span> <span class="keyword">from</span> <span class="string">&quot;@amap/amap-jsapi-loader&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="variable constant_">HC</span> <span class="keyword">from</span> <span class="string">&#x27;@/static/img.png&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化地图</span></span><br><span class="line"><span class="title function_">initMap</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title class_">AMapLoader</span>.<span class="title function_">load</span>(&#123;</span><br><span class="line">    <span class="attr">key</span>: <span class="string">&quot;5daef797f2a3134241fd7dee3ba06566&quot;</span>,  <span class="comment">// 申请的key值</span></span><br><span class="line">    <span class="comment">//version: &quot;2.0&quot;, // 默认为 1.4.15。建议不使用2.0 兼容性太差</span></span><br><span class="line">    <span class="attr">plugins</span>: [<span class="string">&quot;AMap.MoveAnimation&quot;</span>]    <span class="comment">//插件列表</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">AMap</span> =&gt;</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//地图实例</span></span><br><span class="line">    <span class="keyword">var</span> map = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Map</span>(<span class="string">&quot;mymap&quot;</span>, &#123;</span><br><span class="line">      <span class="attr">zoom</span>: <span class="number">15</span>,       <span class="comment">//初始化地图层级</span></span><br><span class="line">      <span class="attr">resizeEnable</span>: <span class="literal">true</span>     <span class="comment">//调整大小</span></span><br><span class="line">      <span class="attr">center</span>: [<span class="number">114.22237</span>, <span class="number">22.33357</span>],   <span class="comment">//地图中心</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Marker覆盖图：车</span></span><br><span class="line">    <span class="keyword">var</span> marker = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Marker</span>(&#123;</span><br><span class="line">      <span class="attr">map</span>: map,  <span class="comment">//地图实例</span></span><br><span class="line">      <span class="attr">position</span>: [<span class="number">114.22237</span>, <span class="number">22.33357</span>], <span class="comment">//覆盖物定位</span></span><br><span class="line">      <span class="attr">icon</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Icon</span>(&#123;   <span class="comment">//图标配置</span></span><br><span class="line">        <span class="attr">image</span>: <span class="variable constant_">HC</span>,            <span class="comment">//图片地址</span></span><br><span class="line">        <span class="attr">size</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Size</span>(<span class="number">60</span>, <span class="number">50</span>),   <span class="comment">//图标大小</span></span><br><span class="line">        <span class="attr">imageSize</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Size</span>(<span class="number">60</span>, <span class="number">50</span>)</span><br><span class="line">      &#125;),</span><br><span class="line">      <span class="attr">offset</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Pixel</span>(-<span class="number">16</span>, -<span class="number">25</span>), <span class="comment">//位置偏移</span></span><br><span class="line">      <span class="attr">autoRotation</span>: <span class="literal">true</span>,     <span class="comment">//是否根据路线调整位置</span></span><br><span class="line">      <span class="attr">angle</span>: <span class="number">0</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//实例化信息窗体</span></span><br><span class="line">    <span class="keyword">var</span> content = <span class="string">`</span></span><br><span class="line"><span class="string">      &lt;div&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;订单号：&lt;span style=&quot;font-weight:bold&quot;&gt;ZG80191223444&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;车牌号：&lt;span style=&quot;font-weight:bold&quot;&gt;粤ZY12港&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;GPS时间：&lt;span style=&quot;font-weight:bold&quot;&gt;2021-01-01 14:12:45&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;司机信息：&lt;span style=&quot;font-weight:bold&quot;&gt;朱文静&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;速度：&lt;span style=&quot;font-weight:bold&quot;&gt;52KM/H&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;里程：&lt;span style=&quot;font-weight:bold&quot;&gt;7270.10KM&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;启动/熄火时间：&lt;span style=&quot;font-weight:bold&quot;&gt;33分钟54秒&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;客户：&lt;span style=&quot;font-weight:bold&quot;&gt;张小红&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;货物信息：&lt;span style=&quot;font-weight:bold&quot;&gt;衬衫&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;提货地址：&lt;span style=&quot;font-weight:bold&quot;&gt;广东省深圳市龙岗区南湾街道理&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">        &lt;p style=&quot;margin:5px&quot;&gt;送货地址：&lt;span style=&quot;font-weight:bold&quot;&gt;广东省深圳市龙岗区南湾街道理兆产业园232.965连理栋路2000米处&lt;/span&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">      &lt;/div&gt;</span></span><br><span class="line"><span class="string">    `</span></span><br><span class="line">    <span class="keyword">var</span> infoWindow = <span class="variable language_">this</span>.<span class="title function_">titleCon</span>(<span class="title class_">AMap</span>, content);</span><br><span class="line">    <span class="title class_">AMap</span>.<span class="property">event</span>.<span class="title function_">addListener</span>(marker, <span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      infoWindow.<span class="title function_">open</span>(map, marker.<span class="title function_">getPosition</span>());</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 起点标记</span></span><br><span class="line">    <span class="keyword">var</span> viaMarker = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Marker</span>(&#123;</span><br><span class="line">      <span class="attr">position</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">LngLat</span>(<span class="number">114.22237</span>, <span class="number">22.33357</span>), <span class="comment">// 经纬度转换为像素坐标</span></span><br><span class="line">      <span class="attr">icon</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Icon</span>(&#123;    <span class="comment">//图标配置</span></span><br><span class="line">        <span class="attr">image</span>: <span class="string">&#x27;//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png&#x27;</span>,</span><br><span class="line">        <span class="attr">size</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Size</span>(<span class="number">135</span>, <span class="number">40</span>),</span><br><span class="line">        <span class="attr">imageSize</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Size</span>(<span class="number">135</span>, <span class="number">40</span>),</span><br><span class="line">        <span class="attr">imageOffset</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Pixel</span>(-<span class="number">9</span>, -<span class="number">3</span>)</span><br><span class="line">      &#125;),</span><br><span class="line">      <span class="attr">offset</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Pixel</span>(-<span class="number">18</span>, -<span class="number">37</span>)</span><br><span class="line">    &#125;);</span><br><span class="line">    map.<span class="title function_">add</span>(viaMarker);</span><br><span class="line">      <span class="comment">//添加 movseover 事件</span></span><br><span class="line">    <span class="title class_">AMap</span>.<span class="property">event</span>.<span class="title function_">addListener</span>(viaMarker, <span class="string">&quot;mouseover&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      viaMarker.<span class="title function_">setLabel</span>(&#123;</span><br><span class="line">        <span class="attr">direction</span>:<span class="string">&#x27;top&#x27;</span>,</span><br><span class="line">        <span class="attr">offset</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Pixel</span>(<span class="number">10</span>, <span class="number">0</span>),  <span class="comment">//设置文本标注偏移量</span></span><br><span class="line">        <span class="attr">content</span>: <span class="string">&quot;&lt;div style=&#x27;margin:5px&#x27;&gt;广东省深圳市龙岗区南湾街道理&lt;/div&gt;&quot;</span>, <span class="comment">//设置文本标注内容</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">      <span class="comment">//添加 mouseout 事件</span></span><br><span class="line">    <span class="title class_">AMap</span>.<span class="property">event</span>.<span class="title function_">addListener</span>(viaMarker, <span class="string">&quot;mouseout&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      viaMarker.<span class="title function_">setLabel</span>(&#123;</span><br><span class="line">        <span class="attr">direction</span>:<span class="string">&#x27;top&#x27;</span>,</span><br><span class="line">        <span class="attr">offset</span>: <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Pixel</span>(<span class="number">10</span>, <span class="number">0</span>),  <span class="comment">//设置文本标注偏移量</span></span><br><span class="line">        <span class="attr">content</span>: <span class="string">&quot;&quot;</span>, <span class="comment">//设置文本标注内容</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 绘制轨迹</span></span><br><span class="line">    <span class="keyword">var</span> passedPolyline = <span class="keyword">new</span> <span class="title class_">AMap</span>.<span class="title class_">Polyline</span>(&#123;</span><br><span class="line">      <span class="attr">map</span>: map,</span><br><span class="line">      <span class="attr">path</span>: [[<span class="number">114.22237</span>,<span class="number">22.33357</span>],[<span class="number">114.22237</span>,<span class="number">22.33357</span>]],  <span class="comment">//根据坐标绘制轨迹</span></span><br><span class="line">      <span class="attr">showDir</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">strokeColor</span>: <span class="string">&quot;#28F&quot;</span>, <span class="comment">//线颜色</span></span><br><span class="line">      <span class="comment">// strokeOpacity: 1,     //线透明度</span></span><br><span class="line">      <span class="attr">strokeWeight</span>: <span class="number">6</span> <span class="comment">//线宽</span></span><br><span class="line">      <span class="comment">// strokeStyle: &quot;solid&quot;  //线样式</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 绑定事件。线随车移动动</span></span><br><span class="line">    marker.<span class="title function_">on</span>(<span class="string">&quot;moving&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">      passedPolyline.<span class="title function_">setPath</span>(e.<span class="property">passedPath</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      marker.<span class="title function_">moveAlong</span>(lineArr, <span class="number">200</span>);</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E9%A1%B9%E7%9B%AE"><span class="toc-text">引入项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS-API-%E5%BC%95%E5%85%A5"><span class="toc-text">JS API 引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Require-JS-%E5%BC%95%E5%85%A5"><span class="toc-text">Require JS 引入</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2021/11/18/%E3%80%90%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7%E3%80%91%E5%90%84%E7%A7%8D%E7%A8%80%E5%A5%87%E5%8F%A4%E6%80%AA%E7%9A%84%E6%80%9D%E8%B7%AF%E6%88%96%E8%80%85%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2021/07/08/ES6%E4%B8%AD%E7%B2%BE%E7%AE%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%8F%8A%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2021/11/18/%E3%80%90%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7%E3%80%91%E5%90%84%E7%A7%8D%E7%A8%80%E5%A5%87%E5%8F%A4%E6%80%AA%E7%9A%84%E6%80%9D%E8%B7%AF%E6%88%96%E8%80%85%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2021/07/08/ES6%E4%B8%AD%E7%B2%BE%E7%AE%80%E7%9F%A5%E8%AF%86%E7%82%B9%E5%8F%8A%E9%87%8D%E8%A6%81%E7%9F%A5%E8%AF%86%E7%82%B9/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

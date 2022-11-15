@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>JS 的设计模式介绍（二） | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="设计模式,Javascript," />
+  
+
+  
+  <meta name="description" content="上篇关于设计模式的文章隔了有几个月了，抽空又看了几遍，重新整理一下，打算把看到到都记录下来，省的以后找起来麻烦。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-12-30
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"><i class="fa fa-bookmark"></i>设计模式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-12-30 16:34 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    JS 的设计模式介绍（二）
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="模块化模式"><a href="#模块化模式" class="headerlink" title="模块化模式"></a>模块化模式</h2><p>模块化模式最初被定义为对传统工程中的类提供私有和公共封装的方法，在js中，模块化模式进一步模拟类的概念，通过这一种方法，可以在单一的对象中包含私有/公有的方法和变量。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let testModal=(function()&#123;</span><br><span class="line">  var conunter=0 // 私有变量</span><br><span class="line">  return &#123;</span><br><span class="line">    incem:function()&#123;</span><br><span class="line">      return conunter++</span><br><span class="line">    &#125;,</span><br><span class="line">    reset:function()&#123;</span><br><span class="line">      console.log(conunter)</span><br><span class="line">      conunter=0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">testModal.incem()</span><br><span class="line">testModal.reset()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="Observer-观察者模式"><a href="#Observer-观察者模式" class="headerlink" title="Observer 观察者模式"></a>Observer 观察者模式</h2><p>一个被称为<code>被观察者</code>的对象维护一组被称为<code>观察者</code>的对象，这些对象依赖于<code>被观察者</code>，<code>被观察者</code>将自身的状态的任何变化都通知<code>观察者</code>，它采取广播的形式，这条广播可能包括特定于这条广播的一些数据，当我们不在希望某个特定的<code>观察者</code>获得通知的时候，我们可以从把它从观察者列表中删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">//观察者列表</span><br><span class="line">function ObserverList()&#123;</span><br><span class="line">	this.observerList=[]</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Add=function(obj)&#123; //添加</span><br><span class="line">	return this.observerList.push(obj)</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Empty=function()&#123; //清空</span><br><span class="line">	this.observerList=[]</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Count=function()&#123; //观察者数量</span><br><span class="line">	return this.observerList.length</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Get=function(index)&#123;//获取其中一个</span><br><span class="line">	if(index&gt;-1&amp;&amp;index&lt;this.observerList.length)&#123;</span><br><span class="line">		return this.observerList[index]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Insert=function(obj,index)&#123; //插入其中</span><br><span class="line">	var pointer=-1</span><br><span class="line">	if(index===0)&#123;</span><br><span class="line">		this.observerList.unshift(obj) // 插入开头，返回位置</span><br><span class="line">		pointer=index</span><br><span class="line">	&#125;else if(index===this.observerList.length)&#123; //插入结尾</span><br><span class="line">		this.observerList.push(obj)</span><br><span class="line">		pointer=index</span><br><span class="line">	&#125;</span><br><span class="line">	return pointer</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.IndexOf=function(obj,startIndex)&#123; //查找所在位置</span><br><span class="line">	let i =startIndex,pointer=-1</span><br><span class="line">	while(i&lt;this.observerList.length)&#123;</span><br><span class="line">		if(this.observerList[i]===obj)&#123;</span><br><span class="line">			pointer=i</span><br><span class="line">		&#125;</span><br><span class="line">		i++</span><br><span class="line">	&#125;</span><br><span class="line">	return pointer</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.RemoveAt=function(index)&#123; //删除</span><br><span class="line">	if(index===0)&#123;</span><br><span class="line">		this.observerList.shift() //删除头部</span><br><span class="line">	&#125;else if(index===this.observerList.length -1)&#123;</span><br><span class="line">		this.observerList.pop()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//被观察者的原型</span><br><span class="line">function Subject()&#123;</span><br><span class="line">	this.observers=new ObserverList();</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.AddObserver=function(observer)&#123; //增加</span><br><span class="line">	this.observers.Add(observer)</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.RemoveObserver=function(observer)&#123; //删除</span><br><span class="line">	this.observers.RemoveAt(this.observers.IndexOf(observer,0))</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.Notify=function(context)&#123; //通知</span><br><span class="line">	var observerCount=this.observers.Count()</span><br><span class="line">	for(let i=0;i&lt;observerCount;i++)&#123;</span><br><span class="line">		this.observers.Get(i).Update(context) //循环执行更新</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function extend(extension,obj)&#123; //循环将 某身份属性 塞入obj</span><br><span class="line">	for(let key in extension)&#123;</span><br><span class="line">		obj[key]=extension[key]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function Observer()&#123;</span><br><span class="line">	this.Update=function(text)&#123;</span><br><span class="line">		this.checked=text</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var controlCheckbox=document.getElementById(&#x27;mainCheckbox&#x27;),</span><br><span class="line">	addBth=document.getElementById(&#x27;addNewObserver&#x27;),</span><br><span class="line">	container=document.getElementById(&#x27;observersContainer&#x27;)</span><br><span class="line">//创建 具体被观察者</span><br><span class="line">extend(new Subject(),controlCheckbox);</span><br><span class="line">//绑定点击的时候通知 </span><br><span class="line">controlCheckbox[&#x27;onclick&#x27;]=new Function(&#x27;controlCheckbox.Notify(controlCheckbox.checked)&#x27;)</span><br><span class="line">addBth[&#x27;onclick&#x27;]=AddNewObserver</span><br><span class="line">//具体观察者</span><br><span class="line">function AddNewObserver()&#123;</span><br><span class="line">	let check=document.createElement(&#x27;input&#x27;)</span><br><span class="line">	check.type=&#x27;checkbox&#x27;</span><br><span class="line">	extend(new Observer(),check)</span><br><span class="line">	check.update=function(value)&#123;</span><br><span class="line">		this.checked=value</span><br><span class="line">	&#125;</span><br><span class="line">	controlCheckbox.AddObserver(check) //增加观察者</span><br><span class="line">	container.appendChild(check)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h3><p>发布/订阅模式作为观察者模式的变体，有许多相同的地方也有许多不同的地方，观察者模式要求想要接受通知的观察者需要在被观察者上注册这个事件，发布/订阅模式则使用一个频道，订阅者和发布者通过频道传递特殊的数据</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">function Public() &#123;</span><br><span class="line">  this.handlers = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Public.prototype = &#123;</span><br><span class="line">    // 订阅事件</span><br><span class="line">    on: function(eventType, handler)&#123;</span><br><span class="line">        var self = this;</span><br><span class="line">        if(!(eventType in self.handlers)) &#123;</span><br><span class="line">           self.handlers[eventType] = [];</span><br><span class="line">        &#125;</span><br><span class="line">        self.handlers[eventType].push(handler);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;,</span><br><span class="line">     // 触发事件(发布事件)</span><br><span class="line">    emit: function(eventType)&#123;</span><br><span class="line">       var self = this;</span><br><span class="line">       var handlerArgs = Array.prototype.slice.call(arguments,1);</span><br><span class="line">       for(var i = 0; i &lt; self.handlers[eventType].length; i++) &#123;</span><br><span class="line">         self.handlers[eventType][i].apply(self,handlerArgs);</span><br><span class="line">       &#125;</span><br><span class="line">       return self;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 删除订阅事件</span><br><span class="line">    off: function(eventType, handler)&#123;</span><br><span class="line">        var currentEvent = this.handlers[eventType];</span><br><span class="line">        var len = 0;</span><br><span class="line">        if (currentEvent) &#123;</span><br><span class="line">            len = currentEvent.length;</span><br><span class="line">            for (var i = len - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                if (currentEvent[i] === handler)&#123;</span><br><span class="line">                    currentEvent.splice(i, 1);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var Publisher = new Public();</span><br><span class="line">//订阅事件a</span><br><span class="line">Publisher.on(&#x27;a&#x27;, function(data)&#123;</span><br><span class="line">    console.log(1 + data);</span><br><span class="line">&#125;);</span><br><span class="line">Publisher.on(&#x27;a&#x27;, function(data)&#123;</span><br><span class="line">    console.log(2 + data);</span><br><span class="line">&#125;);</span><br><span class="line">//触发事件a</span><br><span class="line">Publisher.emit(&#x27;a&#x27;, &#x27;我是第1次调用的参数&#x27;);</span><br><span class="line">Publisher.emit(&#x27;a&#x27;, &#x27;我是第2次调用的参数&#x27;);</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E5%8C%96%E6%A8%A1%E5%BC%8F"><span class="toc-text">模块化模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Observer-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">Observer 观察者模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F"><span class="toc-text">发布&#x2F;订阅模式</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/12/30/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Javascript/"><i class="fa fa-tags"></i>Javascript</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2020/01/07/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A1%AB%E5%85%85/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2019/11/29/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2020/01/07/%E8%AE%B0%E4%BD%8F%E5%AF%86%E7%A0%81%E5%92%8C%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A1%AB%E5%85%85/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2019/11/29/%E4%BB%8B%E7%BB%8D%E5%87%A0%E4%B8%AA%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

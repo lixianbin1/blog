@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>前端面试题的收集和总结(基础篇) | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="面试合集," />
+  
+
+  
+  <meta name="description" content="记录一下网上收集和自己碰到的一些面试题和前端的一些基本概念，面试了几次，真的就面试造航母，上班拧螺丝，还有现在的外包是真的多，想找个不是外包的公司确实是比较困难呐，不过面试一下，也可以查缺补漏，找一下自己身上的薄弱点">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-10-26
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E9%9D%A2%E8%AF%95%E5%90%88%E9%9B%86/"><i class="fa fa-bookmark"></i>面试合集</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-10-8 10:44 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    前端面试题的收集和总结(基础篇)
+  </h1>
+  
+  <article class="passage-article">
+    <p>可能在我刚学前端的时候，有很多在当时我感觉很难的知识，现在看来是简单的基础，但有些却真的是知识难点，需要加深学习理解。随着网络的遍及，学习成本的下降，知识遍地都是，但却很少能静下心来学习，当然，人心浮躁是社会的通病，希望能借助写点东西的事情能让我静下心来。</p>
+<p>面试官，你好，我叫李贤斌，来着江西赣州，从事前端开发已经有5年的时间了，有PC端，PE端H5，混合式APP，微信公众号等多端项目经验，其中涉及的技术从原生JS，jQuery，到React，ReactNative，再到Vuejs，uniapp，Echarts.js,Go.js等等，还有一些插件库之类的我就不一一列举。 有团队合作及个人独立开发的能力，对前端工程化有一定了解，之前有带过3-4人的一个前端团队，也有单独负责一个项目的开发到上线，为人性格温和，沟通能力良好。</p>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="架构模式的区别"><a href="#架构模式的区别" class="headerlink" title="架构模式的区别"></a>架构模式的区别</h3><p>软件架构大体分为MVC，MVP和MVVM；首先我们要知道 <code>Modal</code> (模型)，<code>View</code> (视图)，<code>Controller</code> (控制器)，<code>Presenter</code> （主持），<code>ViewModel</code> （视图模型） MVC模式的特点在于实现关注点分离, <code>Controller</code> 负责将 <code>Model</code> 的数据用 <code>View</code> 显示出来，来实现应用程序中的数据模型与业务和展示逻辑解耦；MVP将业务逻辑都部署在<code>Presenter</code>，<code>View</code>层非常薄，不部署业务逻辑，称为’被动视图’，MVVM实质上上MVC的改进版，他把View的状态和行为抽象，通过ViewModal实现了View和Model的自动同步。将视图UI和业务逻辑分开，低耦合；</p>
+<h3 id="优雅降级-渐进增强"><a href="#优雅降级-渐进增强" class="headerlink" title="优雅降级 渐进增强"></a>优雅降级 渐进增强</h3><p>这是两种截然不同的概念，渐进增强在于优先对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。而优雅降级则强调一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。两者各有优点，也各有缺点</p>
+<h3 id="什么是回流重绘？"><a href="#什么是回流重绘？" class="headerlink" title="什么是回流重绘？"></a>什么是回流重绘？</h3><p>当我们对 DOM 的修改引发了 DOM 几何尺寸的变化（比如修改元素的宽、高或隐藏元素等）时，浏览器需要重新计算元素的几何属性（其他元素的几何属性和位置也会因此受到影响），然后再将计算的结果绘制出来。这个过程就是回流（也叫重排）;<br>当我们对 DOM 的修改导致了样式的变化、却并未影响其几何属性（比如修改了颜色或背景色）时，浏览器不需重新计算元素的几何属性、直接为该元素绘制新的样式。这个过程叫做重绘;<br><strong>回流必将引起重绘，重绘不一定会引起回流</strong> 回流需要更新渲染树,性能花销非常大,要尽可能避免回流</p>
+<h3 id="浏览器的渲染引擎"><a href="#浏览器的渲染引擎" class="headerlink" title="浏览器的渲染引擎"></a>浏览器的渲染引擎</h3><p>浏览器的最重要的部分就是 Rendering Engine（渲染引擎），也就是我们说的浏览器内核；市面上主流的浏览器 IE浏览器内核为Trident，Edge浏览器内核为Edge，Firefox 内核为 gecko，Safari 内核为 webkit，Opera紧跟Chrome脚步，两者内核为 blink内核</p>
+<h3 id="讲一下目前浏览器的内核？"><a href="#讲一下目前浏览器的内核？" class="headerlink" title="讲一下目前浏览器的内核？"></a>讲一下目前浏览器的内核？</h3><p>ie  ： Trident内核<br>Edge： Edge内核 ，2018年转为blink内核<br>Firefox：gecko内核<br>Safari ：webkit内核<br>opera ：presto内核，改为webkit后，现在改为blink内核<br>Chrome：之前是webkit，现在改为blink内核</p>
+<h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><h3 id="超文本标记语言"><a href="#超文本标记语言" class="headerlink" title="超文本标记语言"></a>超文本标记语言</h3><p>超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言,文件后缀为.html或.htm。是网页内容的载体</p>
+<h3 id="前端页面的分层"><a href="#前端页面的分层" class="headerlink" title="前端页面的分层"></a>前端页面的分层</h3><p>在WEB网站中，页面被分为三层，行为层（Javascript：用于编辑页面的交互行为），表现层（css：用于编辑页面的样式效果）和结构层（html：用于编辑页面的整体结构）；</p>
+<h3 id="DOCTYPE-html"><a href="#DOCTYPE-html" class="headerlink" title="DOCTYPE html"></a>DOCTYPE html</h3><p>doctype用于声明文档类型，告知浏览器以何种规范解析页面，位于文档最前面，处于HTML标签之前，<code>&lt;DOCTYPE html&gt;</code>是html5的文档声明</p>
+<h3 id="HTML-元素的概念"><a href="#HTML-元素的概念" class="headerlink" title="HTML 元素的概念"></a>HTML 元素的概念</h3><p>HTML元素是指从开始标签到结束标签的所有代码，HTML元素大多分为块级元素（例如：div p h1等）和行内元素（也被称为：内联元素，例如：span a em ），还有一种介于两者之间的行内块级元素（内联块级元素）；</p>
+<h3 id="HTML-的存储机制"><a href="#HTML-的存储机制" class="headerlink" title="HTML 的存储机制"></a>HTML 的存储机制</h3><p>WebStorage 本地存储（存储在客户端，不参与服务器通信）分为两种。 localStorage：没有时间限制的数据存储，不删除则永久存在，大小一般在5MB左右；sessionStorage：仅在当前会话或窗口有效，当用户关闭浏览器窗口后，数据会被删除，大小限制一般为5Mb<br>Cookie 是由W3C提出，经社区发展的一种存储机制，目前浏览器都支持这样一种存储机制，用于存储页面的用户信息，大小限制在4000字节作业，存在过期时间，允许的话可以参与服务器通信；和WebStorage一样存在同源策略</p>
+<h3 id="HTML5及标签语义化"><a href="#HTML5及标签语义化" class="headerlink" title="HTML5及标签语义化"></a>HTML5及标签语义化</h3><p>HTML5为超文本标记语言的第五次重大修改，于2014年由万维网联盟（W3C）完成标准制定；根据内容和结构选择合适的标签，便于开发者阅读同时对搜索引擎友好让机器很好的解析。例如：heeader nav footer等等</p>
+<h3 id="HTML5的兼容问题"><a href="#HTML5的兼容问题" class="headerlink" title="HTML5的兼容问题"></a>HTML5的兼容问题</h3><p>HTML5的规则所说早已定下，但由于历史遗留原因，某些HTML5的标签兼容性还是比较差，可能在现代浏览器表现很好，但还有些人可能还在用着老旧的浏览器，因为所有浏览器，包括旧的和最新的，对无法识别的元素会作为内联元素自动处理，所以需要将其设定为块级元素 <code>header, section, footer, aside, nav, article,figure &#123; display: block; &#125;</code>但是ie8或更早的版本，可能不适应，所以要兼容ie9之前，则需要添加 html5shiv.js</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--[if lt IE 9]&gt;</span><br><span class="line">    &lt;script src=&quot;http://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js&quot;&gt;&lt;/script&gt;（国内镜像）</span><br><span class="line">&lt;![endif]--&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTML5的应用缓存"><a href="#HTML5的应用缓存" class="headerlink" title="HTML5的应用缓存"></a>HTML5的应用缓存</h3><p>HTML5引入了应用程序缓存的概念，这意味着web应用可以缓存，它的优势有：离线浏览（用户可在应用离线时使用它们，速度更快（已缓存资源加载得更快）；减少服务器负载（浏览器将只从服务器下载更新过或更改过的资源）<br>兼容性：Internet Explorer 10, Firefox, Chrome, Safari 和 Opera 支持应用程序缓存.</p>
+<h3 id="Canvas和SVG的存在"><a href="#Canvas和SVG的存在" class="headerlink" title="Canvas和SVG的存在"></a>Canvas和SVG的存在</h3><p>canvas 元素用于图形的绘制，canvas只是图像容器，通过脚本（通常是javascript）进行绘制，它可以用来制作照片集或者制作简单的动画，甚至可以进行实时视频处理和渲染，WebGl就是一种目前最为流行的3D绘图协议，它就是基于canvas进行3D图像的绘制<br>SVG 是可伸缩矢量图形，使用XML来描述二维图形和绘图程序的一种图形格式。SVG 与 JPEG 和 GIF 图像比起来，图像可以在图像质量不下降的情况下进行放大，尺寸更小，且可压缩性更强，</p>
+<h3 id="DOM和BOM的区别"><a href="#DOM和BOM的区别" class="headerlink" title="DOM和BOM的区别?"></a>DOM和BOM的区别?</h3><p>DOM 全称是 Document Object Model，也就是文档对象模型，当页面加载时，可以将结构文档在内存中转换成对象的树<br>BOM 全称是 Browser Object Model，浏览器对象模型，window、document、location、navigator和screen等，通常统称为浏览器对象模型</p>
+<h3 id="img中的alt和title的作用？"><a href="#img中的alt和title的作用？" class="headerlink" title="img中的alt和title的作用？"></a>img中的alt和title的作用？</h3><p>alt: 为不能显示的图像及窗体元素的替换文本，替换文本的语言有lang属性决定<br>title：为设置该属性的元素提供建议性的信息，在鼠标悬浮的时候可以查看</p>
+<h3 id="一个页面输入URL之后，浏览器做了什么？"><a href="#一个页面输入URL之后，浏览器做了什么？" class="headerlink" title="一个页面输入URL之后，浏览器做了什么？"></a>一个页面输入URL之后，浏览器做了什么？</h3><p>URL解析 - DNS解析 - TCP连接 - 发送HTTP请求 - 服务器处理并返回数据 - 渲染页面 - 断开TCP连接</p>
+<h3 id="页面渲染html的过程"><a href="#页面渲染html的过程" class="headerlink" title="页面渲染html的过程"></a>页面渲染html的过程</h3><p><strong>1.浏览器解析html源码，然后创建一个 DOM树，并行请求 css/image/js。</strong>在DOM树中，每一个HTML标签都有一个对应的节点，并且每一个文本也都会有一个对应的文本节点。DOM树的根节点就是 documentElement，对应的是html标签。<br><strong>2.浏览器解析CSS代码，计算出最终的样式数据。构建CSSOM树。</strong>对CSS代码中非法的语法它会直接忽略掉。解析CSS的时候会按照如下顺序来定义优先级：浏览器默认设置 &lt; 用户设置 &lt; 外链样式 &lt; 内联样式 &lt; html中的style。<br><strong>3.DOM 树加 CSSOM 树共同构筑出渲染树（rendering tree）。</strong>DOM树和html标签一一对应，但是渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。而且一大段文本中的每一个行在渲染树中都是独立的一个节点。渲染树中的每一个节点都存储有对应的css属性。<br><strong>4.一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</strong>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
+<h3 id="什么是同源策略？"><a href="#什么是同源策略？" class="headerlink" title="什么是同源策略？"></a>什么是同源策略？</h3><p>同源策略是浏览器厂商出于安全考虑设置的一种安全策略，即只有在协议相同，域名相同，端口相同的情况下才能访问服务器资源。</p>
+<h3 id="那怎么实现跨域？"><a href="#那怎么实现跨域？" class="headerlink" title="那怎么实现跨域？"></a>那怎么实现跨域？</h3><p>跨域的方式有：JSONP CORS WebSocket 服务器反向代理 postMessage iframe<br><strong>JSONP</strong> ：利用<code>&lt;script&gt;</code>标签没有跨域限制，通过src发送请求，服务器接收后，将数据拼接后返回callback函数，前端接收后执行获取数据<br><strong>CORS</strong>：CORS是W3C的一个标准，它允许浏览器向跨域服务器发送XMLHttpRequest请求,这需要后端和浏览器的同步支持。<br><strong>WebSocket</strong>：是HTML5开始提供的一种连接协议。同时允许跨域，通过封装的socket.io库进行webscoket连接请求<br><strong>服务器反向代理</strong>：因为跨域只存在浏览器和服务器之前，所以跨域通过服务器反向代理，或者设置中间件的方式进行跨域<br><strong>postMesage</strong>：HTML5提供的API，是可以跨域的window属性。通过postMesage()传输数据</p>
+<h3 id="说一下CORS-跨域资源共享-？"><a href="#说一下CORS-跨域资源共享-？" class="headerlink" title="说一下CORS(跨域资源共享)？"></a>说一下CORS(跨域资源共享)？</h3><p>CORS是一个W3C标准，它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制，CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器要求低于IE10；CORS通信过程，都是浏览器自动完成，实现CORS通信的关键是服务器。只要服务器实现了CORS接口，就可以跨源通信</p>
+<h3 id="什么是标签语义化？"><a href="#什么是标签语义化？" class="headerlink" title="什么是标签语义化？"></a>什么是标签语义化？</h3><p>标签语义化是根据内容和结构选择合适的标签，为了更好的让开发者阅读同时对搜索引擎友好让机器更好的解析。比如头部标签header，内容段落的article 和p 标签，表单输入的aside 和input 标签。<br>Html5新增标签有header(头部内容) nav(导航链接) footer(底部内容) artive(独立内容，文章） section(页眉页脚等） aside(所处内容之外的内容） figure(独立内容，图片图表）</p>
+<h3 id="讲一下块级元素和行内元素？"><a href="#讲一下块级元素和行内元素？" class="headerlink" title="讲一下块级元素和行内元素？"></a>讲一下块级元素和行内元素？</h3><p>块级元素独占一行，总在新行开始，高度，行高，内边距和外边距都是可控制，宽度默认和浏览器宽度一致，而行内元素则可以和其他元素在一行，宽度和内容有关；<br>块级元素有；P div h1-h5 ul li ol dl 等 行内元素有：span a b em i sup sub 等等</p>
+<blockquote>
+<p>题外话：空标签即不包裹内容的标签，例如 br hr img 等</p>
+</blockquote>
+<h3 id="说一下-label-的用法？"><a href="#说一下-label-的用法？" class="headerlink" title="说一下 label 的用法？"></a>说一下 label 的用法？</h3><p>label标签主要是方便鼠标点击使用，扩大可点击的范围，增强用户操作体验</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;male&quot;</span>&gt;</span>点击单选<span class="tag">&lt;/<span class="name">label</span>&gt;</span>  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;sex&quot;</span> <span class="attr">id</span>=<span class="string">&quot;male&quot;</span> /&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<h3 id="讲一下-DOCTYPE-的作用？"><a href="#讲一下-DOCTYPE-的作用？" class="headerlink" title="讲一下 DOCTYPE 的作用？"></a>讲一下 DOCTYPE 的作用？</h3><p>DOCTYPE用于声明文档类型，告知浏览器以何种规范解析页面，位于文档的最前面，<code>&lt;!DOCTYPE html&gt;</code> 则是说明浏览器使用 html5的文档规范解析</p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><h3 id="CSS-预处理器-框架"><a href="#CSS-预处理器-框架" class="headerlink" title="CSS 预处理器(框架)"></a>CSS 预处理器(框架)</h3><p>CSS 预处理器是一种语言用来为 CSS 增加一些编程的的特性，让你无需考虑浏览器的兼容性问题。提供诸如变量、简单的程序逻辑、函数等方法，让你的 CSS 更加简洁。目前最为普遍的三款 CSS 预处理器框架，分别是 Sass、Less 、Stylus</p>
+<h3 id="讲一下各类前端的页面布局"><a href="#讲一下各类前端的页面布局" class="headerlink" title="讲一下各类前端的页面布局"></a>讲一下各类前端的页面布局</h3><p><strong>静态布局</strong> 也就是传统意义的webPX布局，以像素位来设置页面的布局；<br><strong>瀑布流</strong> 就是通过获取的图片的路径；创建img 绑定onload 获取图片的尺寸，来判断加载在最短的列表；<br><strong>流式布局</strong> 也就是百分比布局；通过百分比来设置不同的容器宽度，达到在不同的设备有良好的展示情况<br><strong>自适应布局</strong> 通过 @media 媒体查询，设置不同的分辨率方案；以达到在不同分辨率设备展示的效果<br><strong>响应式布局</strong> 结合了自适应布局和流式布局的特点，以媒体查询和百分百来设置不同屏幕的展示情况<br><strong>弹性布局</strong> 也称为flex布局。通过设置盒子为flex ；以justify-content align-item 设置轴方向<br><strong>rem布局</strong> 通过根元素的字体大小，子元素通过 rem来设置大小，即是rem布局，em则对应的是父级字体<br><strong>flex布局</strong> 通过display:flex;将容器转为flex类型，通过justify-content和align-content进行控制和展示<br><strong>圣杯布局</strong> 目的是为了让中间的内容先渲染；将页面分为三栏，以float 浮动三栏；第一栏用于渲染中间内容；两侧通过 margin-left 负数；来设置左右的位置；再通过给中间设置padding 来把内容挤在中间，不被两侧遮盖<br><strong>双飞翼布局</strong> 淘宝改进，前面和圣杯一样；中间给了一个div；通过给里面的div设置margin来达到效果</p>
+<h3 id="CSS-的引入方式"><a href="#CSS-的引入方式" class="headerlink" title="CSS 的引入方式"></a>CSS 的引入方式</h3><p>CSS 样式的引入方式有三种：嵌入样式：内联样式和外链样式；嵌入样式使用<code>&lt;style&gt;</code>标签定义在当前页面的样式；内联样式就是直接写在标签内部的样式；外链样式则通过在网页头部利用<code>&lt;link&gt;</code>标签引用一个单独的css文件</p>
+<p>嵌入样式就是style标签定义在当前页面的样式 <code>&lt;style type=&quot;text/css&quot;&gt; &lt;/style&gt;</code><br>内联样式就是直接写在标签内部的样式 <code>&lt;div style=&quot;color:red&quot;&gt;内联样式&lt;/div&gt;</code><br>外链样式就是通过在网页头部利用link标签引用一个单独的css文件 <code>&lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</code></p>
+<h3 id="Quirks-Standards"><a href="#Quirks-Standards" class="headerlink" title="Quirks Standards"></a>Quirks Standards</h3><p>**怪异盒子模型:**在IE6以前，由于w3c标准还未能执行完全，导致IE之前的使用的quirk模式，既高和宽度包含padding来进行的计算，也就是俗称的怪异盒子模型（quirks），可以通过 box-sizing:border-box 进行设置<br> width =  padding + border + 内容<br>**标准盒子模型:**IE6出现之后，由于之前的css样式的问题，以及w3c推出的标准，IE6推出standards模式，用于兼容之后出现的新的w3c标准,可以通过 box-sizing:content-box 进行设置<br> width = 内容</p>
+<h3 id="元素轮廓"><a href="#元素轮廓" class="headerlink" title="元素轮廓"></a>元素轮廓</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">2px</span> solid black;</span><br><span class="line">    <span class="attribute">outline</span>:<span class="number">2px</span> solid red;</span><br><span class="line">    <span class="attribute">outline-offset</span>:<span class="number">15px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>//解:超边框15px的位置绘制轮廓<br>//注:轮廓和边框类似，又不同，轮廓不占空间，轮廓可能是非矩形<br>兼容性：IE不兼容</p>
+<h3 id="圣杯布局和双飞翼"><a href="#圣杯布局和双飞翼" class="headerlink" title="圣杯布局和双飞翼"></a>圣杯布局和双飞翼</h3><p>圣杯布局和双飞翼都是两侧宽度固定,中间宽度自适应的三栏布局。圣杯布局来源于2006年的A LIST APART上的一篇文章，而双飞翼则来源淘宝UED，由2011年淘宝玉伯提出。<br>两者的思路：<br>圣杯：为了优先渲染，按照Middle，Left，Right的顺序排列，Left，Right固定宽度，Middle宽度100%进行自适应，三者通过float：left；进行浮动，Left和Right 通过margin-left：100%；和margin-left：-200px进行位置调整；三者父级容器通过padding：0 200px；对Middle进行挤压，Left和Right则通过position：relative；以及left：-200px和right：-200px进行进行定位<br>双飞翼：按照Middle，Left，Right的顺序排列，Left，Right固定宽度，Middle宽度100%进行自适应，三者通过float：left；进行浮动，Left和Right 通过margin-left：100%；和margin-left：-200px进行位置调整；在Middle中创建Content，设margin：0 200px，</p>
+<h3 id="你知道的可继承的样式有哪些？"><a href="#你知道的可继承的样式有哪些？" class="headerlink" title="你知道的可继承的样式有哪些？"></a>你知道的可继承的样式有哪些？</h3><p>可继承的样式有 font-size font-style font-family color lie-height word-spacing letter-spacing text-transform visibility </p>
+<h3 id="怎么利用css画三角形？"><a href="#怎么利用css画三角形？" class="headerlink" title="怎么利用css画三角形？"></a>怎么利用css画三角形？</h3><p>通过设置 border-top 长度为三角形的高度，颜色为透明，在设置 border-left 长度为三角形的宽度，颜色为三角形颜色，来实现三角形，然后通过 border的左右长度来调整三角形的大小</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span>:<span class="number">0</span>;  <span class="attribute">height</span>:<span class="number">0</span>;  <span class="attribute">border-top</span>:<span class="number">50px</span> solid transparent;  <span class="attribute">border-right</span>:<span class="number">50px</span> solid red;</span><br></pre></td></tr></table></figure>
+
+<h3 id="原始轮廓和元素边框的区别"><a href="#原始轮廓和元素边框的区别" class="headerlink" title="原始轮廓和元素边框的区别?"></a>原始轮廓和元素边框的区别?</h3><p>轮廓和边框类似，又不同，轮廓不占空间而边框会占用空间，轮廓可能是非矩形。边框必须沿着内容进行围绕，而轮廓可以距离内容有一定的距离进行环绕；</p>
+<h3 id="清除浮动的方式和原理？"><a href="#清除浮动的方式和原理？" class="headerlink" title="清除浮动的方式和原理？"></a>清除浮动的方式和原理？</h3><p>清除浮动的方式有：1设置伪类after，通过clear：both; 清除，2给父级设置 overflow:hidden 来达到清除浮动的效果。 清除浮动用的是BFC(块格式化上下文)原理，当浮动区域成为一个BFC区域的时候，浮动会被清除。BFC是一个页面上的独立容器，容器里的元素不会影响到容器外的元素</p>
+<blockquote>
+<p>满足BFC的条件是 1：float的值不是none。2：position的值不是static或者relative 3：display的值是inline-block、table-cell、flex、table-caption或者inline-flex 4：overflow的值不是visible</p>
+</blockquote>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">架构模式的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E9%9B%85%E9%99%8D%E7%BA%A7-%E6%B8%90%E8%BF%9B%E5%A2%9E%E5%BC%BA"><span class="toc-text">优雅降级 渐进增强</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98%EF%BC%9F"><span class="toc-text">什么是回流重绘？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E"><span class="toc-text">浏览器的渲染引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B2%E4%B8%80%E4%B8%8B%E7%9B%AE%E5%89%8D%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%86%85%E6%A0%B8%EF%BC%9F"><span class="toc-text">讲一下目前浏览器的内核？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B6%85%E6%96%87%E6%9C%AC%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80"><span class="toc-text">超文本标记语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%88%86%E5%B1%82"><span class="toc-text">前端页面的分层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOCTYPE-html"><span class="toc-text">DOCTYPE html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-%E5%85%83%E7%B4%A0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">HTML 元素的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML-%E7%9A%84%E5%AD%98%E5%82%A8%E6%9C%BA%E5%88%B6"><span class="toc-text">HTML 的存储机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E5%8F%8A%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-text">HTML5及标签语义化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E7%9A%84%E5%85%BC%E5%AE%B9%E9%97%AE%E9%A2%98"><span class="toc-text">HTML5的兼容问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E7%9A%84%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98"><span class="toc-text">HTML5的应用缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Canvas%E5%92%8CSVG%E7%9A%84%E5%AD%98%E5%9C%A8"><span class="toc-text">Canvas和SVG的存在</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM%E5%92%8CBOM%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">DOM和BOM的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#img%E4%B8%AD%E7%9A%84alt%E5%92%8Ctitle%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">img中的alt和title的作用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E8%BE%93%E5%85%A5URL%E4%B9%8B%E5%90%8E%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">一个页面输入URL之后，浏览器做了什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93html%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">页面渲染html的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%EF%BC%9F"><span class="toc-text">什么是同源策略？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%A3%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F%EF%BC%9F"><span class="toc-text">那怎么实现跨域？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8BCORS-%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB-%EF%BC%9F"><span class="toc-text">说一下CORS(跨域资源共享)？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96%EF%BC%9F"><span class="toc-text">什么是标签语义化？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B2%E4%B8%80%E4%B8%8B%E5%9D%97%E7%BA%A7%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%86%85%E5%85%83%E7%B4%A0%EF%BC%9F"><span class="toc-text">讲一下块级元素和行内元素？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-label-%E7%9A%84%E7%94%A8%E6%B3%95%EF%BC%9F"><span class="toc-text">说一下 label 的用法？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B2%E4%B8%80%E4%B8%8B-DOCTYPE-%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9F"><span class="toc-text">讲一下 DOCTYPE 的作用？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS"><span class="toc-text">CSS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8-%E6%A1%86%E6%9E%B6"><span class="toc-text">CSS 预处理器(框架)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B2%E4%B8%80%E4%B8%8B%E5%90%84%E7%B1%BB%E5%89%8D%E7%AB%AF%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="toc-text">讲一下各类前端的页面布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-%E7%9A%84%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="toc-text">CSS 的引入方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quirks-Standards"><span class="toc-text">Quirks Standards</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E8%BD%AE%E5%BB%93"><span class="toc-text">元素轮廓</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A3%E6%9D%AF%E5%B8%83%E5%B1%80%E5%92%8C%E5%8F%8C%E9%A3%9E%E7%BF%BC"><span class="toc-text">圣杯布局和双飞翼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A0%E7%9F%A5%E9%81%93%E7%9A%84%E5%8F%AF%E7%BB%A7%E6%89%BF%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-text">你知道的可继承的样式有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E5%88%A9%E7%94%A8css%E7%94%BB%E4%B8%89%E8%A7%92%E5%BD%A2%EF%BC%9F"><span class="toc-text">怎么利用css画三角形？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%A7%8B%E8%BD%AE%E5%BB%93%E5%92%8C%E5%85%83%E7%B4%A0%E8%BE%B9%E6%A1%86%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">原始轮廓和元素边框的区别?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E5%BC%8F%E5%92%8C%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-text">清除浮动的方式和原理？</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2020/10/26/%E3%80%90%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6%E3%80%91%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%94%B6%E9%9B%86%E5%92%8C%E6%80%BB%E7%BB%93(%E5%9F%BA%E7%A1%80%E7%AF%87)/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2020/10/26/%E3%80%90%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6%E3%80%91%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%94%B6%E9%9B%86%E5%92%8C%E6%80%BB%E7%BB%93(JS%20%E7%AF%87)/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2020/08/12/%E5%85%B3%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BC%AA%E9%9A%8F%E6%9C%BA%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2020/10/26/%E3%80%90%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6%E3%80%91%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9A%84%E6%94%B6%E9%9B%86%E5%92%8C%E6%80%BB%E7%BB%93(JS%20%E7%AF%87)/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2020/08/12/%E5%85%B3%E4%BA%8E%E5%89%8D%E7%AB%AF%E7%9A%84%E4%BC%AA%E9%9A%8F%E6%9C%BA%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
