@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>ES6中关于异步编程的解决方案 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,ES6," />
+  
+
+  
+  <meta name="description" content="Javascript是单线程的，同一时间只能做一件事。 而同步很容易发生堵塞情况，因此异步就成了多数情况的选择。异步编程一直是编程人员致力解决的问题，为此诞生了许许多多的解决方案和思路。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-09-26
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-10-9 10:50 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    ES6中关于异步编程的解决方案
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2019092601.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <p>Javascript是单线程的，同一时间只能做一件事。 JS 有事件循环，主线程和任务队列，同步任务放入主线程，只有上一个任务执行完，才执行下一个任务，异步任务则放入任务队列，只有主队列的任务全部执行完才请求任务队列。 JS 是单线程，而同步很容易发生堵塞情况，因此异步就成了多数情况的选择。异步编程一直是编程人员致力解决的问题，为此诞生了许许多多的解决方案和思路。</p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h2><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象，Promise对象有两个特点：不受外部影响，状态一旦确定就不在变化。<br>Promise 构造函数接收一个函数作为参数，改函数的两个参数为 resolve 和 reject 。由javascript引擎提供。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promise=<span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(未来事件)&#123;   <span class="comment">//某个未来才结束的事件，通常为异步操作</span></span><br><span class="line">    <span class="title function_">resolve</span>(res) <span class="comment">//将状态从pending 转为 resolve(成功),并放出参数 </span></span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_">reject</span>(err)  <span class="comment">//将状态从pending 转为 reject(失败),并放出参数 </span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Preomise的实例生成后，由 .then() 指定分别指定 resolve 和 reject 状态的回调函数</span></span><br><span class="line"></span><br><span class="line">promise</span><br><span class="line">.<span class="title function_">then</span>(<span class="function">(<span class="params">response</span>)=&gt;</span>&#123; <span class="comment">// resolve响应函数</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(response)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">catch</span>(<span class="function">(<span class="params">error</span>)=&gt;</span>&#123;   <span class="comment">// reject 响应函数</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(error)</span><br><span class="line">&#125;)</span><br><span class="line">.<span class="title function_">finally</span>(<span class="function">()=&gt;</span>&#123;  <span class="comment">// 无法读取状态，与状态无关，总会执行</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Promise 可以应用于一些异步执行的问题，如 Axios请求 return数据异步问题</p>
+<h2 id="Generator"><a href="#Generator" class="headerlink" title="Generator"></a>Generator</h2><p>Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。首先可以把它理解成，Generator 函数是一个状态机，封装了多个内部状态。执行 Generator 函数会返回一个遍历器对象，也就是说，Generator 函数除了状态机，还是一个遍历器对象生成函数。<br>Generator 函数是一个普通函数，但是有两个特征，function关键字和函数名之间有一个星号，函数内部用 yield 表达式来定义不同的内部状态</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>* <span class="title function_">generator</span>(<span class="params">num</span>)&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">&#x27;推出的参数&#x27;</span>;  <span class="comment">// yield 类似于暂停关键点，next()执行到就停</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(num)</span><br><span class="line">  <span class="keyword">yield</span> <span class="number">1</span> + <span class="number">2</span>;</span><br><span class="line">  yiele num + <span class="number">1</span>;</span><br><span class="line">  <span class="comment">// return num return 会把 done 状态改为 true，之后的 yield 就不执行了</span></span><br><span class="line">  <span class="keyword">yield</span>* generator    <span class="comment">// 如果 yield 身后跟着遍历器对象，就需要在添加星号</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> gen = <span class="title function_">generator</span>() <span class="comment">// 函数并未执行</span></span><br><span class="line">gen.<span class="title function_">next</span>()            <span class="comment">// &#123;value:&#x27;推出的参数,done:false&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Generator 函数可以应用于解决一些状态机的问题，设置无限循环，每次执行函数都进行状态更换</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function* clock() &#123;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    console.log(&#x27;开!&#x27;);</span><br><span class="line">    yield true;         // 执行第1次将状态返回true，并暂停执行</span><br><span class="line">    console.log(&#x27;关!&#x27;);  </span><br><span class="line">    yield false;        // 执行第2次将状态返回false，并重新循环</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="async"><a href="#async" class="headerlink" title="async"></a>async</h2><p>ES2017标准引入了 async 函数，使得异步操作变得更加方便。async 函数是什么？一句话，它就是 Generator 函数的语法糖</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">async</span> = <span class="keyword">async</span> <span class="keyword">function</span> (<span class="params"></span>) &#123;   <span class="comment">// async 将 * 替换为 async</span></span><br><span class="line">  <span class="keyword">const</span> f1 = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;/etc/fstab&#x27;</span>);  <span class="comment">// async 将 yield 替换为 await</span></span><br><span class="line">  <span class="keyword">const</span> f2 = <span class="keyword">await</span> <span class="title function_">readFile</span>(<span class="string">&#x27;/etc/shells&#x27;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 和普通函数一样的执行方式，但是返回 Promise 对象，可以使用then() 方法处理返回对象</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">async</span>().<span class="title function_">then</span>(<span class="function">(<span class="params">value</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(value)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果 await语句后面的 Promise 对象变为 reject状态，那么整个 async函数都会中断执行。如果想前一个异步操作失败，也不要中断后面的异步操作。这时可以将第一个await放在try…catch结构里面，或者使用 .catch() 。这样不管这个异步操作是否成功，第二个await都会执行</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="string">&#x27;出错了&#x27;</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// .catch((err)=&gt;&#123;  &#125;)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;hello world&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Axios关于异步导致的返回数据undefined"><a href="#Axios关于异步导致的返回数据undefined" class="headerlink" title="Axios关于异步导致的返回数据undefined"></a>Axios关于异步导致的返回数据undefined</h2><p>在Axios 中，使用的是异步请求，这就会导致一个问题，如果需要等这个请求的返回数据的函数会在 Axios未返回数据之前就执行了，就没有拿到数据，返回undefined。这就需要使用Promise或者其他异步处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">Power</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">let</span> hash=location.<span class="property">href</span>.<span class="title function_">split</span>(<span class="string">&#x27;/#/&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">let</span> power=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    axios.<span class="title function_">post</span>(<span class="string">&#x27;httpss://xxxxxx&#x27;</span>,&#123;&#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">response</span>)&#123;</span><br><span class="line">      <span class="keyword">let</span> menu=response.<span class="property">data</span>.<span class="property">Menulist</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> menu)&#123;</span><br><span class="line">        <span class="keyword">if</span>(menu[i].<span class="property">url</span>==hash)&#123;</span><br><span class="line">          power=<span class="literal">true</span></span><br><span class="line">          <span class="keyword">break</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="title function_">resolve</span>(power)</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="keyword">function</span> (<span class="params">error</span>)&#123;</span><br><span class="line">      <span class="title function_">reject</span>(power)</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Generator"><span class="toc-text">Generator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#async"><span class="toc-text">async</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Axios%E5%85%B3%E4%BA%8E%E5%BC%82%E6%AD%A5%E5%AF%BC%E8%87%B4%E7%9A%84%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AEundefined"><span class="toc-text">Axios关于异步导致的返回数据undefined</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/09/26/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91ES6%E4%B8%AD%E5%85%B3%E4%BA%8E%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/ES6/"><i class="fa fa-tags"></i>ES6</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

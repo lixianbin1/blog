@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Hooks是否取代Redux | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="React," />
+  
+
+  
+  <meta name="description" content="Hook作为React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性.自发布以来，大家就开始利用它来达成各种业务需求。然后，大家就会发出疑问，Hook是否将取代Redux的位置，用于React状态管理？">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-11-27
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-11-27 16:37 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Hooks是否取代Redux
+  </h1>
+  
+  <article class="passage-article">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天，看到新闻高以翔猝死，诶，默哀三秒······。真是世事难料，我们还是应该注意身体，尤其是开发人员，猝死的新闻更是是应接不暇。</p>
+<h2 id="先问是不是，在问为什么"><a href="#先问是不是，在问为什么" class="headerlink" title="先问是不是，在问为什么"></a>先问是不是，在问为什么</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook作为React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性.自发布以来，大家就开始利用它来达成各种业务需求。然后，大家就会发出疑问，Hook是否将取代Redux的位置，用于React状态管理？首先知乎热评：先问是不是，在问为什么？那么Hook取代Redux这个问题存不存在呢，我觉得是不存在的。Redux是 JavaScript 状态容器，提供可预测化的状态管理。<br>而Hook仅仅只是作为React的新特性。Redux的地位自然是无可撼动。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那Hook是不是能取代Redux在React中的地位呢。我觉得可能会拉走一部分开发人员，毕竟React-redux作为第三方插件，导入项目中，哪怕是打包压缩也会增加项目的大小。当然这是我个人观点，还是得根据实际来看，如果项目状态树复杂多变，项目大而繁琐，那么肯定是需要react-redux来进行状态管理的，那如果项目小状态简单，但是又有扩展需求，那么Hook也是完全可以的。官方表示Hook的开发是针对 “难以复用类组件之前的逻辑，生命周期包含不相关的逻辑，类组件之间的逻辑复杂难理解”这几个问题进行的。文档表示不要滥用context，它会使组件变的难以复用。因此官方可能并未考虑用Hook取代react-redux。所以说了这么多，我的观点是Hook不会取代react-redux的地位。</p>
+<h2 id="useContext实现状态共享"><a href="#useContext实现状态共享" class="headerlink" title="useContext实现状态共享"></a>useContext实现状态共享</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;useContext可以让你在组件之间共享应用的状态，而不需要通过prop传递。首先，我们需要了解 context。context提供一种方法，用于全局传递，使得组件之间不用显式地通过 props 传递数据</p>
+<ul>
+<li>React.createContext: 创建一个 Context 对象，该对象拥有 Provider 和 Consumer 属性</li>
+<li>Context.Provider: 接受一个 value 参数，在 value 参数更新的时候通知 Consumer</li>
+<li>Context.Consumer: 订阅 value 参数的改变。一旦 value 参数改变，就会触发它的回调函数</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 第一步：全局创建一个 context</span><br><span class="line">import React,&#123;useContext&#125; from &quot;react&quot;;</span><br><span class="line">const UserContext = React.createContext();</span><br><span class="line">...</span><br><span class="line">// 第二步：使用 Provider 提供 ThemeContext 的值，Provider所包含的子树都可以直接访问ThemeContext的值</span><br><span class="line">&lt;ThemeContext.Provider value=&quot;dark&quot;&gt;</span><br><span class="line">    &lt;Toolbar /&gt;</span><br><span class="line">&lt;/ThemeContext.Provider&gt;</span><br><span class="line">...</span><br><span class="line">// Toolbar 组件并不需要透传 ThemeContext</span><br><span class="line">function Toolbar(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ThemedButton /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function ThemedButton(props) &#123;</span><br><span class="line">  // 第三步：使用共享 Context</span><br><span class="line">  const theme = useContext(ThemeContext);</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Button value=&#123;theme&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useReducer对useState的替代"><a href="#useReducer对useState的替代" class="headerlink" title="useReducer对useState的替代"></a>useReducer对useState的替代</h2><p>作为 useState 的替代方案。它接收一个形如 (state, action) =&gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。类似redux 的reducer 的工作方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 官方示例</span><br><span class="line"></span><br><span class="line">const initialState = &#123;count: 0&#125;;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#x27;increment&#x27;:</span><br><span class="line">      return &#123;count: state.count + 1&#125;;</span><br><span class="line">    case &#x27;decrement&#x27;:</span><br><span class="line">      return &#123;count: state.count - 1&#125;;</span><br><span class="line">    default:</span><br><span class="line">      throw new Error();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Counter() &#123;</span><br><span class="line">  const [state, dispatch] = useReducer(reducer, initialState);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      Count: &#123;state.count&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;decrement&#x27;&#125;)&#125;&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;increment&#x27;&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="useRef获取实时渲染组件的值"><a href="#useRef获取实时渲染组件的值" class="headerlink" title="useRef获取实时渲染组件的值"></a>useRef获取实时渲染组件的值</h2><p>useRef 返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变.当ref 对象内容发生变化时，useRef 也不会通知你</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function TIB() &#123;</span><br><span class="line">  const inputEl = useRef(null);</span><br><span class="line">  const onBClick = () =&gt; &#123;</span><br><span class="line">    // `current` 指向已挂载到 DOM 上的文本输入元素</span><br><span class="line">    inputEl.current.focus();</span><br><span class="line">    // console.log(inputEl.current.value)</span><br><span class="line">  &#125;;</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input ref=&#123;inputEl&#125; type=&quot;text&quot; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;onBClick&#125;&gt;Focus the input&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当然，还有一些扩充Hook，在一些特殊情况才可能用到，这里不涉及状态管理，我就不打算提了，因为Hook已经包含了部分Redux的功能，那么久可以依照Redux的思路进行项目的状态管理。Hook的出现对react-redux造成了影响，但是不会完全取代。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E9%97%AE%E6%98%AF%E4%B8%8D%E6%98%AF%EF%BC%8C%E5%9C%A8%E9%97%AE%E4%B8%BA%E4%BB%80%E4%B9%88"><span class="toc-text">先问是不是，在问为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useContext%E5%AE%9E%E7%8E%B0%E7%8A%B6%E6%80%81%E5%85%B1%E4%BA%AB"><span class="toc-text">useContext实现状态共享</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useReducer%E5%AF%B9useState%E7%9A%84%E6%9B%BF%E4%BB%A3"><span class="toc-text">useReducer对useState的替代</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#useRef%E8%8E%B7%E5%8F%96%E5%AE%9E%E6%97%B6%E6%B8%B2%E6%9F%93%E7%BB%84%E4%BB%B6%E7%9A%84%E5%80%BC"><span class="toc-text">useRef获取实时渲染组件的值</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/11/27/Hooks%E6%98%AF%E5%90%A6%E5%8F%96%E4%BB%A3Redux/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/React/"><i class="fa fa-tags"></i>React</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
