@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>所有可能以及不可能的思路方案 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="功能需求," />
+  
+
+  
+  <meta name="description" content="卑贱者最聪明，高贵者最愚蠢。** 毛泽东 《赤脚医生手册》 **">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-03-30
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-3-30 10:30 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    所有可能以及不可能的思路方案
+  </h1>
+  
+  <article class="passage-article">
+    <p>NPM 是一个包依赖管理工具，NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题</p>
+<h2 id="加密功能"><a href="#加密功能" class="headerlink" title="加密功能"></a>加密功能</h2><p>一般现在的项目，为了通信安全，会考虑信息加密的方案，通过使用AES对传输的内容进行加密，再通过RSA对AES的秘钥进行加密。最后将AES密文和RSA密文传输到后端。</p>
+<h3 id="AES对称加密"><a href="#AES对称加密" class="headerlink" title="AES对称加密"></a>AES对称加密</h3><p>像AES对称加密，是通过一个秘钥进行的加密和解密的，所以这个秘钥的安全性极为重要。</p>
+<ul>
+<li>字符串文本的加密和解密</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&quot;crypto-js&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// AES加密文本</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesString</span>=(<span class="params">SymmetricKey,ivString,text</span>)=&gt;&#123;、</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 加密</span></span><br><span class="line">  <span class="keyword">let</span> encrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(text, key, &#123;</span><br><span class="line">    <span class="attr">iv</span>: iv,</span><br><span class="line">    <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">    <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 密文（Base64 编码）</span></span><br><span class="line">  <span class="keyword">let</span> ciphertext = encrypted.<span class="title function_">toString</span>();</span><br><span class="line">  <span class="keyword">return</span> ciphertext</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AES解密文本</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesDcString</span>=(<span class="params">SymmetricKey,ivString,text</span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 解密</span></span><br><span class="line">  <span class="keyword">let</span> encrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(text, key, &#123;</span><br><span class="line">    <span class="attr">iv</span>: iv,</span><br><span class="line">    <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">    <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 明文（UTF-8 编码）</span></span><br><span class="line">  <span class="keyword">let</span> message = decrypted.<span class="title function_">toString</span>(<span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>);</span><br><span class="line">  <span class="keyword">return</span> message</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>读取文件的内容进行加密和解密</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&quot;crypto-js&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//AES加密文件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesFile</span>=(<span class="params">SymmetricKey,ivString,file</span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 创建 FileReader 对象</span></span><br><span class="line">  <span class="keyword">let</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">  <span class="comment">// 设置读取方式为 ArrayBuffer</span></span><br><span class="line">  reader.<span class="title function_">readAsArrayBuffer</span>(file);</span><br><span class="line">  <span class="comment">// 监听 loadend 事件</span></span><br><span class="line">  reader.<span class="property">onloadend</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 获取读取结果（ArrayBuffer）</span></span><br><span class="line">    <span class="keyword">let</span> buffer = reader.<span class="property">result</span>;</span><br><span class="line">    <span class="comment">// 将 ArrayBuffer 转换为 WordArray </span></span><br><span class="line">    <span class="keyword">let</span> wordArray = <span class="title class_">CryptoJS</span>.<span class="property">lib</span>.<span class="property">WordArray</span>.<span class="title function_">create</span>(buffer);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 加密</span></span><br><span class="line">    <span class="keyword">let</span> encrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(wordArray, key, &#123;</span><br><span class="line">      <span class="attr">iv</span>: iv,</span><br><span class="line">      <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">      <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span>,</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 密文（Base64 编码）</span></span><br><span class="line">    <span class="keyword">let</span> ciphertext = encrypted.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">return</span> ciphertext</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AES解密文件</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesDcFile</span>=(<span class="params">SymmetricKey,ivString,fileText,filename</span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 解密</span></span><br><span class="line">  <span class="keyword">var</span> decrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(fileText, key,&#123;</span><br><span class="line">    <span class="attr">iv</span>: iv,</span><br><span class="line">    <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">    <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 将解密后的结果转换为ArrayBuffer格式</span></span><br><span class="line">  <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(decrypted.<span class="property">sigBytes</span>);</span><br><span class="line">  <span class="keyword">var</span> view = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(buffer);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; decrypted.<span class="property">sigBytes</span>; i++) &#123;</span><br><span class="line">      view[i] = decrypted.<span class="property">words</span>[i &gt;&gt;&gt; <span class="number">2</span>] &gt;&gt;&gt; (<span class="number">24</span> - (i % <span class="number">4</span>) * <span class="number">8</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span></span><br><span class="line">  <span class="keyword">var</span> blob = <span class="keyword">new</span> <span class="title class_">Blob</span>([buffer]);</span><br><span class="line">  <span class="comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span></span><br><span class="line">  <span class="title function_">saveAs</span>(blob,filename);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>将多个文件添加为zip压缩包的加密和解密</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; saveAs &#125; <span class="keyword">from</span> <span class="string">&quot;file-saver&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CryptoJS</span> <span class="keyword">from</span> <span class="string">&quot;crypto-js&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">JSZip</span> <span class="keyword">from</span> <span class="string">&#x27;jszip&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//AES加密文件（将多个文件添加为zip压缩包）</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesFileZip</span>=(<span class="params">SymmetricKey,ivString,fileList,save=<span class="literal">false</span>,name=<span class="string">&#x27;encryption.txt&#x27;</span></span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//添加文件进zip压缩包</span></span><br><span class="line">  <span class="keyword">const</span> zip = <span class="keyword">new</span> <span class="title class_">JSZip</span>()</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> fileList)&#123;</span><br><span class="line">    zip.<span class="title function_">file</span>(fileList[i].<span class="property">name</span>, fileList[i].<span class="property">raw</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//对zip压缩包进行加密</span></span><br><span class="line">  zip.<span class="title function_">generateAsync</span>(&#123;<span class="attr">type</span>:<span class="string">&quot;uint8array&quot;</span>&#125;).<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">zipData</span>) &#123;</span><br><span class="line">    <span class="comment">// 使用AES CBC Pkcs7模式进行加密</span></span><br><span class="line">    <span class="keyword">const</span> encryptedData = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">encrypt</span>(<span class="title class_">CryptoJS</span>.<span class="property">lib</span>.<span class="property">WordArray</span>.<span class="title function_">create</span>(zipData), key, &#123;</span><br><span class="line">      <span class="attr">iv</span>:iv,</span><br><span class="line">      <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span>,</span><br><span class="line">      <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 将加密后的数据转换为Base64字符串或其他格式</span></span><br><span class="line">    <span class="keyword">const</span> encryptedBase64 = encryptedData.<span class="title function_">toString</span>();</span><br><span class="line">    <span class="keyword">if</span>(save)&#123; <span class="comment">//是否将加密后的密文导出为文件</span></span><br><span class="line">      <span class="keyword">let</span> str = <span class="keyword">new</span> <span class="title class_">Blob</span>([encryptedBase64], &#123;<span class="attr">type</span>: <span class="string">&#x27;text/plain;charset=utf-8&#x27;</span>&#125;);</span><br><span class="line">      <span class="title function_">saveAs</span>(str,encryption.<span class="property">txt</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> encryptedBase64</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AES解密String到文件（解密压缩包的密文并导出压缩包文件）</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesDcStrToZip</span>=(<span class="params">SymmetricKey,ivString,text,save=<span class="literal">true</span>,name=<span class="string">&#x27;deciphering.zip&#x27;</span></span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//解密</span></span><br><span class="line">  <span class="keyword">var</span> decrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(text, key,&#123;</span><br><span class="line">    <span class="attr">iv</span>: iv,</span><br><span class="line">    <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">    <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">//是否导出</span></span><br><span class="line">  <span class="keyword">if</span>(save)&#123;</span><br><span class="line">    <span class="comment">// 将解密后的结果转换为ArrayBuffer格式</span></span><br><span class="line">    <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(decrypted.<span class="property">sigBytes</span>);</span><br><span class="line">    <span class="keyword">var</span> view = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(buffer);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; decrypted.<span class="property">sigBytes</span>; i++) &#123;</span><br><span class="line">        view[i] = decrypted.<span class="property">words</span>[i &gt;&gt;&gt; <span class="number">2</span>] &gt;&gt;&gt; (<span class="number">24</span> - (i % <span class="number">4</span>) * <span class="number">8</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span></span><br><span class="line">    <span class="keyword">var</span> blob = <span class="keyword">new</span> <span class="title class_">Blob</span>([buffer], &#123;<span class="attr">type</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">    <span class="comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span></span><br><span class="line">    <span class="title function_">saveAs</span>(blob,name);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> decrypted</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//AES解密文本文件到zip文件(将之前加密后导出的密文文件解密导出内容)</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">AesDcStrFileToZip</span>=(<span class="params">SymmetricKey,ivString,file,save=<span class="literal">true</span>,name=<span class="string">&#x27;deciphering.zip&#x27;</span></span>)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 转换为 WordArray 类型</span></span><br><span class="line">  <span class="keyword">const</span> key = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(<span class="title class_">SymmetricKey</span>);</span><br><span class="line">  <span class="keyword">const</span> iv = <span class="title class_">CryptoJS</span>.<span class="property">enc</span>.<span class="property">Utf8</span>.<span class="title function_">parse</span>(ivString);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//创建一个FileReader对象</span></span><br><span class="line">  <span class="keyword">let</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">  <span class="comment">//设置编码方式为UTF-8</span></span><br><span class="line">  reader.<span class="title function_">readAsText</span>(file, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">  <span class="comment">//监听load事件</span></span><br><span class="line">  reader.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//获取读取结果并解密</span></span><br><span class="line">    <span class="keyword">let</span> ciphertext = <span class="variable language_">this</span>.<span class="property">result</span>;</span><br><span class="line">    <span class="keyword">var</span> decrypted = <span class="title class_">CryptoJS</span>.<span class="property">AES</span>.<span class="title function_">decrypt</span>(ciphertext, key,&#123;</span><br><span class="line">      <span class="attr">iv</span>: iv,</span><br><span class="line">      <span class="attr">mode</span>: <span class="title class_">CryptoJS</span>.<span class="property">mode</span>.<span class="property">CBC</span>,</span><br><span class="line">      <span class="attr">padding</span>: <span class="title class_">CryptoJS</span>.<span class="property">pad</span>.<span class="property">Pkcs7</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span>(save)&#123;</span><br><span class="line">      <span class="comment">// 将解密后的结果转换为ArrayBuffer格式</span></span><br><span class="line">      <span class="keyword">var</span> buffer = <span class="keyword">new</span> <span class="title class_">ArrayBuffer</span>(decrypted.<span class="property">sigBytes</span>);</span><br><span class="line">      <span class="keyword">var</span> view = <span class="keyword">new</span> <span class="title class_">Uint8Array</span>(buffer);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; decrypted.<span class="property">sigBytes</span>; i++) &#123;</span><br><span class="line">          view[i] = decrypted.<span class="property">words</span>[i &gt;&gt;&gt; <span class="number">2</span>] &gt;&gt;&gt; (<span class="number">24</span> - (i % <span class="number">4</span>) * <span class="number">8</span>) &amp; <span class="number">0xff</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span></span><br><span class="line">      <span class="keyword">var</span> blob = <span class="keyword">new</span> <span class="title class_">Blob</span>([buffer], &#123;<span class="attr">type</span>: <span class="string">&quot;text/plain&quot;</span>&#125;);</span><br><span class="line">      <span class="comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span></span><br><span class="line">      <span class="title function_">saveAs</span>(blob,name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> decrypted</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RSA非对称加密"><a href="#RSA非对称加密" class="headerlink" title="RSA非对称加密"></a>RSA非对称加密</h3><p>非对称加密</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> forge <span class="keyword">from</span> <span class="string">&#x27;node-forge&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//RSA加密</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">encrypt</span>=(<span class="params">key,text</span>)=&gt;&#123; <span class="comment">//参数：公钥，原文</span></span><br><span class="line">  <span class="keyword">var</span> privateKey = forge.<span class="property">pki</span>.<span class="title function_">publicKeyFromPem</span>(key); <span class="comment">//设置公钥</span></span><br><span class="line">  <span class="comment">// 加密</span></span><br><span class="line">  <span class="keyword">var</span> encrypted = privateKey.<span class="title function_">encrypt</span>(text, <span class="string">&#x27;RSA-OAEP&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha256</span>.<span class="title function_">create</span>(),</span><br><span class="line">    <span class="attr">mgf1</span>: &#123;</span><br><span class="line">      <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha1</span>.<span class="title function_">create</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">btoa</span>(encrypted) <span class="comment">//进行btoa是因为后台需要进行一次base64转码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//RSA解密</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">decrypt</span>=(<span class="params">key,text</span>)=&gt;&#123; <span class="comment">//参数：私钥，密文</span></span><br><span class="line">  <span class="keyword">var</span> privateKey = forge.<span class="property">pki</span>.<span class="title function_">privateKeyFromPem</span>(key); <span class="comment">//设置私钥</span></span><br><span class="line">  <span class="comment">//解密</span></span><br><span class="line">  <span class="keyword">var</span> encrypted = privateKey.<span class="title function_">decrypt</span>(<span class="title function_">atob</span>(text), <span class="string">&#x27;RSA-OAEP&#x27;</span>, &#123;</span><br><span class="line">    <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha256</span>.<span class="title function_">create</span>(),</span><br><span class="line">    <span class="attr">mgf1</span>: &#123;</span><br><span class="line">      <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha1</span>.<span class="title function_">create</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> encrypted</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">decryptFile</span>=(<span class="params">file,text</span>)=&gt;&#123; <span class="comment">//.key私钥，密文</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="keyword">function</span>(<span class="params">resolve, reject</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> reader = <span class="keyword">new</span> <span class="title class_">FileReader</span>();</span><br><span class="line">    reader.<span class="title function_">readAsText</span>(file, <span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">    reader.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> ciphertext = <span class="variable language_">this</span>.<span class="property">result</span>;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(ciphertext)</span><br><span class="line">      <span class="keyword">let</span> privateKey = forge.<span class="property">pki</span>.<span class="title function_">privateKeyFromPem</span>(ciphertext);</span><br><span class="line">      <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> encrypted = privateKey.<span class="title function_">decrypt</span>(<span class="title function_">atob</span>(text), <span class="string">&#x27;RSA-OAEP&#x27;</span>, &#123;</span><br><span class="line">          <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha256</span>.<span class="title function_">create</span>(),</span><br><span class="line">          <span class="attr">mgf1</span>: &#123;</span><br><span class="line">            <span class="attr">md</span>: forge.<span class="property">md</span>.<span class="property">sha1</span>.<span class="title function_">create</span>()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="title function_">resolve</span>(encrypted);</span><br><span class="line">      &#125;<span class="keyword">catch</span>(err)&#123;</span><br><span class="line">        <span class="title function_">reject</span>(err)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E5%8A%9F%E8%83%BD"><span class="toc-text">加密功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">AES对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">RSA非对称加密</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/03/30/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E4%BB%A5%E5%8F%8A%E4%B8%8D%E5%8F%AF%E8%83%BD%E7%9A%84%E6%80%9D%E8%B7%AF%E6%96%B9%E6%A1%88/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
