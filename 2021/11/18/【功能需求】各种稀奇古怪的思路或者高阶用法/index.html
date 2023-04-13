@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="奇技淫巧,Javascript," />
+    <meta name="keywords" content="功能需求,Javascript," />
   
 
   
@@ -154,7 +154,7 @@
     </span>
     
       <span>
-        | <a href="/blog/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"><i class="fa fa-bookmark"></i>奇技淫巧</a>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
       </span>
     
     
@@ -180,22 +180,22 @@
 </blockquote>
 <p>HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问</p>
 <ul>
-<li>** 在文档声明属性 **</li>
+<li><strong>在文档声明属性</strong></li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 如需启用应用程序缓存，请在文档的 `&lt;html&gt;` 标签中包含 manifest 属性 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">&quot;demo.appcache&quot;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>** 建立<code>manifest</code>文件,在服务器配置 **</li>
+<li><strong>建立<code>manifest</code>文件,在服务器配置</strong></li>
 </ul>
 <p>manifest 文件的建议的文件扩展名是：”.appcache”; 正确的 MIME-type，即 “text/cache-manifest”</p>
 <figure class="highlight md"><figcaption><span>demo.appcache</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="section"># 2012-02-21 v1.0.0</span></span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line"><span class="bullet">*</span></span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">/html/ /offline.html</span><br></pre></td></tr></table></figure>
 
-<p>CACHE MANIFEST：被缓存的文件；   NETWORK: 永远不被缓存的文件；  FALLBACK: 如果没网所使用的替代文件；<br>** 注意：当<code>manifest</code>文件被更改的时候，应用的缓存也会被更改，如需要更新用户的缓存可以更改<code>manifest</code>文件的注释日期 **</p>
+<p>CACHE MANIFEST：被缓存的文件；   NETWORK: 永远不被缓存的文件；  FALLBACK: 如果没网所使用的替代文件；<br>**注意：当<code>manifest</code>文件被更改的时候，应用的缓存也会被更改，如需要更新用户的缓存可以更改<code>manifest</code>文件的注释日期 **</p>
 <h3 id="控制台防窥：前端反调试"><a href="#控制台防窥：前端反调试" class="headerlink" title="控制台防窥：前端反调试"></a>控制台防窥：前端反调试</h3><blockquote>
 <p>让其他非技术人员无法调试网站及拉取网站代码； 通过打开控制台的读取时间和当前的事件不一致然后重复执行的思路</p>
 </blockquote>
 <ul>
-<li>** 无限debugger反调试 **</li>
+<li>**无限debugger反调试 **</li>
 </ul>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">((<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> callbacks = [],</span><br><span class="line">        timeLimit = <span class="number">50</span>,</span><br><span class="line">        open = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">setInterval</span>(loop, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">addListener</span>: <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">            callbacks.<span class="title function_">push</span>(fn);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">cancleListenr</span>: <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">            callbacks = callbacks.<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">v</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> v !== fn;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        <span class="keyword">debugger</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="title class_">Date</span>() - startTime &gt; timeLimit) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!open) &#123;</span><br><span class="line">                callbacks.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">                    fn.<span class="title function_">call</span>(<span class="literal">null</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            open = <span class="literal">true</span>;</span><br><span class="line">            <span class="variable language_">window</span>.<span class="title function_">stop</span>();</span><br><span class="line">            <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            open = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()).<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>为防止 debugger 被替换，可以通过字符串拼接，然后用eval 执行</p>
@@ -226,7 +226,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://lixianbin1.github.io/blog/2021/11/18/%E3%80%90%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7%E3%80%91%E5%90%84%E7%A7%8D%E7%A8%80%E5%A5%87%E5%8F%A4%E6%80%AA%E7%9A%84%E6%80%9D%E8%B7%AF%E6%88%96%E8%80%85%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95/</a>
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2021/11/18/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91%E5%90%84%E7%A7%8D%E7%A8%80%E5%A5%87%E5%8F%A4%E6%80%AA%E7%9A%84%E6%80%9D%E8%B7%AF%E6%88%96%E8%80%85%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95/</a>
         </div>
       
       <div>
