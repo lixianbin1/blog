@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>VueUse基于组合式的实用工具 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,Vue," />
+  
+
+  
+  <meta name="description" content="VueUse基于Vue组合式API的实用工具集，VueUse是一款基于组合式API的函数集合">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-04-25
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-4-25 11:3 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    VueUse基于组合式的实用工具
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>yarn add @vueuse/core || npm i @vueuse/core</p>
+</blockquote>
+<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">      <span class="attr">imports</span>: [</span><br><span class="line">        <span class="string">&#x27;@vueuse/core&#x27;</span>, <span class="comment">//基于组合式API的集合工具</span></span><br><span class="line">        <span class="string">&#x27;@vueuse/head&#x27;</span>, <span class="comment">//添加Meta的标签，更好的SEO</span></span><br><span class="line">      ],</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="核心函数"><a href="#核心函数" class="headerlink" title="核心函数"></a>核心函数</h2><h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><h4 id="createGlobalState-全局状态"><a href="#createGlobalState-全局状态" class="headerlink" title="createGlobalState 全局状态"></a>createGlobalState 全局状态</h4><p>将状态保存全局作用域中，以便跨Vue实例复用。</p>
+<figure class="highlight js"><figcaption><span>store.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.js 基于Pinia的Store进行的全局存储</span></span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createGlobalState,useStorage &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useGlobalState = <span class="title function_">createGlobalState</span>( <span class="comment">//存储在内存中，类似sessionStorage</span></span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>) <span class="comment">// state</span></span><br><span class="line">    <span class="keyword">const</span> doubleCount = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> count.<span class="property">value</span> * <span class="number">2</span>) <span class="comment">// getters</span></span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">increment</span>(<span class="params"></span>) &#123; <span class="comment">// actions</span></span><br><span class="line">      count.<span class="property">value</span>++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123; count, doubleCount, increment &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="createInjectionState-注入全局状态"><a href="#createInjectionState-注入全局状态" class="headerlink" title="createInjectionState 注入全局状态"></a>createInjectionState 注入全局状态</h4><p>创建可以注入到组件中的全局状态。</p>
+<h4 id="useStorage-持久存储"><a href="#useStorage-持久存储" class="headerlink" title="useStorage 持久存储"></a>useStorage 持久存储</h4><p>响应式 LocalStorage/SessionStorage</p>
+<figure class="highlight js"><figcaption><span>store.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useStorage &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 类似setItem 默认为localStorage</span></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">useStorage</span>(<span class="string">&#x27;my-store&#x27;</span>, &#123; <span class="attr">hello</span>: <span class="string">&#x27;hi&#x27;</span>, <span class="attr">greeting</span>: <span class="string">&#x27;Hello&#x27;</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 指定类型 localStorage/sessionStorage</span></span><br><span class="line"><span class="keyword">const</span> state = <span class="title function_">useStorage</span>(<span class="string">&#x27;my-store&#x27;</span>, &#123; <span class="attr">hello</span>: <span class="string">&#x27;hi&#x27;</span>, <span class="attr">greeting</span>: <span class="string">&#x27;hello&#x27;</span> &#125;, <span class="variable language_">localStorage</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 和createGlobalState同时使用作为全局持久存储</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useGlobalState2 = <span class="title function_">createGlobalState</span>(</span><br><span class="line">  <span class="function">() =&gt;</span> <span class="title function_">useStorage</span>(<span class="string">&#x27;vue-use-locale-storage&#x27;</span>, &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;Banana&#x27;</span>,</span><br><span class="line">      <span class="attr">color</span>: <span class="string">&#x27;Yellow&#x27;</span>,</span><br><span class="line">      <span class="attr">size</span>: <span class="string">&#x27;Medium&#x27;</span>,</span><br><span class="line">    &#125;),</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="useLocalStorage-持久存储"><a href="#useLocalStorage-持久存储" class="headerlink" title="useLocalStorage 持久存储"></a>useLocalStorage 持久存储</h4><p>响应式的 LocalStorage</p>
+<blockquote>
+<p>用法同 <code>useStorage</code></p>
+</blockquote>
+<h4 id="useSessionStorage-持久存储"><a href="#useSessionStorage-持久存储" class="headerlink" title="useSessionStorage 持久存储"></a>useSessionStorage 持久存储</h4><p>响应式SessionStorage</p>
+<blockquote>
+<p>用法同 <code>useStorage</code></p>
+</blockquote>
+<h4 id="useStorageAsync-异步存储"><a href="#useStorageAsync-异步存储" class="headerlink" title="useStorageAsync 异步存储"></a>useStorageAsync 异步存储</h4><p>支持异步的响应式Storage</p>
+<blockquote>
+<p>用法同 <code>useStorage</code> </p>
+</blockquote>
+<h4 id="createSharedComposable"><a href="#createSharedComposable" class="headerlink" title="createSharedComposable"></a>createSharedComposable</h4><p>让一个钩子函数可用于多个Vue实例中。</p>
+<h4 id="useAsyncState-异步状态"><a href="#useAsyncState-异步状态" class="headerlink" title="useAsyncState 异步状态"></a>useAsyncState 异步状态</h4><p>响应式获取异步状态。不会阻塞setup 函数，在promise完成后，将自动触发。</p>
+<h4 id="useLastChanged-最后时间"><a href="#useLastChanged-最后时间" class="headerlink" title="useLastChanged 最后时间"></a>useLastChanged 最后时间</h4><p>记录最后一次更改的时间戳</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useLastChanged &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">const</span> lastChanged = <span class="title function_">useLastChanged</span>(a)</span><br><span class="line"></span><br><span class="line">a.<span class="property">value</span> = <span class="number">1</span>  <span class="comment">//最后的数据</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(lastChanged.<span class="property">value</span>) <span class="comment">//数据最后修改的时间戳</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="useRefHistory-历史记录"><a href="#useRefHistory-历史记录" class="headerlink" title="useRefHistory 历史记录"></a>useRefHistory 历史记录</h4><p>跟踪 ref 的更改历史，提供撤消和重做功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; useRefHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> counter = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// 跟踪ref数据的历史记录</span></span><br><span class="line"><span class="keyword">const</span> &#123; history, undo, redo,canUndo, canRedo &#125; = <span class="title function_">useRefHistory</span>(counter,&#123; <span class="attr">capacity</span>: <span class="number">10</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 撤回</span></span><br><span class="line">&lt;button :disabled=<span class="string">&quot;!canUndo&quot;</span> @click=<span class="string">&quot;undo()&quot;</span>&gt; <span class="title class_">Undo</span> &lt;/button&gt;</span><br><span class="line"><span class="comment">// 取消撤回</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">:disabled</span>=<span class="string">&quot;!canRedo&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;redo()&quot;</span>&gt;</span> Redo <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="useManualRefHistory-手动历史记录"><a href="#useManualRefHistory-手动历史记录" class="headerlink" title="useManualRefHistory 手动历史记录"></a>useManualRefHistory 手动历史记录</h4><p>调用 commit() 时，手动跟踪ref的更改历史，提供撤消和重做功能</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; useManualRefHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> counter = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// 跟踪ref数据的历史记录</span></span><br><span class="line"><span class="keyword">const</span> &#123; history, commit, undo, redo &#125; = <span class="title function_">useManualRefHistory</span>(counter)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当调用commit的时候，才会添加记录</span></span><br><span class="line">counter.<span class="property">value</span> += <span class="number">1</span></span><br><span class="line"><span class="title function_">commit</span>()</span><br></pre></td></tr></table></figure>
+
+<h4 id="useThrottledRefHistory-节流历史记录"><a href="#useThrottledRefHistory-节流历史记录" class="headerlink" title="useThrottledRefHistory 节流历史记录"></a>useThrottledRefHistory 节流历史记录</h4><p>带节流过滤器的 useRefHistory 的简写。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; useThrottledRefHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> counter = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// 以一秒的节流器，当数据修改后，添加记录</span></span><br><span class="line"><span class="keyword">const</span> &#123; history, undo, redo &#125; = <span class="title function_">useThrottledRefHistory</span>(counter, &#123; <span class="attr">deep</span>: <span class="literal">true</span>, <span class="attr">throttle</span>: <span class="number">1000</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="useDebouncedRefHistory-防抖历史记录"><a href="#useDebouncedRefHistory-防抖历史记录" class="headerlink" title="useDebouncedRefHistory 防抖历史记录"></a>useDebouncedRefHistory 防抖历史记录</h4><p>useRefHistory 的简写，带有防抖过滤器。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; useDebouncedRefHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;@vueuse/core&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> counter = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// 以一秒的防抖器，当数据修改后，添加记录</span></span><br><span class="line"><span class="keyword">const</span> &#123; history, undo, redo &#125; = <span class="title function_">useDebouncedRefHistory</span>(counter, &#123; <span class="attr">deep</span>: <span class="literal">true</span>, <span class="attr">debounce</span>: <span class="number">1000</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h3><h4 id="useActiveElement"><a href="#useActiveElement" class="headerlink" title="useActiveElement"></a>useActiveElement</h4><p>响应式 document.activeElement</p>
+<h4 id="useDocumentVisibility"><a href="#useDocumentVisibility" class="headerlink" title="useDocumentVisibility"></a>useDocumentVisibility</h4><p>响应式跟踪 document.visibilityState</p>
+<h4 id="useDraggable-元素拖拽"><a href="#useDraggable-元素拖拽" class="headerlink" title="useDraggable 元素拖拽"></a>useDraggable 元素拖拽</h4><p>使元素可拖拽</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; ref &#125; from &#x27;vue&#x27;</span><br><span class="line">import &#123; useDraggable &#125; from &#x27;@vueuse/core&#x27;</span><br><span class="line"></span><br><span class="line">const el = ref&lt;HTMLElement | null&gt;(null)</span><br><span class="line"></span><br><span class="line">// `style` will be a helper computed for `left: ?px; top: ?px;`</span><br><span class="line">const &#123; x, y, style &#125; = useDraggable(el, &#123;</span><br><span class="line">  initialValue: &#123; x: 40, y: 40 &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div ref=&quot;el&quot; :style=&quot;style&quot; style=&quot;position: fixed&quot;&gt;</span><br><span class="line">    Drag me! I am at &#123;&#123;x&#125;&#125;, &#123;&#123;y&#125;&#125;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="useDropZone"><a href="#useDropZone" class="headerlink" title="useDropZone"></a>useDropZone</h4><p>创建一个可以放置文件的区域。</p>
+<h4 id="useElementBounding"><a href="#useElementBounding" class="headerlink" title="useElementBounding"></a>useElementBounding</h4><p>让HTML元素的bounding box 响应式</p>
+<h4 id="useElementSize"><a href="#useElementSize" class="headerlink" title="useElementSize"></a>useElementSize</h4><p>元素尺寸大小响应式</p>
+<h4 id="useElementVisibility"><a href="#useElementVisibility" class="headerlink" title="useElementVisibility"></a>useElementVisibility</h4><p>跟踪元素在视口中的可见性。</p>
+<h4 id="useIntersectionObserver"><a href="#useIntersectionObserver" class="headerlink" title="useIntersectionObserver"></a>useIntersectionObserver</h4><p>响应式监听目标元素的可见性。</p>
+<h4 id="useMouseInElement"><a href="#useMouseInElement" class="headerlink" title="useMouseInElement"></a>useMouseInElement</h4><p>响应式获取鼠标相对于元素的位置</p>
+<h4 id="useMutationObserver"><a href="#useMutationObserver" class="headerlink" title="useMutationObserver"></a>useMutationObserver</h4><p>监听DOM树修改 MutationObserver MDN</p>
+<h4 id="useResizeObserver"><a href="#useResizeObserver" class="headerlink" title="useResizeObserver"></a>useResizeObserver</h4><p>监听元素内容和边框尺寸的变化。</p>
+<h4 id="useWindowFocus"><a href="#useWindowFocus" class="headerlink" title="useWindowFocus"></a>useWindowFocus</h4><p>使用 window.onfocus 和 window.onblur 事件响应式跟踪窗口焦点。</p>
+<h4 id="useWindowScroll"><a href="#useWindowScroll" class="headerlink" title="useWindowScroll"></a>useWindowScroll</h4><p>响应式获取窗口的滚动位置。</p>
+<h4 id="useWindowSize"><a href="#useWindowSize" class="headerlink" title="useWindowSize"></a>useWindowSize</h4><p>响应式获取窗口尺寸</p>
+<p>组件中的使用</p>
+<figure class="highlight html"><figcaption><span>Hello.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123; useCounterStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@/stores/counter&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> counter = <span class="title function_">useCounterStore</span>()</span></span><br><span class="line"><span class="language-javascript">counter.<span class="property">count</span>++</span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 自动补全！ ✨</span></span></span><br><span class="line"><span class="language-javascript">counter.$patch(&#123; <span class="attr">count</span>: counter.<span class="property">count</span> + <span class="number">1</span> &#125;)</span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 或使用 action 代替</span></span></span><br><span class="line"><span class="language-javascript">counter.<span class="title function_">increment</span>()</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 直接从 store 中访问 state --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>Current Count: &#123;&#123; counter.count &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><h4 id="defineStore"><a href="#defineStore" class="headerlink" title="defineStore"></a>defineStore</h4><p> Store 是用 defineStore() 定义的，它的第一个参数要求是一个独一无二的名字</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 你可以对 `defineStore()` 的返回值进行任意命名，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。(比如 `useUserStore`，`useCartStore`，`useProductStore`)</span></span><br><span class="line"><span class="comment">// 第一个参数是你的应用中 Store 的唯一 ID。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useAlertsStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;alerts&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">double</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useAlertsStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;alerts&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">// setup语法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>可以使用Setup语法，也可以使用配置语法，推荐配置语法，setup会让SSR变得更复杂。</p>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;storeId&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="comment">// 所有这些属性都将自动推断出它们的类型</span></span><br><span class="line">      <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;Eduardo&#x27;</span>,</span><br><span class="line">      <span class="attr">isAdmin</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">items</span>: [],</span><br><span class="line">      <span class="attr">hasChanged</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用示例</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useStore</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单体修改</span></span><br><span class="line">store.<span class="property">count</span>++</span><br><span class="line"><span class="comment">// 群体修改</span></span><br><span class="line">store.$patch(&#123;</span><br><span class="line">  <span class="attr">count</span>: store.<span class="property">count</span> + <span class="number">1</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">120</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;DIO&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅state</span></span><br><span class="line">store.$subscribe(<span class="function">(<span class="params">mutation, state</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cart&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(state))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果你想在组件卸载后依旧保留它们，请将 &#123; detached: true &#125; 作为第二个参数</span></span><br><span class="line">store.$subscribe(callback, &#123; <span class="attr">detached</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  pinia.<span class="property">state</span>,</span><br><span class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 每当状态发生变化时，将整个 state 持久化到本地存储。</span></span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;piniaState&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(state))</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="getter"><a href="#getter" class="headerlink" title="getter"></a>getter</h3><p>Getter 完全等同于 store 的 state 的计算值。可以通过 defineStore() 中的 getters 属性来定义它们</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useOtherStore &#125; <span class="keyword">from</span> <span class="string">&#x27;./other-store&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;main&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">doubleCount</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>,</span><br><span class="line">    <span class="title function_">doublePlusOne</span>(): number &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">doubleCount</span> + <span class="number">1</span> <span class="comment">//通过this访问其他的getters</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">otherGetter</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> otherStore = <span class="title function_">useOtherStore</span>() <span class="comment">//也可以访问其他的Store</span></span><br><span class="line">      <span class="keyword">return</span> state.<span class="property">count</span> + otherStore.<span class="property">data</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>Action 相当于组件中的 method。它们可以通过 defineStore() 中的 actions 属性来定义</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;main&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">actions</span>: &#123; <span class="comment">//类似 getter，action 也可通过 this 访问整个 store 实例;不同的是，action 可以是异步的</span></span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">randomizeCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span> = <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="number">100</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>())</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>插件是通过 pinia.use() 添加到 pinia 实例的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建的每个 store 中都会添加一个名为 `secret` 的属性。</span></span><br><span class="line"><span class="comment">// 在安装此插件后，插件可以保存在不同的文件中</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SecretPiniaPlugin</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">secret</span>: <span class="string">&#x27;the cake is a lie&#x27;</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>()</span><br><span class="line"><span class="comment">// 将该插件交给 Pinia</span></span><br><span class="line">pinia.<span class="title function_">use</span>(<span class="title class_">SecretPiniaPlugin</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在另一个文件中</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useStore</span>()</span><br><span class="line">store.<span class="property">secret</span> <span class="comment">// &#x27;the cake is a lie&#x27;</span></span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="toc-text">核心函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-text">State</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#createGlobalState-%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81"><span class="toc-text">createGlobalState 全局状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#createInjectionState-%E6%B3%A8%E5%85%A5%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81"><span class="toc-text">createInjectionState 注入全局状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useStorage-%E6%8C%81%E4%B9%85%E5%AD%98%E5%82%A8"><span class="toc-text">useStorage 持久存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useLocalStorage-%E6%8C%81%E4%B9%85%E5%AD%98%E5%82%A8"><span class="toc-text">useLocalStorage 持久存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useSessionStorage-%E6%8C%81%E4%B9%85%E5%AD%98%E5%82%A8"><span class="toc-text">useSessionStorage 持久存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useStorageAsync-%E5%BC%82%E6%AD%A5%E5%AD%98%E5%82%A8"><span class="toc-text">useStorageAsync 异步存储</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#createSharedComposable"><span class="toc-text">createSharedComposable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useAsyncState-%E5%BC%82%E6%AD%A5%E7%8A%B6%E6%80%81"><span class="toc-text">useAsyncState 异步状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useLastChanged-%E6%9C%80%E5%90%8E%E6%97%B6%E9%97%B4"><span class="toc-text">useLastChanged 最后时间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useRefHistory-%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-text">useRefHistory 历史记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useManualRefHistory-%E6%89%8B%E5%8A%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-text">useManualRefHistory 手动历史记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useThrottledRefHistory-%E8%8A%82%E6%B5%81%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-text">useThrottledRefHistory 节流历史记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDebouncedRefHistory-%E9%98%B2%E6%8A%96%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-text">useDebouncedRefHistory 防抖历史记录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Element"><span class="toc-text">Element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#useActiveElement"><span class="toc-text">useActiveElement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDocumentVisibility"><span class="toc-text">useDocumentVisibility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDraggable-%E5%85%83%E7%B4%A0%E6%8B%96%E6%8B%BD"><span class="toc-text">useDraggable 元素拖拽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDropZone"><span class="toc-text">useDropZone</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementBounding"><span class="toc-text">useElementBounding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementSize"><span class="toc-text">useElementSize</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementVisibility"><span class="toc-text">useElementVisibility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useIntersectionObserver"><span class="toc-text">useIntersectionObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useMouseInElement"><span class="toc-text">useMouseInElement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useMutationObserver"><span class="toc-text">useMutationObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useResizeObserver"><span class="toc-text">useResizeObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowFocus"><span class="toc-text">useWindowFocus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowScroll"><span class="toc-text">useWindowScroll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowSize"><span class="toc-text">useWindowSize</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Store"><span class="toc-text">Store</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#defineStore"><span class="toc-text">defineStore</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#state"><span class="toc-text">state</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getter"><span class="toc-text">getter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-text">Action</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-text">插件</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/04/25/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91VueUse%E5%9F%BA%E4%BA%8E%E7%BB%84%E5%90%88%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Vue/"><i class="fa fa-tags"></i>Vue</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
