@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -138,6 +140,12 @@
         <li class="toc-item">
           <a href="/blog/categories/" target="_self">
             分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
           </a>
         </li>
       
@@ -203,7 +211,7 @@
 <p>在项目第一次渲染的时候，可能会出现闪烁，可以通过设置 <code>show:false</code> ,在特定的时候显示出来</p>
 <figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123; </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">show</span>: <span class="literal">false</span>, <span class="comment">//关闭显示</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 第一次完成绘制时，如果窗口还没有被显示，渲染进程会发出 ready-to-show 事件 </span></span><br><span class="line">win.<span class="title function_">once</span>(<span class="string">&#x27;ready-to-show&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  win.<span class="title function_">show</span>()</span><br><span class="line">&#125;)</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> - backgroundColor</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">当项目过于复杂的时候，ready-to-show事件可能会比较缓慢，可以不使用 `</span>ready-to-show<span class="string">` 简单的设置背景颜色就好了，</span></span><br><span class="line"><span class="string">使用了 `</span>ready-to-show<span class="string">` 也可以使用背景色，使应用更贴近原生</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>js main.<span class="property">js</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> win = <span class="keyword">new</span> <span class="title class_">BrowserWindow</span>(&#123; </span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">backgroundColor</span>: <span class="string">&#x27;#fff&#x27;</span>, <span class="comment">//应用背景色</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h2 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h2><h3 id="update-electronjs-org"><a href="#update-electronjs-org" class="headerlink" title="update.electronjs.org"></a>update.electronjs.org</h3><p>Electron 官方在 <a target="_blank" rel="noopener" href="https://update.electronjs.org/">https://update.electronjs.org</a> 上为开源应用程序提供了免费的自动更新服务。 使用它有以下几点要求：</p>
+<h2 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h2><h3 id="update-electronjs-org"><a href="#update-electronjs-org" class="headerlink" title="update.electronjs.org"></a>update.electronjs.org</h3><p>Electron 官方在 <a href="https://update.electronjs.org/">https://update.electronjs.org</a> 上为开源应用程序提供了免费的自动更新服务。 使用它有以下几点要求：</p>
 <ul>
 <li>你的应用在 macOS 或 Windows 上运行</li>
 <li>你的应用有一个公开的 GitHub 仓库</li>
@@ -279,7 +287,7 @@
         </div>
       
       <div>
-        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
       </div>
     </aside>
   
@@ -294,8 +302,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">

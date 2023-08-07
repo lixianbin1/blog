@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -138,6 +140,12 @@
         <li class="toc-item">
           <a href="/blog/categories/" target="_self">
             分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
           </a>
         </li>
       
@@ -200,7 +208,7 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 打包命令，打包成为免安装版，输出目录默认为 out/</span><br><span class="line">yarn package</span><br><span class="line"></span><br><span class="line">// 打包命令，打包成为exe安装执行文件</span><br><span class="line">yarn make</span><br></pre></td></tr></table></figure>
 
-<h3 id="Inno-Setup"><a href="#Inno-Setup" class="headerlink" title="Inno Setup"></a>Inno Setup</h3><p>打包软件，官方没有中文版本IDE，需要使用可以通过网络进行收集，<a target="_blank" rel="noopener" href="https://share.weiyun.com/7t83n8BF">中文版InnoSetup</a></p>
+<h3 id="Inno-Setup"><a href="#Inno-Setup" class="headerlink" title="Inno Setup"></a>Inno Setup</h3><p>打包软件，官方没有中文版本IDE，需要使用可以通过网络进行收集，<a href="https://share.weiyun.com/7t83n8BF">中文版InnoSetup</a></p>
 <p>如果需要打包成中文安装包，需要将配置文件修改为中文版本的，复制安装目录下的 <code>Default.isl</code> 文件，黏贴在 <code>Languages</code> 目录文件下，重命名为 <code>Chinese</code>，然后修改里面的内容为下列； 注意格式需要为 <code>UTF-8 with BOM</code> 否则会出现乱码。<br>或者直接下载，然后将其放入 <code>Languages</code> 目录文件下 <a href="/blog/down/Chinese.isl">下载文件</a></p>
   </article>
   <aside class="table-content" id="site-toc">
@@ -226,8 +234,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">

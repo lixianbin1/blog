@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -141,6 +143,12 @@
           </a>
         </li>
       
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
     </ol>
   </div>
 </nav>
@@ -172,7 +180,7 @@
   
   <article class="passage-article">
     <h3 id="CSS变量的历史"><a href="#CSS变量的历史" class="headerlink" title="CSS变量的历史"></a>CSS变量的历史</h3><p>自1998年5月起，Web社区就有要求css定义变量的方法，在我看来，这是很正常的，一个新的功能不可能是一时的冲动，拍拍屁股就决定的，它需要的是不断的检测，不断的改正，时间是最公正的裁判不是吗？</p>
-<p>2011年2月，css变量草案被提出，它最初受到Dave Hyatt和Daniel Glazman最初编写的<a target="_blank" rel="noopener" href="http://disruptive-innovations.com/zoo/cssvariables/">变量提案</a>的启发，后经过一系列的讨论及改正，至2014年5月，<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-variables-1/">CSS变量草案</a>快速的成长起来，变的更加的健壮。</p>
+<p>2011年2月，css变量草案被提出，它最初受到Dave Hyatt和Daniel Glazman最初编写的<a href="http://disruptive-innovations.com/zoo/cssvariables/">变量提案</a>的启发，后经过一系列的讨论及改正，至2014年5月，<a href="https://www.w3.org/TR/css-variables-1/">CSS变量草案</a>快速的成长起来，变的更加的健壮。</p>
 <h3 id="CSS变量的声明"><a href="#CSS变量的声明" class="headerlink" title="CSS变量的声明"></a>CSS变量的声明</h3><p>首先你需要制定变量的作用域，全局或者是局部，其次你需要使用<code>--</code>充当变量前缀 ，就像sass的<code>$</code>和lass的<code>@</code>，它们的用法相差不大。注意，CSS变量对大小写敏感，变量的值可以是颜色、字符串、多个值的组合等。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">:root&#123;</span><br><span class="line">    --colorText:blue;</span><br><span class="line">    --textContent:&quot;Hello&quot;;</span><br><span class="line">    --varG:var(--colorText);</span><br><span class="line">    --number:10;</span><br><span class="line">&#125;</span><br><span class="line">#body&#123;</span><br><span class="line">    --only:green;</span><br><span class="line">&#125;</span><br><span class="line">#body&#123;</span><br><span class="line"></span><br><span class="line">    /*var()用于读取变量，var()可以有两个参数，第二个为默认值（可选），即变量失效后使用的值*/</span><br><span class="line">    color:var(colorText,green)；</span><br><span class="line">    </span><br><span class="line">    /*变量是数字，在涉及单位的时候，不能直接使用，需要calc()进行转换，单位不能作为字符串存储*/</span><br><span class="line">    width:calc(var(--number) * px)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -194,7 +202,7 @@
 <p>JavaScript检测兼容性</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const isSupported =</span><br><span class="line">  window.CSS &amp;&amp;</span><br><span class="line">  window.CSS.supports &amp;&amp;</span><br><span class="line">  window.CSS.supports(&#x27;--a&#x27;, 0);</span><br><span class="line"></span><br><span class="line">if (isSupported) &#123;</span><br><span class="line">  console.log(&#x27;兼容&#x27;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  console.log(&#x27;不兼容&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>规则：<a target="_blank" rel="noopener" href="https://www.w3.org/TR/css-variables-1/">CSS自定义属性文档</a></p>
+<p>规则：<a href="https://www.w3.org/TR/css-variables-1/">CSS自定义属性文档</a></p>
 <p>总结：就目前而言，在国内的环境之下，使用CSS变量有些鸡肋的表现，当然，仁者见仁智者见智，这只是我个人的想法</p>
   </article>
   <aside class="table-content" id="site-toc">
@@ -218,7 +226,7 @@
         </div>
       
       <div>
-        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
       </div>
     </aside>
   
@@ -233,9 +241,9 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
+    <!-- gitalk评论系统
     
-      <div id="gitalk-container"></div>
+      <div id="gitalk-container 2"></div>
       <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 <script src="https://priesttomb.github.io/js/md5.min.js"></script>
@@ -250,7 +258,7 @@
         distractionFreeMode: true
     }).render('gitalk-container')
 </script>
-    
+     -->
 
     
 <div class="site-footer-wrapper">

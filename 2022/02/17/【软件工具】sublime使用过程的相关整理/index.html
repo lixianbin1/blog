@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -141,6 +143,12 @@
           </a>
         </li>
       
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
     </ol>
   </div>
 </nav>
@@ -173,13 +181,13 @@
   <article class="passage-article">
     <p>Sublime Text 是一个文本编辑器（收费软件，可以无限期试用），同时也是一个先进的代码编辑器。Sublime Text是由程序员Jon Skinner于2008年1月份所开发出来，它最初被设计为一个具有丰富扩展功能的Vim</p>
 <p>下载安装 - 初始化 - 安装插件 - 安装集成 - 配置修改</p>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>推荐官网下载安装<br>官网：<a target="_blank" rel="noopener" href="https://www.sublimetext.com/">https://www.sublimetext.com/</a><br>中文网站[过时]：<a target="_blank" rel="noopener" href="https://sublimetextcn.com/">https://sublimetextcn.com/</a></p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>推荐官网下载安装<br>官网：<a href="https://www.sublimetext.com/">https://www.sublimetext.com/</a><br>中文网站[过时]：<a href="https://sublimetextcn.com/">https://sublimetextcn.com/</a></p>
 <h2 id="插件初始化"><a href="#插件初始化" class="headerlink" title="插件初始化"></a>插件初始化</h2><p>要是插件查询太慢，可以替换为查询网址</p>
 <figure class="highlight js"><figcaption><span>首选项 ——> package-settings ——> Package Control ——> Settings</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;channels&quot;</span>:[<span class="string">&quot;https://erhan.in/channel_v3.json&quot;</span>],</span><br></pre></td></tr></table></figure>
 
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight shell"><figcaption><span>Ctrl + Shift + P 后输入 install package</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Emmet （语法快速补齐）</span><br><span class="line">html5 （html5语法规范）</span><br><span class="line">Babel （把ES6语法编译成ES5）</span><br><span class="line">Chinese​Localizations （汉化）</span><br><span class="line">ConvertToUTF8 （解决文本中文乱码）</span><br><span class="line">Vue Syntax Highlight   (vue代码高亮)</span><br><span class="line">sublimeLinter-jsxhint （jsx代码审查）</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装集成"><a href="#安装集成" class="headerlink" title="安装集成"></a>安装集成</h2><p>sublime merge 官网：<a target="_blank" rel="noopener" href="https://www.sublimemerge.com/">https://www.sublimemerge.com/</a><br>sublime merge是一个用于管理Git的分支集成；需要下载安装；然后配置路径；</p>
+<h2 id="安装集成"><a href="#安装集成" class="headerlink" title="安装集成"></a>安装集成</h2><p>sublime merge 官网：<a href="https://www.sublimemerge.com/">https://www.sublimemerge.com/</a><br>sublime merge是一个用于管理Git的分支集成；需要下载安装；然后配置路径；</p>
 <figure class="highlight js"><figcaption><span>首选项 ——>设置</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;sublime_merge_path&quot;</span>:<span class="string">&quot;D:\\Sublime Text 3\\Sublime Merge\\sublime_merge.exe&quot;</span>,</span><br></pre></td></tr></table></figure>
 
 <h2 id="配置修改"><a href="#配置修改" class="headerlink" title="配置修改"></a>配置修改</h2><figure class="highlight js"><figcaption><span>首选项 ——> package-settings ——> emmet ——> Key Binding</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[&#123;</span><br><span class="line">  <span class="string">&quot;keys&quot;</span>: [<span class="string">&quot;ctrl+e&quot;</span>],</span><br><span class="line">  <span class="string">&quot;command&quot;</span>: <span class="string">&quot;emmet_expand_abbreviation&quot;</span></span><br><span class="line">&#125;,&#123;</span><br><span class="line">  <span class="string">&quot;keys&quot;</span>: [<span class="string">&quot;tab&quot;</span>],</span><br><span class="line">  <span class="string">&quot;command&quot;</span>: <span class="string">&quot;emmet_expand_abbreviation&quot;</span>,</span><br><span class="line">  <span class="string">&quot;args&quot;</span>: &#123; <span class="string">&quot;tab&quot;</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="string">&quot;context&quot;</span>: [</span><br><span class="line">    &#123; <span class="string">&quot;key&quot;</span>: <span class="string">&quot;emmet_abbreviation&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;key&quot;</span>: <span class="string">&quot;emmet_tab_expand&quot;</span> &#125;,</span><br><span class="line">    &#123; <span class="string">&quot;key&quot;</span>: <span class="string">&quot;num_selections&quot;</span>, <span class="string">&quot;operand&quot;</span>: <span class="number">1</span> &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;,]</span><br></pre></td></tr></table></figure>
@@ -203,8 +211,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">

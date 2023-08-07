@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -141,6 +143,12 @@
           </a>
         </li>
       
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
     </ol>
   </div>
 </nav>
@@ -177,7 +185,7 @@
 </blockquote>
 <p><img src="/blog/images/list/2021012302.png" alt="Bubbling"></p>
 <p><img src="/blog/images/list/2021012301.png" alt="Bubbling"></p>
-<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><p>手机连上电脑的WIFI(既在同一局域网中)，设置wifi代理 IP为电脑IP 端口是Fiddler端口<br>如果都是http请求，能直接抓到，如果是https请求，手机就需要下载证书。打开手机浏览器输入：<a target="_blank" rel="noopener" href="http://10.224.xx.xx:8888/">http://10.224.xx.xx:8888</a> 点击下载<br>点击左下角的图标，空白则只抓取远程手机端的包，如果不点则默认手机PC端都会抓取</p>
+<h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><p>手机连上电脑的WIFI(既在同一局域网中)，设置wifi代理 IP为电脑IP 端口是Fiddler端口<br>如果都是http请求，能直接抓到，如果是https请求，手机就需要下载证书。打开手机浏览器输入：<a href="http://10.224.xx.xx:8888/">http://10.224.xx.xx:8888</a> 点击下载<br>点击左下角的图标，空白则只抓取远程手机端的包，如果不点则默认手机PC端都会抓取</p>
 <p><img src="/blog/images/list/2021012303.png" alt="Bubbling"></p>
 <blockquote>
 <p>或者设置过滤：打开fiddler&gt;Tools&gt;Options&gt;HTTPS&gt;勾选Decrypt Https traffic&gt;选择…from remote clients only,勾选这个选项就可以了<br>…from all processes :抓所有的请求<br>…from browsers only ：只抓浏览器的请求<br>…from non-browsers only :只抓非浏览器的请求<br>…from remote clients only:只抓远程客户端请求</p>
@@ -200,8 +208,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">

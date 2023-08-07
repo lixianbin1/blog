@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -141,6 +143,12 @@
           </a>
         </li>
       
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
     </ol>
   </div>
 </nav>
@@ -175,7 +183,7 @@
 <h2 id="安装下载"><a href="#安装下载" class="headerlink" title="安装下载"></a>安装下载</h2><blockquote>
 <p>此为 4.16.2 版本时候编辑的文章</p>
 </blockquote>
-<p>官网：<a target="_blank" rel="noopener" href="https://www.docker.com/">https://www.docker.com/</a></p>
+<p>官网：<a href="https://www.docker.com/">https://www.docker.com/</a></p>
 <p>下载并安装 Docker；</p>
 <h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><p>Docker 有三个重要的概念，镜像（image），容器（container），仓库（repository）。容器比作轻量的服务器，那么镜像就是创建它的模版</p>
 <h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>项目结构</p>
@@ -239,7 +247,7 @@
 </blockquote>
 <p>上述 demo 只创建了单个 docker 容器，当项目更新时，由于容器需要经过销毁和创建的过程，会存在一段时间页面无法访问情况<br>而实际投入生产时一般会创建多个容器，并逐步更新每个容器，配合负载均衡将用户的请求映射到不同端口的容器上，确保线上的服务不会因为容器的更新而宕机</p>
 <p>目前还没搞服务器，等后面再试试</p>
-<p>参考文章：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6845166890420011021">https://juejin.cn/post/6845166890420011021</a></p>
+<p>参考文章：<a href="https://juejin.cn/post/6845166890420011021">https://juejin.cn/post/6845166890420011021</a></p>
 <h2 id="问题集合"><a href="#问题集合" class="headerlink" title="问题集合"></a>问题集合</h2><h3 id="Win10系统启动-Docker-后一直显示-‘docker-desktop-starting’"><a href="#Win10系统启动-Docker-后一直显示-‘docker-desktop-starting’" class="headerlink" title="Win10系统启动 Docker 后一直显示 ‘docker desktop starting’"></a>Win10系统启动 Docker 后一直显示 ‘docker desktop starting’</h3><p>切换到目录 C:\Program Files\Docker\Docker 执行 DockerCli.exe -SwitchDaemon</p>
 <p>使用管理员执行Window PowerShell</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">&#x27;C:\Program Files\Docker\Docker&#x27;</span></span><br><span class="line">.\DockerCli.exe -SwitchDaemon</span><br></pre></td></tr></table></figure>
@@ -251,7 +259,7 @@
 <blockquote>
 <p>dism.exe /Online /Enable-Feature:Microsoft-Hyper-V /All</p>
 </blockquote>
-<h3 id="提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified"><a href="#提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified" class="headerlink" title="提示 Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified"></a>提示 <code>Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified</code></h3><p>参考文章：<a target="_blank" rel="noopener" href="https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows">https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows</a></p>
+<h3 id="提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified"><a href="#提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified" class="headerlink" title="提示 Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified"></a>提示 <code>Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified</code></h3><p>参考文章：<a href="https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows">https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows</a></p>
 <p>缺少了 docker_engine_windows 通道，导致执行失败，查看关于docker通道命令,需要使用Window PowerShell执行 <code>get-childitem \\.\pipe\ | where &#123; $_.Name -match &quot;docker_&quot; &#125;</code></p>
 <p>使用管理员执行Window PowerShell</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x27;C:\Program Files\Docker\Docker\resources\&#x27;</span><br><span class="line">.\dockerd.exe -G docker-users --config-file c:\programdata\docker\config\daemon.json --register-service</span><br><span class="line">start-service docker</span><br></pre></td></tr></table></figure>
@@ -280,7 +288,7 @@
         </div>
       
       <div>
-        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
       </div>
     </aside>
   
@@ -295,9 +303,9 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
+    <!-- gitalk评论系统
     
-      <div id="gitalk-container"></div>
+      <div id="gitalk-container 2"></div>
       <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
 <script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
 <script src="https://priesttomb.github.io/js/md5.min.js"></script>
@@ -312,7 +320,7 @@
         distractionFreeMode: true
     }).render('gitalk-container')
 </script>
-    
+     -->
 
     
 <div class="site-footer-wrapper">

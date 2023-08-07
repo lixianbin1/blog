@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -138,6 +140,12 @@
         <li class="toc-item">
           <a href="/blog/categories/" target="_self">
             分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
           </a>
         </li>
       
@@ -280,7 +288,7 @@
 <p>1:用CMD查询电脑IP <code>ipconfig</code> ;</p>
 </blockquote>
 <blockquote>
-<p>2:在手机端浏览器访问 <a target="_blank" rel="noopener" href="http://192.168.x.x/xxx">http://192.168.x.x/xxx</a>  (注意是 http ,不是https)</p>
+<p>2:在手机端浏览器访问 <a href="http://192.168.x.x/xxx">http://192.168.x.x/xxx</a>  (注意是 http ,不是https)</p>
 </blockquote>
 <h2 id="当没有管理员权限却需要安装-msi-文件的时候"><a href="#当没有管理员权限却需要安装-msi-文件的时候" class="headerlink" title="当没有管理员权限却需要安装 msi 文件的时候"></a>当没有管理员权限却需要安装 msi 文件的时候</h2><p>没有管理员权限，但是安装软件又需要，可以考虑直接解压<code>msi文件</code>，看直接执行<code>exe文件</code> 看能否执行</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将D盘下的xxx.msi文件 解压到D盘下的demo目录 </span></span><br><span class="line">msiexec /a <span class="string">&quot;D:\xxx.msi&quot;</span> /qb TARGETDIR=<span class="string">&quot;D:\demo&quot;</span></span><br></pre></td></tr></table></figure>
@@ -302,8 +310,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">

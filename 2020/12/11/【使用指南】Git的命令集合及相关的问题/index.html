@@ -94,6 +94,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/about/" target="_self">关于</a>
+      
     </nav>
     <div class="site-header-btn">
       
@@ -138,6 +140,12 @@
         <li class="toc-item">
           <a href="/blog/categories/" target="_self">
             分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
           </a>
         </li>
       
@@ -216,7 +224,7 @@
 <p>如果是设置过端口禁用的不想换端口就去防火墙设置一下入；GitHub 的的建议是 替换端口 443</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 运行以下命令</span><br><span class="line">$ ssh -T -p 443 git@ssh.github.com</span><br><span class="line"></span><br><span class="line">// 如果出现以下提示，代表可以用 443 替换默认的 22 端口</span><br><span class="line">&gt; Hi username! You&#x27;ve successfully authenticated, but GitHub does not</span><br><span class="line">&gt; provide shell access.</span><br><span class="line"></span><br><span class="line">// 首先在 ~/.ssh/ 目录下找到 config 文件，如果没有可以新建，然后添加以下内容</span><br><span class="line">Host github.com</span><br><span class="line">  Hostname ssh.github.com</span><br><span class="line">  Port 443</span><br></pre></td></tr></table></figure>
 
-<p>参考链接：<a target="_blank" rel="noopener" href="https://help.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port">GitHub Help</a></p>
+<p>参考链接：<a href="https://help.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port">GitHub Help</a></p>
 <h3 id="请求-Github仓库的速度很慢"><a href="#请求-Github仓库的速度很慢" class="headerlink" title="请求 Github仓库的速度很慢"></a>请求 Github仓库的速度很慢</h3><p>当你 pull 或者 push 的时候，你会发现，它的速度只有 100kb/s 甚至更慢，拉取一个稍微大一点的仓库，拉取了一两个小时都未必能拉取成功，造成这样的原因同样也有很多：</p>
 <ul>
 <li><p>自身网络问题：自身网络过差，运营商限速，路由中毒等等</p>
@@ -257,7 +265,7 @@
         </div>
       
       <div>
-        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
       </div>
     </aside>
   
@@ -272,8 +280,8 @@
 
     </main>
 
-    <!-- gitalk评论系统 -->
-    
+    <!-- gitalk评论系统
+     -->
 
     
 <div class="site-footer-wrapper">
