@@ -6,12 +6,12 @@
   <meta name="author" content="饿包子" />
   
   
-  <title>渐进式网页应用 PWAs | 饿包子博客</title>
+  <title>PWAs 渐进式网页应用 | 饿包子博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="随笔杂记," />
+    <meta name="keywords" content="随笔杂记,PWA," />
   
 
   
@@ -155,7 +155,8 @@
 <div id="site-process"></div>
     <main>
       
-  <div class="passage">
+  <!-- passage -->
+<div class="passage">
   <div class="passage-meta">
     <span>
       <i class="fa fa-calendar"></i>2019-11-05
@@ -175,7 +176,7 @@
     </span>
   </div>
   <h1 class="passage-title">
-    渐进式网页应用 PWAs
+    PWAs 渐进式网页应用
   </h1>
   
   <article class="passage-article">
@@ -221,7 +222,28 @@
 <p>目前 Pwas 处于Chrome实验室的状态，Android 也不是很支持这个技术，不确定什么时候放开，也许在将来的某天。不过即便如此，Pwas的离线缓存依然能带来良好的用户体验。</p>
 <h2 id="Pwas-开启安装提示的功能"><a href="#Pwas-开启安装提示的功能" class="headerlink" title="Pwas 开启安装提示的功能"></a>Pwas 开启安装提示的功能</h2><p>在Chrom 浏览器中，Pwas功能早期，如果用户需要安装此网站的PWas ，那么需要浏览网站至少30s ，开发人员才能对用户进行提示安装，<br>现在已经取消了这一限制，但是增加了新的限制：需要用户主动点击或者其他互动，开发者才能调用提示接口。<br>（如无必要，尽量不添加，兼容性不是很好）</p>
 <p>自定义安装提示</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">var _beforeInstallPrompt;</span><br><span class="line">if ( &quot;onbeforeinstallprompt&quot; in window ) &#123;</span><br><span class="line">  window.addEventListener( &quot;beforeinstallprompt&quot;, beforeInstallPrompt );</span><br><span class="line">&#125;</span><br><span class="line">function beforeInstallPrompt( evt ) &#123;</span><br><span class="line">  evt.preventDefault();</span><br><span class="line">  _beforeInstallPrompt = evt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let menu=document.getElementById(&#x27;addApp&#x27;)</span><br><span class="line">menu.addEventListener(&#x27;click&#x27;,e=&gt;&#123;</span><br><span class="line">  _beforeInstallPrompt.prompt()</span><br><span class="line">  _beforeInstallPrompt.userChoice</span><br><span class="line">  .then(choiceResult =&gt; &#123;</span><br><span class="line">    if(choiceResult.outcome === &#x27;accepted&#x27;) &#123;</span><br><span class="line">      console.log(&#x27;user accepted A2HS prompt&#x27;)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      console.log(&#x27;user dismissed A2HS prompt&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">    _beforeInstallPrompt = null</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre class="line-numbers language-none"><code class="language-none">var _beforeInstallPrompt;
+if ( &quot;onbeforeinstallprompt&quot; in window ) &#123;
+  window.addEventListener( &quot;beforeinstallprompt&quot;, beforeInstallPrompt );
+&#125;
+function beforeInstallPrompt( evt ) &#123;
+  evt.preventDefault();
+  _beforeInstallPrompt &#x3D; evt;
+&#125;
+
+let menu&#x3D;document.getElementById(&#39;addApp&#39;)
+menu.addEventListener(&#39;click&#39;,e&#x3D;&gt;&#123;
+  _beforeInstallPrompt.prompt()
+  _beforeInstallPrompt.userChoice
+  .then(choiceResult &#x3D;&gt; &#123;
+    if(choiceResult.outcome &#x3D;&#x3D;&#x3D; &#39;accepted&#39;) &#123;
+      console.log(&#39;user accepted A2HS prompt&#39;)
+    &#125; else &#123;
+      console.log(&#39;user dismissed A2HS prompt&#39;)
+    &#125;
+    _beforeInstallPrompt &#x3D; null
+  &#125;)
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -240,7 +262,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/11/05/%E6%B8%90%E8%BF%9B%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8%20PWAs/</a>
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/11/05/%E3%80%90%E9%9A%8F%E7%AC%94%E6%9D%82%E8%AE%B0%E3%80%91PWAs%E6%B8%90%E8%BF%9B%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8/</a>
         </div>
       
       <div>
@@ -249,12 +271,18 @@
     </aside>
   
   
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/PWA/"><i class="fa fa-tags"></i>PWA</a>
+    
+    </div>
+  
 </div>
 
     </main>
 
-    <!-- gitalk评论系统
-     -->
+    <!-- gitalk评论系统 -->
+    
 
     
 <div class="site-footer-wrapper">
