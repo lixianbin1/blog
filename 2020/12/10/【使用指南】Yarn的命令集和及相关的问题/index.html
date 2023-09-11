@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -184,16 +193,54 @@
 <blockquote>
 <p>npm install -g yarn</p>
 </blockquote>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">yarn -v     # 获取yarn的版本</span><br><span class="line">yarn init   # 初始化项目</span><br><span class="line">yarn list   # 列举项目包</span><br><span class="line"></span><br><span class="line"><span class="section"># 安装模块包</span></span><br><span class="line">yarn add xxx             // 默认生产依赖 dependencies</span><br><span class="line">yarn add xxx@[version]</span><br><span class="line">yarn add xxx@[tag]</span><br><span class="line">yarn add xxx --dev       // 开发依赖 devDependencies</span><br><span class="line">yarn add xxx --peer      // peerDependencies</span><br><span class="line">yarn add xxx --optional  // optionalDependencies</span><br><span class="line">yarn install  // 安装 yarn.lock 上所有依赖（可以缩略为 yarn ）</span><br><span class="line">yarn global add xxxx     // 全局安装</span><br><span class="line"></span><br><span class="line"><span class="section"># 更新模块包</span></span><br><span class="line">yarn upgrade xxx</span><br><span class="line">yarn upgrade xxx@[version]</span><br><span class="line">yarn upgrade xxx@[tag]</span><br><span class="line"></span><br><span class="line"><span class="section"># 删除重复依赖项</span></span><br><span class="line">yarn dedupe</span><br><span class="line"></span><br><span class="line"><span class="section"># 卸载模块包</span></span><br><span class="line">yarn remove xxx</span><br><span class="line"></span><br><span class="line"><span class="section"># 清除缓存</span></span><br><span class="line">yarn cache clean</span><br><span class="line"></span><br><span class="line"><span class="section"># 用户自定义命令</span></span><br><span class="line">yarn xxx      // 类似 npm run xxx</span><br><span class="line"></span><br><span class="line"><span class="section"># 全局配置命令</span></span><br><span class="line">yarn config list</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre><code class="hljs md">yarn -v     # 获取yarn的版本
+yarn init   # 初始化项目
+yarn list   # 列举项目包
+
+<span class="hljs-section"># 安装模块包</span>
+yarn add xxx             // 默认生产依赖 dependencies
+yarn add xxx@[version]
+yarn add xxx@[tag]
+yarn add xxx --dev       // 开发依赖 devDependencies
+yarn add xxx --peer      // peerDependencies
+yarn add xxx --optional  // optionalDependencies
+yarn install  // 安装 yarn.lock 上所有依赖（可以缩略为 yarn ）
+yarn global add xxxx     // 全局安装
+
+<span class="hljs-section"># 更新模块包</span>
+yarn upgrade xxx
+yarn upgrade xxx@[version]
+yarn upgrade xxx@[tag]
+
+<span class="hljs-section"># 删除重复依赖项</span>
+yarn dedupe
+
+<span class="hljs-section"># 卸载模块包</span>
+yarn remove xxx
+
+<span class="hljs-section"># 清除缓存</span>
+yarn cache clean
+
+<span class="hljs-section"># 用户自定义命令</span>
+yarn xxx      // 类似 npm run xxx
+
+<span class="hljs-section"># 全局配置命令</span>
+yarn config list</code></pre>
 
 <h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><h3 id="镜像源管理"><a href="#镜像源管理" class="headerlink" title="镜像源管理"></a>镜像源管理</h3><p>nrm 是npm的镜像源管理工具，有时候国外资源太慢，使用这个就可以快速地在 npm 源间切换</p>
 <blockquote>
 <p>npm install nrm -g</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nrm ls       #查看nrm的镜像源列表和当前源</span><br><span class="line">nrm use xxx  #切换到xxx的印象源</span><br><span class="line"></span><br><span class="line">nrm add xxx http://xxx.cn/ #新增映射源</span><br><span class="line">nrm del xxx  #删除指定的xxx映射源</span><br><span class="line">nrm test npm #测试相应的源的相应时间</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs bash">nrm <span class="hljs-built_in">ls</span>       <span class="hljs-comment">#查看nrm的镜像源列表和当前源</span>
+nrm use xxx  <span class="hljs-comment">#切换到xxx的印象源</span>
+
+nrm add xxx http://xxx.cn/ <span class="hljs-comment">#新增映射源</span>
+nrm del xxx  <span class="hljs-comment">#删除指定的xxx映射源</span>
+nrm <span class="hljs-built_in">test</span> npm <span class="hljs-comment">#测试相应的源的相应时间</span></code></pre>
 
 <h3 id="配置全局安装目录"><a href="#配置全局安装目录" class="headerlink" title="配置全局安装目录"></a>配置全局安装目录</h3><p>为了个C盘腾出空间，不往C盘装模块, 切换目录后，把之前的目录的文件全部剪切过来</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn config set cache-folder &quot;E:\Node\yarn_cache&quot;</span><br><span class="line">yarn config set global-folder &quot;E:\Node\yarn_global&quot;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">yarn<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache-folder <span class="hljs-string">&quot;E:\Node\yarn_cache&quot;</span>
+yarn<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> global-folder <span class="hljs-string">&quot;E:\Node\yarn_global&quot;</span></code></pre>
 
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="安装出现报错：Unexpected-token-u0000-in-JSON-at-position-0"><a href="#安装出现报错：Unexpected-token-u0000-in-JSON-at-position-0" class="headerlink" title="安装出现报错：Unexpected token \u0000 in JSON at position 0"></a>安装出现报错：Unexpected token \u0000 in JSON at position 0</h3><p>环境错误，执行了错误的缓存，执行命令清除错误缓存代码</p>
 <blockquote>
@@ -204,9 +251,11 @@
 <p>npm install -g yarn</p>
 </blockquote>
 <h3 id="报错-“文件名、目录名或卷标语法不正确”"><a href="#报错-“文件名、目录名或卷标语法不正确”" class="headerlink" title="报错 “文件名、目录名或卷标语法不正确”"></a>报错 “文件名、目录名或卷标语法不正确”</h3><p>全局安装目录和和bin目录不在同一分区导致的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn global bin #查看bin目录</span><br><span class="line">yarn global dir #查看安装目录</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs python">yarn <span class="hljs-keyword">global</span> <span class="hljs-built_in">bin</span> <span class="hljs-comment">#查看bin目录</span>
+yarn <span class="hljs-keyword">global</span> <span class="hljs-built_in">dir</span> <span class="hljs-comment">#查看安装目录</span></code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn config set cache-folder &quot;E:\Node\yarn_cache&quot;</span><br><span class="line">yarn config set global-folder &quot;E:\Node\yarn_global&quot;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">yarn<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> cache-folder <span class="hljs-string">&quot;E:\Node\yarn_cache&quot;</span>
+yarn<span class="hljs-built_in"> config </span><span class="hljs-built_in">set</span> global-folder <span class="hljs-string">&quot;E:\Node\yarn_global&quot;</span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -189,9 +198,26 @@
 <h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><p>Docker 有三个重要的概念，镜像（image），容器（container），仓库（repository）。容器比作轻量的服务器，那么镜像就是创建它的模版</p>
 <h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><p>项目结构</p>
 <p>docker-demo<br>  |——index.html<br>  |——Dockerfile</p>
-<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello docker<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.html</span></div><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;X-UA-Compatible&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;IE=edge&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Document<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello docker<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
-<figure class="highlight sh"><figcaption><span>Dockerfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基于官方 nginx 镜像</span></span><br><span class="line">FROM nginx</span><br><span class="line"><span class="comment"># 指定镜像架构为windows版本，主要看你的容器是什么架构的，默认是 linux/arm64</span></span><br><span class="line"><span class="comment"># FROM --platform=windows/arm64 nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将当前目录下 index.html 替换容器中 /usr/share/nginx/html/index.html 文件</span></span><br><span class="line">COPY index.html /usr/share/nginx/html/index.html</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>Dockerfile</span></div><code class="hljs sh"><span class="hljs-comment"># 基于官方 nginx 镜像</span>
+FROM nginx
+<span class="hljs-comment"># 指定镜像架构为windows版本，主要看你的容器是什么架构的，默认是 linux/arm64</span>
+<span class="hljs-comment"># FROM --platform=windows/arm64 nginx</span>
+
+<span class="hljs-comment"># 将当前目录下 index.html 替换容器中 /usr/share/nginx/html/index.html 文件</span>
+COPY index.html /usr/share/nginx/html/index.html</code></pre>
 
 <p>在示例项目根目录执行以下命令</p>
 <blockquote>
@@ -217,30 +243,135 @@
 <li><p>test-image:latest：<code>基于 test-image 最新版本的镜像创建容器</code></p>
 </li>
 </ul>
-<h2 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a>镜像管理</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将本地镜像test-image:latest传到 xianbinli 用户的 docker 仓库上</span></span><br><span class="line">docker push xianbinli/test-image:latest</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取远程仓库的镜像</span></span><br><span class="line">docker pull xianbinli/test-image:latest</span><br></pre></td></tr></table></figure>
+<h2 id="镜像管理"><a href="#镜像管理" class="headerlink" title="镜像管理"></a>镜像管理</h2><pre><code class="hljs sh"><span class="hljs-comment"># 将本地镜像test-image:latest传到 xianbinli 用户的 docker 仓库上</span>
+docker push xianbinli/test-image:latest
 
-<h2 id="搭建自动化部署"><a href="#搭建自动化部署" class="headerlink" title="搭建自动化部署"></a>搭建自动化部署</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Step 1: 安装必要的一些系统工具</span></span><br><span class="line">sudo yum install -y yum-utils</span><br><span class="line"><span class="comment"># Step 2: 添加软件源信息，使用阿里云镜像</span></span><br><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line"><span class="comment"># Step 3: 安装 docker-ce</span></span><br><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line"><span class="comment"># Step 4: 开启 docker服务</span></span><br><span class="line">sudo systemctl start docker</span><br><span class="line"><span class="comment"># Step 5: 运行 hello-world 项目</span></span><br><span class="line">sudo docker run hello-world</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装git环境</span></span><br><span class="line">yum install git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装NVM</span></span><br><span class="line">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line"><span class="built_in">export</span> NVM_DIR=<span class="string">&quot;<span class="variable">$HOME</span>/.nvm&quot;</span></span><br><span class="line">[ -s <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span> ] &amp;&amp; \. <span class="string">&quot;<span class="variable">$NVM_DIR</span>/nvm.sh&quot;</span>  <span class="comment"># This loads nvm</span></span><br><span class="line">[ -s <span class="string">&quot;<span class="variable">$NVM_DIR</span>/bash_completion&quot;</span> ] &amp;&amp; \. <span class="string">&quot;<span class="variable">$NVM_DIR</span>/bash_completion&quot;</span>  <span class="comment"># This loads nvm bash_completion</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过NVM 安装node</span></span><br><span class="line">nvm install node</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装PM2：可以运行js脚本</span></span><br><span class="line">npm i pm2 -g</span><br></pre></td></tr></table></figure>
+<span class="hljs-comment"># 拉取远程仓库的镜像</span>
+docker pull xianbinli/test-image:latest</code></pre>
+
+<h2 id="搭建自动化部署"><a href="#搭建自动化部署" class="headerlink" title="搭建自动化部署"></a>搭建自动化部署</h2><pre><code class="hljs sh"><span class="hljs-comment"># Step 1: 安装必要的一些系统工具</span>
+sudo yum install -y yum-utils
+<span class="hljs-comment"># Step 2: 添加软件源信息，使用阿里云镜像</span>
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+<span class="hljs-comment"># Step 3: 安装 docker-ce</span>
+sudo yum install docker-ce docker-ce-cli containerd.io
+<span class="hljs-comment"># Step 4: 开启 docker服务</span>
+sudo systemctl start docker
+<span class="hljs-comment"># Step 5: 运行 hello-world 项目</span>
+sudo docker run hello-world
+
+<span class="hljs-comment"># 安装git环境</span>
+yum install git
+
+<span class="hljs-comment"># 安装NVM</span>
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+
+<span class="hljs-comment"># 设置环境变量</span>
+<span class="hljs-built_in">export</span> NVM_DIR=<span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/.nvm&quot;</span>
+[ -s <span class="hljs-string">&quot;<span class="hljs-variable">$NVM_DIR</span>/nvm.sh&quot;</span> ] &amp;&amp; \. <span class="hljs-string">&quot;<span class="hljs-variable">$NVM_DIR</span>/nvm.sh&quot;</span>  <span class="hljs-comment"># This loads nvm</span>
+[ -s <span class="hljs-string">&quot;<span class="hljs-variable">$NVM_DIR</span>/bash_completion&quot;</span> ] &amp;&amp; \. <span class="hljs-string">&quot;<span class="hljs-variable">$NVM_DIR</span>/bash_completion&quot;</span>  <span class="hljs-comment"># This loads nvm bash_completion</span>
+
+<span class="hljs-comment"># 通过NVM 安装node</span>
+nvm install node
+
+<span class="hljs-comment"># 安装PM2：可以运行js脚本</span>
+npm i pm2 -g</code></pre>
 
 <p>打开git仓库，可以是GitHub上的，也可以是自己部署的Gitlab，打开仓库的<code>Settings设置</code>,打开 <code>Webhooks</code>.点击添加<br>Payload URL: 填写服务器的公网IP,记得添加 http(s) 前缀<br>Content type: 选择 application/json 即发送 json 格式的 post 请求<br>触发时机：Just the push event，即仓库 push 事件，根据不同的需求还可以选择其他事件，例如 PR，提交 Commit，提交 issues 等</p>
 <p>当服务器接受到请求后，需要创建或者更新镜像来实现自动部署</p>
 <p>在本地项目创建一个 dockerfile</p>
-<figure class="highlight dockerfile"><figcaption><span>dockerfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># build stage</span></span><br><span class="line"><span class="keyword">FROM</span> node:lts-alpine as build-stage</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="language-bash"> /app</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> package*.json ./</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm install</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> . .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> npm run build</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># production stage</span></span><br><span class="line"><span class="keyword">FROM</span> nginx:stable-alpine as production-stage</span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> --from=build-stage /app/dist /usr/share/nginx/html</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-g&quot;</span>, <span class="string">&quot;daemon off;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>dockerfile</span></div><code class="hljs dockerfile"><span class="hljs-comment"># build stage</span>
+<span class="hljs-keyword">FROM</span> node:lts-alpine as build-stage
+<span class="hljs-keyword">WORKDIR</span><span class="language-bash"> /app</span>
+<span class="hljs-keyword">COPY</span><span class="language-bash"> package*.json ./</span>
+<span class="hljs-keyword">RUN</span><span class="language-bash"> npm install</span>
+<span class="hljs-keyword">COPY</span><span class="language-bash"> . .</span>
+<span class="hljs-keyword">RUN</span><span class="language-bash"> npm run build</span>
+
+<span class="hljs-comment"># production stage</span>
+<span class="hljs-keyword">FROM</span> nginx:stable-alpine as production-stage
+<span class="hljs-keyword">COPY</span><span class="language-bash"> --from=build-stage /app/dist /usr/share/nginx/html</span>
+<span class="hljs-keyword">EXPOSE</span> <span class="hljs-number">80</span>
+<span class="hljs-keyword">CMD</span><span class="language-bash"> [<span class="hljs-string">&quot;nginx&quot;</span>, <span class="hljs-string">&quot;-g&quot;</span>, <span class="hljs-string">&quot;daemon off;&quot;</span>]</span></code></pre>
 
 <p>通过SCP将Dockerfile复制到服务器上</p>
 <blockquote>
-<p>scp ./Dockerfile <a href="mailto:&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#x31;&#56;&#46;&#56;&#57;&#46;&#x32;&#52;&#52;&#46;&#x34;&#x35;">&#x72;&#x6f;&#x6f;&#x74;&#64;&#x31;&#x31;&#56;&#46;&#56;&#57;&#46;&#x32;&#52;&#52;&#46;&#x34;&#x35;</a>:/root</p>
+<p>scp ./Dockerfile <a href="mailto:&#x72;&#111;&#111;&#x74;&#64;&#49;&#x31;&#56;&#46;&#x38;&#57;&#46;&#x32;&#52;&#x34;&#x2e;&#x34;&#53;">&#x72;&#111;&#111;&#x74;&#64;&#49;&#x31;&#56;&#46;&#x38;&#57;&#46;&#x32;&#52;&#x34;&#x2e;&#x34;&#53;</a>:/root</p>
 </blockquote>
 <p>创建  .dockerignore 忽略文件</p>
-<figure class="highlight sh"><figcaption><span>.dockerignore</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>.dockerignore</span></div><code class="hljs sh">node_modules</code></pre>
 <p>通过SCP将dockerignore复制到服务器上</p>
 <blockquote>
-<p>scp ./.dockerignore <a href="mailto:&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#49;&#56;&#x2e;&#56;&#57;&#x2e;&#x32;&#x34;&#x34;&#46;&#52;&#x35;">&#x72;&#111;&#111;&#x74;&#x40;&#x31;&#49;&#56;&#x2e;&#56;&#57;&#x2e;&#x32;&#x34;&#x34;&#46;&#52;&#x35;</a>:/root</p>
+<p>scp ./.dockerignore <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#x31;&#56;&#x2e;&#56;&#57;&#x2e;&#50;&#52;&#52;&#x2e;&#52;&#53;">&#x72;&#x6f;&#x6f;&#116;&#64;&#49;&#x31;&#56;&#x2e;&#56;&#57;&#x2e;&#50;&#52;&#52;&#x2e;&#52;&#53;</a>:/root</p>
 </blockquote>
 <p>本地项目创建 index.js</p>
-<figure class="highlight js"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;http&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> &#123;execSync&#125; = <span class="built_in">require</span>(<span class="string">&quot;child_process&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&quot;path&quot;</span>)</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&quot;fs&quot;</span>)</span><br><span class="line"><span class="comment">// 递归删除目录</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">deleteFolderRecursive</span>(<span class="params">path</span>) &#123;</span><br><span class="line">   <span class="keyword">if</span>( fs.<span class="title function_">existsSync</span>(path) ) &#123;</span><br><span class="line">       fs.<span class="title function_">readdirSync</span>(path).<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">file</span>) &#123;</span><br><span class="line">           <span class="keyword">const</span> curPath = path + <span class="string">&quot;/&quot;</span> + file;</span><br><span class="line">           <span class="keyword">if</span>(fs.<span class="title function_">statSync</span>(curPath).<span class="title function_">isDirectory</span>()) &#123; <span class="comment">// recurse</span></span><br><span class="line">               <span class="title function_">deleteFolderRecursive</span>(curPath);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123; <span class="comment">// delete file</span></span><br><span class="line">               fs.<span class="title function_">unlinkSync</span>(curPath);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br><span class="line">       fs.<span class="title function_">rmdirSync</span>(path);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">resolvePost</span> = req =&gt;</span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> chunk = <span class="string">&quot;&quot;</span>;</span><br><span class="line">      req.<span class="title function_">on</span>(<span class="string">&quot;data&quot;</span>, <span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">          chunk += data;</span><br><span class="line">      &#125;);</span><br><span class="line">      req.<span class="title function_">on</span>(<span class="string">&quot;end&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">resolve</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(chunk));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">http.<span class="title function_">createServer</span>(<span class="keyword">async</span> (req, res) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;receive request&#x27;</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">url</span>)</span><br><span class="line">  <span class="keyword">if</span> (req.<span class="property">method</span> === <span class="string">&#x27;POST&#x27;</span> &amp;&amp; req.<span class="property">url</span> === <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">resolvePost</span>(req);</span><br><span class="line">    <span class="keyword">const</span> projectDir = path.<span class="title function_">resolve</span>(<span class="string">`./<span class="subst">$&#123;data.repository.name&#125;</span>`</span>)</span><br><span class="line">    <span class="title function_">deleteFolderRecursive</span>(projectDir)</span><br><span class="line">    <span class="comment">// 拉取仓库最新代码</span></span><br><span class="line">    <span class="title function_">execSync</span>(<span class="string">`git clone https://github.com/yeyan1996/<span class="subst">$&#123;data.repository.name&#125;</span>.git <span class="subst">$&#123;projectDir&#125;</span>`</span>,&#123;</span><br><span class="line">      <span class="attr">stdio</span>:<span class="string">&#x27;inherit&#x27;</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 复制 Dockerfile 到项目目录</span></span><br><span class="line">  fs.<span class="title function_">copyFileSync</span>(path.<span class="title function_">resolve</span>(<span class="string">`./Dockerfile`</span>), path.<span class="title function_">resolve</span>(projectDir,<span class="string">&#x27;./Dockerfile&#x27;</span>))</span><br><span class="line">  <span class="comment">// 复制 .dockerignore 到项目目录</span></span><br><span class="line">  fs.<span class="title function_">copyFileSync</span>(path.<span class="title function_">resolve</span>(__dirname,<span class="string">`./.dockerignore`</span>), path.<span class="title function_">resolve</span>(projectDir, <span class="string">&#x27;./.dockerignore&#x27;</span>))</span><br><span class="line">    <span class="comment">// 创建 docker 镜像</span></span><br><span class="line">  <span class="title function_">execSync</span>(<span class="string">`docker build . -t <span class="subst">$&#123;data.repository.name&#125;</span>-image:latest `</span>,&#123;</span><br><span class="line">    <span class="attr">stdio</span>:<span class="string">&#x27;inherit&#x27;</span>,</span><br><span class="line">    <span class="attr">cwd</span>: projectDir</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 销毁 docker 容器</span></span><br><span class="line">  <span class="title function_">execSync</span>(<span class="string">`docker ps -a -f &quot;name=^<span class="subst">$&#123;data.repository.name&#125;</span>-container&quot; --format=&quot;&#123;&#123;.Names&#125;&#125;&quot; | xargs -r docker stop | xargs -r docker rm`</span>, &#123;</span><br><span class="line">    <span class="attr">stdio</span>: <span class="string">&#x27;inherit&#x27;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">       <span class="comment">// 创建 docker 容器</span></span><br><span class="line">  <span class="title function_">execSync</span>(<span class="string">`docker run -d -p 8888:80 --name <span class="subst">$&#123;data.repository.name&#125;</span>-container  <span class="subst">$&#123;data.repository.name&#125;</span>-image:latest`</span>, &#123;</span><br><span class="line">    <span class="attr">stdio</span>:<span class="string">&#x27;inherit&#x27;</span>,</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;deploy success&#x27;</span>)</span><br><span class="line">  res.<span class="title function_">end</span>(<span class="string">&#x27;ok&#x27;</span>)</span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">3000</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;server is ready&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>)
+<span class="hljs-keyword">const</span> &#123;execSync&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;child_process&quot;</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;path&quot;</span>)
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;fs&quot;</span>)
+<span class="hljs-comment">// 递归删除目录</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">deleteFolderRecursive</span>(<span class="hljs-params">path</span>) &#123;
+   <span class="hljs-keyword">if</span>( fs.<span class="hljs-title function_">existsSync</span>(path) ) &#123;
+       fs.<span class="hljs-title function_">readdirSync</span>(path).<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) &#123;
+           <span class="hljs-keyword">const</span> curPath = path + <span class="hljs-string">&quot;/&quot;</span> + file;
+           <span class="hljs-keyword">if</span>(fs.<span class="hljs-title function_">statSync</span>(curPath).<span class="hljs-title function_">isDirectory</span>()) &#123; <span class="hljs-comment">// recurse</span>
+               <span class="hljs-title function_">deleteFolderRecursive</span>(curPath);
+           &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">// delete file</span>
+               fs.<span class="hljs-title function_">unlinkSync</span>(curPath);
+           &#125;
+       &#125;);
+       fs.<span class="hljs-title function_">rmdirSync</span>(path);
+   &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">resolvePost</span> = req =&gt;
+  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> chunk = <span class="hljs-string">&quot;&quot;</span>;
+      req.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;data&quot;</span>, <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;
+          chunk += data;
+      &#125;);
+      req.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;end&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+      <span class="hljs-title function_">resolve</span>(<span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">parse</span>(chunk));
+  &#125;);
+&#125;);
+
+http.<span class="hljs-title function_">createServer</span>(<span class="hljs-keyword">async</span> (req, res) =&gt; &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;receive request&#x27;</span>)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(req.<span class="hljs-property">url</span>)
+  <span class="hljs-keyword">if</span> (req.<span class="hljs-property">method</span> === <span class="hljs-string">&#x27;POST&#x27;</span> &amp;&amp; req.<span class="hljs-property">url</span> === <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
+    <span class="hljs-keyword">const</span> data = <span class="hljs-keyword">await</span> <span class="hljs-title function_">resolvePost</span>(req);
+    <span class="hljs-keyword">const</span> projectDir = path.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">`./<span class="hljs-subst">$&#123;data.repository.name&#125;</span>`</span>)
+    <span class="hljs-title function_">deleteFolderRecursive</span>(projectDir)
+    <span class="hljs-comment">// 拉取仓库最新代码</span>
+    <span class="hljs-title function_">execSync</span>(<span class="hljs-string">`git clone https://github.com/yeyan1996/<span class="hljs-subst">$&#123;data.repository.name&#125;</span>.git <span class="hljs-subst">$&#123;projectDir&#125;</span>`</span>,&#123;
+      <span class="hljs-attr">stdio</span>:<span class="hljs-string">&#x27;inherit&#x27;</span>,
+    &#125;)
+  &#125;
+  <span class="hljs-comment">// 复制 Dockerfile 到项目目录</span>
+  fs.<span class="hljs-title function_">copyFileSync</span>(path.<span class="hljs-title function_">resolve</span>(<span class="hljs-string">`./Dockerfile`</span>), path.<span class="hljs-title function_">resolve</span>(projectDir,<span class="hljs-string">&#x27;./Dockerfile&#x27;</span>))
+  <span class="hljs-comment">// 复制 .dockerignore 到项目目录</span>
+  fs.<span class="hljs-title function_">copyFileSync</span>(path.<span class="hljs-title function_">resolve</span>(__dirname,<span class="hljs-string">`./.dockerignore`</span>), path.<span class="hljs-title function_">resolve</span>(projectDir, <span class="hljs-string">&#x27;./.dockerignore&#x27;</span>))
+    <span class="hljs-comment">// 创建 docker 镜像</span>
+  <span class="hljs-title function_">execSync</span>(<span class="hljs-string">`docker build . -t <span class="hljs-subst">$&#123;data.repository.name&#125;</span>-image:latest `</span>,&#123;
+    <span class="hljs-attr">stdio</span>:<span class="hljs-string">&#x27;inherit&#x27;</span>,
+    <span class="hljs-attr">cwd</span>: projectDir
+  &#125;)
+  <span class="hljs-comment">// 销毁 docker 容器</span>
+  <span class="hljs-title function_">execSync</span>(<span class="hljs-string">`docker ps -a -f &quot;name=^<span class="hljs-subst">$&#123;data.repository.name&#125;</span>-container&quot; --format=&quot;&#123;&#123;.Names&#125;&#125;&quot; | xargs -r docker stop | xargs -r docker rm`</span>, &#123;
+    <span class="hljs-attr">stdio</span>: <span class="hljs-string">&#x27;inherit&#x27;</span>,
+  &#125;)
+       <span class="hljs-comment">// 创建 docker 容器</span>
+  <span class="hljs-title function_">execSync</span>(<span class="hljs-string">`docker run -d -p 8888:80 --name <span class="hljs-subst">$&#123;data.repository.name&#125;</span>-container  <span class="hljs-subst">$&#123;data.repository.name&#125;</span>-image:latest`</span>, &#123;
+    <span class="hljs-attr">stdio</span>:<span class="hljs-string">&#x27;inherit&#x27;</span>,
+  &#125;)
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;deploy success&#x27;</span>)
+  res.<span class="hljs-title function_">end</span>(<span class="hljs-string">&#x27;ok&#x27;</span>)
+&#125;).<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;server is ready&#x27;</span>)
+&#125;)</code></pre>
 <p>通过SCP将index.js复制到服务器上</p>
 <blockquote>
-<p>scp ./index.js <a href="mailto:&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#49;&#x38;&#46;&#x38;&#x39;&#x2e;&#50;&#52;&#52;&#46;&#x34;&#53;">&#x72;&#x6f;&#x6f;&#116;&#x40;&#x31;&#49;&#x38;&#46;&#x38;&#x39;&#x2e;&#50;&#52;&#52;&#46;&#x34;&#53;</a>:/root</p>
+<p>scp ./index.js <a href="mailto:&#x72;&#111;&#111;&#x74;&#64;&#x31;&#49;&#x38;&#46;&#x38;&#x39;&#46;&#x32;&#x34;&#52;&#x2e;&#x34;&#x35;">&#x72;&#111;&#111;&#x74;&#64;&#x31;&#49;&#x38;&#46;&#x38;&#x39;&#46;&#x32;&#x34;&#52;&#x2e;&#x34;&#x35;</a>:/root</p>
 </blockquote>
 <p>之后在服务器上运行</p>
 <blockquote>
@@ -251,10 +382,12 @@
 <p>参考文章：<a href="https://juejin.cn/post/6845166890420011021">https://juejin.cn/post/6845166890420011021</a></p>
 <h2 id="问题集合"><a href="#问题集合" class="headerlink" title="问题集合"></a>问题集合</h2><h3 id="Win10系统启动-Docker-后一直显示-‘docker-desktop-starting’"><a href="#Win10系统启动-Docker-后一直显示-‘docker-desktop-starting’" class="headerlink" title="Win10系统启动 Docker 后一直显示 ‘docker desktop starting’"></a>Win10系统启动 Docker 后一直显示 ‘docker desktop starting’</h3><p>切换到目录 C:\Program Files\Docker\Docker 执行 DockerCli.exe -SwitchDaemon</p>
 <p>使用管理员执行Window PowerShell</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">&#x27;C:\Program Files\Docker\Docker&#x27;</span></span><br><span class="line">.\DockerCli.exe -SwitchDaemon</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs sh"><span class="hljs-built_in">cd</span> <span class="hljs-string">&#x27;C:\Program Files\Docker\Docker&#x27;</span>
+.\DockerCli.exe -SwitchDaemon</code></pre>
 
 <h3 id="Docker启动失败"><a href="#Docker启动失败" class="headerlink" title="Docker启动失败"></a>Docker启动失败</h3><p>管理员执行以下命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Net stop com.docker.service</span><br><span class="line">Net start com.docker.service</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs sh">Net stop com.docker.service
+Net start com.docker.service</code></pre>
 
 <h3 id="提示-Unable-to-calculate-image-disk-size-无法计算映像磁盘大小-导致容器不能设置"><a href="#提示-Unable-to-calculate-image-disk-size-无法计算映像磁盘大小-导致容器不能设置" class="headerlink" title="提示 Unable to calculate image disk size 无法计算映像磁盘大小 导致容器不能设置"></a>提示 <code>Unable to calculate image disk size</code> 无法计算映像磁盘大小 导致容器不能设置</h3><p>1: 打开任务管理器，点击性能，CPU 查看虚拟化是否被禁止，需要开启<br>2：打开控制面板，点击程序，查看window程序的开启，查看<code>Hyper-V</code>服务以及<code>适用于linuk 的window子系统</code>服务是否被关闭，需要开启。<br>3: 重启电脑后，执行以下命令启动 Hyper-V</p>
 <blockquote>
@@ -263,7 +396,9 @@
 <h3 id="提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified"><a href="#提示-Error-response-from-daemon-open-pipe-docker-engine-windows-The-system-cannot-find-the-file-specified" class="headerlink" title="提示 Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified"></a>提示 <code>Error response from daemon: open \.\pipe\docker_engine_windows: The system cannot find the file specified</code></h3><p>参考文章：<a href="https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows">https://blog.jermdavis.dev/posts/2022/fix-broken-pipe-docker-engine-windows</a></p>
 <p>缺少了 docker_engine_windows 通道，导致执行失败，查看关于docker通道命令,需要使用Window PowerShell执行 <code>get-childitem \\.\pipe\ | where &#123; $_.Name -match &quot;docker_&quot; &#125;</code></p>
 <p>使用管理员执行Window PowerShell</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x27;C:\Program Files\Docker\Docker\resources\&#x27;</span><br><span class="line">.\dockerd.exe -G docker-users --config-file c:\programdata\docker\config\daemon.json --register-service</span><br><span class="line">start-service docker</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs vim"><span class="hljs-keyword">cd</span> <span class="hljs-string">&#x27;C:\Program Files\Docker\Docker\resources\&#x27;</span>
+.\dockerd.<span class="hljs-keyword">exe</span> -G docker-users --config-<span class="hljs-keyword">file</span> <span class="hljs-keyword">c</span>:\programdata\docker\config\daemon.json --register-service
+start-service docker</code></pre>
 
 <h3 id="执行docker-build-提示-no-matching-manifest-for-windows-amd64-10-0-19044-in-the-manifest-list-entries"><a href="#执行docker-build-提示-no-matching-manifest-for-windows-amd64-10-0-19044-in-the-manifest-list-entries" class="headerlink" title="执行docker build 提示 no matching manifest for windows/amd64 10.0.19044 in the manifest list entries"></a>执行docker build 提示 <code>no matching manifest for windows/amd64 10.0.19044 in the manifest list entries</code></h3><p>打开Docker控制面板，点击设置中的 <code>Docker Engine</code> 将 experimental: false 改为 true 即可</p>
 <h2 id="执行-docker-run-提示-WARNING-The-requested-image-39-s-platform-linux-amd64-does-not-match-the-detected-host-platform-windows-amd64-and-no-specific-platform-was-requested"><a href="#执行-docker-run-提示-WARNING-The-requested-image-39-s-platform-linux-amd64-does-not-match-the-detected-host-platform-windows-amd64-and-no-specific-platform-was-requested" class="headerlink" title="执行 docker run 提示 WARNING: The requested image&#39;s platform (linux/amd64) does not match the detected host platform (windows/amd64) and no specific platform was requested"></a>执行 docker run 提示 <code>WARNING: The requested image&#39;s platform (linux/amd64) does not match the detected host platform (windows/amd64) and no specific platform was requested</code></h2><p>拉取的镜像版本和当前Docker执行的架构版本不同，需要重新拉取指定版本镜像或者切换Docker的架构版本。</p>

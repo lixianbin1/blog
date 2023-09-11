@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,42 +190,95 @@
   
   <article class="passage-article">
     <p>NPM 是一个包依赖管理工具，NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题</p>
-<h2 id="后缀简介"><a href="#后缀简介" class="headerlink" title="后缀简介"></a>后缀简介</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-S --save        # 生产阶段的依赖</span><br><span class="line">-D --save-dev    # 开发阶段的依赖</span><br><span class="line">-O --save-optional    # 可选阶段的依赖</span><br><span class="line">-E --save-exact       # 指定版本的依赖</span><br><span class="line">-g               # 全局安装的模块</span><br></pre></td></tr></table></figure>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">npm ls     # 查看安装的模块列表</span><br><span class="line">npm init   # 初始化package文件 -y 缩写可以略去填写</span><br><span class="line">npm help   # 查看命令帮助</span><br><span class="line">npm root   # 查看模块的安装路径</span><br><span class="line">npm config # 管理npm的相关配置</span><br><span class="line">npm cache clean # 清除模块缓存</span><br><span class="line"></span><br><span class="line">npm install xxx       # 安装xxx模块</span><br><span class="line">npm install xxx -g    # 全局安装xxx模块</span><br><span class="line">npm install xxx@1.0.0 # 安装指定1.0.0版本模块</span><br><span class="line"></span><br><span class="line">npm update xxx        # 更新xxx模块</span><br><span class="line">npm uninstall xxx     # 卸载xxx模块</span><br><span class="line">npm outdated          # 列出所有过时模块</span><br></pre></td></tr></table></figure>
+<h2 id="后缀简介"><a href="#后缀简介" class="headerlink" title="后缀简介"></a>后缀简介</h2><pre><code class="hljs ldif"><span class="hljs-literal">-</span>S --save        <span class="hljs-comment"># 生产阶段的依赖</span>
+<span class="hljs-literal">-</span>D --save-dev    <span class="hljs-comment"># 开发阶段的依赖</span>
+<span class="hljs-literal">-</span>O --save-optional    <span class="hljs-comment"># 可选阶段的依赖</span>
+<span class="hljs-literal">-</span>E --save-exact       <span class="hljs-comment"># 指定版本的依赖</span>
+<span class="hljs-literal">-</span>g               <span class="hljs-comment"># 全局安装的模块</span></code></pre>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> ls     <span class="hljs-comment"># 查看安装的模块列表</span>
+<span class="hljs-built_in">npm</span> init   <span class="hljs-comment"># 初始化package文件 -y 缩写可以略去填写</span>
+<span class="hljs-built_in">npm</span> help   <span class="hljs-comment"># 查看命令帮助</span>
+<span class="hljs-built_in">npm</span> root   <span class="hljs-comment"># 查看模块的安装路径</span>
+<span class="hljs-built_in">npm</span> config <span class="hljs-comment"># 管理npm的相关配置</span>
+<span class="hljs-built_in">npm</span> cache clean <span class="hljs-comment"># 清除模块缓存</span>
 
-<h2 id="修改全局包安装命令"><a href="#修改全局包安装命令" class="headerlink" title="修改全局包安装命令"></a>修改全局包安装命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;D:\Node\node_global&quot;  #修改全局包的安装目录</span><br><span class="line">npm config set cache &quot;D:\Node\node_cache&quot;    #修改全局包的缓存目录</span><br><span class="line">npm config ls                                #查看命令</span><br></pre></td></tr></table></figure>
+<span class="hljs-built_in">npm</span> install xxx       <span class="hljs-comment"># 安装xxx模块</span>
+<span class="hljs-built_in">npm</span> install xxx -g    <span class="hljs-comment"># 全局安装xxx模块</span>
+<span class="hljs-built_in">npm</span> install xxx@<span class="hljs-number">1.0</span><span class="hljs-number">.0</span> <span class="hljs-comment"># 安装指定1.0.0版本模块</span>
+
+<span class="hljs-built_in">npm</span> update xxx        <span class="hljs-comment"># 更新xxx模块</span>
+<span class="hljs-built_in">npm</span> uninstall xxx     <span class="hljs-comment"># 卸载xxx模块</span>
+<span class="hljs-built_in">npm</span> outdated          <span class="hljs-comment"># 列出所有过时模块</span></code></pre>
+
+<h2 id="修改全局包安装命令"><a href="#修改全局包安装命令" class="headerlink" title="修改全局包安装命令"></a>修改全局包安装命令</h2><pre><code class="hljs mipsasm">npm <span class="hljs-built_in">config</span> set <span class="hljs-keyword">prefix </span><span class="hljs-string">&quot;D:\Node\node_global&quot;</span>  <span class="hljs-comment">#修改全局包的安装目录</span>
+npm <span class="hljs-built_in">config</span> set <span class="hljs-keyword">cache </span><span class="hljs-string">&quot;D:\Node\node_cache&quot;</span>    <span class="hljs-comment">#修改全局包的缓存目录</span>
+npm <span class="hljs-built_in">config</span> ls                                <span class="hljs-comment">#查看命令</span></code></pre>
 
 <p>修改目录后，添加环境变量</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NODE_PATH</span><br><span class="line">D:\Node\node_global\node_modules</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs crmsh">NODE_PATH
+D:\<span class="hljs-keyword">Node</span><span class="hljs-title">\node_global</span>\node_modules</code></pre>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">path</span><br><span class="line">D:\Node\node_global</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs crmsh">path
+D:\<span class="hljs-keyword">Node</span><span class="hljs-title">\node_global</span></code></pre>
 
-<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 备用：淘宝源地址</span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">// 直接访问地址，可以查看网络问题</span><br><span class="line">npm ---------- https://registry.npmjs.org/</span><br><span class="line">yarn --------- https://registry.yarnpkg.com/</span><br><span class="line">tencent ------ https://mirrors.cloud.tencent.com/npm/</span><br><span class="line">cnpm --------- https://r.cnpmjs.org/</span><br><span class="line">taobao ------- https://registry.npmmirror.com/</span><br><span class="line">npmMirror ---- https://skimdb.npmjs.com/registry/</span><br></pre></td></tr></table></figure>
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 备用：淘宝源地址
+npm config set registry https:<span class="hljs-regexp">//</span>registry.npm.taobao.org
+
+<span class="hljs-regexp">//</span> 直接访问地址，可以查看网络问题
+npm ---------- https:<span class="hljs-regexp">//</span>registry.npmjs.org/
+yarn --------- https:<span class="hljs-regexp">//</span>registry.yarnpkg.com/
+tencent ------ https:<span class="hljs-regexp">//mi</span>rrors.cloud.tencent.com<span class="hljs-regexp">/npm/</span>
+cnpm --------- https:<span class="hljs-regexp">//</span>r.cnpmjs.org/
+taobao ------- https:<span class="hljs-regexp">//</span>registry.npmmirror.com/
+npmMirror ---- https:<span class="hljs-regexp">//</span>skimdb.npmjs.com<span class="hljs-regexp">/registry/</span></code></pre>
 
 <h3 id="镜像源管理"><a href="#镜像源管理" class="headerlink" title="镜像源管理"></a>镜像源管理</h3><p>nrm 是npm的镜像源管理工具，有时候国外资源太慢，使用这个就可以快速地在 npm 源间切换</p>
 <blockquote>
 <p>npm install nrm -g</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">nrm ls       #查看nrm的镜像源列表和当前源</span><br><span class="line">nrm use xxx  #切换到xxx的印象源</span><br><span class="line"></span><br><span class="line">nrm add xxx http://xxx.cn/ #新增映射源</span><br><span class="line">nrm del xxx  #删除指定的xxx映射源</span><br><span class="line">nrm test npm #测试相应的源的相应时间</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs bash">nrm <span class="hljs-built_in">ls</span>       <span class="hljs-comment">#查看nrm的镜像源列表和当前源</span>
+nrm use xxx  <span class="hljs-comment">#切换到xxx的印象源</span>
+
+nrm add xxx http://xxx.cn/ <span class="hljs-comment">#新增映射源</span>
+nrm del xxx  <span class="hljs-comment">#删除指定的xxx映射源</span>
+nrm <span class="hljs-built_in">test</span> npm <span class="hljs-comment">#测试相应的源的相应时间</span></code></pre>
 
 <h3 id="包更新管理"><a href="#包更新管理" class="headerlink" title="包更新管理"></a>包更新管理</h3><p>npm-check-updates会将package.json依赖项升级到最新版本，而忽略指定的版本；更新包依赖，所以需要全局安装</p>
 <blockquote>
 <p>npm install npm-check-updates -g</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ncu -v  #查看当前ncu版本</span><br><span class="line">ncu     #检测当前项目中可以更新的包依赖</span><br><span class="line">ncu -g  #对全局依赖包进行更新检测</span><br><span class="line"></span><br><span class="line">ncu -u  #检测后可以执行对本地package更新</span><br><span class="line">ncu xxx -f  #更新本地项目指定依赖包</span><br><span class="line"></span><br><span class="line">ncu xxx -x  #筛除本地项目中需要更新的包</span><br><span class="line">ncu &#x27;/^xxx.*$/&#x27;  #使用正则匹配需要更新的包</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs nginx"><span class="hljs-attribute">ncu</span> -v  <span class="hljs-comment">#查看当前ncu版本</span>
+ncu     <span class="hljs-comment">#检测当前项目中可以更新的包依赖</span>
+ncu -g  <span class="hljs-comment">#对全局依赖包进行更新检测</span>
+
+ncu -u  <span class="hljs-comment">#检测后可以执行对本地package更新</span>
+ncu xxx -f  <span class="hljs-comment">#更新本地项目指定依赖包</span>
+
+ncu xxx -x  <span class="hljs-comment">#筛除本地项目中需要更新的包</span>
+ncu <span class="hljs-string">&#x27;/^xxx.*$/&#x27;</span>  <span class="hljs-comment">#使用正则匹配需要更新的包</span></code></pre>
 
 <h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><h3 id="安装出现错误-4048-提示"><a href="#安装出现错误-4048-提示" class="headerlink" title="安装出现错误 -4048 提示"></a>安装出现错误 -4048 提示</h3><p>可能是C盘某些文件夹，用户没有权限修改；用管理员运行CMD在执行；</p>
 <h3 id="eslint-规范指定目录文件"><a href="#eslint-规范指定目录文件" class="headerlink" title="eslint 规范指定目录文件"></a>eslint 规范指定目录文件</h3><p>用eslint去规范指定目录下的文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx vue-cli-service lint D:\Project\Demo\</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs avrasm">npx vue-<span class="hljs-keyword">cli</span>-service lint D:\Project\Demo\</code></pre>
 
 <h3 id="nrm-列表不显示星号"><a href="#nrm-列表不显示星号" class="headerlink" title="nrm 列表不显示星号"></a>nrm 列表不显示星号</h3><p>找到npm全局安装目录，打开 <code>node_global\node_modules\nrm\cli.js</code>  修改如下代码，之后重现设置即可</p>
-<figure class="highlight js"><figcaption><span>cli.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- <span class="keyword">if</span> (<span class="title function_">hasOwnProperty</span>(customRegistries, name) &amp;&amp; (name <span class="keyword">in</span> registries || customRegistries[name].<span class="property">registry</span> === registry.<span class="property">registry</span>)) &#123;</span><br><span class="line">+ <span class="keyword">if</span> (<span class="title function_">hasOwnProperty</span>(customRegistries, name) || (name <span class="keyword">in</span> registries || customRegistries[name].<span class="property">registry</span> === registry.<span class="property">registry</span>)) &#123;</span><br><span class="line">      registry[<span class="variable constant_">FIELD_IS_CURRENT</span>] = <span class="literal">true</span>;</span><br><span class="line">      customRegistries[name] = registry;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>cli.js</span></div><code class="hljs js">- <span class="hljs-keyword">if</span> (<span class="hljs-title function_">hasOwnProperty</span>(customRegistries, name) &amp;&amp; (name <span class="hljs-keyword">in</span> registries || customRegistries[name].<span class="hljs-property">registry</span> === registry.<span class="hljs-property">registry</span>)) &#123;
++ <span class="hljs-keyword">if</span> (<span class="hljs-title function_">hasOwnProperty</span>(customRegistries, name) || (name <span class="hljs-keyword">in</span> registries || customRegistries[name].<span class="hljs-property">registry</span> === registry.<span class="hljs-property">registry</span>)) &#123;
+      registry[<span class="hljs-variable constant_">FIELD_IS_CURRENT</span>] = <span class="hljs-literal">true</span>;
+      customRegistries[name] = registry;
+  &#125;</code></pre>
 
 <h3 id="安装提示错误-code-EEXIST"><a href="#安装提示错误-code-EEXIST" class="headerlink" title="安装提示错误 code EEXIST"></a>安装提示错误 code EEXIST</h3><p>残留有错误文件，把残留文件删除就行了，一般会提示残留文件目录</p>
 <p>npm ERR! File exists: D:\node\node_modules\node_global\hexo<br>npm ERR! Remove the existing file and try again, or run npm</p>
 <h3 id="运行项目的时候，提示包依赖冲突或者包重复"><a href="#运行项目的时候，提示包依赖冲突或者包重复" class="headerlink" title="运行项目的时候，提示包依赖冲突或者包重复"></a>运行项目的时候，提示包依赖冲突或者包重复</h3><p>versionDetect.js:90 @polkadot/util has multiple versions, ensure that there is only one installed.<br>Either remove and explicitly install matching versions or dedupe using your package manager.<br>The following conflicting packages were found<br>  cjs 9.7.2 unknown<br>  cjs 9.7.2 unknown</p>
 <p>在package.json 中尝试锁定依赖包的版本</p>
-<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">&quot;overrides&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;@polkadot/util&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9.7.2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;@polkadot/util-crypto&quot;</span><span class="punctuation">:</span> <span class="string">&quot;9.7.2&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">&quot;overrides&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;@polkadot/util&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9.7.2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;@polkadot/util-crypto&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9.7.2&quot;</span>
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

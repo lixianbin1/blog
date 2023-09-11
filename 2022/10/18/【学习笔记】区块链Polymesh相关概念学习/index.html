@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -237,9 +246,54 @@
 <p>yarn add @polymeshassociation/local-signing-manager @polymeshassociation/polymesh-sdk<br>yarn add @polymeshassociation/browser-extension-signing-manager @polkadot/ui-keyring<br>yarn add –dev node-polyfill-webpack-plugin</p>
 </blockquote>
 <p>在 vue.config.js 中 配置相关代码</p>
-<figure class="highlight js"><figcaption><span>vue.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">NodePolyfillPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;node-polyfill-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">      <span class="keyword">new</span> <span class="title class_">NodePolyfillPlugin</span>()</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">transpileDependencies</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vue.config.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">NodePolyfillPlugin</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;node-polyfill-webpack-plugin&#x27;</span>)
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">configureWebpack</span>: &#123;
+    <span class="hljs-attr">plugins</span>: [
+      <span class="hljs-keyword">new</span> <span class="hljs-title class_">NodePolyfillPlugin</span>()
+    ]
+  &#125;,
+  <span class="hljs-attr">transpileDependencies</span>: <span class="hljs-literal">true</span>,
+&#125;;</code></pre>
 
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">BrowserExtensionSigningManager</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@polymeshassociation/browser-extension-signing-manager&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Polymesh</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@polymeshassociation/polymesh-sdk&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> keyring <span class="keyword">from</span> <span class="string">&#x27;@polkadot/ui-keyring&#x27;</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="title class_">BrowserExtensionSigningManager</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">appName</span>: <span class="string">&#x27;Demo&#x27;</span>, <span class="comment">//项目名称，可以随意更改</span></span><br><span class="line">  <span class="attr">extensionName</span>: <span class="string">&#x27;polywallet&#x27;</span> <span class="comment">// Chrmoe</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="keyword">async</span> signingManager =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">connect</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Polymesh</span>.<span class="title function_">connect</span>(&#123;</span><br><span class="line">      <span class="attr">nodeUrl</span>: <span class="string">&#x27;wss://testnet-rpc.polymesh.live&#x27;</span>, <span class="comment">// 区块链后端网络，示例为polymesh测试网络</span></span><br><span class="line">      signingManager,</span><br><span class="line">      <span class="attr">middleware</span>: &#123; <span class="comment">// 可选：中间件配置，如没有可以不选择</span></span><br><span class="line">        <span class="attr">link</span>: <span class="string">&#x27;https://testnet-graphql.polymesh.live&#x27;</span>,</span><br><span class="line">        <span class="attr">key</span>: <span class="string">&#x27;deprecated&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> api = <span class="keyword">await</span> <span class="title function_">connect</span>()</span><br><span class="line">  <span class="comment">// 监听浏览器扩展polywallet钱包账户切换变化</span></span><br><span class="line">  signingManager.<span class="title function_">onAccountChange</span>(<span class="keyword">async</span> accounts =&gt; &#123;</span><br><span class="line">    location.<span class="title function_">reload</span>()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 监控切换网络变化</span></span><br><span class="line">  signingManager.<span class="title function_">onNetworkChange</span>(<span class="keyword">async</span> networkInfo =&gt; &#123;</span><br><span class="line">    location.<span class="title function_">reload</span>()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 初始化polkadot钥匙配置 polkadot用于创建账户</span></span><br><span class="line">  keyring.<span class="title function_">loadAll</span>(&#123; <span class="attr">ss58Format</span>: <span class="number">42</span>, <span class="attr">type</span>: <span class="string">&#x27;sr25519&#x27;</span> &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">  &#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;error create :&#x27;</span>, e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">BrowserExtensionSigningManager</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@polymeshassociation/browser-extension-signing-manager&#x27;</span>;
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Polymesh</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@polymeshassociation/polymesh-sdk&#x27;</span>;
+<span class="hljs-keyword">import</span> keyring <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@polkadot/ui-keyring&#x27;</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-title class_">BrowserExtensionSigningManager</span>.<span class="hljs-title function_">create</span>(&#123;
+  <span class="hljs-attr">appName</span>: <span class="hljs-string">&#x27;Demo&#x27;</span>, <span class="hljs-comment">//项目名称，可以随意更改</span>
+  <span class="hljs-attr">extensionName</span>: <span class="hljs-string">&#x27;polywallet&#x27;</span> <span class="hljs-comment">// Chrmoe</span>
+&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">async</span> signingManager =&gt; &#123;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">connect</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Polymesh</span>.<span class="hljs-title function_">connect</span>(&#123;
+      <span class="hljs-attr">nodeUrl</span>: <span class="hljs-string">&#x27;wss://testnet-rpc.polymesh.live&#x27;</span>, <span class="hljs-comment">// 区块链后端网络，示例为polymesh测试网络</span>
+      signingManager,
+      <span class="hljs-attr">middleware</span>: &#123; <span class="hljs-comment">// 可选：中间件配置，如没有可以不选择</span>
+        <span class="hljs-attr">link</span>: <span class="hljs-string">&#x27;https://testnet-graphql.polymesh.live&#x27;</span>,
+        <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;deprecated&#x27;</span>
+      &#125;
+    &#125;)
+  &#125;
+  <span class="hljs-keyword">let</span> api = <span class="hljs-keyword">await</span> <span class="hljs-title function_">connect</span>()
+  <span class="hljs-comment">// 监听浏览器扩展polywallet钱包账户切换变化</span>
+  signingManager.<span class="hljs-title function_">onAccountChange</span>(<span class="hljs-keyword">async</span> accounts =&gt; &#123;
+    location.<span class="hljs-title function_">reload</span>()
+  &#125;)
+  <span class="hljs-comment">// 监控切换网络变化</span>
+  signingManager.<span class="hljs-title function_">onNetworkChange</span>(<span class="hljs-keyword">async</span> networkInfo =&gt; &#123;
+    location.<span class="hljs-title function_">reload</span>()
+  &#125;)
+  <span class="hljs-comment">// 初始化polkadot钥匙配置 polkadot用于创建账户</span>
+  keyring.<span class="hljs-title function_">loadAll</span>(&#123; <span class="hljs-attr">ss58Format</span>: <span class="hljs-number">42</span>, <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;sr25519&#x27;</span> &#125;)
+
+  <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span> =&gt;</span> <span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>)
+  &#125;).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>)
+&#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;error create :&#x27;</span>, e)
+&#125;)</code></pre>
 
 <h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
 <li><p>具体API可以看 Polymesh-SDK 的 <code>wiki</code>  <a href="https://github.com/PolymeshAssociation/polymesh-sdk/wiki/">点击进入</a></p>

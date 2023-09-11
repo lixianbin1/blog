@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -192,14 +201,35 @@
 <li>……</li>
 </ul>
 <h2 id="禁止浏览器的自动填充"><a href="#禁止浏览器的自动填充" class="headerlink" title="禁止浏览器的自动填充"></a>禁止浏览器的自动填充</h2><p>要禁用的表单自动填充，网页可以将 autocomplete 的属性设置为 “off”：但是在有的浏览器对autocomplete的设置规则不一样; 那么可以将 “off” 设置成其他字符串；如 “nope” 或者其他字符串; 当这个随机的值不是 可用值的时候，浏览器就会放弃自动填充;</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 表单禁用,可以单独设置在input元素也可以设置在form表单</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;/form&quot;</span>&gt;</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;cc&quot;</span> <span class="attr">name</span>=<span class="string">&quot;cc&quot;</span> <span class="attr">autocomplete</span>=<span class="string">&quot;off&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs html">// 表单禁用,可以单独设置在input元素也可以设置在form表单
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/form&quot;</span>&gt;</span>
+  ...
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;cc&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;cc&quot;</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></code></pre>
 
 <blockquote>
 <p>由于现代浏览器会让用户在浏览器设置一个Master Password（此处可以理解为主密码、解锁密码）;即使没有主密码，浏览器的密码管理起通常也被视为是安全的;所以许多现代浏览器都不支持在登录模块中设置 autocomplete=”off”;譬如谷歌浏览器，即便你设置了 autocomplete=”off” ，在某种情况下，它还是会“贴心”的帮你把账号密码填入里面；这种行为存在与Firefox（38+）、Google Chrome（34+）、Internet Explorer（11+）上；</p>
 </blockquote>
 <p>如果想要阻止在用户管理页面中填写密码字段，用户可以为自己以外的人指定新的密码，虽然所有的浏览器都还不支持，但是 <strong>autocomplete = “new-password”应该被指定</strong><br>这属于变向的阻止了浏览器的自动填写功能</p>
 <h2 id="修改自动填写的默认样式"><a href="#修改自动填写的默认样式" class="headerlink" title="修改自动填写的默认样式"></a>修改自动填写的默认样式</h2><p>无论浏览器的元素默认样式设置的再怎么绚丽，我们都希望有足够的自由（修改所有的一切）;更何况自动填写那一块黄色的背景和我们设置的风格完全无法融合；</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 这是谷歌浏览器的样式更改 */</span></span><br><span class="line"><span class="selector-tag">input</span>:-webkit-autofill,</span><br><span class="line">input:-webkit-autofill:hover, </span><br><span class="line">input:-webkit-autofill:focus,</span><br><span class="line">textarea:-webkit-autofill,</span><br><span class="line">textarea:-webkit-autofill:hover,</span><br><span class="line">textarea:-webkit-autofill:focus,</span><br><span class="line">select:-webkit-autofill,</span><br><span class="line">select:-webkit-autofill:hover,</span><br><span class="line">select:-webkit-autofill:focus &#123;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid green;</span><br><span class="line">  -webkit-text-fill-<span class="attribute">color</span>: green;</span><br><span class="line">  -webkit-<span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0px</span> <span class="number">1000px</span> <span class="number">#000</span> inset;</span><br><span class="line">  <span class="attribute">transition</span>: background-color <span class="number">5000s</span> ease-in-out <span class="number">0s</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 通过盒子内阴影将背景颜色遮盖；将背景颜色的过渡时间设长 */</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs css"><span class="hljs-comment">/* 这是谷歌浏览器的样式更改 */</span>
+<span class="hljs-selector-tag">input</span>:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus &#123;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid green;
+  -webkit-text-fill-<span class="hljs-attribute">color</span>: green;
+  -webkit-<span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0px</span> <span class="hljs-number">1000px</span> <span class="hljs-number">#000</span> inset;
+  <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">5000s</span> ease-in-out <span class="hljs-number">0s</span>;
+&#125;
+
+<span class="hljs-comment">/* 通过盒子内阴影将背景颜色遮盖；将背景颜色的过渡时间设长 */</span></code></pre>
 
 <p>参考链接：</p>
 <ul>

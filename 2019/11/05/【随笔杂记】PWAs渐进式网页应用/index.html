@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -222,28 +231,28 @@
 <p>目前 Pwas 处于Chrome实验室的状态，Android 也不是很支持这个技术，不确定什么时候放开，也许在将来的某天。不过即便如此，Pwas的离线缓存依然能带来良好的用户体验。</p>
 <h2 id="Pwas-开启安装提示的功能"><a href="#Pwas-开启安装提示的功能" class="headerlink" title="Pwas 开启安装提示的功能"></a>Pwas 开启安装提示的功能</h2><p>在Chrom 浏览器中，Pwas功能早期，如果用户需要安装此网站的PWas ，那么需要浏览网站至少30s ，开发人员才能对用户进行提示安装，<br>现在已经取消了这一限制，但是增加了新的限制：需要用户主动点击或者其他互动，开发者才能调用提示接口。<br>（如无必要，尽量不添加，兼容性不是很好）</p>
 <p>自定义安装提示</p>
-<pre class="line-numbers language-none"><code class="language-none">var _beforeInstallPrompt;
-if ( &quot;onbeforeinstallprompt&quot; in window ) &#123;
-  window.addEventListener( &quot;beforeinstallprompt&quot;, beforeInstallPrompt );
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> _beforeInstallPrompt;
+<span class="hljs-keyword">if</span> ( <span class="hljs-string">&quot;onbeforeinstallprompt&quot;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span> ) &#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>( <span class="hljs-string">&quot;beforeinstallprompt&quot;</span>, beforeInstallPrompt );
 &#125;
-function beforeInstallPrompt( evt ) &#123;
-  evt.preventDefault();
-  _beforeInstallPrompt &#x3D; evt;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">beforeInstallPrompt</span>(<span class="hljs-params"> evt </span>) &#123;
+  evt.<span class="hljs-title function_">preventDefault</span>();
+  _beforeInstallPrompt = evt;
 &#125;
 
-let menu&#x3D;document.getElementById(&#39;addApp&#39;)
-menu.addEventListener(&#39;click&#39;,e&#x3D;&gt;&#123;
-  _beforeInstallPrompt.prompt()
-  _beforeInstallPrompt.userChoice
-  .then(choiceResult &#x3D;&gt; &#123;
-    if(choiceResult.outcome &#x3D;&#x3D;&#x3D; &#39;accepted&#39;) &#123;
-      console.log(&#39;user accepted A2HS prompt&#39;)
-    &#125; else &#123;
-      console.log(&#39;user dismissed A2HS prompt&#39;)
+<span class="hljs-keyword">let</span> menu=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;addApp&#x27;</span>)
+menu.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;
+  _beforeInstallPrompt.<span class="hljs-title function_">prompt</span>()
+  _beforeInstallPrompt.<span class="hljs-property">userChoice</span>
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">choiceResult</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(choiceResult.<span class="hljs-property">outcome</span> === <span class="hljs-string">&#x27;accepted&#x27;</span>) &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;user accepted A2HS prompt&#x27;</span>)
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;user dismissed A2HS prompt&#x27;</span>)
     &#125;
-    _beforeInstallPrompt &#x3D; null
+    _beforeInstallPrompt = <span class="hljs-literal">null</span>
   &#125;)
-&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;)</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

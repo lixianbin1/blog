@@ -722,6 +722,7 @@ main {
       transition: all .3s linear; }
 /*      .passage-article img:hover {
         box-shadow: 0 0 3px #9E9E9E; }*/
+/* 优化 >- 页面显示
     .passage-article ol, .passage-article ul {
       margin: 0 0 16px;
       padding-left: 1.2em; }
@@ -731,6 +732,7 @@ main {
     }
       .passage-article ol ol, .passage-article ul ol {
         list-style-type: lower-roman; }
+*/
     .passage-article > table {
       width: 100%;
       line-height:1.7;

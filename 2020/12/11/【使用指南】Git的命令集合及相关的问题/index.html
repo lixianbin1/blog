@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,167 +190,167 @@
   
   <article class="passage-article">
     <p>Git 是开发或学习的工具之一，这记录了我在使用过程中遇到的问题和解决的办法；（最好的办法就是不使用，哈哈）</p>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre class="line-numbers language-none"><code class="language-none"># 查看所有配置
-git config --list
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre><code class="hljs dsconfig"><span class="hljs-comment"># 查看所有配置</span>
+<span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--list</span>
 
-# 基本操作
-git add xxxx  # 添加文件
-git reset XXXX # 取消添加文件
-git rm xxxx   # 删除文件
-git commit -m&quot;备注&quot; # 提交版本 -m添加备注
-git push origin master # 提交代码到远程分支master
+<span class="hljs-comment"># 基本操作</span>
+<span class="hljs-string">git</span> <span class="hljs-string">add</span> <span class="hljs-string">xxxx</span>  <span class="hljs-comment"># 添加文件</span>
+<span class="hljs-string">git</span> <span class="hljs-string">reset</span> <span class="hljs-string">XXXX</span> <span class="hljs-comment"># 取消添加文件</span>
+<span class="hljs-string">git</span> <span class="hljs-string">rm</span> <span class="hljs-string">xxxx</span>   <span class="hljs-comment"># 删除文件</span>
+<span class="hljs-string">git</span> <span class="hljs-string">commit</span> -<span class="hljs-string">m</span><span class="hljs-string">&quot;备注&quot;</span> <span class="hljs-comment"># 提交版本 -m添加备注</span>
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-string">origin</span> <span class="hljs-string">master</span> <span class="hljs-comment"># 提交代码到远程分支master</span>
 
-# 仓库管理（xxx为仓库地址）
-git clone xxx            # 克隆远程仓库
-git clone --depth&#x3D;1 xxx  # 克隆最新一次commit仓库
-git remote -v            # 查看远程仓库
-git remote rm origin     # 删除现有远程仓库 
-git remote add origin xxx     # 添加新远程仓库
-git remote set-url origin xxx # 修改远程仓库
-git config --system --unset credential.helper  #身份验证失败清除缓存
+<span class="hljs-comment"># 仓库管理（xxx为仓库地址）</span>
+<span class="hljs-string">git</span> <span class="hljs-string">clone</span> <span class="hljs-string">xxx</span>            <span class="hljs-comment"># 克隆远程仓库</span>
+<span class="hljs-string">git</span> <span class="hljs-string">clone</span> <span class="hljs-built_in">--depth=1</span> <span class="hljs-string">xxx</span>  <span class="hljs-comment"># 克隆最新一次commit仓库</span>
+<span class="hljs-string">git</span> <span class="hljs-string">remote</span> -<span class="hljs-string">v</span>            <span class="hljs-comment"># 查看远程仓库</span>
+<span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-string">rm</span> <span class="hljs-string">origin</span>     <span class="hljs-comment"># 删除现有远程仓库 </span>
+<span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-string">add</span> <span class="hljs-string">origin</span> <span class="hljs-string">xxx</span>     <span class="hljs-comment"># 添加新远程仓库</span>
+<span class="hljs-string">git</span> <span class="hljs-string">remote</span> <span class="hljs-built_in">set-url</span> <span class="hljs-string">origin</span> <span class="hljs-string">xxx</span> <span class="hljs-comment"># 修改远程仓库</span>
+<span class="hljs-string">git</span> <span class="hljs-string">config</span> <span class="hljs-built_in">--system</span> <span class="hljs-built_in">--unset</span> <span class="hljs-string">credential</span>.<span class="hljs-string">helper</span>  <span class="hljs-comment">#身份验证失败清除缓存</span>
 
-# 分支管控
-git fetch       # 拉去所有远程分支
-git branch      # 查看分支列表
-git branch -a   # 查看远程分支：需要先fetch
-git checkout -b dev            # 创建分支dev（-b切换）
-git checkout -b dev origin&#x2F;dev # 创建分支并关联远程分支::用这个
-git checkout master # 切换分支
-git branch -m dev newdev       # 修改本地分支dev名称为newdev ;如果想要修改远程，直接删除远程重新推送
-git branch -d dev              # 删除分支dev
-git push origin --delete xxx   # 删除远程分支
-git branch --set-upstream-to origin&#x2F;develop develop # 关联远程分支
-git merge dev  #合并dev到当前分支
-git reset --soft HEAD^         # 丢弃上一次未提交的commit
-git checkout 07ed0f4a src&#x2F;ios&#x2F; # 回滚部分文件到指定版本
+<span class="hljs-comment"># 分支管控</span>
+<span class="hljs-string">git</span> <span class="hljs-string">fetch</span>       <span class="hljs-comment"># 拉去所有远程分支</span>
+<span class="hljs-string">git</span> <span class="hljs-string">branch</span>      <span class="hljs-comment"># 查看分支列表</span>
+<span class="hljs-string">git</span> <span class="hljs-string">branch</span> -<span class="hljs-string">a</span>   <span class="hljs-comment"># 查看远程分支：需要先fetch</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span> -<span class="hljs-string">b</span> <span class="hljs-string">dev</span>            <span class="hljs-comment"># 创建分支dev（-b切换）</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span> -<span class="hljs-string">b</span> <span class="hljs-string">dev</span> <span class="hljs-string">origin</span>/<span class="hljs-string">dev</span> <span class="hljs-comment"># 创建分支并关联远程分支::用这个</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">master</span> <span class="hljs-comment"># 切换分支</span>
+<span class="hljs-string">git</span> <span class="hljs-string">branch</span> -<span class="hljs-string">m</span> <span class="hljs-string">dev</span> <span class="hljs-string">newdev</span>       <span class="hljs-comment"># 修改本地分支dev名称为newdev ;如果想要修改远程，直接删除远程重新推送</span>
+<span class="hljs-string">git</span> <span class="hljs-string">branch</span> -<span class="hljs-string">d</span> <span class="hljs-string">dev</span>              <span class="hljs-comment"># 删除分支dev</span>
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-string">origin</span> <span class="hljs-built_in">--delete</span> <span class="hljs-string">xxx</span>   <span class="hljs-comment"># 删除远程分支</span>
+<span class="hljs-string">git</span> <span class="hljs-string">branch</span> <span class="hljs-built_in">--set-upstream-to</span> <span class="hljs-string">origin</span>/<span class="hljs-string">develop</span> <span class="hljs-string">develop</span> <span class="hljs-comment"># 关联远程分支</span>
+<span class="hljs-string">git</span> <span class="hljs-string">merge</span> <span class="hljs-string">dev</span>  <span class="hljs-comment">#合并dev到当前分支</span>
+<span class="hljs-string">git</span> <span class="hljs-string">reset</span> <span class="hljs-built_in">--soft</span> <span class="hljs-string">HEAD</span>^         <span class="hljs-comment"># 丢弃上一次未提交的commit</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">07ed0f4a</span> <span class="hljs-string">src</span>/<span class="hljs-string">ios</span>/ <span class="hljs-comment"># 回滚部分文件到指定版本</span>
 
-# 版本控制
-git log       # 查看提交历史
-git reflog    # 查看历史版本
-git reset --hard xxx  #本地版本回退
-git push -f   # 远程版本回退(-f 强制推送)
-git clean -df # 删除未追踪的文件
+<span class="hljs-comment"># 版本控制</span>
+<span class="hljs-string">git</span> <span class="hljs-string">log</span>       <span class="hljs-comment"># 查看提交历史</span>
+<span class="hljs-string">git</span> <span class="hljs-string">reflog</span>    <span class="hljs-comment"># 查看历史版本</span>
+<span class="hljs-string">git</span> <span class="hljs-string">reset</span> <span class="hljs-built_in">--hard</span> <span class="hljs-string">xxx</span>  <span class="hljs-comment">#本地版本回退</span>
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> -<span class="hljs-string">f</span>   <span class="hljs-comment"># 远程版本回退(-f 强制推送)</span>
+<span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 删除未追踪的文件</span>
 
-# 模块更新后回退
-git clean -df # 清除未跟踪的文件
-git checkout  # 未提交的返回原状
-git checkout HEAD src&#x2F;views&#x2F;SecurityTokens&#x2F;  # 清除提交的部分文件修改
-git stash     # 将修改放入暂存区
+<span class="hljs-comment"># 模块更新后回退</span>
+<span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 清除未跟踪的文件</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span>  <span class="hljs-comment"># 未提交的返回原状</span>
+<span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">HEAD</span> <span class="hljs-string">src</span>/<span class="hljs-string">views</span>/<span class="hljs-string">SecurityTokens</span>/  <span class="hljs-comment"># 清除提交的部分文件修改</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span>     <span class="hljs-comment"># 将修改放入暂存区</span>
 
-# 快照工作区（暂存区）
-git stash        # 将修改进行快照
-git stash list   # 查看所有快照
-git stash apply stash@&#123;0&#125; # 返回指定快照
-git stash drop stash@&#123;0&#125;  # 删除指定快照
-git stash pop    # 解冻并删除快照
+<span class="hljs-comment"># 快照工作区（暂存区）</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span>        <span class="hljs-comment"># 将修改进行快照</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span> <span class="hljs-string">list</span>   <span class="hljs-comment"># 查看所有快照</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span> <span class="hljs-string">apply</span> <span class="hljs-string">stash</span>@&#123;<span class="hljs-string">0</span>&#125; <span class="hljs-comment"># 返回指定快照</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span> <span class="hljs-string">drop</span> <span class="hljs-string">stash</span>@&#123;<span class="hljs-string">0</span>&#125;  <span class="hljs-comment"># 删除指定快照</span>
+<span class="hljs-string">git</span> <span class="hljs-string">stash</span> <span class="hljs-string">pop</span>    <span class="hljs-comment"># 解冻并删除快照</span>
 
-# 标签（进行版本管理）
-git tag      # 查看所有标签
-git tag v1.0 # 创建本地标签TAG(-a 标签名，-m说明，-d删除)
-git tag v0.9 f5s51f   # 创建指定提交TAG
-git push origin v1.0  # 推送指定标签
+<span class="hljs-comment"># 标签（进行版本管理）</span>
+<span class="hljs-string">git</span> <span class="hljs-string">tag</span>      <span class="hljs-comment"># 查看所有标签</span>
+<span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-string">v1</span>.<span class="hljs-string">0</span> <span class="hljs-comment"># 创建本地标签TAG(-a 标签名，-m说明，-d删除)</span>
+<span class="hljs-string">git</span> <span class="hljs-string">tag</span> <span class="hljs-string">v0</span>.<span class="hljs-string">9</span> <span class="hljs-string">f5s51f</span>   <span class="hljs-comment"># 创建指定提交TAG</span>
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> <span class="hljs-string">origin</span> <span class="hljs-string">v1</span>.<span class="hljs-string">0</span>  <span class="hljs-comment"># 推送指定标签</span>
 
-# 跟踪文件（忽略文件即取消跟踪）
-# 注意 后面一点
-git rm -r --cached . # 不删除本地文件，对所有文件都取消跟踪
-git rm -r --f .      # 删除本地文件，对所有文件都取消跟踪
+<span class="hljs-comment"># 跟踪文件（忽略文件即取消跟踪）</span>
+<span class="hljs-comment"># 注意 后面一点</span>
+<span class="hljs-string">git</span> <span class="hljs-string">rm</span> -<span class="hljs-string">r</span> <span class="hljs-built_in">--cached</span> . <span class="hljs-comment"># 不删除本地文件，对所有文件都取消跟踪</span>
+<span class="hljs-string">git</span> <span class="hljs-string">rm</span> -<span class="hljs-string">r</span> <span class="hljs-built_in">--f</span> .      <span class="hljs-comment"># 删除本地文件，对所有文件都取消跟踪</span>
 
-git rm --cached readme1.txt # 删除readme1.txt的跟踪，并保留在本地
-git rm --f readme1.txt # 删除readme1.txt的跟踪，并且删除本地文件。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-string">git</span> <span class="hljs-string">rm</span> <span class="hljs-built_in">--cached</span> <span class="hljs-string">readme1</span>.<span class="hljs-string">txt</span> <span class="hljs-comment"># 删除readme1.txt的跟踪，并保留在本地</span>
+<span class="hljs-string">git</span> <span class="hljs-string">rm</span> <span class="hljs-built_in">--f</span> <span class="hljs-string">readme1</span>.<span class="hljs-string">txt</span> <span class="hljs-comment"># 删除readme1.txt的跟踪，并且删除本地文件。</span></code></pre>
 
-<h2 id="创建空分支"><a href="#创建空分支" class="headerlink" title="创建空分支"></a>创建空分支</h2><pre class="line-numbers language-none"><code class="language-none">git checkout --orphan xxx
+<h2 id="创建空分支"><a href="#创建空分支" class="headerlink" title="创建空分支"></a>创建空分支</h2><pre><code class="hljs applescript">git checkout <span class="hljs-comment">--orphan xxx</span>
 git rm -rf .
-# 之后在随便上传一点东西，push到远程分支就好了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-comment"># 之后在随便上传一点东西，push到远程分支就好了</span></code></pre>
 
-<h2 id="忽略文件规则"><a href="#忽略文件规则" class="headerlink" title="忽略文件规则"></a>忽略文件规则</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 创建文件 .gitignore
+<h2 id="忽略文件规则"><a href="#忽略文件规则" class="headerlink" title="忽略文件规则"></a>忽略文件规则</h2><pre><code class="hljs awk"><span class="hljs-regexp">//</span> 创建文件 .gitignore
 
-&#x2F;&#x2F; 添加忽略规则
-#               表示此为注释,将被Git忽略
+<span class="hljs-regexp">//</span> 添加忽略规则
+<span class="hljs-comment">#               表示此为注释,将被Git忽略</span>
 *.a             表示忽略所有 .a 结尾的文件
 !lib.a          表示但lib.a除外
-&#x2F;TODO           表示仅仅忽略项目根目录下的 TODO 文件，不包括 subdir&#x2F;TODO
-build&#x2F;          表示忽略 build&#x2F;目录下的所有文件，过滤整个build文件夹；
-doc&#x2F;*.txt       表示会忽略doc&#x2F;notes.txt但不包括 doc&#x2F;server&#x2F;arch.txt
+<span class="hljs-regexp">/TODO           表示仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/</span>TODO
+build<span class="hljs-regexp">/          表示忽略 build/</span>目录下的所有文件，过滤整个build文件夹；
+doc<span class="hljs-regexp">/*.txt       表示会忽略doc/</span>notes.txt但不包括 doc<span class="hljs-regexp">/server/</span>arch.txt
  
-bin&#x2F;:           表示忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件
-&#x2F;bin:           表示忽略根目录下的bin文件
-&#x2F;*.c:           表示忽略cat.c，不忽略 build&#x2F;cat.c
-debug&#x2F;*.obj:    表示忽略debug&#x2F;io.obj，不忽略 debug&#x2F;common&#x2F;io.obj和tools&#x2F;debug&#x2F;io.obj
-**&#x2F;foo:         表示忽略&#x2F;foo,a&#x2F;foo,a&#x2F;b&#x2F;foo等
-a&#x2F;**&#x2F;b:         表示忽略a&#x2F;b, a&#x2F;x&#x2F;b,a&#x2F;x&#x2F;y&#x2F;b等
-!&#x2F;bin&#x2F;run.sh    表示不忽略bin目录下的run.sh文件
+bin/:           表示忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件
+/bin:           表示忽略根目录下的bin文件
+<span class="hljs-regexp">/*.c:           表示忽略cat.c，不忽略 build/</span>cat.c
+debug<span class="hljs-regexp">/*.obj:    表示忽略debug/i</span>o.obj，不忽略 debug<span class="hljs-regexp">/common/i</span>o.obj和tools<span class="hljs-regexp">/debug/i</span>o.obj
+**<span class="hljs-regexp">/foo:         表示忽略/</span>foo,a<span class="hljs-regexp">/foo,a/</span>b/foo等
+a<span class="hljs-regexp">/**/</span>b:         表示忽略a<span class="hljs-regexp">/b, a/</span>x<span class="hljs-regexp">/b,a/</span>x<span class="hljs-regexp">/y/</span>b等
+!<span class="hljs-regexp">/bin/</span>run.sh    表示不忽略bin目录下的run.sh文件
 *.log:          表示忽略所有 .log 文件
 config.php:     表示忽略当前路径的 config.php 文件
  
-&#x2F;mtk&#x2F;           表示过滤整个文件夹
+<span class="hljs-regexp">/mtk/</span>           表示过滤整个文件夹
 *.zip           表示过滤所有.zip文件
-&#x2F;mtk&#x2F;do.c       表示过滤某个具体文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-regexp">/mtk/</span><span class="hljs-keyword">do</span>.c       表示过滤某个具体文件</code></pre>
 
-<h2 id="生成密钥流程"><a href="#生成密钥流程" class="headerlink" title="生成密钥流程"></a>生成密钥流程</h2><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 查看密钥目录：默认是C:\Users\用户名\.ssh
-$ cd ~&#x2F;.ssh
+<h2 id="生成密钥流程"><a href="#生成密钥流程" class="headerlink" title="生成密钥流程"></a>生成密钥流程</h2><pre><code class="hljs jboss-cli"><span class="hljs-string">//</span> 查看密钥目录：默认是C:\Users\用户名\<span class="hljs-string">.ssh</span>
+$ <span class="hljs-keyword">cd</span> ~<span class="hljs-string">/.ssh</span>
 
-&#x2F;&#x2F; 配置用户名：name改成你要的名字，别傻傻的写个name上去
-$ git config --global user.name &quot;name&quot;　　
+<span class="hljs-string">//</span> 配置用户名：name改成你要的名字，别傻傻的写个name上去
+$ git config <span class="hljs-params">--global</span> user.name <span class="hljs-string">&quot;name&quot;</span>　　
 
-&#x2F;&#x2F; 配置用户邮箱：88888@qq.com改成你的邮箱
-$ git config --global user.email &quot;88888@qq.com&quot;　　
+<span class="hljs-string">//</span> 配置用户邮箱：88888@qq.com改成你的邮箱
+$ git config <span class="hljs-params">--global</span> user.email <span class="hljs-string">&quot;88888@qq.com&quot;</span>　　
 
-&#x2F;&#x2F; 生成密钥命令：改成你的邮箱
-$ ssh-keygen -t rsa -C &quot;8888@qq.com&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-string">//</span> 生成密钥命令：改成你的邮箱
+$ ssh-keygen -t rsa -C <span class="hljs-string">&quot;8888@qq.com&quot;</span></code></pre>
 
-<h2 id="集成Sh脚本示例"><a href="#集成Sh脚本示例" class="headerlink" title="集成Sh脚本示例"></a>集成Sh脚本示例</h2><pre class="line-numbers language-bash" data-language="bash"><div class="caption"><span>deploy.sh</span></div><code class="language-bash"><span class="token shebang important">#!/usr/bin/env sh</span>
+<h2 id="集成Sh脚本示例"><a href="#集成Sh脚本示例" class="headerlink" title="集成Sh脚本示例"></a>集成Sh脚本示例</h2><pre><div class="caption"><span>deploy.sh</span></div><code class="hljs sh"><span class="hljs-meta">#!/usr/bin/env sh</span>
 
-<span class="token comment"># 确保脚本抛出遇到的错误</span>
-<span class="token builtin class-name">set</span> <span class="token parameter variable">-e</span>
+<span class="hljs-comment"># 确保脚本抛出遇到的错误</span>
+<span class="hljs-built_in">set</span> -e
 
-<span class="token comment"># 生成静态文件</span>
-<span class="token comment"># npm run docs:build 文档静态</span>
+<span class="hljs-comment"># 生成静态文件</span>
+<span class="hljs-comment"># npm run docs:build 文档静态</span>
 
-<span class="token comment"># 进入生成的文件夹</span>
-<span class="token comment"># cd docs/.vuepress/dist</span>
+<span class="hljs-comment"># 进入生成的文件夹</span>
+<span class="hljs-comment"># cd docs/.vuepress/dist</span>
 
-<span class="token function">npm</span> run build
-<span class="token builtin class-name">cd</span> build
+npm run build
+<span class="hljs-built_in">cd</span> build
 
-<span class="token comment"># push</span>
-<span class="token function">git</span> init
-<span class="token function">git</span> <span class="token function">add</span> <span class="token parameter variable">-A</span>
-<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">'deploy'</span>
-<span class="token function">git</span> push <span class="token parameter variable">-f</span> git@github.com:lixianbin1/imgZoom.git master:gh-pages
+<span class="hljs-comment"># push</span>
+git init
+git add -A
+git commit -m <span class="hljs-string">&#x27;deploy&#x27;</span>
+git push -f git@github.com:lixianbin1/imgZoom.git master:gh-pages
 
-<span class="token comment"># 删除dist文件夹</span>
-<span class="token comment"># cd ../</span>
-<span class="token comment"># rm -rf build</span>
+<span class="hljs-comment"># 删除dist文件夹</span>
+<span class="hljs-comment"># cd ../</span>
+<span class="hljs-comment"># rm -rf build</span>
 
-<span class="token comment"># 退出</span>
-<span class="token builtin class-name">cd</span> -<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-comment"># 退出</span>
+<span class="hljs-built_in">cd</span> -</code></pre>
 
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="Git-撤销单个文件的修改"><a href="#Git-撤销单个文件的修改" class="headerlink" title="Git 撤销单个文件的修改"></a>Git 撤销单个文件的修改</h3><p>当不小心修改了某个文件，或者删除了某个文件的时候</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 先取消添加到工作区，之后退回
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 先取消添加到工作区，之后退回
 git reset HEAD XXXXXX
-git checkout XXXXXX<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+git checkout XXXXXX</code></pre>
 
 <h3 id="Git-控制台中文名称显示乱码"><a href="#Git-控制台中文名称显示乱码" class="headerlink" title="Git 控制台中文名称显示乱码"></a>Git 控制台中文名称显示乱码</h3><p>当控制路径中的字符大于 0x80 的时候，转义路径字符，将编码显示设置为 false ，将不转义；</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 运行以下命令
-git config --global core.quotepath false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="hljs arduino"><span class="hljs-comment">// 运行以下命令</span>
+git config --global core.quotepath <span class="hljs-literal">false</span></code></pre>
 
 <h3 id="文件名包含空格导致添加失败"><a href="#文件名包含空格导致添加失败" class="headerlink" title="文件名包含空格导致添加失败"></a>文件名包含空格导致添加失败</h3><p>当文件夹名称或者文件名称包含空格的时候，git add 会提示文件匹配不上，导致git add 命令失败</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 添加的时候，推荐用 &#39;&#39; 包裹路径
-git  add &#39;port&#x2F;我的文件 名有 空格.avi&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 添加的时候，推荐用 <span class="hljs-string">&#x27;&#x27;</span> 包裹路径
+git  add <span class="hljs-string">&#x27;port/我的文件 名有 空格.avi&#x27;</span></code></pre>
 
 <h3 id="commit-备注编辑错误"><a href="#commit-备注编辑错误" class="headerlink" title="commit 备注编辑错误"></a>commit 备注编辑错误</h3><p>当 commit 的时候，备注如果出现编辑错误，可以使用 <code>git commit --amend</code> 进入备注页面，在按 <code>i</code> 进入编辑模式，完成后按 <code>Esc</code> 退出编辑模式，最后输入 <code>:wq</code> 保存退出。</p>
 <h3 id="忽略文件失效"><a href="#忽略文件失效" class="headerlink" title="忽略文件失效"></a>忽略文件失效</h3><p>原因在于追踪文件已经记录了并且正在追踪</p>
 <p>解决办法：</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 清楚追踪文件，不删除本地文件（注意：语句后面有一点）
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 清楚追踪文件，不删除本地文件（注意：语句后面有一点）
 git rm -r --cached .
-&#x2F;&#x2F; 添加所有文件，忽略文件除外
+<span class="hljs-regexp">//</span> 添加所有文件，忽略文件除外
 git add .
-&#x2F;&#x2F; commit
-git commit -m &#39;update .gitignore&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-regexp">//</span> commit
+git commit -m <span class="hljs-string">&#x27;update .gitignore&#x27;</span></code></pre>
 
 <h3 id="文件名大小写被忽略"><a href="#文件名大小写被忽略" class="headerlink" title="文件名大小写被忽略"></a>文件名大小写被忽略</h3><p>GIt默认忽略文件名大小写，导致修改文件夹之类的大小的名称时候；会和远程不一致</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;设置false来关闭大写忽略
-git config core.ignorecase false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre><code class="hljs arduino"><span class="hljs-comment">//设置false来关闭大写忽略</span>
+git config core.ignorecase <span class="hljs-literal">false</span></code></pre>
 
 <h3 id="警告：warning-LF-will-be-replaced-by-CRLF"><a href="#警告：warning-LF-will-be-replaced-by-CRLF" class="headerlink" title="警告：warning: LF will be replaced by CRLF"></a>警告：warning: LF will be replaced by CRLF</h3><p>Git 可以在你提交时自动地把回车（CR）和换行（LF）转换成换行（LF），而在检出代码时把换行（LF）转换成回车（CR）和换行（LF）</p>
 <blockquote>
@@ -360,17 +369,17 @@ git config core.ignorecase false<span aria-hidden="true" class="line-numbers-row
 <li>22 端口被占用或堵塞</li>
 </ul>
 <p>如果是设置过端口禁用的不想换端口就去防火墙设置一下入；GitHub 的的建议是 替换端口 443</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 运行以下命令
-$ ssh -T -p 443 git@ssh.github.com
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 运行以下命令
+$ ssh -T -p <span class="hljs-number">443</span> git@ssh.github.com
 
-&#x2F;&#x2F; 如果出现以下提示，代表可以用 443 替换默认的 22 端口
-&gt; Hi username! You&#39;ve successfully authenticated, but GitHub does not
-&gt; provide shell access.
-
-&#x2F;&#x2F; 首先在 ~&#x2F;.ssh&#x2F; 目录下找到 config 文件，如果没有可以新建，然后添加以下内容
-Host github.com
-  Hostname ssh.github.com
-  Port 443<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-regexp">//</span> 如果出现以下提示，代表可以用 <span class="hljs-number">443</span> 替换默认的 <span class="hljs-number">22</span> 端口
+&gt; Hi username! Yo<span class="hljs-string">u&#x27;ve successfully authenticated, but GitHub does not</span>
+<span class="hljs-string">&gt; provide shell access.</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">// 首先在 ~/.ssh/ 目录下找到 config 文件，如果没有可以新建，然后添加以下内容</span>
+<span class="hljs-string">Host github.com</span>
+<span class="hljs-string">  Hostname ssh.github.com</span>
+<span class="hljs-string">  Port 443</span></code></pre>
 
 <p>参考链接：<a href="https://help.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port">GitHub Help</a></p>
 <h3 id="请求-Github仓库的速度很慢"><a href="#请求-Github仓库的速度很慢" class="headerlink" title="请求 Github仓库的速度很慢"></a>请求 Github仓库的速度很慢</h3><p>当你 pull 或者 push 的时候，你会发现，它的速度只有 100kb/s 甚至更慢，拉取一个稍微大一点的仓库，拉取了一两个小时都未必能拉取成功，造成这样的原因同样也有很多：</p>
@@ -380,11 +389,11 @@ Host github.com
 <li><p>github.global.ssl.fastly.net域名被限制</p>
 </li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 打开 C:\Windows\System32\drivers\etc 里面的hosts 文件;然后添加以下内容
-192.30.253.112 github.com
-151.101.185.194 github.global-ssl.fastly.net
+<pre><code class="hljs accesslog">// 打开 C:\Windows\System32\drivers\etc 里面的hosts 文件;然后添加以下内容
+<span class="hljs-number">192.30.253.112</span> github.com
+<span class="hljs-number">151.101.185.194</span> github.global-ssl.fastly.net
 
-&#x2F;&#x2F; 保存后，打开 命令控制台执行 ipconfig&#x2F;flushdns 清除缓存即可<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+// 保存后，打开 命令控制台执行 ipconfig/flushdns 清除缓存即可</code></pre>
 
 <h3 id="GitHub提交的commit未被统计"><a href="#GitHub提交的commit未被统计" class="headerlink" title="GitHub提交的commit未被统计"></a>GitHub提交的commit未被统计</h3><ul>
 <li>检查提交的用户和邮件是否为GitHub上的用户名和邮件</li>

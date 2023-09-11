@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -197,12 +206,24 @@
 <h3 id="你一般在哪里执行网络请求？"><a href="#你一般在哪里执行网络请求？" class="headerlink" title="你一般在哪里执行网络请求？"></a>你一般在哪里执行网络请求？</h3><p>class组件中，应该在 componentDidMount 生命周期执行数据请求，因为在此生命周期，dom已经挂载完毕，可以保证setState() 在数据异步处理后可以保证视图的正常加载，而函数组件则在useEffect 进行数据请求</p>
 <h3 id="讲讲你对-Hooks-的理解？"><a href="#讲讲你对-Hooks-的理解？" class="headerlink" title="讲讲你对 Hooks 的理解？"></a>讲讲你对 Hooks 的理解？</h3><p>Hooks是React16.8新增的特性，它可以让你在不编写class组件的情况下使用state和react的其他特性；</p>
 <h4 id="useState"><a href="#useState" class="headerlink" title="useState"></a>useState</h4><p>Hooks中有 useState() 它返回一个state和更新state的函数，可以用于函数组件的state管理。 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useState(name,setName)=useState(&#x27;初始状态&#x27;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">useState</span><span class="hljs-params">(name,setName)</span></span>=<span class="hljs-built_in">useState</span>(<span class="hljs-string">&#x27;初始状态&#x27;</span>)</code></pre>
 
 <h4 id="useEffect"><a href="#useEffect" class="headerlink" title="useEffect"></a>useEffect</h4><p>useEffect() 则接收一个包含命令式，且可能有副作用的函数，默认情况下，useEffect会在渲染结束后执行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useEffect(()=&gt;&#123;</span><br><span class="line">  ......</span><br><span class="line">  return(()=&gt;&#123;&#125;) //return一个函数，可以在组件卸载后执行函数</span><br><span class="line">&#125;,[porps.name])  //只有在props.name改变后，才会执行，如果是一个空函数，则只执行一次</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs coffeescript">useEffect(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;
+  ......
+  <span class="hljs-keyword">return</span>(<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;&#125;) //<span class="hljs-keyword">return</span>一个函数，可以在组件卸载后执行函数
+&#125;,[porps.name])  <span class="hljs-regexp">//</span>只有在props.name改变后，才会执行，如果是一个空函数，则只执行一次</code></pre>
 <h4 id="useContext"><a href="#useContext" class="headerlink" title="useContext"></a>useContext</h4><p>useContext() 接收一个 context 对象（React.createContext 的返回值）并返回该 context 的当前值,一般是对它所包裹组件提供全局共享数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const them=&#123;height:&#123;h:200&#125;&#125;</span><br><span class="line"></span><br><span class="line">const useCon=React.createContext(them.height)</span><br><span class="line"></span><br><span class="line">function App()&#123;</span><br><span class="line">  const thene=useContext(useCon) // 接受context对象，返回当前值</span><br><span class="line">  return(</span><br><span class="line">    &lt;p style=&#123;&#123;height:thene.h + &#x27;px&#x27;&#125;&#125;&gt;321&lt;/p&gt; </span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> them=&#123;<span class="hljs-attr">height</span>:&#123;<span class="hljs-attr">h</span>:<span class="hljs-number">200</span>&#125;&#125;
+
+<span class="hljs-keyword">const</span> useCon=<span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>(them.<span class="hljs-property">height</span>)
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">App</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">const</span> thene=<span class="hljs-title function_">useContext</span>(useCon) <span class="hljs-comment">// 接受context对象，返回当前值</span>
+  <span class="hljs-keyword">return</span>(
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;height:thene.h</span> + &#x27;<span class="hljs-attr">px</span>&#x27;&#125;&#125;&gt;</span>321<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span> 
+  )
+&#125;</code></pre>
 <h4 id="额外的Hooks"><a href="#额外的Hooks" class="headerlink" title="额外的Hooks"></a>额外的Hooks</h4><p>还有一些额外的hooks 比如：useRef()作为ref在函数组件中的调用 useReducer() 作为useState的替代方案；useMemo()在组件渲染期间调用，不可以执行dom操作 useCallback()作为useMemo的语法糖，useDubugValue()可用于react开发工具中显示自定义Hook；useLayoutEffect() 作为effect的补充，在所有dom改变之后调用 useImperativeHandle()</p>
 <h3 id="你对HOC-高阶组件-的理解？"><a href="#你对HOC-高阶组件-的理解？" class="headerlink" title="你对HOC(高阶组件)的理解？"></a>你对HOC(高阶组件)的理解？</h3><p><strong>高阶组件是一个以组件为参数并返回一个新组件的函数</strong>。是React用于复用组件逻辑的一种方式，是基于React的组合特性形成的一种设计模式；最常用的的HOC场景有：属性代理：主要用于修改props，抽象state和调用refs等等，反向继承：通过return 参数组件的super.render，被动继承参数组件，可以调用参数组件的state，props生命周期等</p>
 <h3 id="讲一下-React-diff-的原理"><a href="#讲一下-React-diff-的原理" class="headerlink" title="讲一下 React diff 的原理"></a>讲一下 React diff 的原理</h3><p>把树形结构按照层级分解，只比较同级元素。<br>给列表结构的每个单元添加唯一的 key 属性，方便比较。<br>React 只会匹配相同 class 的 component（这里面的 class 指的是组件的名字）<br>合并操作，调用 component 的 setState 方法的时候, React 将其标记为 dirty.到每一个事件循环结束, React 检查所有标记 dirty 的 component 重新绘制.<br>选择性子树渲染。开发人员可以重写 shouldComponentUpdate 提高 diff 的性能。</p>

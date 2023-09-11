@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,19 +190,85 @@
   
   <article class="passage-article">
     <p>Vitesse 一个快速地创建 Web 应用的 vue3 项目简单框架</p>
-<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">|—— locales/       <span class="comment">//国际语言翻译</span></span><br><span class="line">|—— src/</span><br><span class="line">  |—— layouts/     <span class="comment">//各类定义的模板</span></span><br><span class="line">	|—— index.<span class="property">vue</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">  |—— pages/       <span class="comment">//自动生成路由的文件</span></span><br><span class="line">    |—— index.<span class="property">vue</span></span><br><span class="line">  |—— stores/      <span class="comment">//pinia存储的全局数据</span></span><br><span class="line">    |—— user.<span class="property">ts</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">  |—— styles/      <span class="comment">//各类导入的样式文件</span></span><br><span class="line">    |—— main.<span class="property">css</span></span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">  |—— main.<span class="property">css</span>      <span class="comment">//样式入口文件</span></span><br><span class="line">  |—— markdown.<span class="property">css</span>  <span class="comment">//引入的markdown样式</span></span><br><span class="line">  |—— main.<span class="property">ts</span>       <span class="comment">//入口文件</span></span><br><span class="line">|—— index.<span class="property">html</span></span><br></pre></td></tr></table></figure>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><pre><code class="hljs js">|—— locales/       <span class="hljs-comment">//国际语言翻译</span>
+|—— src/
+  |—— layouts/     <span class="hljs-comment">//各类定义的模板</span>
+	|—— index.<span class="hljs-property">vue</span>
+	<span class="hljs-comment">//...</span>
+  |—— pages/       <span class="hljs-comment">//自动生成路由的文件</span>
+    |—— index.<span class="hljs-property">vue</span>
+  |—— stores/      <span class="hljs-comment">//pinia存储的全局数据</span>
+    |—— user.<span class="hljs-property">ts</span>
+	<span class="hljs-comment">//...</span>
+  |—— styles/      <span class="hljs-comment">//各类导入的样式文件</span>
+    |—— main.<span class="hljs-property">css</span>
+	<span class="hljs-comment">//...</span>
+  |—— main.<span class="hljs-property">css</span>      <span class="hljs-comment">//样式入口文件</span>
+  |—— markdown.<span class="hljs-property">css</span>  <span class="hljs-comment">//引入的markdown样式</span>
+  |—— main.<span class="hljs-property">ts</span>       <span class="hljs-comment">//入口文件</span>
+|—— index.<span class="hljs-property">html</span></code></pre>
 
-<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><h3 id="项目别名"><a href="#项目别名" class="headerlink" title="项目别名@"></a>项目别名@</h3><figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="attr">resolve</span>: &#123;</span><br><span class="line">  <span class="attr">alias</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;~/&#x27;</span>: <span class="string">`<span class="subst">$&#123;path.resolve(__dirname, <span class="string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,</span><br><span class="line">    <span class="string">&#x27;@&#x27;</span>: <span class="string">`<span class="subst">$&#123;path.resolve(__dirname, <span class="string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<h2 id="项目配置"><a href="#项目配置" class="headerlink" title="项目配置"></a>项目配置</h2><h3 id="项目别名"><a href="#项目别名" class="headerlink" title="项目别名@"></a>项目别名@</h3><pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-attr">resolve</span>: &#123;
+  <span class="hljs-attr">alias</span>: &#123;
+    <span class="hljs-string">&#x27;~/&#x27;</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;path.resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,
+    <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;path.resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,
+  &#125;,
+&#125;,</code></pre>
 
 <p>如果需要vscode加上路径检查的话，需要配置如下</p>
-<figure class="highlight json"><figcaption><span>tsconfig.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="attr">&quot;paths&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;@/*&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;src/*&quot;</span><span class="punctuation">]</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>tsconfig.json</span></div><code class="hljs json"><span class="hljs-comment">// ...</span>
+<span class="hljs-attr">&quot;paths&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;@/*&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;src/*&quot;</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <h3 id="未登录转跳"><a href="#未登录转跳" class="headerlink" title="未登录转跳"></a>未登录转跳</h3><p>通过localStorage中的token来判断转跳，通过路由守卫来控制</p>
-<figure class="highlight js"><figcaption><span>app.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">useRouter</span>()</span><br><span class="line"><span class="keyword">let</span> token = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(!token||token==<span class="string">&#x27;null&#x27;</span>)&#123;</span><br><span class="line">  router.<span class="title function_">replace</span>(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to,<span class="keyword">from</span>,next</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(to.<span class="property">name</span> !== <span class="string">&#x27;login&#x27;</span>&amp;&amp;!token||token==<span class="string">&#x27;null&#x27;</span>)&#123;</span><br><span class="line">    router.<span class="title function_">replace</span>(<span class="string">&#x27;/login&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="title function_">next</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>app.vue</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>()
+<span class="hljs-keyword">let</span> token = <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">getItem</span>(<span class="hljs-string">&#x27;token&#x27;</span>);
+<span class="hljs-keyword">if</span>(!token||token==<span class="hljs-string">&#x27;null&#x27;</span>)&#123;
+  router.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;/login&#x27;</span>)
+&#125;
+router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to,<span class="hljs-keyword">from</span>,next</span>)=&gt;</span>&#123;
+  <span class="hljs-keyword">if</span>(to.<span class="hljs-property">name</span> !== <span class="hljs-string">&#x27;login&#x27;</span>&amp;&amp;!token||token==<span class="hljs-string">&#x27;null&#x27;</span>)&#123;
+    router.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;/login&#x27;</span>)
+  &#125;<span class="hljs-keyword">else</span>&#123;
+    <span class="hljs-title function_">next</span>()
+  &#125;
+&#125;)</code></pre>
 
-<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><figure class="highlight js"><figcaption><span>home.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> crp_message=<span class="string">`&#123;</span></span><br><span class="line"><span class="string">  &quot;dataFormat&quot;: &quot;TUDF&quot;,</span></span><br><span class="line"><span class="string">  &quot;dcrRefInfo&quot;: &#123;</span></span><br><span class="line"><span class="string">    &quot;dcrInitiator&quot;: &quot;CRA01&quot;,</span></span><br><span class="line"><span class="string">    &quot;dcrRefId&quot;: &quot;ABCD123456&quot;</span></span><br><span class="line"><span class="string">  &#125;,</span></span><br><span class="line"><span class="string">  &quot;fileAction&quot;: &quot;CRT&quot;,</span></span><br><span class="line"><span class="string">  &quot;noOfRecords&quot;: &quot;10000&quot;,</span></span><br><span class="line"><span class="string">  &quot;remarks&quot;: &quot;client remarks&quot;,</span></span><br><span class="line"><span class="string">  &quot;resumeId&quot;: &quot;2&quot;,</span></span><br><span class="line"><span class="string">  &quot;submissionType&quot;: &quot;AMEND&quot;</span></span><br><span class="line"><span class="string">&#125;`</span></span><br><span class="line"><span class="comment">// 后端不接收json字符串，需要处理成二进制</span></span><br><span class="line"><span class="keyword">const</span> blob = <span class="keyword">new</span> <span class="title class_">Blob</span>([crp_message], &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;application/json&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">const</span> data=&#123;</span><br><span class="line">  <span class="attr">crp_message</span>:blob,</span><br><span class="line">  <span class="attr">crp_file</span>:fileList.<span class="property">list</span>[<span class="number">0</span>]?.<span class="property">raw</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">dataUpload</span>(data).<span class="title function_">then</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(res)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h3><pre><div class="caption"><span>home.vue</span></div><code class="hljs js"><span class="hljs-keyword">const</span> crp_message=<span class="hljs-string">`&#123;</span>
+<span class="hljs-string">  &quot;dataFormat&quot;: &quot;TUDF&quot;,</span>
+<span class="hljs-string">  &quot;dcrRefInfo&quot;: &#123;</span>
+<span class="hljs-string">    &quot;dcrInitiator&quot;: &quot;CRA01&quot;,</span>
+<span class="hljs-string">    &quot;dcrRefId&quot;: &quot;ABCD123456&quot;</span>
+<span class="hljs-string">  &#125;,</span>
+<span class="hljs-string">  &quot;fileAction&quot;: &quot;CRT&quot;,</span>
+<span class="hljs-string">  &quot;noOfRecords&quot;: &quot;10000&quot;,</span>
+<span class="hljs-string">  &quot;remarks&quot;: &quot;client remarks&quot;,</span>
+<span class="hljs-string">  &quot;resumeId&quot;: &quot;2&quot;,</span>
+<span class="hljs-string">  &quot;submissionType&quot;: &quot;AMEND&quot;</span>
+<span class="hljs-string">&#125;`</span>
+<span class="hljs-comment">// 后端不接收json字符串，需要处理成二进制</span>
+<span class="hljs-keyword">const</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([crp_message], &#123;
+  <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,
+&#125;);
+<span class="hljs-keyword">const</span> data=&#123;
+  <span class="hljs-attr">crp_message</span>:blob,
+  <span class="hljs-attr">crp_file</span>:fileList.<span class="hljs-property">list</span>[<span class="hljs-number">0</span>]?.<span class="hljs-property">raw</span>
+&#125;
+<span class="hljs-title function_">dataUpload</span>(data).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res)
+&#125;)</code></pre>
 
-<figure class="highlight js"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> dataUpload=<span class="keyword">function</span>(<span class="params">data</span>)&#123; <span class="comment">//上传文件，数据提交上传</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">require</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">`<span class="subst">$&#123;network&#125;</span>/<span class="subst">$&#123;auto&#125;</span>/data-submission/upload`</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;multipart/form-data;charset=UTF-8&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;post&#x27;</span>,</span><br><span class="line">    data,</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.js</span></div><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> dataUpload=<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123; <span class="hljs-comment">//上传文件，数据提交上传</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">require</span>(&#123;
+    <span class="hljs-attr">url</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;network&#125;</span>/<span class="hljs-subst">$&#123;auto&#125;</span>/data-submission/upload`</span>,
+    <span class="hljs-attr">headers</span>: &#123; <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;multipart/form-data;charset=UTF-8&quot;</span> &#125;,
+    <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;post&#x27;</span>,
+    data,
+  &#125;)
+&#125;</code></pre>
 
 <h2 id="插件介绍"><a href="#插件介绍" class="headerlink" title="插件介绍"></a>插件介绍</h2><ul>
 <li>vite-plugin-pwa 通过简单的配置将你的vite项目变成pwa 应用</li>
@@ -207,7 +282,18 @@
 <blockquote>
 <p>npm i nprogress -S</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;nprogress/nprogress.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">NProgress</span> <span class="keyword">from</span> <span class="string">&#x27;nprogress&#x27;</span></span><br><span class="line"><span class="comment">//路由转跳开始前</span></span><br><span class="line">router.<span class="title function_">beforeEach</span>(<span class="function">(<span class="params">to, <span class="keyword">from</span>, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title class_">NProgress</span>.<span class="title function_">start</span>();</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//路由转跳结束前</span></span><br><span class="line">router.<span class="title function_">afterEach</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title class_">NProgress</span>.<span class="title function_">done</span>()</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;nprogress/nprogress.css&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">NProgress</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;nprogress&#x27;</span>
+<span class="hljs-comment">//路由转跳开始前</span>
+router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to, <span class="hljs-keyword">from</span>, next</span>) =&gt;</span> &#123;
+  <span class="hljs-title class_">NProgress</span>.<span class="hljs-title function_">start</span>();
+  <span class="hljs-comment">//...</span>
+&#125;)
+<span class="hljs-comment">//路由转跳结束前</span>
+router.<span class="hljs-title function_">afterEach</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title class_">NProgress</span>.<span class="hljs-title function_">done</span>()
+  <span class="hljs-comment">//...</span>
+&#125;)</code></pre>
 
 <h3 id="预定义样式"><a href="#预定义样式" class="headerlink" title="预定义样式"></a>预定义样式</h3><ul>
 <li>scss scss预定义样式</li>
@@ -215,7 +301,17 @@
 <blockquote>
 <p>npm i sass</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="attr">css</span>: &#123;</span><br><span class="line">  <span class="comment">// css预处理器</span></span><br><span class="line">  <span class="attr">preprocessorOptions</span>: &#123;</span><br><span class="line">    <span class="attr">scss</span>: &#123;</span><br><span class="line">      <span class="comment">// 引入 mixin.scss 这样就可以在全局中使用 mixin.scss中预定义的变量了</span></span><br><span class="line">      <span class="comment">// 给导入的路径最后加上 ;</span></span><br><span class="line">      <span class="attr">additionalData</span>: <span class="string">&#x27;@import &quot;./src/styles/mixin.scss&quot;;&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-comment">//......</span>
+<span class="hljs-attr">css</span>: &#123;
+  <span class="hljs-comment">// css预处理器</span>
+  <span class="hljs-attr">preprocessorOptions</span>: &#123;
+    <span class="hljs-attr">scss</span>: &#123;
+      <span class="hljs-comment">// 引入 mixin.scss 这样就可以在全局中使用 mixin.scss中预定义的变量了</span>
+      <span class="hljs-comment">// 给导入的路径最后加上 ;</span>
+      <span class="hljs-attr">additionalData</span>: <span class="hljs-string">&#x27;@import &quot;./src/styles/mixin.scss&quot;;&#x27;</span>,
+    &#125;,
+  &#125;,
+&#125;,</code></pre>
 
 <h3 id="自动化引入"><a href="#自动化引入" class="headerlink" title="自动化引入"></a>自动化引入</h3><ul>
 <li>unplugin-auto-import 配置自动引入项目的引用脚本</li>
@@ -224,7 +320,29 @@
 <blockquote>
 <p>npm i -D unplugin-auto-import</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">      <span class="attr">imports</span>: [ <span class="comment">//自动导入模块</span></span><br><span class="line">        <span class="string">&#x27;vue&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;vue-router&#x27;</span>,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">dts</span>: <span class="string">&#x27;./auto-imports.d.ts&#x27;</span>, <span class="comment">//自动导入的文件集成</span></span><br><span class="line">      <span class="attr">dirs</span>: [ <span class="comment">// 自动导入目录下的模块并导出</span></span><br><span class="line">        <span class="string">&#x27;src/composables&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;src/stores&#x27;</span>,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">vueTemplate</span>: <span class="literal">false</span>, <span class="comment">//在Vue模板内自动导入</span></span><br><span class="line">      <span class="attr">resolvers</span>: [ <span class="comment">//自定义解析器，兼容第三方组件”</span></span><br><span class="line">        <span class="title class_">ElementPlusResolver</span>()</span><br><span class="line">      ],</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AutoImport</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-auto-import/vite&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ElementPlusResolver</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-components/resolvers&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">AutoImport</span>(&#123;
+      <span class="hljs-attr">imports</span>: [ <span class="hljs-comment">//自动导入模块</span>
+        <span class="hljs-string">&#x27;vue&#x27;</span>,
+        <span class="hljs-string">&#x27;vue-router&#x27;</span>,
+      ],
+      <span class="hljs-attr">dts</span>: <span class="hljs-string">&#x27;./auto-imports.d.ts&#x27;</span>, <span class="hljs-comment">//自动导入的文件集成</span>
+      <span class="hljs-attr">dirs</span>: [ <span class="hljs-comment">// 自动导入目录下的模块并导出</span>
+        <span class="hljs-string">&#x27;src/composables&#x27;</span>,
+        <span class="hljs-string">&#x27;src/stores&#x27;</span>,
+      ],
+      <span class="hljs-attr">vueTemplate</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">//在Vue模板内自动导入</span>
+      <span class="hljs-attr">resolvers</span>: [ <span class="hljs-comment">//自定义解析器，兼容第三方组件”</span>
+        <span class="hljs-title class_">ElementPlusResolver</span>()
+      ],
+      <span class="hljs-comment">//...</span>
+    &#125;),
+  ],
+&#125;)</code></pre>
 
 <h3 id="自动化安装"><a href="#自动化安装" class="headerlink" title="自动化安装"></a>自动化安装</h3><ul>
 <li>unplugin-vue-components 自动化安装引入项目的库包</li>
@@ -233,7 +351,18 @@
 <blockquote>
 <p>npm install -D unplugin-vue-components</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">Components</span>(&#123;       </span><br><span class="line">      <span class="attr">extensions</span>: [<span class="string">&#x27;vue&#x27;</span>],</span><br><span class="line">      <span class="attr">include</span>: [<span class="regexp">/\.vue$/</span>, <span class="regexp">/\.vue\?vue/</span>, <span class="regexp">/\.md$/</span>],</span><br><span class="line">      <span class="attr">dts</span>: <span class="string">&#x27;src/components.d.ts&#x27;</span>,</span><br><span class="line">      <span class="attr">resolvers</span>: [<span class="title class_">ElementPlusResolver</span>()], </span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Components</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-components/vite&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ElementPlusResolver</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-components/resolvers&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">Components</span>(&#123;       
+      <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;vue&#x27;</span>],
+      <span class="hljs-attr">include</span>: [<span class="hljs-regexp">/\.vue$/</span>, <span class="hljs-regexp">/\.vue\?vue/</span>, <span class="hljs-regexp">/\.md$/</span>],
+      <span class="hljs-attr">dts</span>: <span class="hljs-string">&#x27;src/components.d.ts&#x27;</span>,
+      <span class="hljs-attr">resolvers</span>: [<span class="hljs-title class_">ElementPlusResolver</span>()], 
+    &#125;),
+  ],
+&#125;)</code></pre>
 
 <h3 id="国际化翻译"><a href="#国际化翻译" class="headerlink" title="国际化翻译"></a>国际化翻译</h3><ul>
 <li>intlify/unplugin-vue-i18n 国际翻译，翻译多国语言</li>
@@ -242,15 +371,58 @@
 <blockquote>
 <p>npm i -D @intlify/unplugin-vue-i18n<br>npm i vue-i18n</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">VueI18</span>nPlugin <span class="keyword">from</span> <span class="string">&#x27;@intlify/unplugin-vue-i18n/vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">VueI18</span>nPlugin(&#123;</span><br><span class="line">      <span class="attr">runtimeOnly</span>: <span class="literal">true</span>, <span class="comment">//在生产构建中自动使用 Vue-i18n</span></span><br><span class="line">      <span class="attr">compositionOnly</span>: <span class="literal">true</span>, <span class="comment">//将 vue-i18n API 仅作组合 API</span></span><br><span class="line">      <span class="attr">fullInstall</span>: <span class="literal">true</span>, <span class="comment">//安装VueI18n提供的全套 API、组件等</span></span><br><span class="line">      <span class="attr">include</span>: [path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;locales/**&#x27;</span>)], <span class="comment">//设置翻译文件根目录</span></span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueI18</span>nPlugin <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@intlify/unplugin-vue-i18n/vite&#x27;</span>
 
-<figure class="highlight js"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> i18 <span class="keyword">from</span> <span class="string">&#x27;@/modules/i18n.ts&#x27;</span></span><br><span class="line"><span class="comment">//......</span></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">.<span class="title function_">use</span>(i18)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">VueI18</span>nPlugin(&#123;
+      <span class="hljs-attr">runtimeOnly</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//在生产构建中自动使用 Vue-i18n</span>
+      <span class="hljs-attr">compositionOnly</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//将 vue-i18n API 仅作组合 API</span>
+      <span class="hljs-attr">fullInstall</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//安装VueI18n提供的全套 API、组件等</span>
+      <span class="hljs-attr">include</span>: [path.<span class="hljs-title function_">resolve</span>(__dirname, <span class="hljs-string">&#x27;locales/**&#x27;</span>)], <span class="hljs-comment">//设置翻译文件根目录</span>
+    &#125;),
+  ],
+&#125;)</code></pre>
 
-<figure class="highlight js"><figcaption><span>src/modules/i18n.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createI18n &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-i18n&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; type <span class="title class_">UserModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;~/types&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> messages = <span class="title class_">Object</span>.<span class="title function_">fromEntries</span>(</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">entries</span>(</span><br><span class="line">    <span class="keyword">import</span>.<span class="property">meta</span>.<span class="property">glob</span>&lt;&#123; <span class="attr">default</span>: any &#125;&gt;(<span class="string">&#x27;../../locales/*.y(a)?ml&#x27;</span>, &#123; <span class="attr">eager</span>: <span class="literal">true</span> &#125;))</span><br><span class="line">    .<span class="title function_">map</span>(<span class="function">(<span class="params">[key, value]</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> yaml = key.<span class="title function_">endsWith</span>(<span class="string">&#x27;.yaml&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> [key.<span class="title function_">slice</span>(<span class="number">14</span>, yaml ? -<span class="number">5</span> : -<span class="number">4</span>), value.<span class="property">default</span>]</span><br><span class="line">    &#125;),</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="attr">install</span>: <span class="title class_">UserModule</span> = <span class="function">(<span class="params"> app </span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> i18n = <span class="title function_">createI18n</span>(&#123;</span><br><span class="line">    <span class="attr">legacy</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">locale</span>: <span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">    messages,</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  app.<span class="title function_">use</span>(i18n)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> install</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> i18 <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/modules/i18n.ts&#x27;</span>
+<span class="hljs-comment">//......</span>
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)
+.<span class="hljs-title function_">use</span>(i18)</code></pre>
 
-<figure class="highlight js"><figcaption><span>locales/en.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">login</span>:</span><br><span class="line">  <span class="title class_">Welcome</span>: <span class="title class_">Welcome</span> to <span class="title class_">Credit</span> <span class="title class_">Reference</span> <span class="title class_">Platform</span> <span class="title class_">Access</span> <span class="title class_">Portal</span>, <span class="variable constant_">CRP</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>src/modules/i18n.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createI18n &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-i18n&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; type <span class="hljs-title class_">UserModule</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;~/types&#x27;</span>
 
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">  // 此为经过AutoImport全局导入后，所以useI18n API可以直接调用</span><br><span class="line">  const &#123; t &#125; = useI18n()</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;h1&gt;&#123;&#123;t(&#x27;login.Welcome&#x27;)&#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">const</span> messages = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">fromEntries</span>(
+  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(
+    <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">glob</span>&lt;&#123; <span class="hljs-attr">default</span>: any &#125;&gt;(<span class="hljs-string">&#x27;../../locales/*.y(a)?ml&#x27;</span>, &#123; <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span> &#125;))
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> yaml = key.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&#x27;.yaml&#x27;</span>)
+      <span class="hljs-keyword">return</span> [key.<span class="hljs-title function_">slice</span>(<span class="hljs-number">14</span>, yaml ? -<span class="hljs-number">5</span> : -<span class="hljs-number">4</span>), value.<span class="hljs-property">default</span>]
+    &#125;),
+)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">install</span>: <span class="hljs-title class_">UserModule</span> = <span class="hljs-function">(<span class="hljs-params"> app </span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> i18n = <span class="hljs-title function_">createI18n</span>(&#123;
+    <span class="hljs-attr">legacy</span>: <span class="hljs-literal">false</span>,
+    <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span>,
+    messages,
+  &#125;)
+
+  app.<span class="hljs-title function_">use</span>(i18n)
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> install</code></pre>
+
+<pre><div class="caption"><span>locales/en.yml</span></div><code class="hljs js"><span class="hljs-attr">login</span>:
+  <span class="hljs-title class_">Welcome</span>: <span class="hljs-title class_">Welcome</span> to <span class="hljs-title class_">Credit</span> <span class="hljs-title class_">Reference</span> <span class="hljs-title class_">Platform</span> <span class="hljs-title class_">Access</span> <span class="hljs-title class_">Portal</span>, <span class="hljs-variable constant_">CRP</span></code></pre>
+
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup lang=&quot;ts&quot;&gt;
+  // 此为经过AutoImport全局导入后，所以useI18n API可以直接调用
+  const &#123; t &#125; = useI18n()
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;h1&gt;&#123;&#123;t(&#x27;login.Welcome&#x27;)&#125;&#125;&lt;/h1&gt;
+&lt;/template&gt;</code></pre>
 
 
 <h3 id="图形化插件"><a href="#图形化插件" class="headerlink" title="图形化插件"></a>图形化插件</h3><ul>
@@ -260,7 +432,13 @@
 <blockquote>
 <p>npm i -D vite-plugin-inspect</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Inspect</span> <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-inspect&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">Inspect</span>()</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Inspect</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-inspect&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">Inspect</span>()
+  ],
+&#125;</code></pre>
 
 <h3 id="自动化路由"><a href="#自动化路由" class="headerlink" title="自动化路由"></a>自动化路由</h3><ul>
 <li>vite-plugin-pages 基于文件进行路由配置</li>
@@ -269,14 +447,46 @@
 <blockquote>
 <p>npm install -D vite-plugin-pages<br>npm install vue-router</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Pages</span> <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-pages&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="title class_">Pages</span>(&#123;</span><br><span class="line">      <span class="attr">extensions</span>: [<span class="string">&#x27;vue&#x27;</span>], <span class="comment">//有效的文件后缀</span></span><br><span class="line">      <span class="attr">dirs</span>: <span class="string">&#x27;src/pages&#x27;</span>, <span class="comment">//指定文件根目录</span></span><br><span class="line">      <span class="title function_">extendRoute</span>(<span class="params">route, parent</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> route</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Pages</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-pages&#x27;</span>
 
-<figure class="highlight ts"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./style.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createRouter,createWebHistory &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="keyword">import</span> routes <span class="keyword">from</span> <span class="string">&#x27;~pages&#x27;</span></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">    <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">    routes,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">use</span>(router).<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-title class_">Pages</span>(&#123;
+      <span class="hljs-attr">extensions</span>: [<span class="hljs-string">&#x27;vue&#x27;</span>], <span class="hljs-comment">//有效的文件后缀</span>
+      <span class="hljs-attr">dirs</span>: <span class="hljs-string">&#x27;src/pages&#x27;</span>, <span class="hljs-comment">//指定文件根目录</span>
+      <span class="hljs-title function_">extendRoute</span>(<span class="hljs-params">route, parent</span>) &#123;
+        <span class="hljs-keyword">return</span> route
+      &#125;,
+    &#125;),
+  ],
+&#125;</code></pre>
 
-<figure class="highlight plaintext"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;RouterView /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.ts</span></div><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./style.css&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; createRouter,createWebHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-keyword">import</span> routes <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;~pages&#x27;</span>
+<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createRouter</span>(&#123;
+    <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHistory</span>(),
+    routes,
+&#125;)
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">use</span>(router).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
+
+<pre><div class="caption"><span>App.vue</span></div><code class="hljs vue">&lt;template&gt;
+  &lt;RouterView /&gt;
+&lt;/template&gt;</code></pre>
 
 <p>在 <code>src/</code> 目录下添加 <code>pages</code> 文件夹。里面放置各种页面，会自动生成相关路由</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  |——pages/</span><br><span class="line">    |——[...all].<span class="property">vue</span>  <span class="comment">//404页面，会匹配所有不被匹配的路径</span></span><br><span class="line">    |——index.<span class="property">vue</span> <span class="comment">//首页</span></span><br><span class="line">    |——<span class="title class_">Data</span>/</span><br><span class="line">      |——index.<span class="property">vue</span>   <span class="comment">//匹配路由 `/Data`</span></span><br><span class="line">      |——about.<span class="property">vue</span>   <span class="comment">//匹配路由 `/Data/about`</span></span><br><span class="line">      |——[id]/</span><br><span class="line">        |——<span class="title class_">Detail</span>.<span class="property">vue</span><span class="comment">//匹配路由 `/Data/xxxx/Detail`</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js">src/
+  |——pages/
+    |——[...all].<span class="hljs-property">vue</span>  <span class="hljs-comment">//404页面，会匹配所有不被匹配的路径</span>
+    |——index.<span class="hljs-property">vue</span> <span class="hljs-comment">//首页</span>
+    |——<span class="hljs-title class_">Data</span>/
+      |——index.<span class="hljs-property">vue</span>   <span class="hljs-comment">//匹配路由 `/Data`</span>
+      |——about.<span class="hljs-property">vue</span>   <span class="hljs-comment">//匹配路由 `/Data/about`</span>
+      |——[id]/
+        |——<span class="hljs-title class_">Detail</span>.<span class="hljs-property">vue</span><span class="hljs-comment">//匹配路由 `/Data/xxxx/Detail`</span></code></pre>
 
 
 <h3 id="自定义布局"><a href="#自定义布局" class="headerlink" title="自定义布局"></a>自定义布局</h3><ul>
@@ -286,14 +496,34 @@
 <blockquote>
 <p>npm install -D vite-plugin-vue-layouts</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Layouts</span> <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-vue-layouts&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title class_">Vue</span>(), <span class="title class_">Layouts</span>()],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Layouts</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-vue-layouts&#x27;</span>;
 
-<figure class="highlight js"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; setupLayouts &#125; <span class="keyword">from</span> <span class="string">&#x27;virtual:generated-layouts&#x27;</span></span><br><span class="line"><span class="keyword">import</span> generatedRoutes <span class="keyword">from</span> <span class="string">&#x27;~pages&#x27;</span></span><br><span class="line"><span class="keyword">const</span> routes = <span class="title function_">setupLayouts</span>(generatedRoutes)</span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">    <span class="attr">history</span>: <span class="title function_">createWebHistory</span>(),</span><br><span class="line">    routes,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>)</span><br><span class="line">.<span class="title function_">use</span>(router)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-title class_">Vue</span>(), <span class="hljs-title class_">Layouts</span>()],
+&#125;;</code></pre>
+
+<pre><div class="caption"><span>main.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; setupLayouts &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;virtual:generated-layouts&#x27;</span>
+<span class="hljs-keyword">import</span> generatedRoutes <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;~pages&#x27;</span>
+<span class="hljs-keyword">const</span> routes = <span class="hljs-title function_">setupLayouts</span>(generatedRoutes)
+<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createRouter</span>(&#123;
+    <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHistory</span>(),
+    routes,
+&#125;)
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)
+.<span class="hljs-title function_">use</span>(router)</code></pre>
 
 <p>默认使用的是default，也可以指定</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">route</span> <span class="attr">lang</span>=<span class="string">&quot;yaml&quot;</span>&gt;</span></span><br><span class="line">meta:</span><br><span class="line">  layout: home</span><br><span class="line"><span class="tag">&lt;/<span class="name">route</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">route</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;yaml&quot;</span>&gt;</span>
+meta:
+  layout: home
+<span class="hljs-tag">&lt;/<span class="hljs-name">route</span>&gt;</span></code></pre>
 
-<figure class="highlight plaintext"><figcaption><span>layouts/home.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;main&gt;</span><br><span class="line">    &lt;RouterView /&gt;</span><br><span class="line">  &lt;/main&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>layouts/home.vue</span></div><code class="hljs vue">&lt;template&gt;
+  &lt;main&gt;
+    &lt;RouterView /&gt;
+  &lt;/main&gt;
+&lt;/template&gt;</code></pre>
 
 
 <h3 id="VUE语法糖"><a href="#VUE语法糖" class="headerlink" title="VUE语法糖"></a>VUE语法糖</h3><ul>
@@ -303,7 +533,18 @@
 <blockquote>
 <p>npm i unplugin-vue-macros -D</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">VueMacros</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-macros/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;@vitejs/plugin-vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">VueMacros</span>(&#123;</span><br><span class="line">      <span class="attr">plugins</span>: &#123;</span><br><span class="line">        <span class="attr">vue</span>: <span class="title class_">Vue</span>(),</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueMacros</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-macros/vite&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vitejs/plugin-vue&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">VueMacros</span>(&#123;
+      <span class="hljs-attr">plugins</span>: &#123;
+        <span class="hljs-attr">vue</span>: <span class="hljs-title class_">Vue</span>(),
+      &#125;,
+    &#125;),
+  ],
+&#125;)</code></pre>
 
 <ul>
 <li><code>defineOptions</code> 可以在setup使用选项式代码</li>
@@ -325,9 +566,16 @@
 <blockquote>
 <p>npm i -D unplugin-vue-define-options</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">DefineOptions</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-define-options/vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [<span class="title class_">DefineOptions</span>()],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">DefineOptions</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-define-options/vite&#x27;</span>
 
-<figure class="highlight js"><figcaption><span>Foo.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">defineOptions</span>(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Foo&#x27;</span>,</span><br><span class="line">  <span class="attr">inheritAttrs</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-title class_">DefineOptions</span>()],
+&#125;)</code></pre>
+
+<pre><div class="caption"><span>Foo.vue</span></div><code class="hljs js"><span class="hljs-title function_">defineOptions</span>(&#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Foo&#x27;</span>,
+  <span class="hljs-attr">inheritAttrs</span>: <span class="hljs-literal">false</span>,
+&#125;)</code></pre>
 
 <h3 id="use组合程序"><a href="#use组合程序" class="headerlink" title="use组合程序"></a>use组合程序</h3><p>VueUse 是一个基于 Composition API 的实用程序函数集合</p>
 <ul>
@@ -340,7 +588,14 @@
 <ul>
 <li>自动化导入</li>
 </ul>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"><span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="string">&#x27;@vueuse/core&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">dts</span>: <span class="string">&#x27;src/auto-imports.d.ts&#x27;</span>,</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AutoImport</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-auto-import/vite&#x27;</span>
+<span class="hljs-comment">// ......</span>
+<span class="hljs-title class_">AutoImport</span>(&#123;
+  <span class="hljs-attr">imports</span>: [
+    <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>,
+  ],
+  <span class="hljs-attr">dts</span>: <span class="hljs-string">&#x27;src/auto-imports.d.ts&#x27;</span>,
+&#125;),</code></pre>
 
 <h3 id="VueUse-head"><a href="#VueUse-head" class="headerlink" title="VueUse/head"></a>VueUse/head</h3><p>VueUse/head 是为了给我们的页面添加标题和元标签等标题标签，用于更好的SEO</p>
 <blockquote>
@@ -349,18 +604,36 @@
 <ul>
 <li>自动化导入</li>
 </ul>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="comment">// ......</span></span><br><span class="line"><span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">  <span class="attr">imports</span>: [</span><br><span class="line">    <span class="string">&#x27;@vueuse/head&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">dts</span>: <span class="string">&#x27;src/auto-imports.d.ts&#x27;</span>,</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AutoImport</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-auto-import/vite&#x27;</span>
+<span class="hljs-comment">// ......</span>
+<span class="hljs-title class_">AutoImport</span>(&#123;
+  <span class="hljs-attr">imports</span>: [
+    <span class="hljs-string">&#x27;@vueuse/head&#x27;</span>,
+  ],
+  <span class="hljs-attr">dts</span>: <span class="hljs-string">&#x27;src/auto-imports.d.ts&#x27;</span>,
+&#125;),</code></pre>
 
 <h3 id="安装UnoCss"><a href="#安装UnoCss" class="headerlink" title="安装UnoCss"></a>安装UnoCss</h3><p>按需安装所需要的CSS</p>
 <p><a href="https://github.com/unocss/unocss">https://github.com/unocss/unocss</a></p>
 <blockquote>
 <p>npm i -D unocss</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">UnoCSS</span> <span class="keyword">from</span> <span class="string">&#x27;unocss/vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">UnoCSS</span>(&#123; <span class="comment">/* options */</span> &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">UnoCSS</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unocss/vite&#x27;</span>
 
-<figure class="highlight ts"><figcaption><span>uno.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个文件</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;unocss&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">// ...UnoCSS options</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">UnoCSS</span>(&#123; <span class="hljs-comment">/* options */</span> &#125;),
+  ],
+&#125;</code></pre>
 
-<figure class="highlight js"><figcaption><span>main.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;uno.css&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>uno.config.ts</span></div><code class="hljs ts"><span class="hljs-comment">// 创建一个文件</span>
+<span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unocss&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-comment">// ...UnoCSS options</span>
+&#125;)</code></pre>
+
+<pre><div class="caption"><span>main.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;uno.css&#x27;</span></code></pre>
 
 <p>在线文档地址：<a href="https://uno.antfu.me/">https://uno.antfu.me/</a></p>
 <h3 id="icon图标引入"><a href="#icon图标引入" class="headerlink" title="icon图标引入"></a>icon图标引入</h3><p>该模块引入了icon的图标集合，可以全部引入，也可以单独引入</p>
@@ -368,7 +641,26 @@
 <blockquote>
 <p>npm install –save @iconify/json</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过UnoCss对图标进行配置</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">UnoCSS</span> <span class="keyword">from</span> <span class="string">&#x27;@unocss/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; presetIcons,presetAttributify &#125; <span class="keyword">from</span> <span class="string">&#x27;unocss&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="title class_">UnoCSS</span>(&#123;</span><br><span class="line">      <span class="attr">presets</span>: [</span><br><span class="line">        <span class="title function_">presetAttributify</span>(),</span><br><span class="line">        <span class="title function_">presetIcons</span>(&#123;</span><br><span class="line">          <span class="attr">scale</span>: <span class="number">1.2</span>,</span><br><span class="line">          <span class="attr">warn</span>: <span class="literal">true</span></span><br><span class="line">        &#125;)</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">rules</span>:[</span><br><span class="line"></span><br><span class="line">      ],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-comment">// 通过UnoCss对图标进行配置</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">UnoCSS</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@unocss/vite&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; presetIcons,presetAttributify &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unocss&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">UnoCSS</span>(&#123;
+      <span class="hljs-attr">presets</span>: [
+        <span class="hljs-title function_">presetAttributify</span>(),
+        <span class="hljs-title function_">presetIcons</span>(&#123;
+          <span class="hljs-attr">scale</span>: <span class="hljs-number">1.2</span>,
+          <span class="hljs-attr">warn</span>: <span class="hljs-literal">true</span>
+        &#125;)
+      ],
+      <span class="hljs-attr">rules</span>:[
+
+      ],
+    &#125;),
+  ],
+&#125;</code></pre>
 
 <h2 id="组件介绍"><a href="#组件介绍" class="headerlink" title="组件介绍"></a>组件介绍</h2><h3 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h3><ul>
 <li>Pinina 状态管理容器，管理全局状态state</li>
@@ -377,18 +669,94 @@
 <blockquote>
 <p>npm install pinia</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>src/stores/user.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;defineStore&#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"><span class="comment">// 类似vuex</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore=<span class="title function_">defineStore</span>(<span class="string">&#x27;min&#x27;</span>,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">	<span class="attr">state</span>:<span class="function">()=&gt;</span>(&#123; <span class="comment">//箭头函数return对象</span></span><br><span class="line">		<span class="attr">name</span>:<span class="string">&quot;1230&quot;</span>,</span><br><span class="line">	&#125;),</span><br><span class="line">	<span class="attr">getters</span>: &#123;</span><br><span class="line">		<span class="attr">double</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>,</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attr">actions</span>: &#123;</span><br><span class="line">		<span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">			<span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 或者类似setup</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;counter&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> double = <span class="title function_">computed</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>)</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    count.<span class="property">value</span>++</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123; count, double, increment &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>src/stores/user.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123;defineStore&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+<span class="hljs-comment">// 类似vuex</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore=<span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;min&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
+	<span class="hljs-attr">state</span>:<span class="hljs-function">()=&gt;</span>(&#123; <span class="hljs-comment">//箭头函数return对象</span>
+		<span class="hljs-attr">name</span>:<span class="hljs-string">&quot;1230&quot;</span>,
+	&#125;),
+	<span class="hljs-attr">getters</span>: &#123;
+		<span class="hljs-attr">double</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">count</span> * <span class="hljs-number">2</span>,
+	&#125;,
+	<span class="hljs-attr">actions</span>: &#123;
+		<span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+			<span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++
+		&#125;,
+	&#125;,
+&#125;)
+<span class="hljs-comment">// 或者类似setup</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;counter&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+  <span class="hljs-keyword">const</span> double = <span class="hljs-title function_">computed</span>(<span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">count</span> * <span class="hljs-number">2</span>)
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+    count.<span class="hljs-property">value</span>++
+  &#125;
+  <span class="hljs-keyword">return</span> &#123; count, double, increment &#125;
+&#125;)</code></pre>
 
-<figure class="highlight js"><figcaption><span>setup</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useCounterStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@/stores/user&#x27;</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useCounterStore</span>()</span><br><span class="line"></span><br><span class="line">store.<span class="title function_">increment</span>()</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>setup</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useCounterStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/stores/user&#x27;</span>
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">useCounterStore</span>()
+
+store.<span class="hljs-title function_">increment</span>()</code></pre>
 
 <h3 id="UI组件库"><a href="#UI组件库" class="headerlink" title="UI组件库"></a>UI组件库</h3><p>原框架有UnoCSS原子预设插件，我不想用，这里我引入ElementPlusUI库,同时使用自动化安装模块</p>
 <p><a href="https://element-plus.org/zh-CN/guide/installation.html">https://element-plus.org/zh-CN/guide/installation.html</a></p>
 <blockquote>
 <p>npm install -D unplugin-vue-components unplugin-auto-import</p>
 </blockquote>
-<figure class="highlight ts"><figcaption><span>vite.config.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">AutoImport</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Components</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ElementPlusResolver</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">IconsResolver</span> <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/resolver&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">      <span class="attr">resolvers</span>: [</span><br><span class="line">        <span class="title class_">ElementPlusResolver</span>(), <span class="comment">//导入组件</span></span><br><span class="line">        <span class="title class_">IconsResolver</span>(&#123; <span class="comment">//导入图标</span></span><br><span class="line">          <span class="attr">prefix</span>: <span class="string">&#x27;Icon&#x27;</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">      ],</span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="title class_">Components</span>(&#123;</span><br><span class="line">      <span class="attr">resolvers</span>: [</span><br><span class="line">        <span class="title class_">ElementPlusResolver</span>(),</span><br><span class="line">        <span class="title class_">IconsResolver</span>(&#123;</span><br><span class="line">          <span class="attr">enabledCollections</span>: [<span class="string">&#x27;ep&#x27;</span>],</span><br><span class="line">        &#125;),</span><br><span class="line">      ],</span><br><span class="line">    &#125;),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs ts"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">AutoImport</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-auto-import/vite&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Components</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-components/vite&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">ElementPlusResolver</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-vue-components/resolvers&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">IconsResolver</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;unplugin-icons/resolver&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-title class_">AutoImport</span>(&#123;
+      <span class="hljs-attr">resolvers</span>: [
+        <span class="hljs-title class_">ElementPlusResolver</span>(), <span class="hljs-comment">//导入组件</span>
+        <span class="hljs-title class_">IconsResolver</span>(&#123; <span class="hljs-comment">//导入图标</span>
+          <span class="hljs-attr">prefix</span>: <span class="hljs-string">&#x27;Icon&#x27;</span>,
+        &#125;),
+      ],
+    &#125;),
+    <span class="hljs-title class_">Components</span>(&#123;
+      <span class="hljs-attr">resolvers</span>: [
+        <span class="hljs-title class_">ElementPlusResolver</span>(),
+        <span class="hljs-title class_">IconsResolver</span>(&#123;
+          <span class="hljs-attr">enabledCollections</span>: [<span class="hljs-string">&#x27;ep&#x27;</span>],
+        &#125;),
+      ],
+    &#125;),
+  ],
+&#125;)</code></pre>
 
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight plaintext"><figcaption><span>App.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=&quot;ts&quot;&gt;</span><br><span class="line">// 用了vueuse里的一些函数程序</span><br><span class="line">useHead(&#123;</span><br><span class="line">  title: &#x27;Vitesse&#x27;,</span><br><span class="line">  meta: [</span><br><span class="line">    &#123; name: &#x27;description&#x27;, content: &#x27;Opinionated Vite Starter Template&#x27; &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      name: &#x27;theme-color&#x27;,</span><br><span class="line">      content: computed(() =&gt; isDark.value ? &#x27;#00aba9&#x27; : &#x27;#ffffff&#x27;),</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">  link: [</span><br><span class="line">    &#123;</span><br><span class="line">      rel: &#x27;icon&#x27;,</span><br><span class="line">      type: &#x27;image/svg+xml&#x27;,</span><br><span class="line">      href: computed(() =&gt; preferredDark.value ? &#x27;/favicon-dark.svg&#x27; : &#x27;/favicon.svg&#x27;),</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;RouterView /&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><pre><div class="caption"><span>App.vue</span></div><code class="hljs vue">&lt;script setup lang=&quot;ts&quot;&gt;
+// 用了vueuse里的一些函数程序
+useHead(&#123;
+  title: &#x27;Vitesse&#x27;,
+  meta: [
+    &#123; name: &#x27;description&#x27;, content: &#x27;Opinionated Vite Starter Template&#x27; &#125;,
+    &#123;
+      name: &#x27;theme-color&#x27;,
+      content: computed(() =&gt; isDark.value ? &#x27;#00aba9&#x27; : &#x27;#ffffff&#x27;),
+    &#125;,
+  ],
+  link: [
+    &#123;
+      rel: &#x27;icon&#x27;,
+      type: &#x27;image/svg+xml&#x27;,
+      href: computed(() =&gt; preferredDark.value ? &#x27;/favicon-dark.svg&#x27; : &#x27;/favicon.svg&#x27;),
+    &#125;,
+  ],
+&#125;)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;RouterView /&gt;
+&lt;/template&gt;
+</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

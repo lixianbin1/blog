@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -185,13 +194,73 @@
 <li>Context.Provider: 接受一个 value 参数，在 value 参数更新的时候通知 Consumer</li>
 <li>Context.Consumer: 订阅 value 参数的改变。一旦 value 参数改变，就会触发它的回调函数</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 第一步：全局创建一个 context</span><br><span class="line">import React,&#123;useContext&#125; from &quot;react&quot;;</span><br><span class="line">const UserContext = React.createContext();</span><br><span class="line">...</span><br><span class="line">// 第二步：使用 Provider 提供 ThemeContext 的值，Provider所包含的子树都可以直接访问ThemeContext的值</span><br><span class="line">&lt;ThemeContext.Provider value=&quot;dark&quot;&gt;</span><br><span class="line">    &lt;Toolbar /&gt;</span><br><span class="line">&lt;/ThemeContext.Provider&gt;</span><br><span class="line">...</span><br><span class="line">// Toolbar 组件并不需要透传 ThemeContext</span><br><span class="line">function Toolbar(props) &#123;</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;ThemedButton /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br><span class="line">function ThemedButton(props) &#123;</span><br><span class="line">  // 第三步：使用共享 Context</span><br><span class="line">  const theme = useContext(ThemeContext);</span><br><span class="line">  render() &#123;</span><br><span class="line">    return &lt;Button value=&#123;theme&#125; /&gt;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-comment">// 第一步：全局创建一个 context</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>,&#123;useContext&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">UserContext</span> = <span class="hljs-title class_">React</span>.<span class="hljs-title function_">createContext</span>();
+...
+<span class="hljs-comment">// 第二步：使用 Provider 提供 ThemeContext 的值，Provider所包含的子树都可以直接访问ThemeContext的值</span>
+&lt;<span class="hljs-title class_">ThemeContext</span>.<span class="hljs-property">Provider</span> value=<span class="hljs-string">&quot;dark&quot;</span>&gt;
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Toolbar</span> /&gt;</span></span>
+&lt;/<span class="hljs-title class_">ThemeContext</span>.<span class="hljs-property">Provider</span>&gt;
+...
+<span class="hljs-comment">// Toolbar 组件并不需要透传 ThemeContext</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Toolbar</span>(<span class="hljs-params">props</span>) &#123;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">ThemedButton</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  );
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">ThemedButton</span>(<span class="hljs-params">props</span>) &#123;
+  <span class="hljs-comment">// 第三步：使用共享 Context</span>
+  <span class="hljs-keyword">const</span> theme = <span class="hljs-title function_">useContext</span>(<span class="hljs-title class_">ThemeContext</span>);
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;theme&#125;</span> /&gt;</span></span>;
+  &#125;
+&#125;</code></pre>
 
 <h2 id="useReducer对useState的替代"><a href="#useReducer对useState的替代" class="headerlink" title="useReducer对useState的替代"></a>useReducer对useState的替代</h2><p>作为 useState 的替代方案。它接收一个形如 (state, action) =&gt; newState 的 reducer，并返回当前的 state 以及与其配套的 dispatch 方法。类似redux 的reducer 的工作方式。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 官方示例</span><br><span class="line"></span><br><span class="line">const initialState = &#123;count: 0&#125;;</span><br><span class="line"></span><br><span class="line">function reducer(state, action) &#123;</span><br><span class="line">  switch (action.type) &#123;</span><br><span class="line">    case &#x27;increment&#x27;:</span><br><span class="line">      return &#123;count: state.count + 1&#125;;</span><br><span class="line">    case &#x27;decrement&#x27;:</span><br><span class="line">      return &#123;count: state.count - 1&#125;;</span><br><span class="line">    default:</span><br><span class="line">      throw new Error();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function Counter() &#123;</span><br><span class="line">  const [state, dispatch] = useReducer(reducer, initialState);</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      Count: &#123;state.count&#125;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;decrement&#x27;&#125;)&#125;&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; dispatch(&#123;type: &#x27;increment&#x27;&#125;)&#125;&gt;+&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs pf">// 官方示例
+
+<span class="hljs-keyword">const</span> initialState = &#123;count: <span class="hljs-number">0</span>&#125;;
+
+function reducer(<span class="hljs-keyword">state</span>, action) &#123;
+  switch (action.type) &#123;
+    case &#x27;increment&#x27;:
+      return &#123;count: <span class="hljs-keyword">state</span>.count + <span class="hljs-number">1</span>&#125;;
+    case &#x27;decrement&#x27;:
+      return &#123;count: <span class="hljs-keyword">state</span>.count - <span class="hljs-number">1</span>&#125;;
+    <span class="hljs-keyword">default</span>:
+      throw new Error();
+  &#125;
+&#125;
+
+function Counter() &#123;
+  <span class="hljs-keyword">const</span> [<span class="hljs-keyword">state</span>, dispatch] = useReducer(reducer, initialState);
+  return (
+    <span class="hljs-variable">&lt;&gt;</span>
+      Count: &#123;<span class="hljs-keyword">state</span>.count&#125;
+      <span class="hljs-variable">&lt;button onClick=&#123;() =&gt;</span> dispatch(&#123;type: &#x27;decrement&#x27;&#125;)&#125;&gt;-&lt;/button&gt;
+      <span class="hljs-variable">&lt;button onClick=&#123;() =&gt;</span> dispatch(&#123;type: &#x27;increment&#x27;&#125;)&#125;&gt;+&lt;/button&gt;
+    &lt;/&gt;
+  );
+&#125;</code></pre>
 
 <h2 id="useRef获取实时渲染组件的值"><a href="#useRef获取实时渲染组件的值" class="headerlink" title="useRef获取实时渲染组件的值"></a>useRef获取实时渲染组件的值</h2><p>useRef 返回一个可变的 ref 对象，其 .current 属性被初始化为传入的参数（initialValue）。返回的 ref 对象在组件的整个生命周期内保持不变.当ref 对象内容发生变化时，useRef 也不会通知你</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function TIB() &#123;</span><br><span class="line">  const inputEl = useRef(null);</span><br><span class="line">  const onBClick = () =&gt; &#123;</span><br><span class="line">    // `current` 指向已挂载到 DOM 上的文本输入元素</span><br><span class="line">    inputEl.current.focus();</span><br><span class="line">    // console.log(inputEl.current.value)</span><br><span class="line">  &#125;;</span><br><span class="line">  return (</span><br><span class="line">    &lt;&gt;</span><br><span class="line">      &lt;input ref=&#123;inputEl&#125; type=&quot;text&quot; /&gt;</span><br><span class="line">      &lt;button onClick=&#123;onBClick&#125;&gt;Focus the input&lt;/button&gt;</span><br><span class="line">    &lt;/&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">TIB</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">const</span> inputEl = <span class="hljs-title function_">useRef</span>(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">onBClick</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+    <span class="hljs-comment">// `current` 指向已挂载到 DOM 上的文本输入元素</span>
+    inputEl.<span class="hljs-property">current</span>.<span class="hljs-title function_">focus</span>();
+    <span class="hljs-comment">// console.log(inputEl.current.value)</span>
+  &#125;;
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;inputEl&#125;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;onBClick&#125;</span>&gt;</span>Focus the input<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span>
+  );
+&#125;</code></pre>
 
 <p>当然，还有一些扩充Hook，在一些特殊情况才可能用到，这里不涉及状态管理，我就不打算提了，因为Hook已经包含了部分Redux的功能，那么久可以依照Redux的思路进行项目的状态管理。Hook的出现对react-redux造成了影响，但是不会完全取代。</p>
   </article>

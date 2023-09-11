@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,14 +190,166 @@
   
   <article class="passage-article">
     <h2 id="模块化模式"><a href="#模块化模式" class="headerlink" title="模块化模式"></a>模块化模式</h2><p>模块化模式最初被定义为对传统工程中的类提供私有和公共封装的方法，在js中，模块化模式进一步模拟类的概念，通过这一种方法，可以在单一的对象中包含私有/公有的方法和变量。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">let testModal=(function()&#123;</span><br><span class="line">  var conunter=0 // 私有变量</span><br><span class="line">  return &#123;</span><br><span class="line">    incem:function()&#123;</span><br><span class="line">      return conunter++</span><br><span class="line">    &#125;,</span><br><span class="line">    reset:function()&#123;</span><br><span class="line">      console.log(conunter)</span><br><span class="line">      conunter=0</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br><span class="line"></span><br><span class="line">testModal.incem()</span><br><span class="line">testModal.reset()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arcade">let testModal=(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">var</span> conunter=<span class="hljs-number">0</span> <span class="hljs-comment">// 私有变量</span>
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">incem</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-keyword">return</span> conunter++
+    &#125;,
+    <span class="hljs-attr">reset</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(conunter)
+      conunter=<span class="hljs-number">0</span>
+    &#125;
+  &#125;
+&#125;)()
+
+testModal.incem()
+testModal.reset()
+</code></pre>
 
 
 <h2 id="Observer-观察者模式"><a href="#Observer-观察者模式" class="headerlink" title="Observer 观察者模式"></a>Observer 观察者模式</h2><p>一个被称为<code>被观察者</code>的对象维护一组被称为<code>观察者</code>的对象，这些对象依赖于<code>被观察者</code>，<code>被观察者</code>将自身的状态的任何变化都通知<code>观察者</code>，它采取广播的形式，这条广播可能包括特定于这条广播的一些数据，当我们不在希望某个特定的<code>观察者</code>获得通知的时候，我们可以从把它从观察者列表中删除</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">//观察者列表</span><br><span class="line">function ObserverList()&#123;</span><br><span class="line">	this.observerList=[]</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Add=function(obj)&#123; //添加</span><br><span class="line">	return this.observerList.push(obj)</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Empty=function()&#123; //清空</span><br><span class="line">	this.observerList=[]</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Count=function()&#123; //观察者数量</span><br><span class="line">	return this.observerList.length</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Get=function(index)&#123;//获取其中一个</span><br><span class="line">	if(index&gt;-1&amp;&amp;index&lt;this.observerList.length)&#123;</span><br><span class="line">		return this.observerList[index]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.Insert=function(obj,index)&#123; //插入其中</span><br><span class="line">	var pointer=-1</span><br><span class="line">	if(index===0)&#123;</span><br><span class="line">		this.observerList.unshift(obj) // 插入开头，返回位置</span><br><span class="line">		pointer=index</span><br><span class="line">	&#125;else if(index===this.observerList.length)&#123; //插入结尾</span><br><span class="line">		this.observerList.push(obj)</span><br><span class="line">		pointer=index</span><br><span class="line">	&#125;</span><br><span class="line">	return pointer</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.IndexOf=function(obj,startIndex)&#123; //查找所在位置</span><br><span class="line">	let i =startIndex,pointer=-1</span><br><span class="line">	while(i&lt;this.observerList.length)&#123;</span><br><span class="line">		if(this.observerList[i]===obj)&#123;</span><br><span class="line">			pointer=i</span><br><span class="line">		&#125;</span><br><span class="line">		i++</span><br><span class="line">	&#125;</span><br><span class="line">	return pointer</span><br><span class="line">&#125;</span><br><span class="line">ObserverList.prototype.RemoveAt=function(index)&#123; //删除</span><br><span class="line">	if(index===0)&#123;</span><br><span class="line">		this.observerList.shift() //删除头部</span><br><span class="line">	&#125;else if(index===this.observerList.length -1)&#123;</span><br><span class="line">		this.observerList.pop()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//被观察者的原型</span><br><span class="line">function Subject()&#123;</span><br><span class="line">	this.observers=new ObserverList();</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.AddObserver=function(observer)&#123; //增加</span><br><span class="line">	this.observers.Add(observer)</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.RemoveObserver=function(observer)&#123; //删除</span><br><span class="line">	this.observers.RemoveAt(this.observers.IndexOf(observer,0))</span><br><span class="line">&#125;</span><br><span class="line">Subject.prototype.Notify=function(context)&#123; //通知</span><br><span class="line">	var observerCount=this.observers.Count()</span><br><span class="line">	for(let i=0;i&lt;observerCount;i++)&#123;</span><br><span class="line">		this.observers.Get(i).Update(context) //循环执行更新</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function extend(extension,obj)&#123; //循环将 某身份属性 塞入obj</span><br><span class="line">	for(let key in extension)&#123;</span><br><span class="line">		obj[key]=extension[key]</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">function Observer()&#123;</span><br><span class="line">	this.Update=function(text)&#123;</span><br><span class="line">		this.checked=text</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">var controlCheckbox=document.getElementById(&#x27;mainCheckbox&#x27;),</span><br><span class="line">	addBth=document.getElementById(&#x27;addNewObserver&#x27;),</span><br><span class="line">	container=document.getElementById(&#x27;observersContainer&#x27;)</span><br><span class="line">//创建 具体被观察者</span><br><span class="line">extend(new Subject(),controlCheckbox);</span><br><span class="line">//绑定点击的时候通知 </span><br><span class="line">controlCheckbox[&#x27;onclick&#x27;]=new Function(&#x27;controlCheckbox.Notify(controlCheckbox.checked)&#x27;)</span><br><span class="line">addBth[&#x27;onclick&#x27;]=AddNewObserver</span><br><span class="line">//具体观察者</span><br><span class="line">function AddNewObserver()&#123;</span><br><span class="line">	let check=document.createElement(&#x27;input&#x27;)</span><br><span class="line">	check.type=&#x27;checkbox&#x27;</span><br><span class="line">	extend(new Observer(),check)</span><br><span class="line">	check.update=function(value)&#123;</span><br><span class="line">		this.checked=value</span><br><span class="line">	&#125;</span><br><span class="line">	controlCheckbox.AddObserver(check) //增加观察者</span><br><span class="line">	container.appendChild(check)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-comment">//观察者列表</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">ObserverList</span>(<span class="hljs-params"></span>)&#123;
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>=[]
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Add</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">obj</span>)&#123; <span class="hljs-comment">//添加</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-title function_">push</span>(obj)
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Empty</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123; <span class="hljs-comment">//清空</span>
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>=[]
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Count</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123; <span class="hljs-comment">//观察者数量</span>
+	<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-property">length</span>
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Get</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)&#123;<span class="hljs-comment">//获取其中一个</span>
+	<span class="hljs-keyword">if</span>(index&gt;-<span class="hljs-number">1</span>&amp;&amp;index&lt;<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-property">length</span>)&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>[index]
+	&#125;
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Insert</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">obj,index</span>)&#123; <span class="hljs-comment">//插入其中</span>
+	<span class="hljs-keyword">var</span> pointer=-<span class="hljs-number">1</span>
+	<span class="hljs-keyword">if</span>(index===<span class="hljs-number">0</span>)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-title function_">unshift</span>(obj) <span class="hljs-comment">// 插入开头，返回位置</span>
+		pointer=index
+	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(index===<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-property">length</span>)&#123; <span class="hljs-comment">//插入结尾</span>
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-title function_">push</span>(obj)
+		pointer=index
+	&#125;
+	<span class="hljs-keyword">return</span> pointer
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">IndexOf</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">obj,startIndex</span>)&#123; <span class="hljs-comment">//查找所在位置</span>
+	<span class="hljs-keyword">let</span> i =startIndex,pointer=-<span class="hljs-number">1</span>
+	<span class="hljs-keyword">while</span>(i&lt;<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-property">length</span>)&#123;
+		<span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>[i]===obj)&#123;
+			pointer=i
+		&#125;
+		i++
+	&#125;
+	<span class="hljs-keyword">return</span> pointer
+&#125;
+<span class="hljs-title class_">ObserverList</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">RemoveAt</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">index</span>)&#123; <span class="hljs-comment">//删除</span>
+	<span class="hljs-keyword">if</span>(index===<span class="hljs-number">0</span>)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-title function_">shift</span>() <span class="hljs-comment">//删除头部</span>
+	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(index===<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-property">length</span> -<span class="hljs-number">1</span>)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">observerList</span>.<span class="hljs-title function_">pop</span>()
+	&#125;
+&#125;
+<span class="hljs-comment">//被观察者的原型</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Subject</span>(<span class="hljs-params"></span>)&#123;
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">ObserverList</span>();
+&#125;
+<span class="hljs-title class_">Subject</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">AddObserver</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">observer</span>)&#123; <span class="hljs-comment">//增加</span>
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title class_">Add</span>(observer)
+&#125;
+<span class="hljs-title class_">Subject</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">RemoveObserver</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">observer</span>)&#123; <span class="hljs-comment">//删除</span>
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title class_">RemoveAt</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title class_">IndexOf</span>(observer,<span class="hljs-number">0</span>))
+&#125;
+<span class="hljs-title class_">Subject</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">Notify</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">context</span>)&#123; <span class="hljs-comment">//通知</span>
+	<span class="hljs-keyword">var</span> observerCount=<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title class_">Count</span>()
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;observerCount;i++)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">observers</span>.<span class="hljs-title class_">Get</span>(i).<span class="hljs-title class_">Update</span>(context) <span class="hljs-comment">//循环执行更新</span>
+	&#125;
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">extend</span>(<span class="hljs-params">extension,obj</span>)&#123; <span class="hljs-comment">//循环将 某身份属性 塞入obj</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> key <span class="hljs-keyword">in</span> extension)&#123;
+		obj[key]=extension[key]
+	&#125;
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Observer</span>(<span class="hljs-params"></span>)&#123;
+	<span class="hljs-variable language_">this</span>.<span class="hljs-property">Update</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">text</span>)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">checked</span>=text
+	&#125;
+&#125;
+<span class="hljs-keyword">var</span> controlCheckbox=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;mainCheckbox&#x27;</span>),
+	addBth=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;addNewObserver&#x27;</span>),
+	container=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;observersContainer&#x27;</span>)
+<span class="hljs-comment">//创建 具体被观察者</span>
+<span class="hljs-title function_">extend</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Subject</span>(),controlCheckbox);
+<span class="hljs-comment">//绑定点击的时候通知 </span>
+controlCheckbox[<span class="hljs-string">&#x27;onclick&#x27;</span>]=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Function</span>(<span class="hljs-string">&#x27;controlCheckbox.Notify(controlCheckbox.checked)&#x27;</span>)
+addBth[<span class="hljs-string">&#x27;onclick&#x27;</span>]=<span class="hljs-title class_">AddNewObserver</span>
+<span class="hljs-comment">//具体观察者</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">AddNewObserver</span>(<span class="hljs-params"></span>)&#123;
+	<span class="hljs-keyword">let</span> check=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;input&#x27;</span>)
+	check.<span class="hljs-property">type</span>=<span class="hljs-string">&#x27;checkbox&#x27;</span>
+	<span class="hljs-title function_">extend</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Observer</span>(),check)
+	check.<span class="hljs-property">update</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&#123;
+		<span class="hljs-variable language_">this</span>.<span class="hljs-property">checked</span>=value
+	&#125;
+	controlCheckbox.<span class="hljs-title class_">AddObserver</span>(check) <span class="hljs-comment">//增加观察者</span>
+	container.<span class="hljs-title function_">appendChild</span>(check)
+&#125;</code></pre>
 
 <h3 id="发布-订阅模式"><a href="#发布-订阅模式" class="headerlink" title="发布/订阅模式"></a>发布/订阅模式</h3><p>发布/订阅模式作为观察者模式的变体，有许多相同的地方也有许多不同的地方，观察者模式要求想要接受通知的观察者需要在被观察者上注册这个事件，发布/订阅模式则使用一个频道，订阅者和发布者通过频道传递特殊的数据</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">function Public() &#123;</span><br><span class="line">  this.handlers = &#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line">Public.prototype = &#123;</span><br><span class="line">    // 订阅事件</span><br><span class="line">    on: function(eventType, handler)&#123;</span><br><span class="line">        var self = this;</span><br><span class="line">        if(!(eventType in self.handlers)) &#123;</span><br><span class="line">           self.handlers[eventType] = [];</span><br><span class="line">        &#125;</span><br><span class="line">        self.handlers[eventType].push(handler);</span><br><span class="line">        return this;</span><br><span class="line">    &#125;,</span><br><span class="line">     // 触发事件(发布事件)</span><br><span class="line">    emit: function(eventType)&#123;</span><br><span class="line">       var self = this;</span><br><span class="line">       var handlerArgs = Array.prototype.slice.call(arguments,1);</span><br><span class="line">       for(var i = 0; i &lt; self.handlers[eventType].length; i++) &#123;</span><br><span class="line">         self.handlers[eventType][i].apply(self,handlerArgs);</span><br><span class="line">       &#125;</span><br><span class="line">       return self;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 删除订阅事件</span><br><span class="line">    off: function(eventType, handler)&#123;</span><br><span class="line">        var currentEvent = this.handlers[eventType];</span><br><span class="line">        var len = 0;</span><br><span class="line">        if (currentEvent) &#123;</span><br><span class="line">            len = currentEvent.length;</span><br><span class="line">            for (var i = len - 1; i &gt;= 0; i--)&#123;</span><br><span class="line">                if (currentEvent[i] === handler)&#123;</span><br><span class="line">                    currentEvent.splice(i, 1);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return this;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var Publisher = new Public();</span><br><span class="line">//订阅事件a</span><br><span class="line">Publisher.on(&#x27;a&#x27;, function(data)&#123;</span><br><span class="line">    console.log(1 + data);</span><br><span class="line">&#125;);</span><br><span class="line">Publisher.on(&#x27;a&#x27;, function(data)&#123;</span><br><span class="line">    console.log(2 + data);</span><br><span class="line">&#125;);</span><br><span class="line">//触发事件a</span><br><span class="line">Publisher.emit(&#x27;a&#x27;, &#x27;我是第1次调用的参数&#x27;);</span><br><span class="line">Publisher.emit(&#x27;a&#x27;, &#x27;我是第2次调用的参数&#x27;);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Public</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">handlers</span> = &#123;&#125;;
+&#125;
+<span class="hljs-title class_">Public</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = &#123;
+    <span class="hljs-comment">// 订阅事件</span>
+    <span class="hljs-attr">on</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">eventType, handler</span>)&#123;
+        <span class="hljs-keyword">var</span> self = <span class="hljs-variable language_">this</span>;
+        <span class="hljs-keyword">if</span>(!(eventType <span class="hljs-keyword">in</span> self.<span class="hljs-property">handlers</span>)) &#123;
+           self.<span class="hljs-property">handlers</span>[eventType] = [];
+        &#125;
+        self.<span class="hljs-property">handlers</span>[eventType].<span class="hljs-title function_">push</span>(handler);
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
+    &#125;,
+     <span class="hljs-comment">// 触发事件(发布事件)</span>
+    <span class="hljs-attr">emit</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">eventType</span>)&#123;
+       <span class="hljs-keyword">var</span> self = <span class="hljs-variable language_">this</span>;
+       <span class="hljs-keyword">var</span> handlerArgs = <span class="hljs-title class_">Array</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">slice</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">arguments</span>,<span class="hljs-number">1</span>);
+       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; self.<span class="hljs-property">handlers</span>[eventType].<span class="hljs-property">length</span>; i++) &#123;
+         self.<span class="hljs-property">handlers</span>[eventType][i].<span class="hljs-title function_">apply</span>(self,handlerArgs);
+       &#125;
+       <span class="hljs-keyword">return</span> self;
+    &#125;,
+    <span class="hljs-comment">// 删除订阅事件</span>
+    <span class="hljs-attr">off</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">eventType, handler</span>)&#123;
+        <span class="hljs-keyword">var</span> currentEvent = <span class="hljs-variable language_">this</span>.<span class="hljs-property">handlers</span>[eventType];
+        <span class="hljs-keyword">var</span> len = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span> (currentEvent) &#123;
+            len = currentEvent.<span class="hljs-property">length</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = len - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--)&#123;
+                <span class="hljs-keyword">if</span> (currentEvent[i] === handler)&#123;
+                    currentEvent.<span class="hljs-title function_">splice</span>(i, <span class="hljs-number">1</span>);
+                &#125;
+            &#125;
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>;
+    &#125;
+&#125;;
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Publisher</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Public</span>();
+<span class="hljs-comment">//订阅事件a</span>
+<span class="hljs-title class_">Publisher</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">1</span> + data);
+&#125;);
+<span class="hljs-title class_">Publisher</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-number">2</span> + data);
+&#125;);
+<span class="hljs-comment">//触发事件a</span>
+<span class="hljs-title class_">Publisher</span>.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;我是第1次调用的参数&#x27;</span>);
+<span class="hljs-title class_">Publisher</span>.<span class="hljs-title function_">emit</span>(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;我是第2次调用的参数&#x27;</span>);</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

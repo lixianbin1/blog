@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -184,15 +193,56 @@
 <ul>
 <li>进行n-1次外循环，每次外循环会排好当前处理的数中的最大数，在下一次循环中去除排好的数。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Bubbling(arr)&#123;</span><br><span class="line">  let len=arr.length</span><br><span class="line">  for(let i=0;i&lt;len;i++)&#123;</span><br><span class="line">    let mark = true</span><br><span class="line">    for(let j=0;j&lt;len-i-1;j++)&#123;</span><br><span class="line">      if(arr[j]&gt;arr[j+1])&#123;</span><br><span class="line">        let temp=arr[j+1]</span><br><span class="line">        arr[j+1]=arr[j]</span><br><span class="line">        arr[j]=temp</span><br><span class="line">        mark = false</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  if(mark)return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs csharp"><span class="hljs-function">function <span class="hljs-title">Bubbling</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> len=arr.<span class="hljs-function">length</span>
+<span class="hljs-function">  <span class="hljs-title">for</span>(<span class="hljs-params"><span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len;i++</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> mark = <span class="hljs-function"><span class="hljs-literal">true</span></span>
+<span class="hljs-function">    <span class="hljs-title">for</span>(<span class="hljs-params"><span class="hljs-keyword">let</span> j=<span class="hljs-number">0</span>;j&lt;len-i<span class="hljs-number">-1</span>;j++</span>)</span>&#123;
+      <span class="hljs-keyword">if</span>(arr[j]&gt;arr[j+<span class="hljs-number">1</span>])&#123;
+        <span class="hljs-keyword">let</span> temp=arr[j+<span class="hljs-number">1</span>]
+        arr[j+<span class="hljs-number">1</span>]=arr[j]
+        arr[j]=temp
+        mark = <span class="hljs-literal">false</span>
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">if</span>(mark)<span class="hljs-keyword">return</span> arr
+&#125;</code></pre>
 
 <p><img src="/blog/images/gif/2019112901.gif" alt="Bubbling"></p>
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选择排序是一种简单的排序算法，它重复走过要排序的数列，每次比较两个数，记录位置，不动，最后改变位置。每次找到要排列数中的最小值，然后放到最前面，最后排出最大值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function Select(arr) &#123;</span><br><span class="line">  let len=arr.length</span><br><span class="line">  for(let i=0;i&lt;len;i++)&#123;</span><br><span class="line">    let mini=i,temp</span><br><span class="line">    for(let j=i+1;j&lt;len;j++)&#123;</span><br><span class="line">      if(arr[j]&lt;arr[mini])&#123;</span><br><span class="line">        mini=j</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    temp=arr[i]</span><br><span class="line">    arr[i]=arr[mini]</span><br><span class="line">    arr[mini]=temp</span><br><span class="line">  &#125;</span><br><span class="line">  return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">function Select(arr) &#123;
+  let <span class="hljs-attribute">len</span>=arr.length
+  <span class="hljs-keyword">for</span>(let <span class="hljs-attribute">i</span>=0;i&lt;len;i++)&#123;
+    let <span class="hljs-attribute">mini</span>=i,temp
+    <span class="hljs-keyword">for</span>(let <span class="hljs-attribute">j</span>=i+1;j&lt;len;j++)&#123;
+      <span class="hljs-keyword">if</span>(arr[j]&lt;arr[mini])&#123;
+        <span class="hljs-attribute">mini</span>=j
+      &#125;
+    &#125;
+    <span class="hljs-attribute">temp</span>=arr[i]
+    arr[i]=arr[mini]
+    arr[mini]=temp
+  &#125;
+  return arr
+&#125;</code></pre>
 
 <p><img src="/blog/images/gif/2019112902.gif" alt="Select"></p>
 <h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;插入排序是一种简单的排序算法，将第一位数字作为有序数组，剩下的其他数字依次在有序数组中找到适合自己的位置进行插入操作；</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function Insert(arr) &#123;</span><br><span class="line">    let len=arr.length</span><br><span class="line">    let a,b</span><br><span class="line">    for (let i=1;i&lt;len;i++)&#123;</span><br><span class="line">        a=i-1</span><br><span class="line">        b=arr[i]</span><br><span class="line">        while(a&gt;=0&amp;&amp;arr[a]&gt;b)&#123;</span><br><span class="line">            arr[a+1]=arr[a]</span><br><span class="line">            a--</span><br><span class="line">        &#125;</span><br><span class="line">        arr[a+1]=b</span><br><span class="line">    &#125;</span><br><span class="line">    return arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">function Insert(arr) &#123;
+    let <span class="hljs-attribute">len</span>=arr.length
+    let a,b
+    <span class="hljs-keyword">for</span> (let <span class="hljs-attribute">i</span>=1;i&lt;len;i++)&#123;
+        <span class="hljs-attribute">a</span>=i-1
+        <span class="hljs-attribute">b</span>=arr[i]
+        <span class="hljs-keyword">while</span>(a&gt;=0&amp;&amp;arr[a]&gt;b)&#123;
+            arr[a+1]=arr[a]
+            a--
+        &#125;
+        arr[a+1]=b
+    &#125;
+    return arr
+&#125;</code></pre>
 
 <p><img src="/blog/images/gif/2019112903.gif" alt="Select"></p>
 <p>这三个就是最简单的排序算法了应该，感兴趣的可以去看看那个文章<br>十大经典算法 <a href="https://www.cnblogs.com/nankeyimengningchenlun/p/9151701.html">https://www.cnblogs.com/nankeyimengningchenlun/p/9151701.html</a></p>

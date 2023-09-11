@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -195,10 +204,15 @@
 <li>执行过程无阻塞，不影响用户的体验，只要new Image对象就好了；（排除JS/CSS文件资源方式上报）</li>
 </ul>
 <h3 id="当一个函数的参数不确定的时候-怎么进行参数的读取"><a href="#当一个函数的参数不确定的时候-怎么进行参数的读取" class="headerlink" title="当一个函数的参数不确定的时候?怎么进行参数的读取"></a>当一个函数的参数不确定的时候?怎么进行参数的读取</h3><p>可以通过 arguments 进行参数的访问，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params"></span>)&#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>) &#125;;<span class="title function_">add</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">21</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params"></span>)&#123; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">arguments</span>) &#125;;<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">21</span>)</code></pre>
 
 <h3 id="什么是函数柯里化？"><a href="#什么是函数柯里化？" class="headerlink" title="什么是函数柯里化？"></a>什么是函数柯里化？</h3><p>函数柯里化是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数, js中bind() 就是函数柯里化的的实现; 让人们将关注的重点聚焦到函数本身，而不因冗余的数据参数分散注意力</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">b</span>)&#123;</span><br><span class="line">       <span class="keyword">return</span> a+b</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">add</span>(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">a</span>)&#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">b</span>)&#123;
+       <span class="hljs-keyword">return</span> a+b
+    &#125;
+&#125;
+<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>)(<span class="hljs-number">2</span>)(<span class="hljs-number">3</span>)</code></pre>
 
 <h3 id="有了解什么是SSR吗？能讲一下嘛"><a href="#有了解什么是SSR吗？能讲一下嘛" class="headerlink" title="有了解什么是SSR吗？能讲一下嘛"></a>有了解什么是SSR吗？能讲一下嘛</h3><p>SSR 也就是服务端渲染，简单的讲就是将在客户端把标签渲染成HTML的工作放在服务端完成，然后再把html直接返回给客户端。SSR的优点在于可以加载的快速，白屏时间比CSR要短，SEO要比现在的单页面应用要好。 缺点在于开发和维护成本，开发条件会被限制。同时需要考虑服务器的部署和负载均衡。</p>
   </article>

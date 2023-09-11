@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -191,13 +200,27 @@
 <ul>
 <li><strong>在文档声明属性</strong></li>
 </ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 如需启用应用程序缓存，请在文档的 `&lt;html&gt;` 标签中包含 manifest 属性 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">HTML</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">manifest</span>=<span class="string">&quot;demo.appcache&quot;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 如需启用应用程序缓存，请在文档的 `&lt;html&gt;` 标签中包含 manifest 属性 --&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;demo.appcache&quot;</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <ul>
 <li><strong>建立<code>manifest</code>文件,在服务器配置</strong></li>
 </ul>
 <p>manifest 文件的建议的文件扩展名是：”.appcache”; 正确的 MIME-type，即 “text/cache-manifest”</p>
-<figure class="highlight md"><figcaption><span>demo.appcache</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">CACHE MANIFEST</span><br><span class="line"><span class="section"># 2012-02-21 v1.0.0</span></span><br><span class="line">/theme.css</span><br><span class="line">/logo.gif</span><br><span class="line">/main.js</span><br><span class="line"></span><br><span class="line">NETWORK:</span><br><span class="line"><span class="bullet">*</span></span><br><span class="line"></span><br><span class="line">FALLBACK:</span><br><span class="line">/html/ /offline.html</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>demo.appcache</span></div><code class="hljs md">CACHE MANIFEST
+<span class="hljs-section"># 2012-02-21 v1.0.0</span>
+/theme.css
+/logo.gif
+/main.js
+
+NETWORK:
+<span class="hljs-bullet">*</span>
+
+FALLBACK:
+/html/ /offline.html</code></pre>
 
 <p>CACHE MANIFEST：被缓存的文件；   NETWORK: 永远不被缓存的文件；  FALLBACK: 如果没网所使用的替代文件；<br>**注意：当<code>manifest</code>文件被更改的时候，应用的缓存也会被更改，如需要更新用户的缓存可以更改<code>manifest</code>文件的注释日期 **</p>
 <h3 id="控制台防窥：前端反调试"><a href="#控制台防窥：前端反调试" class="headerlink" title="控制台防窥：前端反调试"></a>控制台防窥：前端反调试</h3><blockquote>
@@ -206,17 +229,67 @@
 <ul>
 <li>**无限debugger反调试 **</li>
 </ul>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">((<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> callbacks = [],</span><br><span class="line">        timeLimit = <span class="number">50</span>,</span><br><span class="line">        open = <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">setInterval</span>(loop, <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">addListener</span>: <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">            callbacks.<span class="title function_">push</span>(fn);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">cancleListenr</span>: <span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">            callbacks = callbacks.<span class="title function_">filter</span>(<span class="keyword">function</span>(<span class="params">v</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> v !== fn;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">var</span> startTime = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        <span class="keyword">debugger</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">new</span> <span class="title class_">Date</span>() - startTime &gt; timeLimit) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!open) &#123;</span><br><span class="line">                callbacks.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">fn</span>) &#123;</span><br><span class="line">                    fn.<span class="title function_">call</span>(<span class="literal">null</span>);</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            open = <span class="literal">true</span>;</span><br><span class="line">            <span class="variable language_">window</span>.<span class="title function_">stop</span>();</span><br><span class="line">            <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            open = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)()).<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+ <pre><code class="hljs js">((<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">var</span> callbacks = [],
+        timeLimit = <span class="hljs-number">50</span>,
+        open = <span class="hljs-literal">false</span>;
+    <span class="hljs-built_in">setInterval</span>(loop, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> &#123;
+        <span class="hljs-attr">addListener</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+            callbacks.<span class="hljs-title function_">push</span>(fn);
+        &#125;,
+        <span class="hljs-attr">cancleListenr</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+            callbacks = callbacks.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) &#123;
+                <span class="hljs-keyword">return</span> v !== fn;
+            &#125;);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">loop</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
+        <span class="hljs-keyword">debugger</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() - startTime &gt; timeLimit) &#123;
+            <span class="hljs-keyword">if</span> (!open) &#123;
+                callbacks.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+                    fn.<span class="hljs-title function_">call</span>(<span class="hljs-literal">null</span>);
+                &#125;);
+            &#125;
+            open = <span class="hljs-literal">true</span>;
+            <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">stop</span>();
+            <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-title function_">reload</span>();
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            open = <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+&#125;)()).<span class="hljs-title function_">addListener</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-title function_">reload</span>();
+&#125;);</code></pre>
 <p>为防止 debugger 被替换，可以通过字符串拼接，然后用eval 执行</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span>(<span class="string">`((function()&#123;var callbacks=[],timeLimit=50,open=false;setInterval(loop,1);return&#123;addListener:function(fn)&#123;callbacks.push(fn);&#125;,cancleListenr:function(fn)&#123;callbacks=callbacks.filter(function(v)&#123;returnv!==fn;&#125;)&#125;&#125;;function loop()&#123;var startTime=new Date();debugger;if(new Date()-startTime&gt;timeLimit)&#123;if(!open)&#123;callbacks.forEach(function(fn)&#123;fn.call(null);&#125;);&#125;open=true;window.stop();window.location.reload()&#125;else&#123;open = false&#125;&#125;&#125;)()).addListener(function()&#123;window.location.reload()&#125;)`</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-built_in">eval</span>(<span class="hljs-string">`((function()&#123;var callbacks=[],timeLimit=50,open=false;setInterval(loop,1);return&#123;addListener:function(fn)&#123;callbacks.push(fn);&#125;,cancleListenr:function(fn)&#123;callbacks=callbacks.filter(function(v)&#123;returnv!==fn;&#125;)&#125;&#125;;function loop()&#123;var startTime=new Date();debugger;if(new Date()-startTime&gt;timeLimit)&#123;if(!open)&#123;callbacks.forEach(function(fn)&#123;fn.call(null);&#125;);&#125;open=true;window.stop();window.location.reload()&#125;else&#123;open = false&#125;&#125;&#125;)()).addListener(function()&#123;window.location.reload()&#125;)`</span>)</code></pre>
 
 <h3 id="控制台输出"><a href="#控制台输出" class="headerlink" title="控制台输出"></a>控制台输出</h3><p>控制台输出颜色样式：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">%s       占位符</span><br><span class="line">%d 或 %i    整数</span><br><span class="line">%f       浮点数</span><br><span class="line">%o%O     object对象</span><br><span class="line">%c       css样式</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> version = <span class="string">`1.3.0`</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(</span><br><span class="line">  <span class="string">`%c hello uniapp %c v<span class="subst">$&#123;version&#125;</span> `</span>,</span><br><span class="line">  <span class="string">&#x27;background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;&#x27;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs haml"><span class="hljs-tag">%<span class="hljs-selector-tag">s</span></span>       占位符
+<span class="hljs-tag">%<span class="hljs-selector-tag">d</span></span> 或 %i    整数
+<span class="hljs-tag">%<span class="hljs-selector-tag">f</span></span>       浮点数
+<span class="hljs-tag">%<span class="hljs-selector-tag">o</span></span>%O     object对象
+<span class="hljs-tag">%<span class="hljs-selector-tag">c</span></span>       css样式</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> version = <span class="hljs-string">`1.3.0`</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
+  <span class="hljs-string">`%c hello uniapp %c v<span class="hljs-subst">$&#123;version&#125;</span> `</span>,
+  <span class="hljs-string">&#x27;background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff&#x27;</span>,
+  <span class="hljs-string">&#x27;background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;&#x27;</span>
+)</code></pre>
+<pre><code class="hljs"></code></pre>
 
 <h3 id="Vue组件封装：组件设置"><a href="#Vue组件封装：组件设置" class="headerlink" title="Vue组件封装：组件设置"></a>Vue组件封装：组件设置</h3><p>通过 v-modal 对组件进行控制； v-modal 相当于 v-bind:value 和 @input 的结合；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">props</span>: [<span class="string">&quot;title&quot;</span>, <span class="string">&quot;value&quot;</span>],</span><br><span class="line">  <span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">prop</span>: <span class="string">&quot;value&quot;</span>,</span><br><span class="line">    <span class="attr">event</span>: <span class="string">&quot;change&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">props</span>: [<span class="hljs-string">&quot;title&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>],
+  <span class="hljs-attr">model</span>: &#123;
+    <span class="hljs-attr">prop</span>: <span class="hljs-string">&quot;value&quot;</span>,
+    <span class="hljs-attr">event</span>: <span class="hljs-string">&quot;change&quot;</span>
+  &#125;,
+  ...
+&#125;</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

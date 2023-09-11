@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -184,9 +193,21 @@
 <p>yarn add -D vitest || npm install -D vitest</p>
 </blockquote>
 <h3 id="配置命令"><a href="#配置命令" class="headerlink" title="配置命令"></a>配置命令</h3><p>在项目中，需要配置后才可以使用</p>
-<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="attr">test</span>: &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="attr">include</span>: [<span class="string">&#x27;test/**/*.test.ts&#x27;</span>], <span class="comment">//匹配包含文件</span></span><br><span class="line">    <span class="comment">// exclude:[], // 排除文件</span></span><br><span class="line">    <span class="attr">environment</span>: <span class="string">&#x27;jsdom&#x27;</span>, <span class="comment">//浏览器环境</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">test</span>: &#123;
+    <span class="hljs-comment">//...</span>
+    <span class="hljs-attr">include</span>: [<span class="hljs-string">&#x27;test/**/*.test.ts&#x27;</span>], <span class="hljs-comment">//匹配包含文件</span>
+    <span class="hljs-comment">// exclude:[], // 排除文件</span>
+    <span class="hljs-attr">environment</span>: <span class="hljs-string">&#x27;jsdom&#x27;</span>, <span class="hljs-comment">//浏览器环境</span>
+  &#125;,
+&#125;)</code></pre>
 
-<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vitest&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <ul>
 <li>可选 @vitest/coverage-c8 c8代码覆盖率测试</li>
@@ -194,7 +215,12 @@
 <blockquote>
 <p>yarn add @vitest/coverage-c8 -D || npm install @vitest/coverage-c8 -D</p>
 </blockquote>
-<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">&quot;coverage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vitest run --coverage&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-attr">&quot;coverage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest run --coverage&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <ul>
 <li>可选 jsdom 测试浏览器环境</li>
@@ -202,7 +228,12 @@
 <blockquote>
 <p>yarn add jsdom -D || npm install jsdom -D</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="attr">test</span>: &#123;</span><br><span class="line">    <span class="attr">environment</span>: <span class="string">&#x27;jsdom&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-comment">//...</span>
+  <span class="hljs-attr">test</span>: &#123;
+    <span class="hljs-attr">environment</span>: <span class="hljs-string">&#x27;jsdom&#x27;</span>
+  &#125;
+&#125;)</code></pre>
 
 <ul>
 <li>可选 @vitest/ui</li>
@@ -211,7 +242,12 @@
 <blockquote>
 <p>yarn add @vitest/ui -D || npm install @vitest/ui -D</p>
 </blockquote>
-<figure class="highlight json"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;vitestui&quot;</span><span class="punctuation">:</span> <span class="string">&quot;启动vitest的UI界面&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;vitestui&quot;</span><span class="punctuation">:</span> <span class="string">&quot;vitest --ui&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;vitestui&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;启动vitest的UI界面&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;vitestui&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest --ui&quot;</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <ul>
 <li>可选 ndb debugger</li>
@@ -223,7 +259,14 @@
 <ul>
 <li>可选 在代码里写测试</li>
 </ul>
-<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vitest/config&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">defineConfig</span>(&#123;</span><br><span class="line">    <span class="attr">test</span>: &#123;</span><br><span class="line">        <span class="attr">environment</span>: <span class="string">&#x27;node&#x27;</span>,</span><br><span class="line">        <span class="attr">includeSource</span>: [<span class="string">&#x27;src/*.&#123;js,ts&#125;&#x27;</span>]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; defineConfig &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest/config&#x27;</span>
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+    <span class="hljs-attr">test</span>: &#123;
+        <span class="hljs-attr">environment</span>: <span class="hljs-string">&#x27;node&#x27;</span>,
+        <span class="hljs-attr">includeSource</span>: [<span class="hljs-string">&#x27;src/*.&#123;js,ts&#125;&#x27;</span>]
+    &#125;
+&#125;)</code></pre>
 
 <ul>
 <li>可选 使用@vue/test-utils对vue组件测试</li>
@@ -232,30 +275,307 @@
 <p>yarn add –dev @vue/test-utils || npm install –save-dev @vue/test-utils</p>
 </blockquote>
 <p>简单示例</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mount &#125; <span class="keyword">from</span> <span class="string">&#x27;@vue/test-utils&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">TodoApp</span> <span class="keyword">from</span> <span class="string">&#x27;./TodoApp.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;renders a todo&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> wrapper = <span class="title function_">mount</span>(<span class="title class_">TodoApp</span>) <span class="comment">//包裹</span></span><br><span class="line">  <span class="keyword">const</span> todo = wrapper.<span class="title function_">get</span>(<span class="string">&#x27;[data-test=&quot;todo&quot;]&#x27;</span>) <span class="comment">//查找标签元素</span></span><br><span class="line">  <span class="title function_">expect</span>(todo.<span class="title function_">text</span>()).<span class="title function_">toBe</span>(<span class="string">&#x27;Learn Vue.js 3&#x27;</span>) <span class="comment">//断言文本</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; mount &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vue/test-utils&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">TodoApp</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./TodoApp.vue&#x27;</span>
+
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;renders a todo&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">const</span> wrapper = <span class="hljs-title function_">mount</span>(<span class="hljs-title class_">TodoApp</span>) <span class="hljs-comment">//包裹</span>
+  <span class="hljs-keyword">const</span> todo = wrapper.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;[data-test=&quot;todo&quot;]&#x27;</span>) <span class="hljs-comment">//查找标签元素</span>
+  <span class="hljs-title function_">expect</span>(todo.<span class="hljs-title function_">text</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;Learn Vue.js 3&#x27;</span>) <span class="hljs-comment">//断言文本</span>
+&#125;)</code></pre>
 
 <h3 id="单元测试示例"><a href="#单元测试示例" class="headerlink" title="单元测试示例"></a>单元测试示例</h3><p>在根目录添加 <code>__tests__</code> 文件夹，添加测试文件</p>
-<figure class="highlight js"><figcaption><span>__tests__/index.test.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; expect, test &#125; <span class="keyword">from</span> <span class="string">&#x27;vitest&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; testName &#125; <span class="keyword">from</span> <span class="string">&#x27;../src/index&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;vitest-test&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(<span class="title function_">testName</span>(<span class="string">&#x27;jack&#x27;</span>)).<span class="title function_">toBe</span>(<span class="string">&#x27;jack&#x27;</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>__tests__/index.test.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; expect, test &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; testName &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/index&#x27;</span>
 
-<figure class="highlight js"><figcaption><span>src/index.ts</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">testName</span> (name) &#123;</span><br><span class="line">    <span class="keyword">return</span> name</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;vitest-test&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-title function_">expect</span>(<span class="hljs-title function_">testName</span>(<span class="hljs-string">&#x27;jack&#x27;</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-string">&#x27;jack&#x27;</span>)
+&#125;)</code></pre>
+
+<pre><div class="caption"><span>src/index.ts</span></div><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">testName</span> (name) &#123;
+    <span class="hljs-keyword">return</span> name
+&#125;</code></pre>
 
 <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><h3 id="test-别名it"><a href="#test-别名it" class="headerlink" title="test 别名it"></a>test 别名<code>it</code></h3><p>test 定义了一组关于测试期望的方法。它接收测试名称(类似备注名称)和一个含有测试期望的函数,同时，可以提供一个超时时限（以毫秒为单位）用于指定等待多长时间后终止测试，默认为 5 秒</p>
-<figure class="highlight js"><figcaption><span>__test__/index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 超时阈值（以毫秒为单位）作为第三个参数传递给测试。默认值为 5 秒</span></span><br><span class="line"><span class="keyword">import</span> &#123; assert,test &#125; <span class="keyword">from</span> <span class="string">&#x27;vitest&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 示例</span></span><br><span class="line"><span class="title function_">test</span>(<span class="string">&#x27;name&#x27;</span>, <span class="keyword">async</span> () =&gt; &#123; <span class="comment">/* ... */</span> &#125;, <span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.skip :跳过测试，没有错误</span></span><br><span class="line">test.<span class="title function_">skip</span>(<span class="string">&quot;skipped test&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  assert.<span class="title function_">equal</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>), <span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.skipIf :需要根据条件，跳过测试</span></span><br><span class="line"><span class="keyword">const</span> isDev = process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&quot;development&quot;</span>;</span><br><span class="line">test.<span class="title function_">skipIf</span>(isDev)(<span class="string">&quot;prod only test&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 只要是开发环境就跳过</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.runIf :需要根据条件，运行测试</span></span><br><span class="line">test.<span class="title function_">runIf</span>(isDev)(<span class="string">&quot;dev only test&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 只在开发环境下进行测试</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.only :只允许特点条件下运行</span></span><br><span class="line">test.<span class="title function_">only</span>(<span class="string">&quot;test&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 仅运行此测试（以及仅标记有的其他测试）</span></span><br><span class="line">  assert.<span class="title function_">equal</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>), <span class="number">2</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.concurrent :并行运行测试</span></span><br><span class="line">test.<span class="title function_">concurrent</span>(<span class="string">&quot;concurrent test 1&quot;</span>, <span class="keyword">async</span> () =&gt; &#123; &#125;);</span><br><span class="line">test.<span class="title function_">concurrent</span>(<span class="string">&quot;concurrent test 2&quot;</span>, <span class="keyword">async</span> () =&gt; &#123; &#125;);</span><br><span class="line"><span class="comment">// test.skip、test.only 和 test.todo 适用于并发测试</span></span><br><span class="line">test.<span class="property">skip</span>.<span class="title function_">concurrent</span>(<span class="comment">/* ... */</span>); <span class="comment">// or test.concurrent.skip(/* ... */)</span></span><br><span class="line">test.<span class="property">only</span>.<span class="title function_">concurrent</span>(<span class="comment">/* ... */</span>); <span class="comment">// or test.concurrent.only(/* ... */)</span></span><br><span class="line">test.<span class="property">todo</span>.<span class="title function_">concurrent</span>(<span class="comment">/* ... */</span>); <span class="comment">// or test.concurrent.todo(/* ... */)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// test.todo 存根测试</span></span><br><span class="line"><span class="comment">// 测试报告中将显示一个条目，不知道有什么用</span></span><br><span class="line">test.<span class="title function_">todo</span>(<span class="string">&quot;unimplemented test&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.fails</span></span><br><span class="line"><span class="comment">//使用 test.fails 来指示测试断言将显式失败(不知道有什么屌用，没看到效果)</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">myAsyncFunc</span> = (<span class="params"></span>) =&gt; <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> <span class="title function_">resolve</span>(<span class="number">1</span>));</span><br><span class="line">test.<span class="title function_">fails</span>(<span class="string">&quot;failtest&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">expect</span>(<span class="title function_">myAsyncFunc</span>()).<span class="property">rejects</span>.<span class="title function_">toBe</span>(<span class="number">1</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// test.each 相同测试</span></span><br><span class="line"><span class="comment">// 当你需要使用不同的变量运行相同的测试时，请使用 test.each。 你可以按照测试参数的顺序，在测试名称插入符合printf 格式的参数</span></span><br><span class="line"><span class="comment">// %s:字符串;  %d:数值;  %i:整数;  %f:小数;  %j:json 格式;  %o:对象;  %#:对应的测试参数下标;  %%:单个百分比符号 (&#x27;%&#x27;)</span></span><br><span class="line">test.<span class="title function_">each</span>([</span><br><span class="line">  [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">  [<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>],</span><br><span class="line">])(<span class="string">&quot;name&quot;</span>, <span class="function">(<span class="params">a, b, expected</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(a + b).<span class="title function_">toBe</span>(expected);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>__test__/index.js</span></div><code class="hljs js"><span class="hljs-comment">// 超时阈值（以毫秒为单位）作为第三个参数传递给测试。默认值为 5 秒</span>
+<span class="hljs-keyword">import</span> &#123; assert,test &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+
+<span class="hljs-comment">// 示例</span>
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123; <span class="hljs-comment">/* ... */</span> &#125;, <span class="hljs-number">1000</span>)
+
+<span class="hljs-comment">// test.skip :跳过测试，没有错误</span>
+test.<span class="hljs-title function_">skip</span>(<span class="hljs-string">&quot;skipped test&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+&#125;);
+
+<span class="hljs-comment">// test.skipIf :需要根据条件，跳过测试</span>
+<span class="hljs-keyword">const</span> isDev = process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&quot;development&quot;</span>;
+test.<span class="hljs-title function_">skipIf</span>(isDev)(<span class="hljs-string">&quot;prod only test&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-comment">// 只要是开发环境就跳过</span>
+&#125;);
+
+<span class="hljs-comment">// test.runIf :需要根据条件，运行测试</span>
+test.<span class="hljs-title function_">runIf</span>(isDev)(<span class="hljs-string">&quot;dev only test&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-comment">// 只在开发环境下进行测试</span>
+&#125;);
+
+<span class="hljs-comment">// test.only :只允许特点条件下运行</span>
+test.<span class="hljs-title function_">only</span>(<span class="hljs-string">&quot;test&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-comment">// 仅运行此测试（以及仅标记有的其他测试）</span>
+  assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">2</span>);
+&#125;);
+
+<span class="hljs-comment">// test.concurrent :并行运行测试</span>
+test.<span class="hljs-title function_">concurrent</span>(<span class="hljs-string">&quot;concurrent test 1&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123; &#125;);
+test.<span class="hljs-title function_">concurrent</span>(<span class="hljs-string">&quot;concurrent test 2&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123; &#125;);
+<span class="hljs-comment">// test.skip、test.only 和 test.todo 适用于并发测试</span>
+test.<span class="hljs-property">skip</span>.<span class="hljs-title function_">concurrent</span>(<span class="hljs-comment">/* ... */</span>); <span class="hljs-comment">// or test.concurrent.skip(/* ... */)</span>
+test.<span class="hljs-property">only</span>.<span class="hljs-title function_">concurrent</span>(<span class="hljs-comment">/* ... */</span>); <span class="hljs-comment">// or test.concurrent.only(/* ... */)</span>
+test.<span class="hljs-property">todo</span>.<span class="hljs-title function_">concurrent</span>(<span class="hljs-comment">/* ... */</span>); <span class="hljs-comment">// or test.concurrent.todo(/* ... */)</span>
+
+<span class="hljs-comment">// test.todo 存根测试</span>
+<span class="hljs-comment">// 测试报告中将显示一个条目，不知道有什么用</span>
+test.<span class="hljs-title function_">todo</span>(<span class="hljs-string">&quot;unimplemented test&quot;</span>);
+
+<span class="hljs-comment">// test.fails</span>
+<span class="hljs-comment">//使用 test.fails 来指示测试断言将显式失败(不知道有什么屌用，没看到效果)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">myAsyncFunc</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> <span class="hljs-title function_">resolve</span>(<span class="hljs-number">1</span>));
+test.<span class="hljs-title function_">fails</span>(<span class="hljs-string">&quot;failtest&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">expect</span>(<span class="hljs-title function_">myAsyncFunc</span>()).<span class="hljs-property">rejects</span>.<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>);
+&#125;);
+
+<span class="hljs-comment">// test.each 相同测试</span>
+<span class="hljs-comment">// 当你需要使用不同的变量运行相同的测试时，请使用 test.each。 你可以按照测试参数的顺序，在测试名称插入符合printf 格式的参数</span>
+<span class="hljs-comment">// %s:字符串;  %d:数值;  %i:整数;  %f:小数;  %j:json 格式;  %o:对象;  %#:对应的测试参数下标;  %%:单个百分比符号 (&#x27;%&#x27;)</span>
+test.<span class="hljs-title function_">each</span>([
+  [<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>],
+  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>],
+  [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>],
+])(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-function">(<span class="hljs-params">a, b, expected</span>) =&gt;</span> &#123;
+  <span class="hljs-title function_">expect</span>(a + b).<span class="hljs-title function_">toBe</span>(expected);
+&#125;);</code></pre>
 
 <h3 id="expect-断言"><a href="#expect-断言" class="headerlink" title="expect 断言"></a>expect 断言</h3><p>expect 用来创建断言。在当前上下文中，可以使用 assertions 方法来断言一个语句。 Vitest 默认提供 chai 进行断言，同时基于 chai 实现兼容 Jest 的断言语句</p>
-<figure class="highlight js"><figcaption><span>__test__/index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; expect &#125; <span class="keyword">from</span> <span class="string">&quot;vitest&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> input = <span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>);</span><br><span class="line"><span class="title function_">expect</span>(input).<span class="title function_">toBe</span>(<span class="number">2</span>); <span class="comment">//断言input的值是2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// not 否定断言</span></span><br><span class="line"><span class="title function_">expect</span>(input).<span class="property">not</span>.<span class="title function_">toBe</span>(<span class="number">2</span>); <span class="comment">//断言input的值不是2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// toBe 相同断言 (禁止使用浮点型)</span></span><br><span class="line"><span class="keyword">const</span> stock = &#123;<span class="attr">type</span>:<span class="string">&quot;apples&quot;</span>, <span class="attr">count</span>: <span class="number">13</span>&#125;</span><br><span class="line"><span class="title function_">expect</span>(stock.<span class="property">count</span>).<span class="title function_">toBe</span>(<span class="number">13</span>); <span class="comment">//断言stock.count等于13</span></span><br><span class="line"><span class="comment">// toBeCloseTo 相同断言 (浮点型)</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">0.2</span> + <span class="number">0.1</span>).<span class="title function_">toBeCloseTo</span>(<span class="number">0.3</span>, <span class="number">5</span>); <span class="comment">//toBeCloseTo(结果,小数点后位数)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// toBeDefined 断言有返回</span></span><br><span class="line"><span class="title function_">expect</span>( <span class="function">() =&gt;</span> <span class="number">3</span> ).<span class="title function_">toBeDefined</span>(); <span class="comment">//断言值不是是undefined，可以用来判断函数有返回值</span></span><br><span class="line"><span class="comment">// toBeUndefined 断言无返回</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">an</span>=(<span class="params"></span>)=&gt;<span class="literal">undefined</span></span><br><span class="line"><span class="title function_">expect</span>( <span class="title function_">an</span>() ).<span class="title function_">toBeUndefined</span>(); <span class="comment">//断言值是undefined，可以用来判断函数没有返回值</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// toBeTruthy 断言为真</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">0.2</span> + <span class="number">0.1</span>).<span class="title function_">toBeTruthy</span>(); <span class="comment">//将结果转为布尔值，结果为true</span></span><br><span class="line"><span class="comment">// toBeFalsy 断言为假</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>-<span class="number">5</span>).<span class="title function_">toBeFalsy</span>()</span><br><span class="line"><span class="comment">// toBeNull 断言为null</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="literal">null</span>).<span class="title function_">toBeNull</span>()</span><br><span class="line"><span class="comment">// toBeNaN 断言为NaN</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="title class_">NaN</span>).<span class="title function_">toBeNull</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// toBeTypeOf 断言类型（bigint, boolean, function, number, object, string, symbol, undefined)</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="string">&#x27;actual&#x27;</span>).<span class="title function_">toBeTypeOf</span>(<span class="string">&quot;string&quot;</span>); <span class="comment">//断言类型为string</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// toBeInstanceOf 断言父类</span></span><br><span class="line"><span class="keyword">const</span> stocks = <span class="keyword">new</span> <span class="title class_">Stocks</span>();</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;stocks are instance of Stocks&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">expect</span>(stocks).<span class="title function_">toBeInstanceOf</span>(<span class="title class_">Stocks</span>); <span class="comment">//断言你的父类是它（断言他是你爸）</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// toBeGreaterThan 断言大小</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>).<span class="title function_">toBeGreaterThan</span>(<span class="number">1</span>); <span class="comment">//断言 5 大于 1</span></span><br><span class="line"><span class="comment">// toBeGreaterThanOrEqual 断言大小</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">5</span>).<span class="title function_">toBeGreaterThanOrEqual</span>(<span class="number">1</span>); <span class="comment">//断言 5 大于等于 1</span></span><br><span class="line"><span class="comment">// toBeLessThan 断言大小</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="title function_">toBeLessThan</span>(<span class="number">5</span>); <span class="comment">//断言 1 小于 5</span></span><br><span class="line"><span class="comment">// toBeLessThanOrEqual 断言大小</span></span><br><span class="line"><span class="title function_">expect</span>(<span class="number">1</span>).<span class="title function_">toBeLessThanOrEqual</span>(<span class="number">5</span>); <span class="comment">//断言 1 小于等于 5</span></span><br><span class="line"></span><br><span class="line">toEqual</span><br><span class="line">toStrictEqual</span><br><span class="line">toContain</span><br><span class="line">toContainEqual</span><br><span class="line">toHaveLength</span><br><span class="line">toHaveProperty</span><br><span class="line">toMatch</span><br><span class="line">toMatchObject</span><br><span class="line">toThrowError</span><br><span class="line">toMatchSnapshot</span><br><span class="line">toMatchInlineSnapshot</span><br><span class="line">toThrowErrorMatchingSnapshot</span><br><span class="line">toThrowErrorMatchingInlineSnapshot</span><br><span class="line">toHaveBeenCalled</span><br><span class="line">toHaveBeenCalledTimes</span><br><span class="line">toHaveBeenCalledWith</span><br><span class="line">toHaveBeenLastCalledWith</span><br><span class="line">toHaveBeenNthCalledWith</span><br><span class="line">toHaveReturned</span><br><span class="line">toHaveReturnedTimes</span><br><span class="line">toHaveReturnedWith</span><br><span class="line">toHaveLastReturnedWith</span><br><span class="line">toHaveNthReturnedWith</span><br><span class="line">toSatisfy</span><br><span class="line">resolves</span><br><span class="line">rejects</span><br><span class="line"></span><br><span class="line"><span class="comment">// expect.assertions 断言异步调用几次</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAsync</span>(<span class="params">...cbs</span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(cbs.<span class="title function_">map</span>(<span class="function">(<span class="params">cb, index</span>) =&gt;</span> <span class="title function_">cb</span>(&#123; index &#125;)));</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;all assertions are called&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  expect.<span class="title function_">assertions</span>(<span class="number">2</span>); <span class="comment">// 本次异步调用了两次</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">callback1</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBeTruthy</span>(); <span class="comment">//断言为真，函数有返回</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">callback2</span>(<span class="params">data</span>) &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBeTruthy</span>();  <span class="comment">//断言为真，函数有返回</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">doAsync</span>(callback1, callback2);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// expect.hasAssertions 断言至少调用一次</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">select</span>(<span class="params">id</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> db.<span class="title function_">select</span>(&#123; id &#125;).<span class="title function_">then</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(cbs.<span class="title function_">map</span>(<span class="function">(<span class="params">cb</span>) =&gt;</span> <span class="title function_">cb</span>(data)));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;callback was called&quot;</span>, <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  expect.<span class="title function_">hasAssertions</span>(); <span class="comment">// 本次调用了</span></span><br><span class="line">  <span class="title function_">onSelect</span>(<span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(data).<span class="title function_">toBeTruthy</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">select</span>(<span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">expect.<span class="property">anything</span></span><br><span class="line">expect.<span class="property">any</span></span><br><span class="line">expect.<span class="property">arrayContaining</span></span><br><span class="line">expect.<span class="property">objectContaining</span></span><br><span class="line">expect.<span class="property">stringContaining</span></span><br><span class="line">expect.<span class="property">stringMatching</span></span><br><span class="line">expect.<span class="property">addSnapshotSerializer</span></span><br><span class="line">expect.<span class="property">extend</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>__test__/index.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; expect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vitest&quot;</span>;
+
+<span class="hljs-keyword">const</span> input = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>);
+<span class="hljs-title function_">expect</span>(input).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">//断言input的值是2</span>
+
+<span class="hljs-comment">// not 否定断言</span>
+<span class="hljs-title function_">expect</span>(input).<span class="hljs-property">not</span>.<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">//断言input的值不是2</span>
+
+<span class="hljs-comment">// toBe 相同断言 (禁止使用浮点型)</span>
+<span class="hljs-keyword">const</span> stock = &#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;apples&quot;</span>, <span class="hljs-attr">count</span>: <span class="hljs-number">13</span>&#125;
+<span class="hljs-title function_">expect</span>(stock.<span class="hljs-property">count</span>).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">13</span>); <span class="hljs-comment">//断言stock.count等于13</span>
+<span class="hljs-comment">// toBeCloseTo 相同断言 (浮点型)</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">0.2</span> + <span class="hljs-number">0.1</span>).<span class="hljs-title function_">toBeCloseTo</span>(<span class="hljs-number">0.3</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">//toBeCloseTo(结果,小数点后位数)</span>
+
+<span class="hljs-comment">// toBeDefined 断言有返回</span>
+<span class="hljs-title function_">expect</span>( <span class="hljs-function">() =&gt;</span> <span class="hljs-number">3</span> ).<span class="hljs-title function_">toBeDefined</span>(); <span class="hljs-comment">//断言值不是是undefined，可以用来判断函数有返回值</span>
+<span class="hljs-comment">// toBeUndefined 断言无返回</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">an</span>=(<span class="hljs-params"></span>)=&gt;<span class="hljs-literal">undefined</span>
+<span class="hljs-title function_">expect</span>( <span class="hljs-title function_">an</span>() ).<span class="hljs-title function_">toBeUndefined</span>(); <span class="hljs-comment">//断言值是undefined，可以用来判断函数没有返回值</span>
+
+<span class="hljs-comment">// toBeTruthy 断言为真</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">0.2</span> + <span class="hljs-number">0.1</span>).<span class="hljs-title function_">toBeTruthy</span>(); <span class="hljs-comment">//将结果转为布尔值，结果为true</span>
+<span class="hljs-comment">// toBeFalsy 断言为假</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">5</span>-<span class="hljs-number">5</span>).<span class="hljs-title function_">toBeFalsy</span>()
+<span class="hljs-comment">// toBeNull 断言为null</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-literal">null</span>).<span class="hljs-title function_">toBeNull</span>()
+<span class="hljs-comment">// toBeNaN 断言为NaN</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-title class_">NaN</span>).<span class="hljs-title function_">toBeNull</span>()
+
+<span class="hljs-comment">// toBeTypeOf 断言类型（bigint, boolean, function, number, object, string, symbol, undefined)</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-string">&#x27;actual&#x27;</span>).<span class="hljs-title function_">toBeTypeOf</span>(<span class="hljs-string">&quot;string&quot;</span>); <span class="hljs-comment">//断言类型为string</span>
+
+<span class="hljs-comment">// toBeInstanceOf 断言父类</span>
+<span class="hljs-keyword">const</span> stocks = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stocks</span>();
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;stocks are instance of Stocks&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">expect</span>(stocks).<span class="hljs-title function_">toBeInstanceOf</span>(<span class="hljs-title class_">Stocks</span>); <span class="hljs-comment">//断言你的父类是它（断言他是你爸）</span>
+&#125;);
+
+<span class="hljs-comment">// toBeGreaterThan 断言大小</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">5</span>).<span class="hljs-title function_">toBeGreaterThan</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">//断言 5 大于 1</span>
+<span class="hljs-comment">// toBeGreaterThanOrEqual 断言大小</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">5</span>).<span class="hljs-title function_">toBeGreaterThanOrEqual</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">//断言 5 大于等于 1</span>
+<span class="hljs-comment">// toBeLessThan 断言大小</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toBeLessThan</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">//断言 1 小于 5</span>
+<span class="hljs-comment">// toBeLessThanOrEqual 断言大小</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toBeLessThanOrEqual</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">//断言 1 小于等于 5</span>
+
+toEqual
+toStrictEqual
+toContain
+toContainEqual
+toHaveLength
+toHaveProperty
+toMatch
+toMatchObject
+toThrowError
+toMatchSnapshot
+toMatchInlineSnapshot
+toThrowErrorMatchingSnapshot
+toThrowErrorMatchingInlineSnapshot
+toHaveBeenCalled
+toHaveBeenCalledTimes
+toHaveBeenCalledWith
+toHaveBeenLastCalledWith
+toHaveBeenNthCalledWith
+toHaveReturned
+toHaveReturnedTimes
+toHaveReturnedWith
+toHaveLastReturnedWith
+toHaveNthReturnedWith
+toSatisfy
+resolves
+rejects
+
+<span class="hljs-comment">// expect.assertions 断言异步调用几次</span>
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">doAsync</span>(<span class="hljs-params">...cbs</span>) &#123;
+  <span class="hljs-keyword">await</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(cbs.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">cb, index</span>) =&gt;</span> <span class="hljs-title function_">cb</span>(&#123; index &#125;)));
+&#125;
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;all assertions are called&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;
+  expect.<span class="hljs-title function_">assertions</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">// 本次异步调用了两次</span>
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">callback1</span>(<span class="hljs-params">data</span>) &#123;
+    <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBeTruthy</span>(); <span class="hljs-comment">//断言为真，函数有返回</span>
+  &#125;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">callback2</span>(<span class="hljs-params">data</span>) &#123;
+    <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBeTruthy</span>();  <span class="hljs-comment">//断言为真，函数有返回</span>
+  &#125;
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">doAsync</span>(callback1, callback2);
+&#125;);
+
+
+<span class="hljs-comment">// expect.hasAssertions 断言至少调用一次</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">select</span>(<span class="hljs-params">id</span>) &#123;
+  <span class="hljs-keyword">return</span> db.<span class="hljs-title function_">select</span>(&#123; id &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">all</span>(cbs.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">cb</span>) =&gt;</span> <span class="hljs-title function_">cb</span>(data)));
+  &#125;);
+&#125;
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;callback was called&quot;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;
+  expect.<span class="hljs-title function_">hasAssertions</span>(); <span class="hljs-comment">// 本次调用了</span>
+  <span class="hljs-title function_">onSelect</span>(<span class="hljs-function">(<span class="hljs-params">data</span>) =&gt;</span> &#123;
+    <span class="hljs-title function_">expect</span>(data).<span class="hljs-title function_">toBeTruthy</span>();
+  &#125;);
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">select</span>(<span class="hljs-number">3</span>);
+&#125;);
+
+expect.<span class="hljs-property">anything</span>
+expect.<span class="hljs-property">any</span>
+expect.<span class="hljs-property">arrayContaining</span>
+expect.<span class="hljs-property">objectContaining</span>
+expect.<span class="hljs-property">stringContaining</span>
+expect.<span class="hljs-property">stringMatching</span>
+expect.<span class="hljs-property">addSnapshotSerializer</span>
+expect.<span class="hljs-property">extend</span></code></pre>
 
 <h3 id="bench-基准"><a href="#bench-基准" class="headerlink" title="bench 基准"></a>bench 基准</h3><p><code>bench</code> 定义了一个基准。 在 Vitest 术语中，基准是定义一系列操作的函数。 Vitest 多次运行此函数以显示不同的性能结果</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; bench &#125; <span class="keyword">from</span> <span class="string">&quot;vitest&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">bench</span>( <span class="comment">// 报错： Error: `bench()` is only available in benchmark mode.</span></span><br><span class="line">  <span class="string">&quot;normal sorting&quot;</span>,</span><br><span class="line">  <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> x = [<span class="number">1</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    x.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">time</span>: <span class="number">1000</span> &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">bench.<span class="property">skip</span></span><br><span class="line">bench.<span class="property">only</span></span><br><span class="line">bench.<span class="property">todo</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; bench &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vitest&quot;</span>;
+
+<span class="hljs-title function_">bench</span>( <span class="hljs-comment">// 报错： Error: `bench()` is only available in benchmark mode.</span>
+  <span class="hljs-string">&quot;normal sorting&quot;</span>,
+  <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> x = [<span class="hljs-number">1</span>, <span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>];
+    x.<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">return</span> a - b;
+    &#125;);
+  &#125;,
+  &#123; <span class="hljs-attr">time</span>: <span class="hljs-number">1000</span> &#125;
+);
+
+bench.<span class="hljs-property">skip</span>
+bench.<span class="hljs-property">only</span>
+bench.<span class="hljs-property">todo</span></code></pre>
 
 <h3 id="describe-套件"><a href="#describe-套件" class="headerlink" title="describe 套件"></a>describe 套件</h3><p>当你在文件的顶层使用 test 或 bench 时，它们会被收集为它的隐式套件的一部分。 使用 describe 你可以在当前上下文中定义一个新套件，作为一组相关的测试或基准以及其他嵌套套件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; test,describe &#125; <span class="keyword">from</span> <span class="string">&#x27;vitest&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; testName &#125; <span class="keyword">from</span> <span class="string">&#x27;../src/index&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">  <span class="attr">isActive</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">32</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">describe</span>(<span class="string">&quot;person&quot;</span>, <span class="function">() =&gt;</span> &#123; <span class="comment">//类似一个嵌套结构，仅用于展示效果</span></span><br><span class="line">  <span class="title function_">test</span>(<span class="string">&quot;person is defined&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">expect</span>(person).<span class="property">toBeDefin</span> <span class="title function_">ed</span>();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// describe.skip 跳过</span></span><br><span class="line">describe.<span class="title function_">skip</span>(<span class="string">&quot;skipped suite&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="title function_">test</span>(<span class="string">&quot;sqrt&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 跳过测试套件，不会有错误</span></span><br><span class="line">    assert.<span class="title function_">equal</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>), <span class="number">3</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// describe.only 只运行里面的，其他的不运行</span></span><br><span class="line">describe.<span class="title function_">only</span>(<span class="string">&quot;skipped suite&quot;</span>, <span class="function">() =&gt;</span> &#123; <span class="comment">//执行</span></span><br><span class="line">  <span class="title function_">test</span>(<span class="string">&quot;sqrt&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    assert.<span class="title function_">equal</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>), <span class="number">3</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="title function_">test</span>(<span class="string">&quot;sqrt&quot;</span>, <span class="function">() =&gt;</span> &#123; <span class="comment">//不执行</span></span><br><span class="line">  assert.<span class="title function_">equal</span>(<span class="title class_">Math</span>.<span class="title function_">sqrt</span>(<span class="number">4</span>), <span class="number">3</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">describe.<span class="property">concurrent</span></span><br><span class="line">describe.<span class="property">shuffle</span></span><br><span class="line">describe.<span class="property">todo</span></span><br><span class="line">describe.<span class="property">each</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; test,describe &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; testName &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/index&#x27;</span>
 
-<h3 id="Vi-工具函数"><a href="#Vi-工具函数" class="headerlink" title="Vi 工具函数"></a>Vi 工具函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vi.advanceTimersByTime 定时停止</span></span><br><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(++i), <span class="number">50</span>);</span><br><span class="line">vi.<span class="title function_">advanceTimersByTime</span>(<span class="number">150</span>); <span class="comment">// 150 毫秒后停止执行</span></span><br><span class="line"></span><br><span class="line">vi.<span class="property">advanceTimersToNextTimer</span></span><br><span class="line">vi.<span class="property">clearAllMocks</span></span><br><span class="line">vi.<span class="property">clearAllTimers</span></span><br><span class="line">vi.<span class="property">dynamicImportSettled</span></span><br><span class="line">vi.<span class="property">fn</span></span><br><span class="line">vi.<span class="property">getMockedSystemTime</span></span><br><span class="line">vi.<span class="property">getRealSystemTime</span></span><br><span class="line">vi.<span class="property">mock</span></span><br><span class="line">vi.<span class="property">mocked</span></span><br><span class="line">vi.<span class="property">importActual</span></span><br><span class="line">vi.<span class="property">importMock</span></span><br><span class="line">vi.<span class="property">resetAllMocks</span></span><br><span class="line">vi.<span class="property">resetConfig</span></span><br><span class="line">vi.<span class="property">resetModules</span></span><br><span class="line">vi.<span class="property">restoreAllMocks</span></span><br><span class="line">vi.<span class="property">restoreCurrentDate</span></span><br><span class="line">vi.<span class="property">runAllTicks</span></span><br><span class="line">vi.<span class="property">runAllTimers</span></span><br><span class="line">vi.<span class="property">runOnlyPendingTimers</span></span><br><span class="line">vi.<span class="property">setSystemTime</span></span><br><span class="line">vi.<span class="property">setConfig</span></span><br><span class="line">vi.<span class="property">spyOn</span></span><br><span class="line">vi.<span class="property">stubGlobal</span></span><br><span class="line">vi.<span class="property">unmock</span></span><br><span class="line">vi.<span class="property">useFakeTimers</span></span><br><span class="line">vi.<span class="property">useRealTimers</span></span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">const</span> person = &#123;
+  <span class="hljs-attr">isActive</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">32</span>,
+&#125;;
 
-<h3 id="MockInstance-Methods"><a href="#MockInstance-Methods" class="headerlink" title="MockInstance Methods"></a>MockInstance Methods</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">getMockName</span><br><span class="line">mockClear</span><br><span class="line">mockName</span><br><span class="line">mockImplementation</span><br><span class="line">mockImplementationOnce</span><br><span class="line">mockRejectedValue</span><br><span class="line">mockRejectedValueOnce</span><br><span class="line">mockReset</span><br><span class="line">mockRestore</span><br><span class="line">mockResolvedValue</span><br><span class="line">mockResolvedValueOnce</span><br><span class="line">mockReturnThis</span><br><span class="line">mockReturnValue</span><br><span class="line">mockReturnValueOnce</span><br></pre></td></tr></table></figure>
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;person&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//类似一个嵌套结构，仅用于展示效果</span>
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;person is defined&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-title function_">expect</span>(person).<span class="hljs-property">toBeDefin</span> <span class="hljs-title function_">ed</span>();
+  &#125;);
+&#125;)
 
-<h3 id="MockInstance-Properties"><a href="#MockInstance-Properties" class="headerlink" title="MockInstance Properties"></a>MockInstance Properties</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mock.<span class="property">calls</span></span><br><span class="line">mock.<span class="property">lastCall</span></span><br><span class="line">mock.<span class="property">results</span></span><br><span class="line">mock.<span class="property">instances</span></span><br></pre></td></tr></table></figure>
+<span class="hljs-comment">// describe.skip 跳过</span>
+describe.<span class="hljs-title function_">skip</span>(<span class="hljs-string">&quot;skipped suite&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-comment">// 跳过测试套件，不会有错误</span>
+    assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+  &#125;);
+&#125;);
+
+<span class="hljs-comment">// describe.only 只运行里面的，其他的不运行</span>
+describe.<span class="hljs-title function_">only</span>(<span class="hljs-string">&quot;skipped suite&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//执行</span>
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+  &#125;);
+&#125;);
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//不执行</span>
+  assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+&#125;);
+
+describe.<span class="hljs-property">concurrent</span>
+describe.<span class="hljs-property">shuffle</span>
+describe.<span class="hljs-property">todo</span>
+describe.<span class="hljs-property">each</span></code></pre>
+
+<h3 id="Vi-工具函数"><a href="#Vi-工具函数" class="headerlink" title="Vi 工具函数"></a>Vi 工具函数</h3><pre><code class="hljs js"><span class="hljs-comment">// vi.advanceTimersByTime 定时停止</span>
+<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(++i), <span class="hljs-number">50</span>);
+vi.<span class="hljs-title function_">advanceTimersByTime</span>(<span class="hljs-number">150</span>); <span class="hljs-comment">// 150 毫秒后停止执行</span>
+
+vi.<span class="hljs-property">advanceTimersToNextTimer</span>
+vi.<span class="hljs-property">clearAllMocks</span>
+vi.<span class="hljs-property">clearAllTimers</span>
+vi.<span class="hljs-property">dynamicImportSettled</span>
+vi.<span class="hljs-property">fn</span>
+vi.<span class="hljs-property">getMockedSystemTime</span>
+vi.<span class="hljs-property">getRealSystemTime</span>
+vi.<span class="hljs-property">mock</span>
+vi.<span class="hljs-property">mocked</span>
+vi.<span class="hljs-property">importActual</span>
+vi.<span class="hljs-property">importMock</span>
+vi.<span class="hljs-property">resetAllMocks</span>
+vi.<span class="hljs-property">resetConfig</span>
+vi.<span class="hljs-property">resetModules</span>
+vi.<span class="hljs-property">restoreAllMocks</span>
+vi.<span class="hljs-property">restoreCurrentDate</span>
+vi.<span class="hljs-property">runAllTicks</span>
+vi.<span class="hljs-property">runAllTimers</span>
+vi.<span class="hljs-property">runOnlyPendingTimers</span>
+vi.<span class="hljs-property">setSystemTime</span>
+vi.<span class="hljs-property">setConfig</span>
+vi.<span class="hljs-property">spyOn</span>
+vi.<span class="hljs-property">stubGlobal</span>
+vi.<span class="hljs-property">unmock</span>
+vi.<span class="hljs-property">useFakeTimers</span>
+vi.<span class="hljs-property">useRealTimers</span></code></pre>
+
+<h3 id="MockInstance-Methods"><a href="#MockInstance-Methods" class="headerlink" title="MockInstance Methods"></a>MockInstance Methods</h3><pre><code class="hljs js">getMockName
+mockClear
+mockName
+mockImplementation
+mockImplementationOnce
+mockRejectedValue
+mockRejectedValueOnce
+mockReset
+mockRestore
+mockResolvedValue
+mockResolvedValueOnce
+mockReturnThis
+mockReturnValue
+mockReturnValueOnce</code></pre>
+
+<h3 id="MockInstance-Properties"><a href="#MockInstance-Properties" class="headerlink" title="MockInstance Properties"></a>MockInstance Properties</h3><pre><code class="hljs js">mock.<span class="hljs-property">calls</span>
+mock.<span class="hljs-property">lastCall</span>
+mock.<span class="hljs-property">results</span>
+mock.<span class="hljs-property">instances</span></code></pre>
 
 <h2 id="问题集合"><a href="#问题集合" class="headerlink" title="问题集合"></a>问题集合</h2><h3 id="执行vitestui-报错-Cannot-read-properties-of-undefined-reading-‘config’"><a href="#执行vitestui-报错-Cannot-read-properties-of-undefined-reading-‘config’" class="headerlink" title="执行vitestui 报错 Cannot read properties of undefined (reading ‘config’)"></a>执行vitestui 报错 Cannot read properties of undefined (reading ‘config’)</h3><p>vitest 和 vitest/ui 的版本和 vite 不匹配</p>
 <blockquote>

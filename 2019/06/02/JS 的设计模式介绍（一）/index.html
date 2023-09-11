@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -287,17 +296,91 @@
 <td align="left">可能导致模块间的强耦合，不利于单元测试；不适用于变化的对象；</td>
 </tr>
 </tbody></table>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var Siglecon=(function()&#123;</span><br><span class="line">    var instance;</span><br><span class="line">    function init()&#123;</span><br><span class="line">        // 私有方法和变量</span><br><span class="line">        var _string=&quot;私有变量&quot;;</span><br><span class="line">        var _random=Math.random();</span><br><span class="line">        function _log()&#123;</span><br><span class="line">          console.log(_string)</span><br><span class="line">        &#125;</span><br><span class="line">        return &#123; </span><br><span class="line">            // 公有变量和方法</span><br><span class="line">            getName:function()&#123;</span><br><span class="line">              return _string</span><br><span class="line">            &#125;,</span><br><span class="line">            log:&quot;公有变量&quot;,</span><br><span class="line">        &#125;;      </span><br><span class="line">    &#125;;</span><br><span class="line">    return &#123;</span><br><span class="line">        // 如果存在实例，则指向同一个实例</span><br><span class="line">        getInstance:function()&#123;</span><br><span class="line">            if(!instance)&#123;</span><br><span class="line">                instance=init();</span><br><span class="line">            &#125;;</span><br><span class="line">            return instance;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">var sigle=Siglecon.getInstance()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arcade"><span class="hljs-keyword">var</span> Siglecon=(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">var</span> instance;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">init</span>(<span class="hljs-params"></span>)&#123;
+        <span class="hljs-comment">// 私有方法和变量</span>
+        <span class="hljs-keyword">var</span> _string=<span class="hljs-string">&quot;私有变量&quot;</span>;
+        <span class="hljs-keyword">var</span> _random=Math.<span class="hljs-built_in">random</span>();
+        <span class="hljs-keyword">function</span> <span class="hljs-title function_">_log</span>(<span class="hljs-params"></span>)&#123;
+          <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(_string)
+        &#125;
+        <span class="hljs-keyword">return</span> &#123; 
+            <span class="hljs-comment">// 公有变量和方法</span>
+            getName:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+              <span class="hljs-keyword">return</span> _string
+            &#125;,
+            <span class="hljs-attr">log</span>:<span class="hljs-string">&quot;公有变量&quot;</span>,
+        &#125;;      
+    &#125;;
+    <span class="hljs-keyword">return</span> &#123;
+        <span class="hljs-comment">// 如果存在实例，则指向同一个实例</span>
+        getInstance:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+            <span class="hljs-keyword">if</span>(!instance)&#123;
+                instance=init();
+            &#125;;
+            <span class="hljs-keyword">return</span> instance;
+        &#125;
+    &#125;
+&#125;)();
+
+<span class="hljs-keyword">var</span> sigle=Siglecon.getInstance()</code></pre>
 
 <h2 id="构造器模式"><a href="#构造器模式" class="headerlink" title="构造器模式"></a>构造器模式</h2><p>在面向对象中，构造器是一个新建对象的内存被分配后，用来初始化该对象的一个特殊函数，js 通过 <code>new</code> 关键字调用一个函数，这个函数被当做构造器来使用，我们则通过<code>this</code>来实现构造函数的运用</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function Gender(x)&#123;</span><br><span class="line">  this.gender=x</span><br><span class="line">&#125;</span><br><span class="line">Gender.prototype.toString=function()&#123;</span><br><span class="line">  return &#x27;此人性别为&#x27;+this.gender</span><br><span class="line">&#125;</span><br><span class="line">let Jack=new Gender(&#x27;男&#x27;)</span><br><span class="line">Jack.toString()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Gender</span>(<span class="hljs-params">x</span>)&#123;
+  <span class="hljs-variable language_">this</span>.<span class="hljs-property">gender</span>=x
+&#125;
+<span class="hljs-title class_">Gender</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">toString</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;此人性别为&#x27;</span>+<span class="hljs-variable language_">this</span>.<span class="hljs-property">gender</span>
+&#125;
+<span class="hljs-keyword">let</span> <span class="hljs-title class_">Jack</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Gender</span>(<span class="hljs-string">&#x27;男&#x27;</span>)
+<span class="hljs-title class_">Jack</span>.<span class="hljs-title function_">toString</span>()</code></pre>
 
 <h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><p>“四人帮”称原型模式是一种基于现有对象模板，通过克隆方式创建对象的模式；那么js中则是指用原型实例指向创建对象的种类，并且通过拷贝这些原型创建新的对象</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var car=&#123;</span><br><span class="line">    name:&#x27;大众&#x27;,</span><br><span class="line">    toLog:function()&#123;</span><br><span class="line">        console.log(&#x27;汽车&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__</span><br><span class="line">var youCar=Object.create(car)</span><br><span class="line"></span><br><span class="line">// Object.create()方法可以传入第二个参数来实现对新创建对象属性的添加</span><br><span class="line">var myCar=Object.create(car,&#123;</span><br><span class="line">    id:&#123;</span><br><span class="line">        value:&#x27;asd&#x27;,   // 值</span><br><span class="line">        writable:false, // 可写</span><br><span class="line">        configurable:true // 能否使用delete、能否需改属性特性、或能否修改访问器属性</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> car=&#123;
+    <span class="hljs-attr">name</span>:<span class="hljs-string">&#x27;大众&#x27;</span>,
+    <span class="hljs-attr">toLog</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;汽车&#x27;</span>)
+    &#125;
+&#125;
+<span class="hljs-comment">// Object.create()方法创建一个新对象，使用现有的对象来提供新创建的对象的__proto__</span>
+<span class="hljs-keyword">var</span> youCar=<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(car)
+
+<span class="hljs-comment">// Object.create()方法可以传入第二个参数来实现对新创建对象属性的添加</span>
+<span class="hljs-keyword">var</span> myCar=<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(car,&#123;
+    <span class="hljs-attr">id</span>:&#123;
+        <span class="hljs-attr">value</span>:<span class="hljs-string">&#x27;asd&#x27;</span>,   <span class="hljs-comment">// 值</span>
+        <span class="hljs-attr">writable</span>:<span class="hljs-literal">false</span>, <span class="hljs-comment">// 可写</span>
+        <span class="hljs-attr">configurable</span>:<span class="hljs-literal">true</span> <span class="hljs-comment">// 能否使用delete、能否需改属性特性、或能否修改访问器属性</span>
+    &#125;
+&#125;)</code></pre>
 
 <h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><p>工厂模式是用于创建对象（视为工厂里的产品）的设计模式，其创建对象时无需指定创建对象的具体类。既提供一个创建对象的公共接口</p>
 <p>工厂模式定义一个用于创建对象的接口，这个接口由子类决定实例化哪一个类。该模式使一个类的实例化延迟到了子类。而子类可以重写接口方法以便创建的时候指定自己的对象类型</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">let  factory=function(role) &#123;</span><br><span class="line">    function superman() &#123;</span><br><span class="line">        this.name =&#x27;超级管理员&#x27;,</span><br><span class="line">        this.role = [&#x27;修改密码&#x27;, &#x27;发布消息&#x27;, &#x27;查看主页&#x27;]</span><br><span class="line">    &#125;</span><br><span class="line">    function commonMan() &#123;</span><br><span class="line">        this.name = &#x27;普通游客&#x27;,</span><br><span class="line">        this.role = [&#x27;查看主页&#x27;]</span><br><span class="line">    &#125;</span><br><span class="line">    switch(role) &#123;</span><br><span class="line">        case &#x27;superman&#x27;:</span><br><span class="line">        return new superman();</span><br><span class="line">        break;</span><br><span class="line">        case &#x27;man&#x27;:</span><br><span class="line">        return new commonMan();</span><br><span class="line">        break;</span><br><span class="line">        default:</span><br><span class="line">        throw new Error(&#x27;参数错误&#x27;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 根据参数的不同创建不同的对象</span><br><span class="line">let superman = factory(&#x27;superman&#x27;);</span><br><span class="line">let man = factory(&#x27;man&#x27;);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">let</span>  factory=<span class="hljs-keyword">function</span>(<span class="hljs-params">role</span>) &#123;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">superman</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> =<span class="hljs-string">&#x27;超级管理员&#x27;</span>,
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">role</span> = [<span class="hljs-string">&#x27;修改密码&#x27;</span>, <span class="hljs-string">&#x27;发布消息&#x27;</span>, <span class="hljs-string">&#x27;查看主页&#x27;</span>]
+    &#125;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">commonMan</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;普通游客&#x27;</span>,
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">role</span> = [<span class="hljs-string">&#x27;查看主页&#x27;</span>]
+    &#125;
+    <span class="hljs-keyword">switch</span>(role) &#123;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;superman&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> superman();
+        <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;man&#x27;</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title function_">commonMan</span>();
+        <span class="hljs-keyword">break</span>;
+        <span class="hljs-attr">default</span>:
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;参数错误&#x27;</span>)
+    &#125;
+&#125;
+
+<span class="hljs-comment">// 根据参数的不同创建不同的对象</span>
+<span class="hljs-keyword">let</span> superman = <span class="hljs-title function_">factory</span>(<span class="hljs-string">&#x27;superman&#x27;</span>);
+<span class="hljs-keyword">let</span> man = <span class="hljs-title function_">factory</span>(<span class="hljs-string">&#x27;man&#x27;</span>);</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

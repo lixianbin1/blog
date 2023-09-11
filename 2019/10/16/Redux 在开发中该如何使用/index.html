@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -182,17 +191,36 @@
   <article class="passage-article">
     <p>在开始前，我们需要知道，在本文中将会是简单的应用Redux，一些复杂和高级阶段的API 可能不会出现，这可能需要自主学习</p>
 <h2 id="开始和安装"><a href="#开始和安装" class="headerlink" title="开始和安装"></a>开始和安装</h2><p>在项目中，当我们需要Redux时，我们需要使用 npm 安装 Redux 和 React绑定库，开发调试工具</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install redux --save</span><br><span class="line">npm install react-redux --save</span><br><span class="line">npm install redux-devtools --save-dev</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs q">npm install redux --<span class="hljs-built_in">save</span>
+npm install react-redux --<span class="hljs-built_in">save</span>
+npm install redux-devtools --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span></code></pre>
 
 <h2 id="核心和概念"><a href="#核心和概念" class="headerlink" title="核心和概念"></a>核心和概念</h2><h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>把数据从应用传到stort的有效载体，它是store数据的唯一来源.Action 本质上是对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。同时建议使用单独的模块或文件来存放 action</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">ADD_TODO</span> = <span class="string">&#x27;ADD_TODO&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="variable constant_">ADD_TODO</span>,</span><br><span class="line">  <span class="attr">text</span>: <span class="string">&#x27;Build my first Redux app&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ADD_TODO</span> = <span class="hljs-string">&#x27;ADD_TODO&#x27;</span>
+&#123;
+  <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">ADD_TODO</span>,
+  <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Build my first Redux app&#x27;</span>
+&#125;</code></pre>
 
 <p>由于 action 的数量众多，因此需要构建函数方法。 Action 创建函数 就是生成 action 的方法，只是简单的返回一个 action</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">addTodo</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="variable constant_">ADD_TODO</span>,</span><br><span class="line">    text</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Redux 中只需把 action 创建函数的结果传给 dispatch() 方法即可发起一次 dispatch 过程</span></span><br><span class="line"><span class="comment">// dispatch(addTodo(text))</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">addTodo</span>(<span class="hljs-params">text</span>) &#123;
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">ADD_TODO</span>,
+    text
+  &#125;
+&#125;
+
+<span class="hljs-comment">// Redux 中只需把 action 创建函数的结果传给 dispatch() 方法即可发起一次 dispatch 过程</span>
+<span class="hljs-comment">// dispatch(addTodo(text))</span></code></pre>
 
 
 <h3 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h3><p>Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state 当我们确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">todoApp</span>(<span class="params">state = initialState, action</span>) &#123;</span><br><span class="line">  <span class="comment">// 这里暂不处理任何 action，</span></span><br><span class="line">  <span class="comment">// 仅返回传入的 state。</span></span><br><span class="line">  <span class="comment">// initialState 可能就是state数据中的一个</span></span><br><span class="line">  <span class="keyword">return</span> state</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">todoApp</span>(<span class="hljs-params">state = initialState, action</span>) &#123;
+  <span class="hljs-comment">// 这里暂不处理任何 action，</span>
+  <span class="hljs-comment">// 仅返回传入的 state。</span>
+  <span class="hljs-comment">// initialState 可能就是state数据中的一个</span>
+  <span class="hljs-keyword">return</span> state
+&#125;</code></pre>
 
 <p><strong>永远不要在 reducer 里做这些操作</strong>：</p>
 <ul>
@@ -201,7 +229,12 @@
 <li>调用非纯函数，如 Date.now() 或 Math.random()。</li>
 </ul>
 <h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><p>Store是存储数据的地方，它就像是一个容器。用来维持应用所有的 state 树 的一个对象，整个应用只有一个 Store。redux 提供 createStore(fn) 并接收一个函数来生成一个 Store，</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">&#x27;redux&#x27;</span></span><br><span class="line"><span class="keyword">import</span> todoApp <span class="keyword">from</span> <span class="string">&#x27;./reducers&#x27;</span>  <span class="comment">//由下文中的Reducer集合文件</span></span><br><span class="line"><span class="keyword">let</span> store = <span class="title function_">createStore</span>(todoApp) </span><br><span class="line"></span><br><span class="line"><span class="comment">//createStore() 的第二个参数是可选的, 用于设置 state 初始状态</span></span><br><span class="line"><span class="keyword">let</span> store = <span class="title function_">createStore</span>(todoApp, <span class="variable language_">window</span>.<span class="property">STATE_FROM_SERVER</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
+<span class="hljs-keyword">import</span> todoApp <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers&#x27;</span>  <span class="hljs-comment">//由下文中的Reducer集合文件</span>
+<span class="hljs-keyword">let</span> store = <span class="hljs-title function_">createStore</span>(todoApp) 
+
+<span class="hljs-comment">//createStore() 的第二个参数是可选的, 用于设置 state 初始状态</span>
+<span class="hljs-keyword">let</span> store = <span class="hljs-title function_">createStore</span>(todoApp, <span class="hljs-variable language_">window</span>.<span class="hljs-property">STATE_FROM_SERVER</span>)</code></pre>
 
 <p><strong>Store的职责</strong></p>
 <ul>
@@ -228,7 +261,19 @@
 <li>使用纯函数进行修改</li>
 </ul>
 <p>Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。刚开始你可以只有一个 reducer，随着应用变大，你可以把它拆成多个小的 reducers，分别独立地操作 state tree 的不同部分，因为 reducer 只是函数，你可以控制它们被调用的顺序，传入附加数据，甚至编写可复用的 reducer 来处理一些通用任务，如分页器</p>
-<h2 id="项目结构参考"><a href="#项目结构参考" class="headerlink" title="项目结构参考"></a>项目结构参考</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  actions/     【存储action创建函数的文件夹】</span><br><span class="line">    index.js</span><br><span class="line">  components/  【存储展示组件的文件夹】</span><br><span class="line">    App.js</span><br><span class="line">    ...</span><br><span class="line">  containers/  【存储容器组件的文件夹】</span><br><span class="line">    Add.js</span><br><span class="line">    ...</span><br><span class="line">  reducers/    【存储reducer的的文件夹】</span><br><span class="line">    index.js</span><br><span class="line">    add.js</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<h2 id="项目结构参考"><a href="#项目结构参考" class="headerlink" title="项目结构参考"></a>项目结构参考</h2><pre><code class="hljs x86asm">src/
+  actions/     【存储action创建函数的文件夹】
+    index<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+  components/  【存储展示组件的文件夹】
+    App<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...
+  containers/  【存储容器组件的文件夹】
+    <span class="hljs-keyword">Add</span><span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...
+  reducers/    【存储reducer的的文件夹】
+    index<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    <span class="hljs-keyword">add</span><span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...</code></pre>
 
 <blockquote>
 <p>展示组件和容器组件的区分</p>
@@ -262,9 +307,58 @@
 <td align="left">向Redux 派发action</td>
 </tr>
 </tbody></table>
-<figure class="highlight plaintext"><figcaption><span>入口文件 index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">import &#123; Provider &#125; from &#x27;react-redux&#x27;</span><br><span class="line">import &#123; createStore &#125; from &#x27;redux&#x27;</span><br><span class="line">import rootReducer from &#x27;./reducers&#x27;</span><br><span class="line">import App from &#x27;./components/App&#x27;</span><br><span class="line"></span><br><span class="line">const store = createStore(rootReducer)</span><br><span class="line"></span><br><span class="line">// Provider是React Redux 的高阶组件，用于将 Redux 绑定到 React </span><br><span class="line">render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;/Provider&gt;,</span><br><span class="line">  document.getElementById(&#x27;root&#x27;)</span><br><span class="line">)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>入口文件 index.js</span></div><code class="hljs javascript">...
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Provider</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
+<span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/App&#x27;</span>
 
-<figure class="highlight plaintext"><figcaption><span>容器组件 TodoList.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">import &#123; connect &#125; from &#x27;react-redux&#x27;</span><br><span class="line">import &#123; toggleTodo &#125; from &#x27;../actions&#x27;</span><br><span class="line">import List from &#x27;../components/TodoList&#x27;</span><br><span class="line"></span><br><span class="line">// </span><br><span class="line">const getVisibleTodos = (todos, filter) =&gt; &#123;</span><br><span class="line">  switch (filter) &#123;</span><br><span class="line">    case &#x27;SHOW_COMPLETED&#x27;:</span><br><span class="line">      return todos.filter(t =&gt; t.completed) //数组通过completed属性筛选</span><br><span class="line">    case &#x27;SHOW_ACTIVE&#x27;:</span><br><span class="line">      return todos.filter(t =&gt; !t.completed)</span><br><span class="line">    case &#x27;SHOW_ALL&#x27;:</span><br><span class="line">    default:</span><br><span class="line">      return todos</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mapStateToProps = function(state)&#123;</span><br><span class="line">  console.log(state)</span><br><span class="line">  return (&#123;</span><br><span class="line">    todos: getVisibleTodos(state.todos, state.visibilityFilter)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const mapDispatchToProps = function(dispatch)&#123;</span><br><span class="line">  console.log(&#x27;1&#x27;)</span><br><span class="line">  return(&#123;</span><br><span class="line">    toggleTodo: id =&gt; dispatch(toggleTodo(id))</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default connect(   //以注入对象的方式，以健取值</span><br><span class="line">  mapStateToProps, //注入todos</span><br><span class="line">  mapDispatchToProps</span><br><span class="line">)(List)</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createStore</span>(rootReducer)
+
+<span class="hljs-comment">// Provider是React Redux 的高阶组件，用于将 Redux 绑定到 React </span>
+<span class="hljs-title function_">render</span>(
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>)
+)
+...</code></pre>
+
+<pre><div class="caption"><span>容器组件 TodoList.js</span></div><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; connect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; toggleTodo &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../actions&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">List</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../components/TodoList&#x27;</span>
+
+<span class="hljs-comment">// </span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">getVisibleTodos</span> = (<span class="hljs-params">todos, filter</span>) =&gt; &#123;
+  <span class="hljs-keyword">switch</span> (filter) &#123;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_COMPLETED&#x27;</span>:
+      <span class="hljs-keyword">return</span> todos.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> t.<span class="hljs-property">completed</span>) <span class="hljs-comment">//数组通过completed属性筛选</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_ACTIVE&#x27;</span>:
+      <span class="hljs-keyword">return</span> todos.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> !t.<span class="hljs-property">completed</span>)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_ALL&#x27;</span>:
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-keyword">return</span> todos
+  &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> mapStateToProps = <span class="hljs-keyword">function</span>(<span class="hljs-params">state</span>)&#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(state)
+  <span class="hljs-keyword">return</span> (&#123;
+    <span class="hljs-attr">todos</span>: <span class="hljs-title function_">getVisibleTodos</span>(state.<span class="hljs-property">todos</span>, state.<span class="hljs-property">visibilityFilter</span>)
+  &#125;)
+&#125;
+
+<span class="hljs-keyword">const</span> mapDispatchToProps = <span class="hljs-keyword">function</span>(<span class="hljs-params">dispatch</span>)&#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;1&#x27;</span>)
+  <span class="hljs-keyword">return</span>(&#123;
+    <span class="hljs-attr">toggleTodo</span>: <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> <span class="hljs-title function_">dispatch</span>(<span class="hljs-title function_">toggleTodo</span>(id))
+  &#125;)
+&#125;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">connect</span>(   <span class="hljs-comment">//以注入对象的方式，以健取值</span>
+  mapStateToProps, <span class="hljs-comment">//注入todos</span>
+  mapDispatchToProps
+)(<span class="hljs-title class_">List</span>)</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

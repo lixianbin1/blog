@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -193,9 +202,35 @@
 </blockquote>
 </li>
 </ul>
-<figure class="highlight js"><figcaption><span>index.js （入口文件示例）</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abc=<span class="title function_">fucntion</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>=&#123;abc&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.js （入口文件示例）</span></div><code class="hljs js"><span class="hljs-keyword">var</span> abc=<span class="hljs-title function_">fucntion</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;abc&#x27;</span>)
+&#125;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>=&#123;abc&#125;</code></pre>
 
-<figure class="highlight json"><figcaption><span>package.json (imgzoom-li 示例)</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;imgzoom-li&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0.6.5&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;一个可以查看图片(可以缩放，拖拽)的JS插件&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;main&quot;</span><span class="punctuation">:</span> <span class="string">&quot;./src/imgZoom.js&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;keywords&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;图片&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;scripts&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;test&quot;</span><span class="punctuation">:</span> <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;repository&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;git+https://github.com/lixianbin1/imgZoom.git&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;license&quot;</span><span class="punctuation">:</span> <span class="string">&quot;ISC&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;bugs&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/lixianbin1/imgZoom/issues&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;homepage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://github.com/lixianbin1/imgZoom#readme&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;devDependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;dependencies&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json (imgzoom-li 示例)</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;imgzoom-li&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.6.5&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;一个可以查看图片(可以缩放，拖拽)的JS插件&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;./src/imgZoom.js&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;keywords&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-string">&quot;图片&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;repository&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;git&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;git+https://github.com/lixianbin1/imgZoom.git&quot;</span>
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;author&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;license&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;ISC&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;bugs&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/lixianbin1/imgZoom/issues&quot;</span>
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;homepage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://github.com/lixianbin1/imgZoom#readme&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;devDependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;dependencies&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <h2 id="项目开始"><a href="#项目开始" class="headerlink" title="项目开始"></a>项目开始</h2><p>1：初始化项目, -y 用于跳过具体设定（如果已有，可以跳过）</p>
 <blockquote>
@@ -214,7 +249,10 @@
 <p>npm publish  # npm publish –access public</p>
 </blockquote>
 <p>** 注意：更新命令和发布命令一样，你只需要改动 <code>package.json</code> 的版本号</p>
-<h2 id="在-npm-发布携带-私有名的公共包"><a href="#在-npm-发布携带-私有名的公共包" class="headerlink" title="在 npm 发布携带@私有名的公共包"></a>在 npm 发布携带@私有名的公共包</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="comment">// 修改名称为 </span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;@lixianbin1/imgZoom&quot;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="在-npm-发布携带-私有名的公共包"><a href="#在-npm-发布携带-私有名的公共包" class="headerlink" title="在 npm 发布携带@私有名的公共包"></a>在 npm 发布携带@私有名的公共包</h2><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-comment">// 修改名称为 </span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@lixianbin1/imgZoom&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <blockquote>
 <p>npm publish –access public</p>
@@ -232,10 +270,16 @@
 <blockquote>
 <p>npm inin -y </p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>index.js （入口文件示例）</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> abc=<span class="title function_">fucntion</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;abc&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>=&#123;abc&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.js （入口文件示例）</span></div><code class="hljs js"><span class="hljs-keyword">var</span> abc=<span class="hljs-title function_">fucntion</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;abc&#x27;</span>)
+&#125;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>=&#123;abc&#125;</code></pre>
 
 <p>2：修改package.json，添加以下代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;name&quot;: &quot;@lixianbin1/toolbox-li&quot;,</span><br><span class="line">&quot;publishConfig&quot;: &#123;</span><br><span class="line">    &quot;registry&quot;:&quot;https://npm.pkg.github.com/&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs perl"><span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;@lixianbin1/toolbox-li&quot;</span>,
+<span class="hljs-string">&quot;publishConfig&quot;</span>: &#123;
+    <span class="hljs-string">&quot;registry&quot;</span>:<span class="hljs-string">&quot;https://npm.pkg.github.com/&quot;</span>
+&#125;,</code></pre>
 
 <p>3：执行登录命令，输入你的注册账号和<code>申请的token</code>(<strong>password不是填写密码，是填写token</strong>),及公开联系邮箱进行登录</p>
 <blockquote>
@@ -248,7 +292,10 @@
 <h1 id="可选的操作"><a href="#可选的操作" class="headerlink" title="可选的操作"></a>可选的操作</h1><h2 id="通过-uglifyjs-进行压缩"><a href="#通过-uglifyjs-进行压缩" class="headerlink" title="通过 uglifyjs 进行压缩"></a>通过 uglifyjs 进行压缩</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><blockquote>
 <p>npm install uglify-js -g</p>
 </blockquote>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uglifyjs xxx.js  -c -o xxx.min.js   # 压缩命令 -c压缩 -o输出 </span><br><span class="line"></span><br><span class="line">-b 美化, 美化会影响压缩【</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><pre><code class="hljs mipsasm">uglifyjs xxx.<span class="hljs-keyword">js </span> -c -o xxx.min.<span class="hljs-keyword">js </span>  <span class="hljs-comment"># 压缩命令 -c压缩 -o输出 </span>
+
+-<span class="hljs-keyword">b </span>美化, 美化会影响压缩【
+</code></pre>
 
 <h1 id="可能的报错"><a href="#可能的报错" class="headerlink" title="可能的报错"></a>可能的报错</h1><p>** code E400 **</p>
 <p>项目名称不能有大写字母，将 <code>package.json</code> 内的项目名称改成小写</p>

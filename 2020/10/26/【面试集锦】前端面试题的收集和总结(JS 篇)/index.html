@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -200,7 +209,24 @@
 <h3 id="call-和-apply-的区别"><a href="#call-和-apply-的区别" class="headerlink" title="call 和 apply 的区别"></a>call 和 apply 的区别</h3><p>fn.call(obj, arg1, arg2, …),调用一个函数, 具有一个指定的this值和分别地提供的参数(参数的列表)。</p>
 <p>fn.apply(obj, [argsArray]),调用一个函数，具有一个指定的this值，以及作为一个数组（或类数组对象）提供的参数。</p>
 <p>bind 和 call/apply 有一个很重要的区别，一个函数被 call/apply 的时候，会直接调用，但是 bind 会创建一个<strong>新函数</strong>。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var person= &#123;</span><br><span class="line">    name: &#x27;lily&#x27;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function func(age, job) &#123;</span><br><span class="line">    console.log(this.name +&#x27;的年龄是&#x27;+age);</span><br><span class="line">    this.job=job</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 此时this指向person，[]作为func的参数传入</span><br><span class="line">func.apply(person, [18, &#x27;coder&#x27;]);</span><br><span class="line"></span><br><span class="line">// 和apply类似，只是参数形式变了</span><br><span class="line">func.call(person, 18, &#x27;student&#x27;);</span><br><span class="line"></span><br><span class="line">// 和call类似，但是需要手动赋予调用</span><br><span class="line">var funca=func.bind(person,18, &#x27;bind&#x27;)</span><br><span class="line">funca()</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk">var person= &#123;
+    name: <span class="hljs-string">&#x27;lily&#x27;</span>
+&#125;
+
+<span class="hljs-keyword">function</span> <span class="hljs-keyword">func</span>(age, job) &#123;
+    console.log(this.name +<span class="hljs-string">&#x27;的年龄是&#x27;</span>+age);
+    this.job=job
+&#125;
+
+<span class="hljs-regexp">//</span> 此时this指向person，[]作为<span class="hljs-keyword">func</span>的参数传入
+<span class="hljs-keyword">func</span>.apply(person, [<span class="hljs-number">18</span>, <span class="hljs-string">&#x27;coder&#x27;</span>]);
+
+<span class="hljs-regexp">//</span> 和apply类似，只是参数形式变了
+<span class="hljs-keyword">func</span>.call(person, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;student&#x27;</span>);
+
+<span class="hljs-regexp">//</span> 和call类似，但是需要手动赋予调用
+var funca=<span class="hljs-keyword">func</span>.bind(person,<span class="hljs-number">18</span>, <span class="hljs-string">&#x27;bind&#x27;</span>)
+funca()</code></pre>
 <h3 id="前端同步和异步，你是怎么理解"><a href="#前端同步和异步，你是怎么理解" class="headerlink" title="前端同步和异步，你是怎么理解"></a>前端同步和异步，你是怎么理解</h3><ul>
 <li>同步就是指一个进程在执行某个请求的时候，若该请求需要一段时间才能返回信息，那么这个进程将会一直等待下去，直到收到返回信息才继续执行下去；</li>
 <li>异步是指进程不需要一直等下去，而是继续执行下面的操作，不管其他进程的状态。当有消息返回时系统会通知进程进行处理，这样可以提高执行的效率；</li>
@@ -209,7 +235,22 @@
 <p>面向对象有三种特性：封装，继承，多态；</p>
 <h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p>对应Es5来说没有类这个概念，但由于存在函数作用域，就可以模拟类这个概念，（类是一个模板，它描述一类对象的行为和状态）在Es5中，类其实就是保存了一个函数的变量，这个函数有自己的属性和方法。将属性和方法组成一个类的过程就是封装。</p>
 <p>通过构造函数来创建对象；构造函数其实就是普通的函数，只不过有以下的特点：首字母大写，内部使用this，使用new生成实例。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">Cat</span>(<span class="params">name,color</span>)&#123;   <span class="comment">//构造函数</span></span><br><span class="line">    <span class="keyword">var</span> sex = <span class="number">12</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">color</span> = color;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title class_">Cat</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">type</span> = <span class="string">&quot;猫科动物&quot;</span>;    <span class="comment">//原型</span></span><br><span class="line"><span class="title class_">Cat</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">eat</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;吃老鼠&quot;</span>)&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Cat</span>.<span class="property">setTime</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;    <span class="comment">// 语法</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;this is new time&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> cat1 = <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;大毛&quot;</span>,<span class="string">&quot;黄色&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> cat2 = <span class="keyword">new</span> <span class="title class_">Cat</span>(<span class="string">&quot;二毛&quot;</span>,<span class="string">&quot;黑色&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(cat1.<span class="property">type</span>); <span class="comment">// 猫科动物</span></span><br><span class="line">cat1.<span class="title function_">eat</span>(); <span class="comment">// 吃老鼠</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Cat</span>(<span class="hljs-params">name,color</span>)&#123;   <span class="hljs-comment">//构造函数</span>
+    <span class="hljs-keyword">var</span> sex = <span class="hljs-number">12</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = name;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">color</span> = color;
+&#125;
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">type</span> = <span class="hljs-string">&quot;猫科动物&quot;</span>;    <span class="hljs-comment">//原型</span>
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;吃老鼠&quot;</span>)&#125;;
+
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property">setTime</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;    <span class="hljs-comment">// 语法</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;this is new time&#x27;</span>)
+&#125;
+
+<span class="hljs-keyword">var</span> cat1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>(<span class="hljs-string">&quot;大毛&quot;</span>,<span class="hljs-string">&quot;黄色&quot;</span>);
+<span class="hljs-keyword">var</span> cat2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>(<span class="hljs-string">&quot;二毛&quot;</span>,<span class="hljs-string">&quot;黑色&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(cat1.<span class="hljs-property">type</span>); <span class="hljs-comment">// 猫科动物</span>
+cat1.<span class="hljs-title function_">eat</span>(); <span class="hljs-comment">// 吃老鼠</span></code></pre>
 <p>通过构造函数、原型和. 语法三者都可以在类上添加属性和方法。但是三者是有一定的区别。<br><strong>构造函数</strong>：通过this添加的属性和方法总是指向当前对象的，所以在实例化的时候，通过this添加的属性和方法都会在内存中复制一份，这样就会造成内存的浪费。但是这样创建的好处是即使改变了某一个对象的属性或方法，不会影响其他的对象（因为每一个对象都是复制的一份）。<br><strong>原型</strong>：通过原型继承的方法并不是自身的，我们要在原型链上一层一层的查找，这样创建的好处是只在内存中创建一次，实例化的对象都会指向这个prototype 对象，但是这样做也有弊端，因为实例化的对象的原型都是指向同一内存地址，改动其中的一个对象的属性可能会影响到其他的对象<br><strong>. 语法</strong>：在类的外部通过. 语法创建的属性和方法只会创建一次，但是这样创建的实例化的对象是访问不到的，只能通过类的自身访问</p>
 <blockquote>
 <p>在函数作用域内的属性和变量都是私有变量，而通过this定义的属性和方法在实例时都会复制一遍，所以是公有变量，而原型也是公有变量。</p>
@@ -218,9 +259,47 @@
 <p>继承：子类可以使用父类的所有功能，并且对这些功能进行扩展。继承的过程，就是从一般到特殊的过程</p>
 </blockquote>
 <p>类式继承：所谓的类式继承就是使用的原型的方式，将方法添加在父类的原型上，然后子类的原型是父类的一个实例化对象。子类实例化对象的属性和方法都指向父类的原型，子类之间可能会互相影响</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明父类</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">SuperClass</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> id = <span class="number">1</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = [<span class="string">&#x27;javascript&#x27;</span>];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">superValue</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;superValue is true&#x27;</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(id)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为父类添加共有方法</span></span><br><span class="line"><span class="title class_">SuperClass</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getSuperValue</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.superValue();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明子类</span></span><br><span class="line"><span class="keyword">var</span> <span class="title class_">SubClass</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">subValue</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;this is subValue &#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//继承父类</span></span><br><span class="line"><span class="title class_">SubClass</span>.<span class="property"><span class="keyword">prototype</span></span> = <span class="keyword">new</span> <span class="title class_">SuperClass</span>() ;         <span class="comment">//关键语句</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">//声明父类</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">SuperClass</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">var</span> id = <span class="hljs-number">1</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = [<span class="hljs-string">&#x27;javascript&#x27;</span>];
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">superValue</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;superValue is true&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(id)
+    &#125;
+&#125;;
+
+<span class="hljs-comment">//为父类添加共有方法</span>
+<span class="hljs-title class_">SuperClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">getSuperValue</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.superValue();
+&#125;;
+
+<span class="hljs-comment">//声明子类</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">SubClass</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">subValue</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;this is subValue &#x27;</span>)
+    &#125;
+&#125;;
+
+<span class="hljs-comment">//继承父类</span>
+<span class="hljs-title class_">SubClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">SuperClass</span>() ;         <span class="hljs-comment">//关键语句</span></code></pre>
 <p>构造函数继承:SuperClass.call(this,id) ，每个实例化的子类互不影响，内存浪费</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明父类</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SuperClass</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">&#x27;javascript&#x27;</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">books</span>=[<span class="string">&#x27;javascript&#x27;</span>,<span class="string">&#x27;html&#x27;</span>,<span class="string">&#x27;css&#x27;</span>];</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">id</span> = id</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明父类原型方法</span></span><br><span class="line"><span class="title class_">SuperClass</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">showBooks</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">books</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明子类</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SubClass</span>(<span class="params">id</span>) &#123;</span><br><span class="line">    <span class="title class_">SuperClass</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>,id)        <span class="comment">//关键语句；通过call 替换掉父级到this指向</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">//声明父类</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">SuperClass</span>(<span class="hljs-params">id</span>) &#123;
+    <span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;javascript&#x27;</span>
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">books</span>=[<span class="hljs-string">&#x27;javascript&#x27;</span>,<span class="hljs-string">&#x27;html&#x27;</span>,<span class="hljs-string">&#x27;css&#x27;</span>];
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">id</span> = id
+&#125;
+
+<span class="hljs-comment">//声明父类原型方法</span>
+<span class="hljs-title class_">SuperClass</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">showBooks</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">books</span>)
+&#125;
+
+<span class="hljs-comment">//声明子类</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">SubClass</span>(<span class="hljs-params">id</span>) &#123;
+    <span class="hljs-title class_">SuperClass</span>.<span class="hljs-title function_">call</span>(<span class="hljs-variable language_">this</span>,id)        <span class="hljs-comment">//关键语句；通过call 替换掉父级到this指向</span>
+&#125;</code></pre>
 <h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p>多态的基本概念：一个引用类型（变量）在不同情况下的多种状态。多态用途在于做面向对象开发时，需要有一个方法不变，但是它接收的参数类型是变化的，就可以使用多态</p>
 
   </article>

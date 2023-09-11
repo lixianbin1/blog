@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,9 +190,54 @@
   
   <article class="passage-article">
     <h2 id="需要了解的几个概念"><a href="#需要了解的几个概念" class="headerlink" title="需要了解的几个概念"></a>需要了解的几个概念</h2><p>构造函数：构造函数其实就是普通的函数，只不过有以下的特点：首字母大写，内部使用this，使用new生成实例<br>面向对象：面向对象和面向过程都是一种思想，他们的区别在于，一个以过程为主，一个以对象为主<br>封装：类其实就是保存了一个函数的变量，这个函数有自己的属性和方法。将属性和方法组成一个类的过程就是封装<br>继承：子类可以使用父类的所有功能，并且对这些功能进行扩展。继承的过程，就是从一般到特殊的过程<br>多态：一个引用类型（变量）在不同情况下的多种状态。多态用途在于做面向对象开发时，方法不变，参数改变。</p>
-<h2 id="模板方法模式和原型对象"><a href="#模板方法模式和原型对象" class="headerlink" title="模板方法模式和原型对象"></a>模板方法模式和原型对象</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var Cat = function()&#123;&#125;              // 声明构造函数</span><br><span class="line"></span><br><span class="line">Cat.prototype.call=function()&#123;      // 设置原型方法</span><br><span class="line">    console.log(&#x27;喵喵喵&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.eat=function()&#123;</span><br><span class="line">    console.log(&#x27;猫吃了一条鱼&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Cat.prototype.init=function()&#123;</span><br><span class="line">    this.call()</span><br><span class="line">    this.eat()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let xiaohei=new Cat()</span><br><span class="line">xiaohei.init()</span><br></pre></td></tr></table></figure>
+<h2 id="模板方法模式和原型对象"><a href="#模板方法模式和原型对象" class="headerlink" title="模板方法模式和原型对象"></a>模板方法模式和原型对象</h2><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> <span class="hljs-title class_">Cat</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;              <span class="hljs-comment">// 声明构造函数</span>
 
-<h2 id="模板方法，原型链和继承"><a href="#模板方法，原型链和继承" class="headerlink" title="模板方法，原型链和继承"></a>模板方法，原型链和继承</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">// 父类构造函数</span><br><span class="line">var Animal=function()&#123;&#125;              // 声明构造函数</span><br><span class="line">Animal.prototype.call=function()&#123;    // 设置原型方法</span><br><span class="line">    throw this+&#x27;需要重写 call 方法&#x27;</span><br><span class="line">&#125;</span><br><span class="line">Animal.prototype.eat=function()&#123;</span><br><span class="line">    throw this+&#x27;需要重写 eat 方法&#x27;</span><br><span class="line">&#125;</span><br><span class="line">Animal.prototype.iseat=function()&#123;   // 通过子类的复写决定父类的执行</span><br><span class="line">    return false</span><br><span class="line">&#125;</span><br><span class="line">Animal.prototype.init=function()&#123;</span><br><span class="line">    this.call()</span><br><span class="line">    if(this.iseat)&#123;</span><br><span class="line">      this.eat()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 子类构造函数</span><br><span class="line">var Cat = function()&#123;&#125;</span><br><span class="line">Cat.prototype = new Animal()         // 将原型指向父类实例来继承父类</span><br><span class="line"></span><br><span class="line">Cat.prototype.call=function()&#123;</span><br><span class="line">    console.log(&#x27;喵喵喵&#x27;)</span><br><span class="line">&#125;</span><br><span class="line">Cat.prototype.eat=function()&#123;</span><br><span class="line">    console.log(&#x27;猫吃了一条鱼&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let xiaohei=new Cat()</span><br><span class="line">xiaohei.init()</span><br></pre></td></tr></table></figure>
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">call</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;      <span class="hljs-comment">// 设置原型方法</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;喵喵喵&#x27;</span>)
+&#125;
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;猫吃了一条鱼&#x27;</span>)
+&#125;
+
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">init</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">call</span>()
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">eat</span>()
+&#125;
+
+<span class="hljs-keyword">let</span> xiaohei=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>()
+xiaohei.<span class="hljs-title function_">init</span>()</code></pre>
+
+<h2 id="模板方法，原型链和继承"><a href="#模板方法，原型链和继承" class="headerlink" title="模板方法，原型链和继承"></a>模板方法，原型链和继承</h2><pre><code class="hljs javascript"><span class="hljs-comment">// 父类构造函数</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Animal</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;              <span class="hljs-comment">// 声明构造函数</span>
+<span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">call</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;    <span class="hljs-comment">// 设置原型方法</span>
+    <span class="hljs-keyword">throw</span> <span class="hljs-variable language_">this</span>+<span class="hljs-string">&#x27;需要重写 call 方法&#x27;</span>
+&#125;
+<span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">throw</span> <span class="hljs-variable language_">this</span>+<span class="hljs-string">&#x27;需要重写 eat 方法&#x27;</span>
+&#125;
+<span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">iseat</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;   <span class="hljs-comment">// 通过子类的复写决定父类的执行</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+&#125;
+<span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">init</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">call</span>()
+    <span class="hljs-keyword">if</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">iseat</span>)&#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">eat</span>()
+    &#125;
+&#125;
+
+<span class="hljs-comment">// 子类构造函数</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Cat</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>()         <span class="hljs-comment">// 将原型指向父类实例来继承父类</span>
+
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">call</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;喵喵喵&#x27;</span>)
+&#125;
+<span class="hljs-title class_">Cat</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;猫吃了一条鱼&#x27;</span>)
+&#125;
+
+<span class="hljs-keyword">let</span> xiaohei=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Cat</span>()
+xiaohei.<span class="hljs-title function_">init</span>()</code></pre>
 
 <h2 id="模板方法模式的应用场景"><a href="#模板方法模式的应用场景" class="headerlink" title="模板方法模式的应用场景"></a>模板方法模式的应用场景</h2><p>模板模式，顾名思义，就是通过模板拓印的方式。通过抽象类来定义一个逻辑模板，逻辑框架、逻辑原型，然后将无法决定的部分抽象成抽象类交由子类来实现，一般这些抽象类的调用逻辑还是在抽象类中完成的。</p>
 <ul>

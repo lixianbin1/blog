@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -183,25 +192,45 @@
     <h2 id="软件打开方式找不到相关软件"><a href="#软件打开方式找不到相关软件" class="headerlink" title="软件打开方式找不到相关软件"></a>软件打开方式找不到相关软件</h2><blockquote>
 <p>通过修改注册表来实现软件关联</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">window + R</span><br><span class="line">输入 regedit</span><br><span class="line"></span><br><span class="line">## 打开目录</span><br><span class="line"></span><br><span class="line">路径 HKEY_CLASSES_ROOT\Applications\xxxxxx</span><br><span class="line"></span><br><span class="line">修改正确路径</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs clean">window + R
+输入 regedit
+
+## 打开目录
+
+路径 HKEY_CLASSES_ROOT\Applications\xxxxxx
+
+修改正确路径</code></pre>
 
 <h2 id="强制谷歌使用HTTPS访问网页"><a href="#强制谷歌使用HTTPS访问网页" class="headerlink" title="强制谷歌使用HTTPS访问网页"></a>强制谷歌使用HTTPS访问网页</h2><ul>
 <li>输入chrome://net-internals/#hsts<ul>
-<li>找到 Add HSTS/PKP domain<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">填入 Domain:example.com</span><br><span class="line">点击 Add 添加</span><br></pre></td></tr></table></figure></li>
+<li>找到 Add HSTS/PKP domain<pre><code class="hljs pgsql">填入 <span class="hljs-keyword">Domain</span>:example.com
+点击 <span class="hljs-keyword">Add</span> 添加</code></pre></li>
 </ul>
 </li>
 <li>如需要去除此相关 <ul>
-<li>找到 Query HSTS/PKP domain<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">填入 Domain:example.com</span><br><span class="line">点击 Query 去除</span><br></pre></td></tr></table></figure></li>
+<li>找到 Query HSTS/PKP domain<pre><code class="hljs arcade">填入 <span class="hljs-built_in">Domain</span>:example.com
+点击 Query 去除</code></pre></li>
 </ul>
 </li>
 </ul>
 <h2 id="DNS-解析过慢导致网速下降"><a href="#DNS-解析过慢导致网速下降" class="headerlink" title="DNS 解析过慢导致网速下降"></a>DNS 解析过慢导致网速下降</h2><p>通过CMD命令 查看DNS</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs ada">ipconfig /<span class="hljs-keyword">all</span></code></pre>
 <p>通过修改高解析DNS来加快解析速度</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">打开网络和共享中心</span><br><span class="line">点击当前的网络连接，打开属性</span><br><span class="line">双击Internet协议版本4（TCP/IPV4），修改DNS</span><br><span class="line">DNSPod</span><br><span class="line">    首选：119.29.29.29</span><br><span class="line">    备选：182.254.116.116</span><br><span class="line">114DNS</span><br><span class="line">    首选：114.114.114.114</span><br><span class="line">    备选：114.114.114.115</span><br><span class="line">阿里 AliDNS</span><br><span class="line">    首选：223.5.5.5</span><br><span class="line">    备选：223.6.6.6</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs dns">打开网络和共享中心
+点击当前的网络连接，打开属性
+双击Internet协议版本<span class="hljs-number">4</span>（TCP/IPV4），修改DNS
+DNSPod
+    首选：<span class="hljs-number">119.29.29.29</span>
+    备选：<span class="hljs-number">182.254.116.116</span>
+<span class="hljs-number">114</span>DNS
+    首选：<span class="hljs-number">114.114.114.114</span>
+    备选：<span class="hljs-number">114.114.114.115</span>
+阿里 AliDNS
+    首选：<span class="hljs-number">223.5.5.5</span>
+    备选：<span class="hljs-number">223.6.6.6</span></code></pre>
 
 <h2 id="软件的端口占用等端口问题"><a href="#软件的端口占用等端口问题" class="headerlink" title="软件的端口占用等端口问题"></a>软件的端口占用等端口问题</h2><p>查看使用中的端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -na</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">netstat -na</span></code></pre>
 <table>
 <thead>
 <tr>
@@ -275,9 +304,26 @@
 <blockquote>
 <p>点击 <code>首选项</code> - <code>Package Settings</code> - <code>Package Control</code> - <code>Settings user</code></p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;channels&quot;:[</span><br><span class="line">    &quot;http://jiataoyuan.com/static/channel_v3.json&quot;,</span><br><span class="line">    &quot;http://120.79.206.185/files/http/channel_v3.json&quot;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs prolog"><span class="hljs-string">&quot;channels&quot;</span>:[
+    <span class="hljs-string">&quot;http://jiataoyuan.com/static/channel_v3.json&quot;</span>,
+    <span class="hljs-string">&quot;http://120.79.206.185/files/http/channel_v3.json&quot;</span>
+],</code></pre>
 <h2 id="编辑执行属于自己的油猴脚本"><a href="#编辑执行属于自己的油猴脚本" class="headerlink" title="编辑执行属于自己的油猴脚本"></a>编辑执行属于自己的油猴脚本</h2><p>没找到想要的油猴脚本;在油猴插件处点击 + 号进行编辑；通过设置选择脚本执行的时间</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// ==UserScript==</span><br><span class="line">// @name         游侠去除背景图</span><br><span class="line">// @namespace    http://tampermonkey.net/   【域名】</span><br><span class="line">// @version      0.1                        【版本号】</span><br><span class="line">// @description  try to take over the world!【脚本介绍】</span><br><span class="line">// @author       you                        【作者名称】</span><br><span class="line">// @match        https://www.ali213.net/*   【匹配的网站】</span><br><span class="line">// @match        https://3g.ali213.net/*</span><br><span class="line">// @require      http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js 【外部加载资源】</span><br><span class="line">// @grant        none                       【授权】</span><br><span class="line">// ==/UserScript==</span><br><span class="line"></span><br><span class="line">(function() &#123;</span><br><span class="line">    //代码</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> ==UserScript==
+<span class="hljs-regexp">//</span> @name         游侠去除背景图
+<span class="hljs-regexp">//</span> @namespace    http:<span class="hljs-regexp">//</span>tampermonkey.net/   【域名】
+<span class="hljs-regexp">//</span> @version      <span class="hljs-number">0.1</span>                        【版本号】
+<span class="hljs-regexp">//</span> @description  try to take over the world!【脚本介绍】
+<span class="hljs-regexp">//</span> @author       you                        【作者名称】
+<span class="hljs-regexp">//</span> @match        https:<span class="hljs-regexp">//</span>www.ali213.net/*   【匹配的网站】
+<span class="hljs-regexp">//</span> @match        https:<span class="hljs-regexp">//</span><span class="hljs-number">3</span>g.ali213.net/*
+<span class="hljs-regexp">//</span> @require      http:<span class="hljs-regexp">//</span>apps.bdimg.com<span class="hljs-regexp">/libs/</span>jquery<span class="hljs-regexp">/2.1.4/</span>jquery.min.js 【外部加载资源】
+<span class="hljs-regexp">//</span> @grant        none                       【授权】
+<span class="hljs-regexp">//</span> ==/UserScript==
+
+(<span class="hljs-keyword">function</span>() &#123;
+    <span class="hljs-regexp">//</span>代码
+&#125;)();</code></pre>
 
 <h2 id="Steam-添加被屏蔽-锁区-的游戏"><a href="#Steam-添加被屏蔽-锁区-的游戏" class="headerlink" title="Steam 添加被屏蔽(锁区)的游戏"></a>Steam 添加被屏蔽(锁区)的游戏</h2><p>当然，仅限于软锁，打开steam win+R 输入下列代码 steam://install/游戏id</p>
 <p><code>win</code> + <code>R</code></p>
@@ -292,7 +338,8 @@
 <p>2:在手机端浏览器访问 <a href="http://192.168.x.x/xxx">http://192.168.x.x/xxx</a>  (注意是 http ,不是https)</p>
 </blockquote>
 <h2 id="当没有管理员权限却需要安装-msi-文件的时候"><a href="#当没有管理员权限却需要安装-msi-文件的时候" class="headerlink" title="当没有管理员权限却需要安装 msi 文件的时候"></a>当没有管理员权限却需要安装 msi 文件的时候</h2><p>没有管理员权限，但是安装软件又需要，可以考虑直接解压<code>msi文件</code>，看直接执行<code>exe文件</code> 看能否执行</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将D盘下的xxx.msi文件 解压到D盘下的demo目录 </span></span><br><span class="line">msiexec /a <span class="string">&quot;D:\xxx.msi&quot;</span> /qb TARGETDIR=<span class="string">&quot;D:\demo&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs sh"><span class="hljs-comment"># 将D盘下的xxx.msi文件 解压到D盘下的demo目录 </span>
+msiexec /a <span class="hljs-string">&quot;D:\xxx.msi&quot;</span> /qb TARGETDIR=<span class="hljs-string">&quot;D:\demo&quot;</span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

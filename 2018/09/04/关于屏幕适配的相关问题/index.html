@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -181,29 +190,68 @@
   
   <article class="passage-article">
     <h2 id="关于页面的相关设置"><a href="#关于页面的相关设置" class="headerlink" title="关于页面的相关设置"></a>关于页面的相关设置</h2><p>lang 属性可用于大部分 HTML 标签，当html 标记为 en 时，谷歌会提醒翻译</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=&quot;zh-CN&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">&lt;html <span class="hljs-attribute">lang</span>=<span class="hljs-string">&quot;zh-CN&quot;</span>&gt;</code></pre>
 
 <p>关键字，关键词:对搜索引擎友好，在爬虫进行网站收录时会进行标记</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;keywords&quot; content=&quot;关键字1,关键字2,关键字3&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;keywords&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;关键字1,关键字2,关键字3&quot;</span>&gt;</code></pre>
 
 <p>网站内容描述</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;description&quot; content=&quot;对页面的简单的一句话描述&quot;&gt; </span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;对页面的简单的一句话描述&quot;</span>&gt;</code></pre>
 
 <p>标注页面的作者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;author&quot; content=&quot;Xianbin Li&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;Xianbin Li&quot;</span>&gt;</code></pre>
 
 <p>设置手机页面的 viewport 缩放比例</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta  name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0&quot;&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs routeros">&lt;meta  <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0&quot;</span>&gt;</code></pre>
 
-<h2 id="常见屏幕大小参考"><a href="#常见屏幕大小参考" class="headerlink" title="常见屏幕大小参考"></a>常见屏幕大小参考</h2><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* device-width 真实显示屏大小 */</span></span><br><span class="line"><span class="comment">/* width 浏览器大小 */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*彩色设备 and 大于等于1920px的屏幕*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1920px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*小于于等于1920px的屏幕 and 大于等于1680px的屏幕*/</span></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1920px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1680px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1680px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1366px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1366px</span>) <span class="keyword">and</span> (<span class="attribute">min-width</span>:<span class="number">1024px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@media</span> (<span class="attribute">max-width</span>:<span class="number">1024px</span>)&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*ipad pro*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">1024px</span>) <span class="keyword">and</span> (<span class="attribute">min-device-width</span>:<span class="number">769px</span>) &#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">1024px</span>) &#123; &#125;</span><br><span class="line"><span class="comment">/*ipad*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">768px</span>) <span class="keyword">and</span> (<span class="attribute">min-device-width</span>:<span class="number">450px</span>) &#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">768px</span>) &#123; &#125;</span><br><span class="line"><span class="comment">/*大部分手机*/</span></span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-device-width</span>:<span class="number">450px</span>)&#123; &#125;</span><br><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width</span>:<span class="number">450px</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见屏幕大小参考"><a href="#常见屏幕大小参考" class="headerlink" title="常见屏幕大小参考"></a>常见屏幕大小参考</h2><pre><code class="hljs CSS"><span class="hljs-comment">/* device-width 真实显示屏大小 */</span>
+<span class="hljs-comment">/* width 浏览器大小 */</span>
 
-<h2 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="title function_">test</span>(navigator.<span class="property">userAgent</span>) ? <span class="string">&quot;https://www.baidu.com/&quot;</span> :  <span class="string">&quot;http://news.baidu.com/&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果是手机端则去百度，不是则去新闻</span></span><br></pre></td></tr></table></figure>
+<span class="hljs-comment">/*彩色设备 and 大于等于1920px的屏幕*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1920px</span>)&#123; &#125;
 
-<h2 id="关于屏幕大小属性参考"><a href="#关于屏幕大小属性参考" class="headerlink" title="关于屏幕大小属性参考"></a>关于屏幕大小属性参考</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 浏览器窗口大小（包括工具栏）</span><br><span class="line">window.outerHeight</span><br><span class="line">window.outerWidth</span><br><span class="line"></span><br><span class="line"># 窗口文档显示区（不包含滚动条）</span><br><span class="line">window.innerWidth</span><br><span class="line">window.innerHeight</span><br><span class="line"></span><br><span class="line"># 元素级内部大小（不包含滚动条）</span><br><span class="line">clientWidth</span><br><span class="line">clientHeight</span><br></pre></td></tr></table></figure>
+<span class="hljs-comment">/*小于于等于1920px的屏幕 and 大于等于1680px的屏幕*/</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1920px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1680px</span>)&#123; &#125;
 
-<h2 id="关于手机横竖屏的判断"><a href="#关于手机横竖屏的判断" class="headerlink" title="关于手机横竖屏的判断"></a>关于手机横竖屏的判断</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 手机转向角度</span><br><span class="line">window.orientation</span><br><span class="line"></span><br><span class="line"># PC 端为 undefined；90或-90为横屏幕，剩下则是竖屏</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1680px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1366px</span>)&#123; &#125;
 
-<h2 id="关于屏幕的相关说明"><a href="#关于屏幕的相关说明" class="headerlink" title="关于屏幕的相关说明"></a>关于屏幕的相关说明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">手机的像素  分辨率在640*1136是物理像素</span><br><span class="line">电脑上的px  逻辑像素，浏览器使用的抽象像素</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1366px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1024px</span>)&#123; &#125;
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1024px</span>)&#123; &#125;
+
+<span class="hljs-comment">/*ipad pro*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">1024px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-device-width</span>:<span class="hljs-number">769px</span>) &#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1024px</span>) &#123; &#125;
+<span class="hljs-comment">/*ipad*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">768px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-device-width</span>:<span class="hljs-number">450px</span>) &#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">768px</span>) &#123; &#125;
+<span class="hljs-comment">/*大部分手机*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">450px</span>)&#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">450px</span>) &#123; &#125;</code></pre>
+
+<h2 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h2><pre><code class="hljs JS"><span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="hljs-title function_">test</span>(navigator.<span class="hljs-property">userAgent</span>) ? <span class="hljs-string">&quot;https://www.baidu.com/&quot;</span> :  <span class="hljs-string">&quot;http://news.baidu.com/&quot;</span>;
+
+<span class="hljs-comment">//如果是手机端则去百度，不是则去新闻</span></code></pre>
+
+<h2 id="关于屏幕大小属性参考"><a href="#关于屏幕大小属性参考" class="headerlink" title="关于屏幕大小属性参考"></a>关于屏幕大小属性参考</h2><pre><code class="hljs dart"># 浏览器窗口大小（包括工具栏）
+<span class="hljs-built_in">window</span>.outerHeight
+<span class="hljs-built_in">window</span>.outerWidth
+
+# 窗口文档显示区（不包含滚动条）
+<span class="hljs-built_in">window</span>.innerWidth
+<span class="hljs-built_in">window</span>.innerHeight
+
+# 元素级内部大小（不包含滚动条）
+clientWidth
+clientHeight</code></pre>
+
+<h2 id="关于手机横竖屏的判断"><a href="#关于手机横竖屏的判断" class="headerlink" title="关于手机横竖屏的判断"></a>关于手机横竖屏的判断</h2><pre><code class="hljs mipsasm"><span class="hljs-comment"># 手机转向角度</span>
+window.<span class="hljs-keyword">orientation</span>
+<span class="hljs-keyword"></span>
+<span class="hljs-comment"># PC 端为 undefined；90或-90为横屏幕，剩下则是竖屏</span></code></pre>
+
+<h2 id="关于屏幕的相关说明"><a href="#关于屏幕的相关说明" class="headerlink" title="关于屏幕的相关说明"></a>关于屏幕的相关说明</h2><pre><code class="hljs dns">手机的像素  分辨率在<span class="hljs-number">640*1136</span>是物理像素
+电脑上的px  逻辑像素，浏览器使用的抽象像素</code></pre>
 <blockquote>
 <p>手机浏览器默认做了两件事<br>【1】页面渲染在一个980px(ios)的 viewport；【2】缩放</p>
 </blockquote>

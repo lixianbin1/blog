@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -182,7 +191,16 @@
   <article class="passage-article">
     <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，而Markdown是一个面向网络编写者的文本到HTML转换工具。Markdown允许您使用易于阅读，易于编写的纯文本格式进行编写，然后将其转换为结构有效的XHTML（或HTML）</p>
 <h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">layout: post       # 布局</span><br><span class="line">title: Hello World # 标题</span><br><span class="line">date: 2013/7/13 20:46:25    # 建立日期</span><br><span class="line">updated: 2013/7/13 20:46:27 # 更新日期</span><br><span class="line">comments: true     # 开启文章的评论功能</span><br><span class="line">tags: css          # 标签（不适用于分页）</span><br><span class="line">categories: css    # 分类（不适用于分页）</span><br><span class="line">permalink: wwww.xxx.com     # 覆盖文章网址</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">layout:</span> <span class="hljs-string">post</span>       <span class="hljs-comment"># 布局</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">World</span> <span class="hljs-comment"># 标题</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:25</span>    <span class="hljs-comment"># 建立日期</span>
+<span class="hljs-attr">updated:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:27</span> <span class="hljs-comment"># 更新日期</span>
+<span class="hljs-attr">comments:</span> <span class="hljs-literal">true</span>     <span class="hljs-comment"># 开启文章的评论功能</span>
+<span class="hljs-attr">tags:</span> <span class="hljs-string">css</span>          <span class="hljs-comment"># 标签（不适用于分页）</span>
+<span class="hljs-attr">categories:</span> <span class="hljs-string">css</span>    <span class="hljs-comment"># 分类（不适用于分页）</span>
+<span class="hljs-attr">permalink:</span> <span class="hljs-string">wwww.xxx.com</span>     <span class="hljs-comment"># 覆盖文章网址</span>
+<span class="hljs-meta">---</span></code></pre>
 
 <h2 id="文章引用及代码块"><a href="#文章引用及代码块" class="headerlink" title="文章引用及代码块"></a>文章引用及代码块</h2><p>文章引用或语句引用，当然这不是硬性规定，一切都可以看个人爱好。</p>
 <blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
@@ -190,29 +208,43 @@
 
 <hr>
 <p>代码块则一般是用于展示代码或者其他执行性语句，当然也是看个人喜好</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs objc">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
 
-<figure class="highlight plaintext"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([0, 1, false, 2, &#x27;&#x27;, 3]);</span><br><span class="line">=&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>_.compact</span><a href="http://underscorejs.org/#compact">Underscore.js</a></div><code class="hljs excel">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">false</span>, <span class="hljs-number">2</span>, &#x27;&#x27;, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
 
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="literal">false</span>, <span class="number">2</span>, <span class="string">&#x27;&#x27;</span>, <span class="number">3</span>]);</span><br><span class="line">=&gt; [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs objc">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
 
 <h3 id="外网或者示例"><a href="#外网或者示例" class="headerlink" title="外网或者示例"></a>外网或者示例</h3><ul>
 <li><a href="https://jsfiddle.net/">jsFiddle</a> 代码在线演示的网站，将示例代码展示在上面，由于国内网络问题，可能显示困难</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% jsfiddle xianbin/bu5ntf8m/1/ result,html,css %&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs twig"><span class="hljs-template-tag">&#123;%</span> <span class="hljs-name">jsfiddle</span> xianbin/bu<span class="hljs-number">5</span>ntf<span class="hljs-number">8</span>m/<span class="hljs-number">1</span>/ result,html,css <span class="hljs-template-tag">%&#125;</span></code></pre>
 <ul>
 <li><a href="https://gist.github.com/">Gist</a> GitHub代码片段演示网站，在文章中嵌入 Gist。由于国内网络问题，可能显示困难</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://gist.github.com/lixianbin1/aeb46f5571f6291fdf05ec5a753bdada.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://gist.github.com/lixianbin1/aeb46f5571f6291fdf05ec5a753bdada.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
 <ul>
 <li><a href="https://caniuse.com/">iframe</a> 兼容性查询网站，在文章中插入 iframe</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% iframe https://caniuse.com/css-variables/embed 100% 495px %&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk">&#123;% iframe https:<span class="hljs-regexp">//</span>caniuse.com<span class="hljs-regexp">/css-variables/</span>embed <span class="hljs-number">100</span>% <span class="hljs-number">495</span>px %&#125;</code></pre>
 
-<h3 id="图片及链接"><a href="#图片及链接" class="headerlink" title="图片及链接"></a>图片及链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 图片</span><br><span class="line">&#123;% img [class names] /images/posts/1911051.jpg [width] [height] [title text [alt text]] %&#125;</span><br><span class="line"></span><br><span class="line"># link</span><br><span class="line"># 在文章中插入链接，并自动给外部链接添加 target=&quot;_blank&quot; 属性。</span><br><span class="line">&#123;% link text url [external] [title] %&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="图片及链接"><a href="#图片及链接" class="headerlink" title="图片及链接"></a>图片及链接</h3><pre><code class="hljs arduino"># 图片
+&#123;% img [<span class="hljs-keyword">class</span> <span class="hljs-title class_">names</span>] /images/posts/<span class="hljs-number">1911051.</span>jpg [width] [height] [title text [alt text]] %&#125;
 
-<h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Youtube 一个视频媒体播放网站</span><br><span class="line"># 在文章中插入 Youtube 视频。</span><br><span class="line">&#123;% youtube video_id %&#125;</span><br><span class="line"></span><br><span class="line"># Vimeo 一个高清视频播客网站</span><br><span class="line"># 在文章中插入 Vimeo 视频。</span><br><span class="line">&#123;% vimeo video_id %&#125;</span><br></pre></td></tr></table></figure>
+<span class="hljs-meta"># link</span>
+# 在文章中插入链接，并自动给外部链接添加 target=<span class="hljs-string">&quot;_blank&quot;</span> 属性。
+&#123;% link text url [external] [title] %&#125;</code></pre>
+
+<h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><pre><code class="hljs crystal"><span class="hljs-comment"># Youtube 一个视频媒体播放网站</span>
+<span class="hljs-comment"># 在文章中插入 Youtube 视频。</span>
+<span class="hljs-template-variable">&#123;% youtube video_id %&#125;</span>
+
+<span class="hljs-comment"># Vimeo 一个高清视频播客网站</span>
+<span class="hljs-comment"># 在文章中插入 Vimeo 视频。</span>
+<span class="hljs-template-variable">&#123;% vimeo video_id %&#125;</span></code></pre>
 
 <h2 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h2><p>Error：Cannot find module ‘chalk’</p>
 <p><code>hexo-cli</code> 低版本bug ,更新 <code>hexo-cli</code> ，如果用的是全局的 <code>hexo-cli</code> ,就更新全局，如果是本地就更新本地</p>
@@ -227,7 +259,11 @@
 <li><input disabled="" type="checkbox"> Call John 9303032332</li>
 </ul>
 </blockquote>
-<h3 id="绘制表格"><a href="#绘制表格" class="headerlink" title="绘制表格"></a>绘制表格</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">| 项目       | 价格   |  数量  |</span><br><span class="line">| --------   | -----: | :----: |</span><br><span class="line">| 计算机     | \$1600 |   5    |</span><br><span class="line">| 手机       |   \$12 |   12   |</span><br><span class="line">| 管线       |    \$1 |  234   |</span><br></pre></td></tr></table></figure>
+<h3 id="绘制表格"><a href="#绘制表格" class="headerlink" title="绘制表格"></a>绘制表格</h3><pre><code class="hljs gherkin">|<span class="hljs-string"> 项目       </span>|<span class="hljs-string"> 价格   </span>|<span class="hljs-string">  数量  </span>|
+|<span class="hljs-string"> --------   </span>|<span class="hljs-string"> -----: </span>|<span class="hljs-string"> :----: </span>|
+|<span class="hljs-string"> 计算机     </span>|<span class="hljs-string"> \$1600 </span>|<span class="hljs-string">   5    </span>|
+|<span class="hljs-string"> 手机       </span>|<span class="hljs-string">   \$12 </span>|<span class="hljs-string">   12   </span>|
+|<span class="hljs-string"> 管线       </span>|<span class="hljs-string">    \$1 </span>|<span class="hljs-string">  234   </span>|</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -182,44 +191,188 @@
   <article class="passage-article">
     <h2 id="项目初始"><a href="#项目初始" class="headerlink" title="项目初始"></a>项目初始</h2><p>首先需要明确项目的需求，开发的周期，可能存在的问题以及解决的方案。这个项目是为了什么，可能存在哪些问题，应该怎么做，就目前最近的一个例子，一个OA周报系统的手机端。它的需求是手机访问，那是通过H5网页访问还是安装APP使用，还是二者都需求，微信小程序有需求吗？开发的周期是多久，可能存在开发一半后被接手吗？首先明确：手机端，开发周期不确定（尽可能短），技术团队还未磨合（都会Vue，有未开发过手机端的），有可能被接手（可能会被抽调人手）</p>
 <h2 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h2><p>一般项目搭建，可以使用 html，css 加 js原生或者jQuery，或者使用框架，React.js 或者 Vue.js。 然后可以使用脚手架快速构建也可以使用 Webpack 一步一步配置管理。不同的搭建方式优缺点都各不一样。根据开发时间未知，项目大小，那就简单使用vue-cli脚手架，整体布局就使用rem布局就好了。Ui框架的话就随便选一个常用的就好了。还有一些第三方库的话，根据功能，安全和价格选择就好了。然后选择合作开发的代码的存储管理平台，是公司提供的内部gitLab(当然有公司内部搭建的就用公司内部的), 还是gitHub或者gitee 等等。</p>
-<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h2><figure class="highlight sh"><figcaption><span>cmd</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vue create xxx</span><br><span class="line"><span class="built_in">cd</span> xxx</span><br><span class="line">yarn serve</span><br></pre></td></tr></table></figure>
+<h2 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h2><pre><div class="caption"><span>cmd</span></div><code class="hljs sh">vue create xxx
+<span class="hljs-built_in">cd</span> xxx
+yarn serve</code></pre>
 
 <h3 id="项目结构拆分"><a href="#项目结构拆分" class="headerlink" title="项目结构拆分"></a>项目结构拆分</h3><p>根据相关需求进行配置</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line"> |——api/ (所有请求：用户相关，功能相关等)</span><br><span class="line">   |——user.js </span><br><span class="line">   |——login.js</span><br><span class="line">   ......</span><br><span class="line"></span><br><span class="line"> |——assets/ (静态资源：图片，视频，字体等)</span><br><span class="line">   |——images/ </span><br><span class="line">   |——fonts/</span><br><span class="line">   ......</span><br><span class="line"></span><br><span class="line"> |——components/ (所有组件：主页，登录，注册等)</span><br><span class="line">   |——Home/</span><br><span class="line"><span class="code">     |——index.vue</span></span><br><span class="line"><span class="code">     ......</span></span><br><span class="line"><span class="code">   |——Login/</span></span><br><span class="line"><span class="code">   ......</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"> |——config/ (所有配置项：网关,路由字体大小等)</span><br><span class="line">   |——geteway.js</span><br><span class="line">   |——router.js</span><br><span class="line">   |——common.css</span><br><span class="line">   ......</span><br><span class="line"></span><br><span class="line"> |——router/ (路由配置：配置项目路由)</span><br><span class="line">   |——index.js</span><br><span class="line">   ......</span><br><span class="line"></span><br><span class="line"> |——store/  (Vuex的数据中心:可以根据模块拆分)</span><br><span class="line">   |——index.js</span><br><span class="line">   |——modules/</span><br><span class="line"></span><br><span class="line"> |——utils/  (工具集合：请求，常用函数等)</span><br><span class="line">   |——require.js</span><br><span class="line"></span><br><span class="line">App.vue</span><br><span class="line">min.js</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs md">src/
+ |——api/ (所有请求：用户相关，功能相关等)
+   |——user.js 
+   |——login.js
+   ......
+
+ |——assets/ (静态资源：图片，视频，字体等)
+   |——images/ 
+   |——fonts/
+   ......
+
+ |——components/ (所有组件：主页，登录，注册等)
+   |——Home/
+<span class="hljs-code">     |——index.vue</span>
+<span class="hljs-code">     ......</span>
+<span class="hljs-code">   |——Login/</span>
+<span class="hljs-code">   ......</span>
+<span class="hljs-code"></span>
+ |——config/ (所有配置项：网关,路由字体大小等)
+   |——geteway.js
+   |——router.js
+   |——common.css
+   ......
+
+ |——router/ (路由配置：配置项目路由)
+   |——index.js
+   ......
+
+ |——store/  (Vuex的数据中心:可以根据模块拆分)
+   |——index.js
+   |——modules/
+
+ |——utils/  (工具集合：请求，常用函数等)
+   |——require.js
+
+App.vue
+min.js</code></pre>
 
 <h3 id="引入-VueX-进行状态管理"><a href="#引入-VueX-进行状态管理" class="headerlink" title="引入 VueX 进行状态管理"></a>引入 VueX 进行状态管理</h3><blockquote>
 <p>$ yarn add vuex</p>
 </blockquote>
 <p>根据相关需求进行配置</p>
-<figure class="highlight js"><figcaption><span>store/index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123;</span><br><span class="line">  <span class="attr">state</span>:&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>:&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mutations</span>:&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>:&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">modules</span>:&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>store/index.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123;
+  <span class="hljs-attr">state</span>:&#123;
+    <span class="hljs-comment">// ...</span>
+  &#125;,
+  <span class="hljs-attr">getters</span>:&#123;
+    <span class="hljs-comment">// ...</span>
+  &#125;,
+  <span class="hljs-attr">mutations</span>:&#123;
+    <span class="hljs-comment">// ...</span>
+  &#125;,
+  <span class="hljs-attr">actions</span>:&#123;
+    <span class="hljs-comment">// ...</span>
+  &#125;,
+  <span class="hljs-attr">modules</span>:&#123;
+    <span class="hljs-comment">// ...</span>
+  &#125;
+&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</code></pre>
 <p>入口文件中引入</p>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  store,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./store&#x27;</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+  store,
+  <span class="hljs-comment">// ...</span>
+&#125;).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
 
 <h3 id="引入-Vue-Router-进行路由管理"><a href="#引入-Vue-Router-进行路由管理" class="headerlink" title="引入 Vue-Router 进行路由管理"></a>引入 Vue-Router 进行路由管理</h3><blockquote>
 <p>$ yarn add vue-router</p>
 </blockquote>
 <p>根据相关需求进行配置</p>
-<figure class="highlight js"><figcaption><span>route/index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">VueRouter</span> <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueRouter</span>)</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span>  <span class="string">&#x27;@/components/Home&#x27;</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes=[</span><br><span class="line">  &#123;<span class="attr">path</span>:<span class="string">&#x27;/Home&#x27;</span>,<span class="attr">component</span>:<span class="title class_">Home</span>&#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router=<span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>route/index.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">VueRouter</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueRouter</span>)
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Home</span> <span class="hljs-keyword">from</span>  <span class="hljs-string">&#x27;@/components/Home&#x27;</span>
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-keyword">const</span> routes=[
+  &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/Home&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Home</span>&#125;,
+  <span class="hljs-comment">// ...</span>
+]
+
+<span class="hljs-keyword">const</span> router=<span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;
+  routes
+&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router</code></pre>
 
 <p>入口文件中引入</p>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./router&#x27;</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">  router,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router&#x27;</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+  router,
+  <span class="hljs-comment">// ...</span>
+&#125;).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
 
 <h3 id="引入-Axios-网络请求库"><a href="#引入-Axios-网络请求库" class="headerlink" title="引入 Axios 网络请求库"></a>引入 Axios 网络请求库</h3><blockquote>
 <p>$ yarn add axios<br>$ yarn add vue-axios</p>
 </blockquote>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> vueAxios <span class="keyword">from</span> <span class="string">&#x27;vue-axios&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(vueAxios,axios)</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>
+<span class="hljs-keyword">import</span> vueAxios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-axios&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(vueAxios,axios)
+<span class="hljs-comment">// ...</span></code></pre>
 
 <h3 id="第三方库，包的引入"><a href="#第三方库，包的引入" class="headerlink" title="第三方库，包的引入"></a>第三方库，包的引入</h3><p>根据相关需求进行引入</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># qs 数据处理</span></span><br><span class="line">yarn add qs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 低版本兼容</span></span><br><span class="line">yarn add polyfill</span><br><span class="line"></span><br><span class="line"><span class="comment"># cookie处理</span></span><br><span class="line">yarn add js-cookie</span><br><span class="line"></span><br><span class="line"><span class="comment"># 日期格式处理</span></span><br><span class="line">yarn add moment</span><br><span class="line"></span><br><span class="line"><span class="comment"># Vue国际化</span></span><br><span class="line">yarn add vue-i18n</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义滚动条</span></span><br><span class="line">yarn add perfect-scrollbar</span><br><span class="line"></span><br><span class="line"><span class="comment"># ......还有很多第三方库，就不一一列举了，根据相关需求去网上查找</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs sh"><span class="hljs-comment"># qs 数据处理</span>
+yarn add qs
+
+<span class="hljs-comment"># 低版本兼容</span>
+yarn add polyfill
+
+<span class="hljs-comment"># cookie处理</span>
+yarn add js-cookie
+
+<span class="hljs-comment"># 日期格式处理</span>
+yarn add moment
+
+<span class="hljs-comment"># Vue国际化</span>
+yarn add vue-i18n
+
+<span class="hljs-comment"># 自定义滚动条</span>
+yarn add perfect-scrollbar
+
+<span class="hljs-comment"># ......还有很多第三方库，就不一一列举了，根据相关需求去网上查找</span></code></pre>
 
 <h2 id="相关处理"><a href="#相关处理" class="headerlink" title="相关处理"></a>相关处理</h2><h3 id="配置跨域"><a href="#配置跨域" class="headerlink" title="配置跨域"></a>配置跨域</h3><p>根据相关需求进行配置</p>
-<figure class="highlight js"><figcaption><span>vue.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">devServer</span>: &#123;</span><br><span class="line">      <span class="attr">proxy</span>: &#123;</span><br><span class="line">        <span class="string">&quot;/xxx&quot;</span>: &#123;</span><br><span class="line">          <span class="attr">target</span>: <span class="string">&#x27;https://xxx/&#x27;</span>,</span><br><span class="line">          <span class="attr">changeOrigin</span>:<span class="literal">true</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;/xxx&quot;</span>:&#123;</span><br><span class="line">          <span class="attr">target</span>: <span class="string">&#x27;http://xxx.xxx.xxx.xxx:4000/&#x27;</span>,</span><br><span class="line">          <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">          <span class="attr">pathRewrite</span>:&#123;</span><br><span class="line">            <span class="string">&#x27;^/xxx&#x27;</span>:<span class="string">&#x27;&#x27;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>vue.config.js</span></div><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">devServer</span>: &#123;
+      <span class="hljs-attr">proxy</span>: &#123;
+        <span class="hljs-string">&quot;/xxx&quot;</span>: &#123;
+          <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;https://xxx/&#x27;</span>,
+          <span class="hljs-attr">changeOrigin</span>:<span class="hljs-literal">true</span>
+        &#125;,
+        <span class="hljs-string">&quot;/xxx&quot;</span>:&#123;
+          <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://xxx.xxx.xxx.xxx:4000/&#x27;</span>,
+          <span class="hljs-attr">changeOrigin</span>:<span class="hljs-literal">true</span>,
+          <span class="hljs-attr">pathRewrite</span>:&#123;
+            <span class="hljs-string">&#x27;^/xxx&#x27;</span>:<span class="hljs-string">&#x27;&#x27;</span>
+          &#125;
+        &#125;,
+      &#125;
+  &#125;
+&#125;</code></pre>
 
 <h3 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h3><p>根据相关需求进行配置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="comment">//请求拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">  <span class="comment">//添加身份验证</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="comment">// console.log(error)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截器</span></span><br><span class="line">axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">  <span class="comment">//添加错误处理</span></span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="keyword">return</span> response;</span><br><span class="line">&#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-comment">//请求拦截器</span>
+axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">config</span>) &#123;
+  <span class="hljs-comment">//添加身份验证</span>
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">return</span> config;
+&#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;
+  <span class="hljs-comment">// console.log(error)</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);
+&#125;);
+
+<span class="hljs-comment">// 响应拦截器</span>
+axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) &#123;
+  <span class="hljs-comment">//添加错误处理</span>
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-keyword">return</span> response;
+&#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error);
+&#125;);
+<span class="hljs-comment">// ...</span></code></pre>
 
 <h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p>不同的团队，不同项目有不同的分支管理规则，也可能没规则。但大差不差</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">master：主分支（远程，本地），一般作为大版本上线使用。普通开发者无权限修改。 </span><br><span class="line">dev：开发分支（远程，本地），一般作为小版本上线使用。由团队负责人管理。普通开发者无权限修改（当然，有的小团队没有这种规则）。 </span><br><span class="line">dev0930：版本分支（远程，本地），一般作为日常版本迭代或是功能分支使用。由dev分支上创建。 由团队负责人创建管理，普通开发者有权限</span><br><span class="line">lixianbin:个人分支（本地），一般作为本地开发使用，由功能分支上创建。 由你个人负责管理。</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs q">master：主分支（远程，本地），一般作为大版本上线使用。普通开发者无权限修改。 
+<span class="hljs-built_in">dev</span>：开发分支（远程，本地），一般作为小版本上线使用。由团队负责人管理。普通开发者无权限修改（当然，有的小团队没有这种规则）。 
+dev0930：版本分支（远程，本地），一般作为日常版本迭代或是功能分支使用。由<span class="hljs-built_in">dev</span>分支上创建。 由团队负责人创建管理，普通开发者有权限
+lixianbin:个人分支（本地），一般作为本地开发使用，由功能分支上创建。 由你个人负责管理。</code></pre>
 
 <p>简单的讲，团队负责人将 master , dev , dev0930 创建后，你在 dev0930 上创建新分支，在完成功能后，将 lixianbin 合并到 dev0930 版本上，在推送到远程 dev0930 上。 一般大团队会有很多版本分支作为存档分支。<br>当然小团队和小项目不用那么麻烦，只要保证master不被污染，dev不要有太多错误提交就好了。</p>
 <p><strong>注意：个人分支不推送到远程</strong> <strong>分支推送前先本地运行一下再提交</strong></p>

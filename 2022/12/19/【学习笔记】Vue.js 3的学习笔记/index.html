@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -182,57 +191,231 @@
   <article class="passage-article">
     <p>Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Teleport、Suspense，以及多根元素模板)。同时它也包含了一些与 Vue 2 非兼容性的变更</p>
 <h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p>可以使用vue2版本的选项式编写，也可用使用vue3新添加setup函数</p>
-<figure class="highlight jsx"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123; <span class="comment">//setup函数</span></span><br><span class="line">    <span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>) <span class="comment">//类似data 数据</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="comment">// 返回值会暴露给模板和其他的选项式 API 钩子</span></span><br><span class="line">      count</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">mounted</span>(<span class="params"></span>) &#123; <span class="comment">//生命周期钩子</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">count</span>) <span class="comment">// 0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;count++&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script&gt;
+<span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-<h3 id="setup-函数"><a href="#setup-函数" class="headerlink" title="setup() 函数"></a>setup() 函数</h3><figure class="highlight jsx"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">setup</span>(<span class="params"></span>) &#123; &#125;,</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//setup函数</span>
+    <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>) <span class="hljs-comment">//类似data 数据</span>
+    <span class="hljs-keyword">return</span> &#123; <span class="hljs-comment">// 返回值会暴露给模板和其他的选项式 API 钩子</span>
+      count
+    &#125;
+  &#125;,
+  <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//生命周期钩子</span>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>) <span class="hljs-comment">// 0</span>
+  &#125;
+&#125;
+&lt;/script&gt;
+
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;count++&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+
+<h3 id="setup-函数"><a href="#setup-函数" class="headerlink" title="setup() 函数"></a>setup() 函数</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123; &#125;,
+  <span class="hljs-comment">//...</span>
+&#125;
+&lt;/script&gt;</code></pre>
 
 <p>或者</p>
-<figure class="highlight jsx"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script setup lang=<span class="hljs-string">&quot;ts&quot;</span>&gt;
+
+&lt;/script&gt;</code></pre>
 
 <h2 id="差异点"><a href="#差异点" class="headerlink" title="差异点"></a>差异点</h2><h3 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h3><p><code>ref</code>和<code>reactive</code>是vue3基于组合式api模式下，在<code>setup</code>中用于声明的具有响应式的数据的方法, <code>ref</code>通常用于声明基础类型响应式数据,<code>reactive</code>用于声明复杂类型响应式数据</p>
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">  import &#123; reactive &#125; from &#x27;vue&#x27;</span><br><span class="line">  const state = reactive(&#123; count: 0 &#125;)</span><br><span class="line">  state.count++ //数据的改变</span><br><span class="line">  const name = ref(21)</span><br><span class="line">  name.value=12</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; state.count &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup&gt;
+  import &#123; reactive &#125; from &#x27;vue&#x27;
+  const state = reactive(&#123; count: 0 &#125;)
+  state.count++ //数据的改变
+  const name = ref(21)
+  name.value=12
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;div&gt;&#123;&#123; state.count &#125;&#125;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
 
 <p>选项式代码则和Vue2相同</p>
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      count: 1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    this.count++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script&gt;
+export default &#123;
+  data() &#123;
+    return &#123;
+      count: 1
+    &#125;
+  &#125;,
+  mounted() &#123;
+    this.count++
+  &#125;
+&#125;
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
 
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import &#123; reactive, computed &#125; from &#x27;vue&#x27;</span><br><span class="line">const state = reactive(&#123;</span><br><span class="line">  name: &#x27;John Doe&#x27;,</span><br><span class="line">&#125;)</span><br><span class="line">const publish = computed(() =&gt; &#123; //计算属性</span><br><span class="line">  return state.name &gt; 0 ? &#x27;Yes&#x27; : &#x27;No&#x27;</span><br><span class="line">&#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;&#123;&#123; publish &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup&gt;
+import &#123; reactive, computed &#125; from &#x27;vue&#x27;
+const state = reactive(&#123;
+  name: &#x27;John Doe&#x27;,
+&#125;)
+const publish = computed(() =&gt; &#123; //计算属性
+  return state.name &gt; 0 ? &#x27;Yes&#x27; : &#x27;No&#x27;
+&#125;)
+&lt;/script&gt;
+&lt;template&gt;
+  &lt;div&gt;&#123;&#123; publish &#125;&#125;&lt;/div&gt;
+&lt;/template&gt;</code></pre>
 
 <p>选项式代码则和Vue2相同</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">computed</span>: &#123;</span><br><span class="line">    <span class="comment">//...   </span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-comment">//...</span>
+  &#125;,
+  <span class="hljs-attr">computed</span>: &#123;
+    <span class="hljs-comment">//...   </span>
+  &#125;
+&#125;</code></pre>
 
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>组合式代码</p>
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- </span><br><span class="line">onBeforeMount() //在组件挂载之前调用</span><br><span class="line">onMounted() //在组件挂载完成后执行</span><br><span class="line"></span><br><span class="line">onBeforeUpdate() ////在组件更新之前执行</span><br><span class="line">onUpdated() //在组件更新完成后执行</span><br><span class="line"></span><br><span class="line">onBeforeUnmount() //在实例卸载之前执行</span><br><span class="line">onUnmounted() //在实例卸载完成后执行</span><br><span class="line"></span><br><span class="line">onActivated() //缓存组件插入时触发</span><br><span class="line">onDeactivated //缓存组件移除时触发</span><br><span class="line"></span><br><span class="line">onErrorCaptured() //子组件发生错误时执行</span><br><span class="line"></span><br><span class="line">onRenderTracked() //当组件渲染过程中追踪到响应式依赖时调用 （仅开发可用）</span><br><span class="line">onRenderTriggered() //当组件渲染过程中追踪到响应式依赖时调用 （仅开发可用）</span><br><span class="line"></span><br><span class="line">onServerPrefetch() //在组件实例在服务器上被渲染之前调用 （仅SSR可用）</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;!-- 
+onBeforeMount() //在组件挂载之前调用
+onMounted() //在组件挂载完成后执行
+
+onBeforeUpdate() ////在组件更新之前执行
+onUpdated() //在组件更新完成后执行
+
+onBeforeUnmount() //在实例卸载之前执行
+onUnmounted() //在实例卸载完成后执行
+
+onActivated() //缓存组件插入时触发
+onDeactivated //缓存组件移除时触发
+
+onErrorCaptured() //子组件发生错误时执行
+
+onRenderTracked() //当组件渲染过程中追踪到响应式依赖时调用 （仅开发可用）
+onRenderTriggered() //当组件渲染过程中追踪到响应式依赖时调用 （仅开发可用）
+
+onServerPrefetch() //在组件实例在服务器上被渲染之前调用 （仅SSR可用）
+--&gt;</code></pre>
 
 <p>选项式代码则和Vue2相同</p>
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- </span><br><span class="line">beforeCreate //在组件实例初始化完成之后立即调用</span><br><span class="line">created //在组件实例处理完所有与状态相关的选项后调用</span><br><span class="line"></span><br><span class="line">beforeMount</span><br><span class="line">mounted</span><br><span class="line"></span><br><span class="line">beforeUpdate</span><br><span class="line">updated</span><br><span class="line"></span><br><span class="line">beforeUnmount</span><br><span class="line">unmounted</span><br><span class="line"></span><br><span class="line">activated</span><br><span class="line">deactivated</span><br><span class="line"></span><br><span class="line">errorCaptured</span><br><span class="line"></span><br><span class="line">renderTracked</span><br><span class="line">renderTriggered</span><br><span class="line">serverPrefetch</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;!-- 
+beforeCreate //在组件实例初始化完成之后立即调用
+created //在组件实例处理完所有与状态相关的选项后调用
+
+beforeMount
+mounted
+
+beforeUpdate
+updated
+
+beforeUnmount
+unmounted
+
+activated
+deactivated
+
+errorCaptured
+
+renderTracked
+renderTriggered
+serverPrefetch
+--&gt;</code></pre>
 
 <h3 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h3><p>组合式代码</p>
-<figure class="highlight js"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, watch &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> question = <span class="title function_">ref</span>(<span class="string">&#x27;&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(question, <span class="keyword">async</span> (<span class="keyword">new</span>, old) =&gt; &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span>, old)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref, watch &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+
+<span class="hljs-keyword">const</span> question = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;&#x27;</span>)
+
+<span class="hljs-title function_">watch</span>(question, <span class="hljs-keyword">async</span> (<span class="hljs-keyword">new</span>, old) =&gt; &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span>, old)
+&#125;)</code></pre>
 
 <p>选项式代码</p>
-<figure class="highlight js"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">watch</span>: &#123;</span><br><span class="line">  <span class="title function_">question</span>(<span class="params"><span class="keyword">new</span>, old</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">new</span>, old)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-attr">watch</span>: &#123;
+  <span class="hljs-title function_">question</span>(<span class="hljs-params"><span class="hljs-keyword">new</span>, old</span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-keyword">new</span>, old)
+  &#125;
+&#125;</code></pre>
 
-<h3 id="ref引用"><a href="#ref引用" class="headerlink" title="ref引用"></a>ref引用</h3><figure class="highlight js"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, onMounted &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="comment">// 声明一个 ref 来存放该元素的引用</span></span><br><span class="line"><span class="comment">// 必须和模板里的 ref 同名</span></span><br><span class="line"><span class="keyword">const</span> input = <span class="title function_">ref</span>(<span class="literal">null</span>)</span><br><span class="line"><span class="title function_">onMounted</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">  input.<span class="property">value</span>.<span class="title function_">focus</span>()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&lt;input ref=<span class="string">&quot;input&quot;</span> /&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ref引用"><a href="#ref引用" class="headerlink" title="ref引用"></a>ref引用</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref, onMounted &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-comment">// 声明一个 ref 来存放该元素的引用</span>
+<span class="hljs-comment">// 必须和模板里的 ref 同名</span>
+<span class="hljs-keyword">const</span> input = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">null</span>)
+<span class="hljs-title function_">onMounted</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  input.<span class="hljs-property">value</span>.<span class="hljs-title function_">focus</span>()
+&#125;)
+
+<span class="hljs-comment">// ...</span>
+&lt;input ref=<span class="hljs-string">&quot;input&quot;</span> /&gt;</code></pre>
 
 <h3 id="组件注册"><a href="#组件注册" class="headerlink" title="组件注册"></a>组件注册</h3><p>全局引用</p>
-<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> app = <span class="title function_">createApp</span>(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">app.<span class="title function_">component</span>(</span><br><span class="line">  <span class="comment">// 注册的名字</span></span><br><span class="line">  <span class="string">&#x27;MyComponent&#x27;</span>,</span><br><span class="line">  <span class="comment">// 组件的实现</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(&#123;&#125;)
+
+app.<span class="hljs-title function_">component</span>(
+  <span class="hljs-comment">// 注册的名字</span>
+  <span class="hljs-string">&#x27;MyComponent&#x27;</span>,
+  <span class="hljs-comment">// 组件的实现</span>
+  &#123;
+    <span class="hljs-comment">/* ... */</span>
+  &#125;
+)</code></pre>
 <p>而在setup中，引入则无需注册</p>
-<figure class="highlight plaintext"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line">import ComponentA from &#x27;./ComponentA.vue&#x27;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;ComponentA /&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup&gt;
+import ComponentA from &#x27;./ComponentA.vue&#x27;
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;ComponentA /&gt;
+&lt;/template&gt;</code></pre>
 
 <h3 id="组件传值"><a href="#组件传值" class="headerlink" title="组件传值"></a>组件传值</h3><p><code>props</code></p>
-<figure class="highlight js"><figcaption><span>amp.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> props = <span class="title function_">defineProps</span>([<span class="string">&#x27;foo&#x27;</span>])</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(props.<span class="property">foo</span>)</span><br><span class="line"><span class="comment">// 或者</span></span><br><span class="line"><span class="title function_">defineProps</span>(&#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="title class_">String</span>,</span><br><span class="line">  <span class="attr">likes</span>: <span class="title class_">Number</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>amp.vue</span></div><code class="hljs js"><span class="hljs-keyword">const</span> props = <span class="hljs-title function_">defineProps</span>([<span class="hljs-string">&#x27;foo&#x27;</span>])
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(props.<span class="hljs-property">foo</span>)
+<span class="hljs-comment">// 或者</span>
+<span class="hljs-title function_">defineProps</span>(&#123;
+  <span class="hljs-attr">title</span>: <span class="hljs-title class_">String</span>,
+  <span class="hljs-attr">likes</span>: <span class="hljs-title class_">Number</span>
+&#125;)</code></pre>
 
 <p><code>$emit</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> emit = <span class="title function_">defineEmits</span>(&#123;</span><br><span class="line">  <span class="comment">// 没有校验</span></span><br><span class="line">  <span class="attr">click</span>: <span class="literal">null</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 校验 submit 事件</span></span><br><span class="line">  <span class="attr">submit</span>: <span class="function">(<span class="params">&#123; email, password &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (email &amp;&amp; password) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(<span class="string">&#x27;Invalid submit event payload!&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">submitForm</span>(<span class="params">email, password</span>) &#123;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="string">&#x27;submit&#x27;</span>, &#123; email, password &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> emit = <span class="hljs-title function_">defineEmits</span>(&#123;
+  <span class="hljs-comment">// 没有校验</span>
+  <span class="hljs-attr">click</span>: <span class="hljs-literal">null</span>,
+
+  <span class="hljs-comment">// 校验 submit 事件</span>
+  <span class="hljs-attr">submit</span>: <span class="hljs-function">(<span class="hljs-params">&#123; email, password &#125;</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (email &amp;&amp; password) &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">&#x27;Invalid submit event payload!&#x27;</span>)
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>
+    &#125;
+  &#125;
+&#125;)
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">submitForm</span>(<span class="hljs-params">email, password</span>) &#123;
+  <span class="hljs-title function_">emit</span>(<span class="hljs-string">&#x27;submit&#x27;</span>, &#123; email, password &#125;)
+&#125;</code></pre>
 
 <h3 id="依赖注入"><a href="#依赖注入" class="headerlink" title="依赖注入"></a>依赖注入</h3><p>祖父级组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; provide &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="title function_">provide</span>(<span class="comment">/* 注入名 */</span> <span class="string">&#x27;message&#x27;</span>, <span class="comment">/* 值 */</span> <span class="string">&#x27;hello!&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; provide &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-title function_">provide</span>(<span class="hljs-comment">/* 注入名 */</span> <span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-comment">/* 值 */</span> <span class="hljs-string">&#x27;hello!&#x27;</span>)</code></pre>
 
 <p>孙子级组件</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; inject &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">const</span> message = <span class="title function_">inject</span>(<span class="string">&#x27;message&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; inject &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">const</span> message = <span class="hljs-title function_">inject</span>(<span class="hljs-string">&#x27;message&#x27;</span>)</code></pre>
 
 <h3 id="自定义指令"><a href="#自定义指令" class="headerlink" title="自定义指令"></a>自定义指令</h3><p>指令比 autofocus attribute 更有用，因为它不仅仅可以在页面加载完成后生效，还可以在 Vue 动态插入元素后生效</p>
-<figure class="highlight js"><figcaption><span>index.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在模板中启用 v-focus</span></span><br><span class="line"><span class="keyword">const</span> vFocus = &#123;</span><br><span class="line">  <span class="attr">mounted</span>: <span class="function">(<span class="params">el</span>) =&gt;</span> el.<span class="title function_">focus</span>()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-focus</span> /&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-comment">// 在模板中启用 v-focus</span>
+<span class="hljs-keyword">const</span> vFocus = &#123;
+  <span class="hljs-attr">mounted</span>: <span class="hljs-function">(<span class="hljs-params">el</span>) =&gt;</span> el.<span class="hljs-title function_">focus</span>()
+&#125;
+<span class="hljs-comment">//...</span>
+&lt;template&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-focus</span> /&gt;</span></span>
+&lt;/template&gt;</code></pre>
 
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="ref-和-reactive-的区别"><a href="#ref-和-reactive-的区别" class="headerlink" title="ref 和 reactive 的区别"></a>ref 和 reactive 的区别</h3><p>reactive：(1)它的响应式是更加‘深层次’的，底层本质是将传入的数据包装成一个Proxy。(2)参数必须是对象或者数组，如果要让对象的某个元素实现响应式时比较麻烦。需要使用toRefs (3)更适合复杂对象</p>
 <p>ref：(1)函数参数可以是基本数据类型，也可以接受对象类型。(2)如果参数是对象类型时，其实底层的本质还是reactive,系统会自动根据我们给ref传入的值转换成(3)更适合简单类型</p>

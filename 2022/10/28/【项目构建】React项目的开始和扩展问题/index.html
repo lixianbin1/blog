@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -188,13 +197,92 @@
 <h2 id="开启项目"><a href="#开启项目" class="headerlink" title="开启项目"></a>开启项目</h2><blockquote>
 <p>npx create-react-app xxx || yarn create react-app xxx<br>  cd xxx<br>  npm start</p>
 </blockquote>
-<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><figure class="highlight js"><figcaption><span>入口文件 main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;es6-promise/auto&#x27;</span>  <span class="comment">//引入低版本兼容polyfill</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>      <span class="comment">//引入vue</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&#x27;./Router&#x27;</span>  <span class="comment">//对路由的放在一个文件里</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&#x27;./vuex&#x27;</span>   <span class="comment">//将vuex放在一个文件里管理</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="property">config</span>.<span class="property">productionTip</span>=<span class="literal">false</span>  <span class="comment">//阻止vue启动生产消息</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">App</span>=(<span class="params"></span>)=&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span> <span class="comment">//显示的是当前路由渲染的界面</span></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">render</span>: <span class="function"><span class="params">h</span>=&gt;</span><span class="title function_">h</span>(<span class="title class_">App</span>),  <span class="comment">//render方法渲染</span></span><br><span class="line">    router,</span><br><span class="line">    store</span><br><span class="line">&#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><pre><div class="caption"><span>入口文件 main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;es6-promise/auto&#x27;</span>  <span class="hljs-comment">//引入低版本兼容polyfill</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>      <span class="hljs-comment">//引入vue</span>
+<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Router&#x27;</span>  <span class="hljs-comment">//对路由的放在一个文件里</span>
+<span class="hljs-keyword">import</span> store <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./vuex&#x27;</span>   <span class="hljs-comment">//将vuex放在一个文件里管理</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-property">config</span>.<span class="hljs-property">productionTip</span>=<span class="hljs-literal">false</span>  <span class="hljs-comment">//阻止vue启动生产消息</span>
 
-<figure class="highlight js"><figcaption><span>路由集合 Router.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueRouter</span> <span class="keyword">from</span> <span class="string">&#x27;vue-router&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueRouter</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 组件</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Home</span> <span class="keyword">from</span>  <span class="string">&#x27;./components/Home.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Hello</span> <span class="keyword">from</span> <span class="string">&#x27;./components/Hello.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Word</span> <span class="keyword">from</span> <span class="string">&#x27;./components/Word.vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Nofined</span> <span class="keyword">from</span> <span class="string">&#x27;./components/Nofined&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> routes=[</span><br><span class="line">  &#123;<span class="attr">path</span>:<span class="string">&#x27;/&#x27;</span>,<span class="attr">component</span>:<span class="title class_">Home</span>&#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>:<span class="string">&#x27;/hello&#x27;</span>,<span class="attr">component</span>:<span class="title class_">Hello</span>, <span class="comment">//嵌套路由</span></span><br><span class="line">    <span class="attr">children</span>:[</span><br><span class="line">      &#123;<span class="attr">path</span>:<span class="string">&#x27;word&#x27;</span>,<span class="attr">component</span>:<span class="title class_">Word</span>&#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;<span class="attr">path</span>:<span class="string">&quot;*&quot;</span>,<span class="attr">component</span>:<span class="title class_">Nofined</span>&#125; <span class="comment">//404页面</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router=<span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">App</span>=(<span class="hljs-params"></span>)=&gt;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">router-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">router-view</span>&gt;</span></span> <span class="hljs-comment">//显示的是当前路由渲染的界面</span>
+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Vue</span>(&#123;
+    <span class="hljs-attr">render</span>: <span class="hljs-function"><span class="hljs-params">h</span>=&gt;</span><span class="hljs-title function_">h</span>(<span class="hljs-title class_">App</span>),  <span class="hljs-comment">//render方法渲染</span>
+    router,
+    store
+&#125;).$mount(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
 
-<figure class="highlight js"><figcaption><span>状态管理 vuex.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Vuex</span> <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Vuex</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> moduleA = &#123; <span class="comment">// modulle管理</span></span><br><span class="line">  <span class="attr">state</span>:&#123;&#125;, <span class="attr">getters</span>:&#123;&#125;, <span class="attr">mutations</span>:&#123;&#125;, <span class="attr">actions</span>:&#123;&#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> <span class="title class_">Vuex</span>.<span class="title class_">Store</span>(&#123; <span class="comment">//以 Vuex.Store 方法创建实例 </span></span><br><span class="line">  <span class="attr">state</span>:&#123; <span class="comment">//状态</span></span><br><span class="line">    <span class="attr">name</span>:<span class="string">&quot;战争&quot;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">getters</span>:&#123; <span class="comment">//计算</span></span><br><span class="line">    <span class="attr">newName</span>:<span class="function"><span class="params">state</span>=&gt;</span>&#123;</span><br><span class="line">      state.<span class="property">name</span>==<span class="string">&quot;1&quot;</span>?<span class="keyword">return</span> <span class="string">&#x27;21&#x27;</span>:<span class="keyword">return</span> <span class="string">&#x27;11&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">mutations</span>:&#123;<span class="comment">//事件 commit</span></span><br><span class="line">    <span class="title function_">newName</span>(<span class="params">state,data</span>)&#123; <span class="comment">//设置名称</span></span><br><span class="line">      state.<span class="property">name</span>=data</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>:&#123; <span class="comment">//行为 dispatch</span></span><br><span class="line">    <span class="attr">newName</span>:<span class="keyword">function</span>(<span class="params">context,data</span>)&#123;</span><br><span class="line">      context.<span class="title function_">commit</span>(<span class="string">&#x27;newName&#x27;</span>,data)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">modules</span>:&#123;</span><br><span class="line">    <span class="attr">one</span>:moduleA</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>路由集合 Router.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">VueRouter</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueRouter</span>)
 
-<h2 id="相关扩展"><a href="#相关扩展" class="headerlink" title="相关扩展"></a>相关扩展</h2><h3 id="在项目中配置模块的相关目录"><a href="#在项目中配置模块的相关目录" class="headerlink" title="在项目中配置模块的相关目录"></a>在项目中配置模块的相关目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line"> |——api/ (所有请求：用户相关，功能相关等)</span><br><span class="line">   |——user.js </span><br><span class="line"> |——assets/ (静态资源：图片，视频，字体等)</span><br><span class="line">   |——images/ </span><br><span class="line"> |——components/ (所有组件：主页，登录，注册等)</span><br><span class="line">   |——Home.vue</span><br><span class="line"> |——config/ (所有配置项：网关,路由字体大小等)</span><br><span class="line">   |——geteway.js</span><br><span class="line">   |——router.js</span><br><span class="line"> |——store/  (Vuex的数据中心)</span><br><span class="line">   |——index.js</span><br><span class="line"> |——utils/  (工具集合：请求，常用函数等)</span><br><span class="line">   |——require.js</span><br><span class="line"> min.js</span><br></pre></td></tr></table></figure>
+<span class="hljs-comment">// 组件</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Home</span> <span class="hljs-keyword">from</span>  <span class="hljs-string">&#x27;./components/Home.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Hello</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/Hello.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Word</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/Word.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Nofined</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/Nofined&#x27;</span>
+
+<span class="hljs-keyword">const</span> routes=[
+  &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Home</span>&#125;,
+  &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/hello&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Hello</span>, <span class="hljs-comment">//嵌套路由</span>
+    <span class="hljs-attr">children</span>:[
+      &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;word&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Word</span>&#125;,
+    ]
+  &#125;,
+  &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&quot;*&quot;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Nofined</span>&#125; <span class="hljs-comment">//404页面</span>
+]
+
+<span class="hljs-keyword">const</span> router=<span class="hljs-keyword">new</span> <span class="hljs-title class_">VueRouter</span>(&#123;
+  routes
+&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router</code></pre>
+
+<pre><div class="caption"><span>状态管理 vuex.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Vuex</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vuex&#x27;</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">Vuex</span>)
+
+<span class="hljs-keyword">const</span> moduleA = &#123; <span class="hljs-comment">// modulle管理</span>
+  <span class="hljs-attr">state</span>:&#123;&#125;, <span class="hljs-attr">getters</span>:&#123;&#125;, <span class="hljs-attr">mutations</span>:&#123;&#125;, <span class="hljs-attr">actions</span>:&#123;&#125;,
+&#125;
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Vuex</span>.<span class="hljs-title class_">Store</span>(&#123; <span class="hljs-comment">//以 Vuex.Store 方法创建实例 </span>
+  <span class="hljs-attr">state</span>:&#123; <span class="hljs-comment">//状态</span>
+    <span class="hljs-attr">name</span>:<span class="hljs-string">&quot;战争&quot;</span>,
+  &#125;,
+  <span class="hljs-attr">getters</span>:&#123; <span class="hljs-comment">//计算</span>
+    <span class="hljs-attr">newName</span>:<span class="hljs-function"><span class="hljs-params">state</span>=&gt;</span>&#123;
+      state.<span class="hljs-property">name</span>==<span class="hljs-string">&quot;1&quot;</span>?<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;21&#x27;</span>:<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;11&#x27;</span>;
+    &#125;
+  &#125;,
+  <span class="hljs-attr">mutations</span>:&#123;<span class="hljs-comment">//事件 commit</span>
+    <span class="hljs-title function_">newName</span>(<span class="hljs-params">state,data</span>)&#123; <span class="hljs-comment">//设置名称</span>
+      state.<span class="hljs-property">name</span>=data
+    &#125;
+  &#125;,
+  <span class="hljs-attr">actions</span>:&#123; <span class="hljs-comment">//行为 dispatch</span>
+    <span class="hljs-attr">newName</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">context,data</span>)&#123;
+      context.<span class="hljs-title function_">commit</span>(<span class="hljs-string">&#x27;newName&#x27;</span>,data)
+    &#125;
+  &#125;,
+  <span class="hljs-attr">modules</span>:&#123;
+    <span class="hljs-attr">one</span>:moduleA
+  &#125;
+&#125;)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> store</code></pre>
+
+<h2 id="相关扩展"><a href="#相关扩展" class="headerlink" title="相关扩展"></a>相关扩展</h2><h3 id="在项目中配置模块的相关目录"><a href="#在项目中配置模块的相关目录" class="headerlink" title="在项目中配置模块的相关目录"></a>在项目中配置模块的相关目录</h3><pre><code class="hljs 1c">src/
+ <span class="hljs-string">|——api/ (所有请求：用户相关，功能相关等)</span>
+   <span class="hljs-string">|——user.js </span>
+ <span class="hljs-string">|——assets/ (静态资源：图片，视频，字体等)</span>
+   <span class="hljs-string">|——images/ </span>
+ <span class="hljs-string">|——components/ (所有组件：主页，登录，注册等)</span>
+   <span class="hljs-string">|——Home.vue</span>
+ <span class="hljs-string">|——config/ (所有配置项：网关,路由字体大小等)</span>
+   <span class="hljs-string">|——geteway.js</span>
+   <span class="hljs-string">|——router.js</span>
+ <span class="hljs-string">|——store/  (Vuex的数据中心)</span>
+   <span class="hljs-string">|——index.js</span>
+ <span class="hljs-string">|——utils/  (工具集合：请求，常用函数等)</span>
+   <span class="hljs-string">|——require.js</span>
+ min.js</code></pre>
 
 
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3>

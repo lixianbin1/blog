@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -183,25 +192,90 @@
     <h3 id="CSS变量的历史"><a href="#CSS变量的历史" class="headerlink" title="CSS变量的历史"></a>CSS变量的历史</h3><p>自1998年5月起，Web社区就有要求css定义变量的方法，在我看来，这是很正常的，一个新的功能不可能是一时的冲动，拍拍屁股就决定的，它需要的是不断的检测，不断的改正，时间是最公正的裁判不是吗？</p>
 <p>2011年2月，css变量草案被提出，它最初受到Dave Hyatt和Daniel Glazman最初编写的<a href="http://disruptive-innovations.com/zoo/cssvariables/">变量提案</a>的启发，后经过一系列的讨论及改正，至2014年5月，<a href="https://www.w3.org/TR/css-variables-1/">CSS变量草案</a>快速的成长起来，变的更加的健壮。</p>
 <h3 id="CSS变量的声明"><a href="#CSS变量的声明" class="headerlink" title="CSS变量的声明"></a>CSS变量的声明</h3><p>首先你需要制定变量的作用域，全局或者是局部，其次你需要使用<code>--</code>充当变量前缀 ，就像sass的<code>$</code>和lass的<code>@</code>，它们的用法相差不大。注意，CSS变量对大小写敏感，变量的值可以是颜色、字符串、多个值的组合等。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">:root&#123;</span><br><span class="line">    --colorText:blue;</span><br><span class="line">    --textContent:&quot;Hello&quot;;</span><br><span class="line">    --varG:var(--colorText);</span><br><span class="line">    --number:10;</span><br><span class="line">&#125;</span><br><span class="line">#body&#123;</span><br><span class="line">    --only:green;</span><br><span class="line">&#125;</span><br><span class="line">#body&#123;</span><br><span class="line"></span><br><span class="line">    /*var()用于读取变量，var()可以有两个参数，第二个为默认值（可选），即变量失效后使用的值*/</span><br><span class="line">    color:var(colorText,green)；</span><br><span class="line">    </span><br><span class="line">    /*变量是数字，在涉及单位的时候，不能直接使用，需要calc()进行转换，单位不能作为字符串存储*/</span><br><span class="line">    width:calc(var(--number) * px)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs css"><span class="hljs-selector-pseudo">:root</span>&#123;
+    <span class="hljs-attr">--colorText</span>:blue;
+    <span class="hljs-attr">--textContent</span>:<span class="hljs-string">&quot;Hello&quot;</span>;
+    <span class="hljs-attr">--varG</span>:<span class="hljs-built_in">var</span>(--colorText);
+    <span class="hljs-attr">--number</span>:<span class="hljs-number">10</span>;
+&#125;
+<span class="hljs-selector-id">#body</span>&#123;
+    <span class="hljs-attr">--only</span>:green;
+&#125;
+<span class="hljs-selector-id">#body</span>&#123;
+
+    <span class="hljs-comment">/*var()用于读取变量，var()可以有两个参数，第二个为默认值（可选），即变量失效后使用的值*/</span>
+    <span class="hljs-attribute">color</span>:<span class="hljs-built_in">var</span>(colorText,green)；
+    
+    <span class="hljs-comment">/*变量是数字，在涉及单位的时候，不能直接使用，需要calc()进行转换，单位不能作为字符串存储*/</span>
+    width:<span class="hljs-built_in">calc</span>(<span class="hljs-built_in">var</span>(--number) * px)
+&#125;</code></pre>
 
 <h3 id="CSS变量的优先级"><a href="#CSS变量的优先级" class="headerlink" title="CSS变量的优先级"></a>CSS变量的优先级</h3><p>当css变量在多个选择器内进行声明的时候，读取的时候，优先级最高的生效，优先级规则参照css层叠规则<br>就个人建议，变量应尽量 :root 作用域下进行声明，便于后来者的样式维护</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">:root &#123; --color: blue; &#125;</span><br><span class="line">div &#123; --color: green; &#125;</span><br><span class="line">#alert &#123; --color: red; &#125;</span><br><span class="line">* &#123; color: var(--color); &#125;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;I inherited blue from the root element!&lt;/p&gt;</span><br><span class="line">&lt;div&gt;I got green set directly on me!&lt;/div&gt;</span><br><span class="line">&lt;div id=&#x27;alert&#x27;&gt;</span><br><span class="line">  While I got red set directly on me!</span><br><span class="line">  &lt;p&gt;I’m red too, because of inheritance!&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs applescript">:root &#123; <span class="hljs-comment">--color: blue; &#125;</span>
+<span class="hljs-keyword">div</span> &#123; <span class="hljs-comment">--color: green; &#125;</span>
+<span class="hljs-comment">#alert &#123; --color: red; &#125;</span>
+* &#123; color: var(<span class="hljs-comment">--color); &#125;</span>
+
+&lt;p&gt;I inherited blue <span class="hljs-keyword">from</span> <span class="hljs-keyword">the</span> root element!&lt;/p&gt;
+&lt;<span class="hljs-keyword">div</span>&gt;I got green <span class="hljs-keyword">set</span> directly <span class="hljs-keyword">on</span> <span class="hljs-keyword">me</span>!&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">id</span>=&#x27;alert&#x27;&gt;
+  While I got red <span class="hljs-keyword">set</span> directly <span class="hljs-keyword">on</span> <span class="hljs-keyword">me</span>!
+  &lt;p&gt;I’m red too, because <span class="hljs-keyword">of</span> inheritance!&lt;/p&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;</code></pre>
 
 <h3 id="CSS变量在响应式的应用"><a href="#CSS变量在响应式的应用" class="headerlink" title="CSS变量在响应式的应用"></a>CSS变量在响应式的应用</h3><p>在依靠媒体查询的响应式的时候，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">    --colorText: red;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@media screen and (min-width: 768px) &#123;</span><br><span class="line">    body &#123;</span><br><span class="line">        --colorText: red;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs css"><span class="hljs-selector-tag">body</span> &#123;
+    <span class="hljs-attr">--colorText</span>: red;
+&#125;
+
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">768px</span>) &#123;
+    <span class="hljs-selector-tag">body</span> &#123;
+        <span class="hljs-attr">--colorText</span>: red;
+    &#125;
+&#125;</code></pre>
 
 <h3 id="CSS变量在其他方面的应用"><a href="#CSS变量在其他方面的应用" class="headerlink" title="CSS变量在其他方面的应用"></a>CSS变量在其他方面的应用</h3><p>就像阮一峰大佬说的那样，CSS 变量提供了 JavaScript 与 CSS 通信的一种途径。途径有很多，目的却只有一个，简化操作，强化功能，</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 设置变量</span><br><span class="line">document.body.style.setProperty(&#x27;--primary&#x27;, &#x27;#7F583F&#x27;);</span><br><span class="line"></span><br><span class="line">// 读取变量</span><br><span class="line">document.body.style.getPropertyValue(&#x27;--primary&#x27;).trim();</span><br><span class="line">// &#x27;#7F583F&#x27;</span><br><span class="line"></span><br><span class="line">// 删除变量</span><br><span class="line">document.body.style.removeProperty(&#x27;--primary&#x27;);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 设置变量
+document.body.style.setProperty(<span class="hljs-string">&#x27;--primary&#x27;</span>, <span class="hljs-string">&#x27;#7F583F&#x27;</span>);
+
+<span class="hljs-regexp">//</span> 读取变量
+document.body.style.getPropertyValue(<span class="hljs-string">&#x27;--primary&#x27;</span>).trim();
+<span class="hljs-regexp">//</span> <span class="hljs-string">&#x27;#7F583F&#x27;</span>
+
+<span class="hljs-regexp">//</span> 删除变量
+document.body.style.removeProperty(<span class="hljs-string">&#x27;--primary&#x27;</span>);</code></pre>
 
 <h3 id="CSS变量的兼容性表现"><a href="#CSS变量的兼容性表现" class="headerlink" title="CSS变量的兼容性表现"></a>CSS变量的兼容性表现</h3><p>由于国内和国外的社会环境和web环境的不同，导致CSS变量在国内出现了尴尬的局面，使得CSS变量在某种程度上成为了食之无味，弃之可惜的“鸡肋”。在功能性方面，它比不上Sass，less已及stylus，在兼容性方面，微软在2017年3月宣布，Edge 浏览器将支持 CSS 变量。然而国内公司虽然大多数已经不要求兼容IE9以下的IE浏览器，但是 IE9+<br>依然不支持CSS变量</p>
 <iframe src="https://caniuse.com/css-variables/embed" width="100%" height="495px"></iframe>
 
 <p>CSS样式的兼容性的办法也是有的，你可以像下面这样写</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">div&#123;</span><br><span class="line">    color:red;</span><br><span class="line">    /*如果都这样写了，那这还有什么意义，我为什么要写下面这个*/</span><br><span class="line">    --divColor:red;</span><br><span class="line">    color:var(--divColor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/*使用CSS3的功能查询*/</span><br><span class="line">@supports ( (--a: 0)) &#123;</span><br><span class="line">  /* 兼容 */</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@supports ( not (--a: 0)) &#123;</span><br><span class="line">  /* 不兼容 */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;
+    <span class="hljs-attribute">color</span>:red;
+    <span class="hljs-comment">/*如果都这样写了，那这还有什么意义，我为什么要写下面这个*/</span>
+    <span class="hljs-attr">--divColor</span>:red;
+    <span class="hljs-attribute">color</span>:<span class="hljs-built_in">var</span>(--divColor);
+&#125;
+
+<span class="hljs-comment">/*使用CSS3的功能查询*/</span>
+<span class="hljs-keyword">@supports</span> ( (<span class="hljs-attribute">--a</span>: <span class="hljs-number">0</span>)) &#123;
+  <span class="hljs-comment">/* 兼容 */</span>
+&#125;
+
+<span class="hljs-keyword">@supports</span> ( <span class="hljs-keyword">not</span> (<span class="hljs-attribute">--a</span>: <span class="hljs-number">0</span>)) &#123;
+  <span class="hljs-comment">/* 不兼容 */</span>
+&#125;</code></pre>
 
 <p>JavaScript检测兼容性</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const isSupported =</span><br><span class="line">  window.CSS &amp;&amp;</span><br><span class="line">  window.CSS.supports &amp;&amp;</span><br><span class="line">  window.CSS.supports(&#x27;--a&#x27;, 0);</span><br><span class="line"></span><br><span class="line">if (isSupported) &#123;</span><br><span class="line">  console.log(&#x27;兼容&#x27;)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  console.log(&#x27;不兼容&#x27;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs sas">const isSupported =
+  <span class="hljs-keyword">window</span>.CSS <span class="hljs-variable">&amp;&amp;</span>
+  <span class="hljs-keyword">window</span>.CSS.supports <span class="hljs-variable">&amp;&amp;</span>
+  <span class="hljs-keyword">window</span>.CSS.supports(<span class="hljs-string">&#x27;--a&#x27;</span>, 0);
+
+<span class="hljs-keyword">if</span> (isSupported) &#123;
+  console.<span class="hljs-meta">log</span>(<span class="hljs-string">&#x27;兼容&#x27;</span>)
+&#125; <span class="hljs-keyword">else</span> &#123;
+  console.<span class="hljs-meta">log</span>(<span class="hljs-string">&#x27;不兼容&#x27;</span>)
+&#125;</code></pre>
 
 <p>规则：<a href="https://www.w3.org/TR/css-variables-1/">CSS自定义属性文档</a></p>
 <p>总结：就目前而言，在国内的环境之下，使用CSS变量有些鸡肋的表现，当然，仁者见仁智者见智，这只是我个人的想法</p>

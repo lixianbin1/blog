@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -184,31 +193,160 @@
 <p>yarn add pinia || npm install pinia</p>
 </blockquote>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>在项目中，需要配置后才可以使用</p>
-<figure class="highlight js"><figcaption><span>stores/counter.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;counter&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">count</span>: <span class="number">0</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 也可以这样定义</span></span><br><span class="line">  <span class="comment">// state: () =&gt; (&#123; count: 0 &#125;)</span></span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>stores/counter.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
 
-<figure class="highlight js"><figcaption><span>vite.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="title class_">AutoImport</span>(&#123;</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="attr">dirs</span>: [</span><br><span class="line">    <span class="string">&#x27;src/stores&#x27;</span>,</span><br><span class="line">  ],</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;counter&#x27;</span>, &#123;
+  <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;
+  &#125;,
+  <span class="hljs-comment">// 也可以这样定义</span>
+  <span class="hljs-comment">// state: () =&gt; (&#123; count: 0 &#125;)</span>
+  <span class="hljs-attr">actions</span>: &#123;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++
+    &#125;,
+  &#125;,
+&#125;)</code></pre>
+
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-title class_">AutoImport</span>(&#123;
+  <span class="hljs-comment">//...</span>
+  <span class="hljs-attr">dirs</span>: [
+    <span class="hljs-string">&#x27;src/stores&#x27;</span>,
+  ],
+&#125;),</code></pre>
 
 <p>组件中的使用</p>
-<figure class="highlight html"><figcaption><span>Hello.vue</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> &#123; useCounterStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@/stores/counter&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">const</span> counter = <span class="title function_">useCounterStore</span>()</span></span><br><span class="line"><span class="language-javascript">counter.<span class="property">count</span>++</span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 自动补全！ ✨</span></span></span><br><span class="line"><span class="language-javascript">counter.$patch(&#123; <span class="attr">count</span>: counter.<span class="property">count</span> + <span class="number">1</span> &#125;)</span></span><br><span class="line"><span class="language-javascript"><span class="comment">// 或使用 action 代替</span></span></span><br><span class="line"><span class="language-javascript">counter.<span class="title function_">increment</span>()</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 直接从 store 中访问 state --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>Current Count: &#123;&#123; counter.count &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>Hello.vue</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">import</span> &#123; useCounterStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/stores/counter&#x27;</span></span>
+<span class="language-javascript"><span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">useCounterStore</span>()</span>
+<span class="language-javascript">counter.<span class="hljs-property">count</span>++</span>
+<span class="language-javascript"><span class="hljs-comment">// 自动补全！ ✨</span></span>
+<span class="language-javascript">counter.$patch(&#123; <span class="hljs-attr">count</span>: counter.<span class="hljs-property">count</span> + <span class="hljs-number">1</span> &#125;)</span>
+<span class="language-javascript"><span class="hljs-comment">// 或使用 action 代替</span></span>
+<span class="language-javascript">counter.<span class="hljs-title function_">increment</span>()</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 直接从 store 中访问 state --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Current Count: &#123;&#123; counter.count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
 
 <h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><h4 id="defineStore"><a href="#defineStore" class="headerlink" title="defineStore"></a>defineStore</h4><p> Store 是用 defineStore() 定义的，它的第一个参数要求是一个独一无二的名字</p>
- <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 你可以对 `defineStore()` 的返回值进行任意命名，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。(比如 `useUserStore`，`useCartStore`，`useProductStore`)</span></span><br><span class="line"><span class="comment">// 第一个参数是你的应用中 Store 的唯一 ID。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useAlertsStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;alerts&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">double</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useAlertsStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;alerts&#x27;</span>, <span class="function">()=&gt;</span>&#123;</span><br><span class="line">  <span class="comment">// setup语法</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+ <pre><code class="hljs js"> <span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+
+<span class="hljs-comment">// 你可以对 `defineStore()` 的返回值进行任意命名，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。(比如 `useUserStore`，`useCartStore`，`useProductStore`)</span>
+<span class="hljs-comment">// 第一个参数是你的应用中 Store 的唯一 ID。</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useAlertsStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;alerts&#x27;</span>, &#123;
+  <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> (&#123; <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> &#125;),
+  <span class="hljs-attr">getters</span>: &#123;
+    <span class="hljs-attr">double</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">count</span> * <span class="hljs-number">2</span>,
+  &#125;,
+  <span class="hljs-attr">actions</span>: &#123;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++
+    &#125;,
+  &#125;,
+&#125;)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useAlertsStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;alerts&#x27;</span>, <span class="hljs-function">()=&gt;</span>&#123;
+  <span class="hljs-comment">// setup语法</span>
+&#125;)</code></pre>
 <p>可以使用Setup语法，也可以使用配置语法，推荐配置语法，setup会让SSR变得更复杂。</p>
-<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;storeId&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="comment">// 所有这些属性都将自动推断出它们的类型</span></span><br><span class="line">      <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;Eduardo&#x27;</span>,</span><br><span class="line">      <span class="attr">isAdmin</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="attr">items</span>: [],</span><br><span class="line">      <span class="attr">hasChanged</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="state"><a href="#state" class="headerlink" title="state"></a>state</h3><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+
+<span class="hljs-keyword">const</span> useStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;storeId&#x27;</span>, &#123;
+  <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> &#123;
+      <span class="hljs-comment">// 所有这些属性都将自动推断出它们的类型</span>
+      <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Eduardo&#x27;</span>,
+      <span class="hljs-attr">isAdmin</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">items</span>: [],
+      <span class="hljs-attr">hasChanged</span>: <span class="hljs-literal">true</span>,
+    &#125;
+  &#125;,
+&#125;)</code></pre>
 
 <ul>
 <li>使用示例</li>
 </ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 访问</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useStore</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单体修改</span></span><br><span class="line">store.<span class="property">count</span>++</span><br><span class="line"><span class="comment">// 群体修改</span></span><br><span class="line">store.$patch(&#123;</span><br><span class="line">  <span class="attr">count</span>: store.<span class="property">count</span> + <span class="number">1</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">120</span>,</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;DIO&#x27;</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 订阅state</span></span><br><span class="line">store.$subscribe(<span class="function">(<span class="params">mutation, state</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;cart&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(state))</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 如果你想在组件卸载后依旧保留它们，请将 &#123; detached: true &#125; 作为第二个参数</span></span><br><span class="line">store.$subscribe(callback, &#123; <span class="attr">detached</span>: <span class="literal">true</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="title function_">watch</span>(</span><br><span class="line">  pinia.<span class="property">state</span>,</span><br><span class="line">  <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 每当状态发生变化时，将整个 state 持久化到本地存储。</span></span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;piniaState&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(state))</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">// 访问</span>
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">useStore</span>()
+
+<span class="hljs-comment">// 单体修改</span>
+store.<span class="hljs-property">count</span>++
+<span class="hljs-comment">// 群体修改</span>
+store.$patch(&#123;
+  <span class="hljs-attr">count</span>: store.<span class="hljs-property">count</span> + <span class="hljs-number">1</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">120</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;DIO&#x27;</span>,
+&#125;)
+
+<span class="hljs-comment">// 订阅state</span>
+store.$subscribe(<span class="hljs-function">(<span class="hljs-params">mutation, state</span>)=&gt;</span>&#123;
+  <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;cart&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(state))
+&#125;)
+<span class="hljs-comment">// 如果你想在组件卸载后依旧保留它们，请将 &#123; detached: true &#125; 作为第二个参数</span>
+store.$subscribe(callback, &#123; <span class="hljs-attr">detached</span>: <span class="hljs-literal">true</span> &#125;)
+
+<span class="hljs-title function_">watch</span>(
+  pinia.<span class="hljs-property">state</span>,
+  <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> &#123;
+    <span class="hljs-comment">// 每当状态发生变化时，将整个 state 持久化到本地存储。</span>
+    <span class="hljs-variable language_">localStorage</span>.<span class="hljs-title function_">setItem</span>(<span class="hljs-string">&#x27;piniaState&#x27;</span>, <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(state))
+  &#125;,
+  &#123; <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span> &#125;
+)</code></pre>
 
 <h3 id="getter"><a href="#getter" class="headerlink" title="getter"></a>getter</h3><p>Getter 完全等同于 store 的 state 的计算值。可以通过 defineStore() 中的 getters 属性来定义它们</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; useOtherStore &#125; <span class="keyword">from</span> <span class="string">&#x27;./other-store&#x27;</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;main&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">doubleCount</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span>,</span><br><span class="line">    <span class="title function_">doublePlusOne</span>(): number &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">doubleCount</span> + <span class="number">1</span> <span class="comment">//通过this访问其他的getters</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">otherGetter</span>(<span class="params">state</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> otherStore = <span class="title function_">useOtherStore</span>() <span class="comment">//也可以访问其他的Store</span></span><br><span class="line">      <span class="keyword">return</span> state.<span class="property">count</span> + otherStore.<span class="property">data</span></span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useOtherStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./other-store&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;main&#x27;</span>, &#123;
+  <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> (&#123;
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+  &#125;),
+  <span class="hljs-attr">getters</span>: &#123;
+    <span class="hljs-attr">doubleCount</span>: <span class="hljs-function">(<span class="hljs-params">state</span>) =&gt;</span> state.<span class="hljs-property">count</span> * <span class="hljs-number">2</span>,
+    <span class="hljs-title function_">doublePlusOne</span>(): number &#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">doubleCount</span> + <span class="hljs-number">1</span> <span class="hljs-comment">//通过this访问其他的getters</span>
+    &#125;,
+    <span class="hljs-title function_">otherGetter</span>(<span class="hljs-params">state</span>) &#123;
+      <span class="hljs-keyword">const</span> otherStore = <span class="hljs-title function_">useOtherStore</span>() <span class="hljs-comment">//也可以访问其他的Store</span>
+      <span class="hljs-keyword">return</span> state.<span class="hljs-property">count</span> + otherStore.<span class="hljs-property">data</span>
+    &#125;,
+  &#125;,
+&#125;)</code></pre>
 
 <h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>Action 相当于组件中的 method。它们可以通过 defineStore() 中的 actions 属性来定义</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;main&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span>,</span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">actions</span>: &#123; <span class="comment">//类似 getter，action 也可通过 this 访问整个 store 实例;不同的是，action 可以是异步的</span></span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">randomizeCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span> = <span class="title class_">Math</span>.<span class="title function_">round</span>(<span class="number">100</span> * <span class="title class_">Math</span>.<span class="title function_">random</span>())</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useCounterStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;main&#x27;</span>, &#123;
+  <span class="hljs-attr">state</span>: <span class="hljs-function">() =&gt;</span> (&#123;
+    <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>,
+  &#125;),
+  <span class="hljs-attr">actions</span>: &#123; <span class="hljs-comment">//类似 getter，action 也可通过 this 访问整个 store 实例;不同的是，action 可以是异步的</span>
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++
+    &#125;,
+    <span class="hljs-title function_">randomizeCounter</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> = <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(<span class="hljs-number">100</span> * <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>())
+    &#125;,
+  &#125;,
+&#125;)</code></pre>
 
 <h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>插件是通过 pinia.use() 添加到 pinia 实例的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createPinia &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建的每个 store 中都会添加一个名为 `secret` 的属性。</span></span><br><span class="line"><span class="comment">// 在安装此插件后，插件可以保存在不同的文件中</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">SecretPiniaPlugin</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">secret</span>: <span class="string">&#x27;the cake is a lie&#x27;</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pinia = <span class="title function_">createPinia</span>()</span><br><span class="line"><span class="comment">// 将该插件交给 Pinia</span></span><br><span class="line">pinia.<span class="title function_">use</span>(<span class="title class_">SecretPiniaPlugin</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在另一个文件中</span></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useStore</span>()</span><br><span class="line">store.<span class="property">secret</span> <span class="comment">// &#x27;the cake is a lie&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createPinia &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+
+<span class="hljs-comment">// 创建的每个 store 中都会添加一个名为 `secret` 的属性。</span>
+<span class="hljs-comment">// 在安装此插件后，插件可以保存在不同的文件中</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">SecretPiniaPlugin</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">secret</span>: <span class="hljs-string">&#x27;the cake is a lie&#x27;</span> &#125;
+&#125;
+
+<span class="hljs-keyword">const</span> pinia = <span class="hljs-title function_">createPinia</span>()
+<span class="hljs-comment">// 将该插件交给 Pinia</span>
+pinia.<span class="hljs-title function_">use</span>(<span class="hljs-title class_">SecretPiniaPlugin</span>)
+
+<span class="hljs-comment">// 在另一个文件中</span>
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">useStore</span>()
+store.<span class="hljs-property">secret</span> <span class="hljs-comment">// &#x27;the cake is a lie&#x27;</span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

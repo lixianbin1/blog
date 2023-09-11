@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -190,33 +199,33 @@
 </blockquote>
 <p>// yarn create vite myapp –template vue       //vue项目的默认配置</p>
 <p>执行 <code>npm init vue@latest</code> 后，在创建项目的时候会提示配置项：既第三方库</p>
-<pre class="line-numbers language-none"><code class="language-none">√ Project name:    项目名称
-√ Add TypeScript?  javascript的超集
-√ Add JSX Support? JSX 支持
-√ Add Vue Router for Single Page Application development? Vue路由管理
-√ Add Pinia for state management?     类似Vuex的状态管理机制
-√ Add Vitest for Unit Testing?        vite提供的单元测试框架
-√ Add Cypress for End-to-End testing? 自动化测试框架
-√ Add ESLint for code quality?        解析规范化代码
-√ Add Prettier for code formatting?   ... No &#x2F; Yes<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><code class="hljs routeros">√ Project name:    项目名称
+√ <span class="hljs-built_in">Add</span> TypeScript?  javascript的超集
+√ <span class="hljs-built_in">Add</span> JSX Support? JSX 支持
+√ <span class="hljs-built_in">Add</span> Vue Router <span class="hljs-keyword">for</span> Single<span class="hljs-built_in"> Page </span>Application development? Vue路由管理
+√ <span class="hljs-built_in">Add</span> Pinia <span class="hljs-keyword">for</span> state management?     类似Vuex的状态管理机制
+√ <span class="hljs-built_in">Add</span> Vitest <span class="hljs-keyword">for</span> Unit Testing?        vite提供的单元测试框架
+√ <span class="hljs-built_in">Add</span> Cypress <span class="hljs-keyword">for</span> End-to-End testing? 自动化测试框架
+√ <span class="hljs-built_in">Add</span> ESLint <span class="hljs-keyword">for</span> code quality?        解析规范化代码
+√ <span class="hljs-built_in">Add</span> Prettier <span class="hljs-keyword">for</span> code formatting?   <span class="hljs-built_in">..</span>. <span class="hljs-literal">No</span> / <span class="hljs-literal">Yes</span></code></pre>
 
 <p>vite 在创建项目xxx后,可以命令进入，vite默认启动的IP是错误的，可以通过配置进行修改；</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>vite.config.ts</span></div><code class="language-javascript"><span class="token keyword">import</span> path <span class="token keyword">from</span> <span class="token string">'path'</span>
+<pre><div class="caption"><span>vite.config.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> path <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;path&#x27;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  <span class="token comment">// ...</span>
-  <span class="token literal-property property">server</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">open</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">port</span><span class="token operator">:</span> <span class="token number">5173</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">host</span><span class="token operator">:</span> <span class="token string">"0.0.0.0"</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token literal-property property">resolve</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">alias</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      <span class="token string-property property">'~/'</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-      <span class="token string-property property">'@'</span><span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>path<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'src'</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">server</span>:&#123;
+    <span class="hljs-attr">open</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">port</span>: <span class="hljs-number">5173</span>,
+    <span class="hljs-attr">host</span>: <span class="hljs-string">&quot;0.0.0.0&quot;</span>
+  &#125;,
+  <span class="hljs-attr">resolve</span>: &#123;
+    <span class="hljs-attr">alias</span>: &#123;
+      <span class="hljs-string">&#x27;~/&#x27;</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;path.resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,
+      <span class="hljs-string">&#x27;@&#x27;</span>: <span class="hljs-string">`<span class="hljs-subst">$&#123;path.resolve(__dirname, <span class="hljs-string">&#x27;src&#x27;</span>)&#125;</span>/`</span>,
+    &#125;
+  &#125;
+&#125;);</code></pre>
 
 <!-- ```json package.json
 // ...
@@ -224,81 +233,81 @@
   "dev": "vite --host 0.0.0.0",
 // ...
 },
-<pre class="line-numbers language--->" data-language="-->"><code class="language--->">&lt;!-- 配置路径别名
+<pre><code class="hljs -->">&lt;!-- 配置路径别名
 
-&#96;&#96;&#96;json tsconfig.json
-&#x2F;&#x2F; ...
-&quot;allowJs&quot;: true,   &#x2F;&#x2F;允许js
-&quot;baseUrl&quot;: &quot;.&#x2F;&quot;,   &#x2F;&#x2F;基础路径，默认为当前根目录
+```json tsconfig.json
+// ...
+&quot;allowJs&quot;: true,   //允许js
+&quot;baseUrl&quot;: &quot;./&quot;,   //基础路径，默认为当前根目录
 &quot;paths&quot;:&#123;          
-  &quot;@&#x2F;*&quot;: [&quot;src&#x2F;*&quot;] &#x2F;&#x2F;@ 别名
+  &quot;@/*&quot;: [&quot;src/*&quot;] //@ 别名
 &#125;
-&#96;&#96;&#96; --&gt;
+``` --&gt;
 
 ## 示例代码
 
-&#96;&#96;&#96;js 入口文件 main.ts
-import &#123; createApp &#125; from &#39;vue&#39;
-import &#39;.&#x2F;style.css&#39;
-import App from &#39;.&#x2F;App.vue&#39;
-import Router from &quot;.&#x2F;Router.js&quot;
-import &#123; Store &#125; from &#39;@&#x2F;stores&#39;
-const Vue &#x3D; createApp(App)
+```js 入口文件 main.ts
+import &#123; createApp &#125; from &#x27;vue&#x27;
+import &#x27;./style.css&#x27;
+import App from &#x27;./App.vue&#x27;
+import Router from &quot;./Router.js&quot;
+import &#123; Store &#125; from &#x27;@/stores&#x27;
+const Vue = createApp(App)
 
 Vue.use(Router)
 Vue.use(Store)
-Vue.mount(&#39;#app&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+Vue.mount(&#x27;#app&#x27;)</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>路由集合 Router.ts</span></div><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>createRouter<span class="token punctuation">,</span>createWebHashHistory<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span>
+<pre><div class="caption"><span>路由集合 Router.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123;createRouter,createWebHashHistory&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
 
-<span class="token comment">// 组件</span>
-<span class="token keyword">import</span> Home <span class="token keyword">from</span> <span class="token string">'./Home.vue'</span>
-<span class="token keyword">import</span> Word <span class="token keyword">from</span> <span class="token string">'./Word.vue'</span>
-<span class="token keyword">import</span> About <span class="token keyword">from</span> <span class="token string">'./About.vue'</span>
-<span class="token keyword">import</span> Nofined <span class="token keyword">from</span> <span class="token string">'./Nofined.vue'</span>
+<span class="hljs-comment">// 组件</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Home</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Home.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Word</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Word.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">About</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./About.vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Nofined</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Nofined.vue&#x27;</span>
 
-<span class="token keyword">const</span> <span class="token literal-property property">routes</span><span class="token operator">:</span>any <span class="token operator">=</span> <span class="token punctuation">[</span>
-  <span class="token punctuation">&#123;</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> Home <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#123;</span> <span class="token literal-property property">path</span><span class="token operator">:</span> <span class="token string">'/about'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> About<span class="token punctuation">,</span>
-    <span class="token literal-property property">children</span><span class="token operator">:</span><span class="token punctuation">[</span>
-      <span class="token punctuation">&#123;</span><span class="token literal-property property">path</span><span class="token operator">:</span><span class="token string">'word'</span><span class="token punctuation">,</span><span class="token literal-property property">component</span><span class="token operator">:</span>Word<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">]</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#123;</span> <span class="token literal-property property">path</span><span class="token operator">:</span><span class="token string">'/404'</span><span class="token punctuation">,</span> <span class="token literal-property property">component</span><span class="token operator">:</span> Nofined<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#123;</span> <span class="token literal-property property">path</span><span class="token operator">:</span><span class="token string">'/:catchAll(.*)'</span><span class="token punctuation">,</span><span class="token literal-property property">redirect</span><span class="token operator">:</span><span class="token string">'/404'</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">]</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">routes</span>:any = [
+  &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">Home</span> &#125;,
+  &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/about&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">About</span>,
+    <span class="hljs-attr">children</span>:[
+      &#123;<span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;word&#x27;</span>,<span class="hljs-attr">component</span>:<span class="hljs-title class_">Word</span>&#125;,
+    ]
+  &#125;,
+  &#123; <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/404&#x27;</span>, <span class="hljs-attr">component</span>: <span class="hljs-title class_">Nofined</span>&#125;,
+  &#123; <span class="hljs-attr">path</span>:<span class="hljs-string">&#x27;/:catchAll(.*)&#x27;</span>,<span class="hljs-attr">redirect</span>:<span class="hljs-string">&#x27;/404&#x27;</span>&#125;
+]
 
-<span class="token keyword">const</span> <span class="token literal-property property">router</span><span class="token operator">:</span>any <span class="token operator">=</span> <span class="token function">createRouter</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  <span class="token literal-property property">history</span><span class="token operator">:</span> <span class="token function">createWebHashHistory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  routes<span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-attr">router</span>:any = <span class="hljs-title function_">createRouter</span>(&#123;
+  <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHashHistory</span>(),
+  routes,
+&#125;)
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> router<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>状态管理</span><a href="/stores/index.js">link</a></div><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span>createPinia<span class="token punctuation">,</span> defineStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'Pinia'</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> Store <span class="token operator">=</span> <span class="token function">createPinia</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> useStore <span class="token operator">=</span> <span class="token function">defineStore</span><span class="token punctuation">(</span><span class="token string">'main'</span><span class="token punctuation">,</span><span class="token punctuation">&#123;</span>
-    <span class="token function-variable function">state</span><span class="token operator">:</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token punctuation">&#123;</span> <span class="token literal-property property">counter</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">getters</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token literal-property property">actions</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>状态管理</span><a href="/stores/index.js">link</a></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123;createPinia, defineStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;Pinia&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">Store</span> = <span class="hljs-title function_">createPinia</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;main&#x27;</span>,&#123;
+    <span class="hljs-attr">state</span>:<span class="hljs-function">() =&gt;</span> (&#123; <span class="hljs-attr">counter</span>: <span class="hljs-number">0</span> &#125;),
+    <span class="hljs-attr">getters</span>: &#123;&#125;,
+    <span class="hljs-attr">actions</span>: &#123;&#125;
+&#125;)</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>Home.vue</span></div><code class="language-javascript"><span class="token operator">&lt;</span>script setup<span class="token operator">></span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> useStore <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'@/stores/index.js'</span>
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token function">useStore</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>store<span class="token punctuation">.</span>counter<span class="token punctuation">)</span>
-<span class="token keyword">const</span> <span class="token function-variable function">clickAb</span> <span class="token operator">=</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-  store<span class="token punctuation">.</span>counter<span class="token operator">++</span>
-<span class="token comment">//  store.$patch(&#123;</span>
-<span class="token comment">//    counter: store.counter + 1,</span>
-<span class="token comment">//  &#125;)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
-<span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>div @click<span class="token operator">=</span><span class="token string">"clickAb"</span><span class="token operator">></span>About<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>store<span class="token punctuation">.</span>counter<span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>
-    <span class="token operator">&lt;</span>Home<span class="token operator">/</span><span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>Home.vue</span></div><code class="hljs js">&lt;script setup&gt;
+<span class="hljs-keyword">import</span> &#123; useStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/stores/index.js&#x27;</span>
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">useStore</span>()
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(store.<span class="hljs-property">counter</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">clickAb</span> =(<span class="hljs-params"></span>)=&gt;&#123;
+  store.<span class="hljs-property">counter</span>++
+<span class="hljs-comment">//  store.$patch(&#123;</span>
+<span class="hljs-comment">//    counter: store.counter + 1,</span>
+<span class="hljs-comment">//  &#125;)</span>
+&#125;
+&lt;/script&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;clickAb&quot;</span>&gt;</span>About&#123;&#123;store.counter&#125;&#125;</span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">Home</span>/&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
 
 
 <h2 id="测试配置"><a href="#测试配置" class="headerlink" title="测试配置"></a>测试配置</h2><p>Vitest 是一个由 Vite 提供支持的极速单元测试框架,@vue/test-utils 则是用来测试vue组件的可选工具</p>
@@ -306,283 +315,283 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <p>yarn add -D vitest || npm install -D vitest<br>yarn add -D @vue/test-utils || npm install -D @vue/test-utils</p>
 </blockquote>
 <p>配置命令，给 TypeScript 配置。如下</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>vite.config.js</span></div><code class="language-javascript"><span class="token comment">// ...</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">defineConfig</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token function">vue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-  <span class="token literal-property property">test</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      _<span class="token comment">// ..._</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-title function_">vue</span>()],
+  <span class="hljs-attr">test</span>: &#123;
+      _<span class="hljs-comment">// ..._</span>
+  &#125;,
+&#125;)</code></pre>
 
-<pre class="line-numbers language-json" data-language="json"><div class="caption"><span>package.json</span></div><code class="language-json"><span class="token punctuation">&#123;</span>
-  <span class="token property">"scripts"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token property">"test"</span><span class="token operator">:</span> <span class="token string">"vitest"</span><span class="token punctuation">,</span>
-    <span class="token property">"coverage"</span><span class="token operator">:</span> <span class="token string">"vitest run --coverage"</span><span class="token punctuation">,</span>
-    <span class="token property">"vitestui"</span><span class="token operator">:</span> <span class="token string">"启动vitest的UI界面"</span><span class="token punctuation">,</span>
-    <span class="token property">"vitestui"</span><span class="token operator">:</span> <span class="token string">"vitest --ui"</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;test&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;coverage&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest run --coverage&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;vitestui&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;启动vitest的UI界面&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;vitestui&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;vitest --ui&quot;</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
-<h3 id="测试示例"><a href="#测试示例" class="headerlink" title="测试示例"></a>测试示例</h3><pre class="line-numbers language-typescript" data-language="typescript"><div class="caption"><span>App.vue</span></div><code class="language-typescript"><span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>div<span class="token operator">></span>
-    <span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://vitejs.dev"</span> target<span class="token operator">=</span><span class="token string">"_blank"</span><span class="token operator">></span>
-      <span class="token operator">&lt;</span>img src<span class="token operator">=</span><span class="token string">"/vite.svg"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"logo"</span> alt<span class="token operator">=</span><span class="token string">"Vite logo"</span> <span class="token operator">/</span><span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">></span>
-  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="测试示例"><a href="#测试示例" class="headerlink" title="测试示例"></a>测试示例</h3><pre><div class="caption"><span>App.vue</span></div><code class="hljs ts">&lt;template&gt;
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;https://vitejs.dev&quot;</span> <span class="hljs-attr">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/vite.svg&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;logo&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;Vite logo&quot;</span> /&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+&lt;/template&gt;</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>__tests__/App.test.ts</span></div><code class="language-javascript"><span class="token keyword">import</span> <span class="token punctuation">&#123;</span> mount <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"@vue/test-utils"</span><span class="token punctuation">;</span>
-<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'../src/App.vue'</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> describe<span class="token punctuation">,</span>expect<span class="token punctuation">,</span> test <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">"vitest"</span><span class="token punctuation">;</span>
+<pre><div class="caption"><span>__tests__/App.test.ts</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; mount &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@vue/test-utils&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/App.vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; describe,expect, test &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vitest&quot;</span>;
 
-<span class="token comment">// 测试分组</span>
-<span class="token function">describe</span><span class="token punctuation">(</span><span class="token string">"App.vue"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 拥有img元素,拥有logo class</span>
-  <span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"has logo img"</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-    <span class="token keyword">const</span> wrapper <span class="token operator">=</span> <span class="token function">mount</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token function">expect</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'[class="logo"]'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-    <span class="token function">expect</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-comment">// 测试分组</span>
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;App.vue&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-comment">// 拥有img元素,拥有logo class</span>
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;has logo img&quot;</span>,<span class="hljs-function">()=&gt;</span>&#123;
+    <span class="hljs-keyword">const</span> wrapper = <span class="hljs-title function_">mount</span>(<span class="hljs-title class_">App</span>);
+    <span class="hljs-title function_">expect</span>(wrapper.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;[class=&quot;logo&quot;]&#x27;</span>).<span class="hljs-title function_">exists</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">true</span>)
+    <span class="hljs-title function_">expect</span>(wrapper.<span class="hljs-title function_">find</span>(<span class="hljs-string">&#x27;img&#x27;</span>).<span class="hljs-title function_">exists</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-literal">true</span>)
+  &#125;)
+&#125;);</code></pre>
 
-<h2 id="相关扩展"><a href="#相关扩展" class="headerlink" title="相关扩展"></a>相关扩展</h2><h3 id="在项目中配置模块的相关目录"><a href="#在项目中配置模块的相关目录" class="headerlink" title="在项目中配置模块的相关目录"></a>在项目中配置模块的相关目录</h3><pre class="line-numbers language-none"><code class="language-none">__tests__&#x2F; (Vitest测试文件)
- |——App.test.ts
+<h2 id="相关扩展"><a href="#相关扩展" class="headerlink" title="相关扩展"></a>相关扩展</h2><h3 id="在项目中配置模块的相关目录"><a href="#在项目中配置模块的相关目录" class="headerlink" title="在项目中配置模块的相关目录"></a>在项目中配置模块的相关目录</h3><pre><code class="hljs 1c">__tests__/ (Vitest测试文件)
+ <span class="hljs-string">|——App.test.ts</span>
  ......
-src&#x2F;
- |——api&#x2F; (所有请求：用户相关，功能相关等)
-   |——user.js 
- |——assets&#x2F; (静态资源：图片，视频，字体等)
-   |——images&#x2F; 
- |——components&#x2F; (所有组件：主页，登录，注册等)
-   |——Home.vue
- |——config&#x2F; (所有配置项：网关,路由字体大小等)
-   |——geteway.js
-   |——router.js
- |——stores&#x2F;  (pinia的数据中心)
-   |——index.js
-   |——home.js
- |——utils&#x2F;  (工具集合：请求，常用函数等)
-   |——require.js
- min.js<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="在手机端设置区分前进后退的代码"><a href="#在手机端设置区分前进后退的代码" class="headerlink" title="在手机端设置区分前进后退的代码"></a>在手机端设置区分前进后退的代码</h3><pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>路由集合 Router.js</span></div><code class="language-javascript"><span class="token comment">//区分前进后退，主要是为了在移动端添加不同的动画</span>
-<span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">push</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//路由前进</span>
-    <span class="token keyword">let</span> old<span class="token operator">=</span><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span>currentRoute<span class="token punctuation">.</span>path  
-    <span class="token keyword">if</span><span class="token punctuation">(</span>old<span class="token operator">==</span>url<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> 
-      <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>  
-        <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>transitionName <span class="token operator">=</span> <span class="token string">"slide-left"</span><span class="token punctuation">;</span> <span class="token comment">//通过设置不同的class触发动画  </span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-<span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">pop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">n<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span></span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//路由后退</span>
-    <span class="token class-name">Vue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>transitionName <span class="token operator">=</span> <span class="token string">"slide-right"</span><span class="token punctuation">;</span>
-    <span class="token keyword">let</span> path <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span>currentRoute<span class="token punctuation">.</span>path<span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>path <span class="token operator">==</span> <span class="token string">"/"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+src/
+ <span class="hljs-string">|——api/ (所有请求：用户相关，功能相关等)</span>
+   <span class="hljs-string">|——user.js </span>
+ <span class="hljs-string">|——assets/ (静态资源：图片，视频，字体等)</span>
+   <span class="hljs-string">|——images/ </span>
+ <span class="hljs-string">|——components/ (所有组件：主页，登录，注册等)</span>
+   <span class="hljs-string">|——Home.vue</span>
+ <span class="hljs-string">|——config/ (所有配置项：网关,路由字体大小等)</span>
+   <span class="hljs-string">|——geteway.js</span>
+   <span class="hljs-string">|——router.js</span>
+ <span class="hljs-string">|——stores/  (pinia的数据中心)</span>
+   <span class="hljs-string">|——index.js</span>
+   <span class="hljs-string">|——home.js</span>
+ <span class="hljs-string">|——utils/  (工具集合：请求，常用函数等)</span>
+   <span class="hljs-string">|——require.js</span>
+ min.js</code></pre>
+<h3 id="在手机端设置区分前进后退的代码"><a href="#在手机端设置区分前进后退的代码" class="headerlink" title="在手机端设置区分前进后退的代码"></a>在手机端设置区分前进后退的代码</h3><pre><div class="caption"><span>路由集合 Router.js</span></div><code class="hljs js"><span class="hljs-comment">//区分前进后退，主要是为了在移动端添加不同的动画</span>
+<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">push</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">url</span>)&#123;  <span class="hljs-comment">//路由前进</span>
+    <span class="hljs-keyword">let</span> old=<span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-property">currentRoute</span>.<span class="hljs-property">path</span>  
+    <span class="hljs-keyword">if</span>(old==url)&#123; 
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">go</span>(<span class="hljs-number">0</span>);
+    &#125;<span class="hljs-keyword">else</span>&#123;  
+        <span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">transitionName</span> = <span class="hljs-string">&quot;slide-left&quot;</span>; <span class="hljs-comment">//通过设置不同的class触发动画  </span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">push</span>(url); 
+    &#125;
+&#125;;
+<span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">pop</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">n=-<span class="hljs-number">1</span></span>)&#123;  <span class="hljs-comment">//路由后退</span>
+    <span class="hljs-title class_">Vue</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">transitionName</span> = <span class="hljs-string">&quot;slide-right&quot;</span>;
+    <span class="hljs-keyword">let</span> path = <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-property">currentRoute</span>.<span class="hljs-property">path</span>;
+    <span class="hljs-keyword">if</span> (path == <span class="hljs-string">&quot;/&quot;</span>) &#123; <span class="hljs-keyword">return</span>;&#125;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>.<span class="hljs-title function_">go</span>(n);
+&#125;</code></pre>
 
 <h3 id="在本地项目中配置proxy解决跨域请求"><a href="#在本地项目中配置proxy解决跨域请求" class="headerlink" title="在本地项目中配置proxy解决跨域请求"></a>在本地项目中配置proxy解决跨域请求</h3><p>这是 <code>vite</code>工具的配置，在项目的根目录创建 <code>vite.config.js</code> </p>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>vite.config.js</span></div><code class="language-javascript">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-  <span class="token literal-property property">server</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span> <span class="token comment">//请求配置</span>
-    <span class="token literal-property property">proxy</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-      <span class="token string-property property">'/api'</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">target</span><span class="token operator">:</span> <span class="token string">'http://10.31.27.56:8087/'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">changeOrigin</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token comment">// 是否跨域</span>
-        <span class="token function-variable function">rewrite</span><span class="token operator">:</span> <span class="token parameter">path</span> <span class="token operator">=></span> path<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'/^\/api/'</span><span class="token punctuation">,</span> <span class="token string">'/api'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">server</span>: &#123; <span class="hljs-comment">//请求配置</span>
+    <span class="hljs-attr">proxy</span>: &#123;
+      <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;
+        <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://10.31.27.56:8087/&#x27;</span>,
+        <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 是否跨域</span>
+        <span class="hljs-attr">rewrite</span>: <span class="hljs-function"><span class="hljs-params">path</span> =&gt;</span> path.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;/^\/api/&#x27;</span>, <span class="hljs-string">&#x27;/api&#x27;</span>),
+      &#125;,
+    &#125;,
+  &#125;
+&#125;</code></pre>
 
 <h3 id="在项目中配置接口请求和数据异步处理"><a href="#在项目中配置接口请求和数据异步处理" class="headerlink" title="在项目中配置接口请求和数据异步处理"></a>在项目中配置接口请求和数据异步处理</h3><blockquote>
 <p>yarn add axios<br>  yarn add qs</p>
 </blockquote>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>/axios.js</span></div><code class="language-javascript"><span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">"axios"</span>
-<span class="token keyword">import</span> qs <span class="token keyword">from</span> <span class="token string">"qs"</span>
+<pre><div class="caption"><span>/axios.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;axios&quot;</span>
+<span class="hljs-keyword">import</span> qs <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;qs&quot;</span>
 
-<span class="token comment">// 设置超时</span>
-axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>timeout <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">;</span>
-<span class="token comment">// 表示跨域请求时是否需要使用凭证</span>
-axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>withCredentials <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-<span class="token comment">// 允许跨域</span>
-axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>post<span class="token punctuation">[</span><span class="token string">'Content-Type'</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'application/json;charset=UTF-8'</span><span class="token punctuation">;</span>
-axios<span class="token punctuation">.</span>defaults<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>post<span class="token punctuation">[</span><span class="token string">"Access-Control-Allow-Origin-Type"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"*"</span><span class="token punctuation">;</span>
+<span class="hljs-comment">// 设置超时</span>
+axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">timeout</span> = <span class="hljs-number">5000</span>;
+<span class="hljs-comment">// 表示跨域请求时是否需要使用凭证</span>
+axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">withCredentials</span> = <span class="hljs-literal">false</span>;
+<span class="hljs-comment">// 允许跨域</span>
+axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">post</span>[<span class="hljs-string">&#x27;Content-Type&#x27;</span>] = <span class="hljs-string">&#x27;application/json;charset=UTF-8&#x27;</span>;
+axios.<span class="hljs-property">defaults</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">post</span>[<span class="hljs-string">&quot;Access-Control-Allow-Origin-Type&quot;</span>] = <span class="hljs-string">&quot;*&quot;</span>;
 
-<span class="token comment">// 请求拦截器</span>
-axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">//数据格式化</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>method <span class="token operator">===</span> <span class="token string">"post"</span> <span class="token operator">||</span>config<span class="token punctuation">.</span>method <span class="token operator">===</span> <span class="token string">"put"</span> <span class="token operator">||</span>config<span class="token punctuation">.</span>method <span class="token operator">===</span> <span class="token string">"delete"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        config<span class="token punctuation">.</span>data <span class="token operator">=</span> qs<span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>config<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    <span class="token comment">//添加身份验证</span>
-    <span class="token comment">// if(config.headers.Authorization === undefined) &#123;</span>
-    <span class="token comment">//   config.headers.Authorization = 'Bearer ' + store.state.token</span>
-    <span class="token comment">// &#125;</span>
-    <span class="token keyword">return</span> config<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token parameter">error</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>data<span class="token punctuation">.</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span> <span class="token comment">// 也可以通过组件的message抛出</span>
-    <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>data<span class="token punctuation">.</span>error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="hljs-comment">// 请求拦截器</span>
+axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">request</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">config</span>) &#123;
+    <span class="hljs-comment">//数据格式化</span>
+    <span class="hljs-keyword">if</span> (config.<span class="hljs-property">method</span> === <span class="hljs-string">&quot;post&quot;</span> ||config.<span class="hljs-property">method</span> === <span class="hljs-string">&quot;put&quot;</span> ||config.<span class="hljs-property">method</span> === <span class="hljs-string">&quot;delete&quot;</span>) &#123;
+        config.<span class="hljs-property">data</span> = qs.<span class="hljs-title function_">parse</span>(config.<span class="hljs-property">data</span>);
+    &#125;
+    <span class="hljs-comment">//添加身份验证</span>
+    <span class="hljs-comment">// if(config.headers.Authorization === undefined) &#123;</span>
+    <span class="hljs-comment">//   config.headers.Authorization = &#x27;Bearer &#x27; + store.state.token</span>
+    <span class="hljs-comment">// &#125;</span>
+    <span class="hljs-keyword">return</span> config;
+&#125;, <span class="hljs-function"><span class="hljs-params">error</span> =&gt;</span> &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error.<span class="hljs-property">data</span>.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>) <span class="hljs-comment">// 也可以通过组件的message抛出</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error.<span class="hljs-property">data</span>.<span class="hljs-property">error</span>.<span class="hljs-property">message</span>);
+&#125;)
 
-<span class="token comment">// 响应拦截器</span>
-axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">config</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span> <span class="token operator">||</span> config<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">204</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">switch</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-        <span class="token keyword">case</span> <span class="token number">400</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"发出的请求有错误，服务器没有进行新建或修改数据的操作==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>                
-        <span class="token keyword">case</span> <span class="token number">401</span><span class="token operator">:</span> <span class="token comment">//未登录 重定向，跳转登录页面</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"token:登录失效==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> store<span class="token punctuation">.</span>state<span class="token punctuation">.</span>Roles<span class="token punctuation">)</span>
-            <span class="token comment">// router.replace(&#123; path: '/Login', &#125;);</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>          
-        <span class="token keyword">case</span> <span class="token number">403</span><span class="token operator">:</span> <span class="token comment">//token过期，清除本地token和清空vuex中token对象，跳转登录页面</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"用户得到授权，但是访问是被禁止的==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">404</span><span class="token operator">:</span> <span class="token comment">//资源不存在</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"网络请求不存在==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">406</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"请求的格式不可得==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">410</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"请求的资源被永久删除，且不会再得到的==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">422</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"当创建一个对象时，发生一个验证错误==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">500</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"服务器发生错误，请检查服务器==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">502</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"网关错误==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">503</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"服务不可用，服务器暂时过载或维护==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">case</span> <span class="token number">504</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"网关超时==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token keyword">default</span><span class="token operator">:</span>
-            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"其他错误错误==>"</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>response<span class="token punctuation">.</span>status<span class="token punctuation">)</span>
-        <span class="token punctuation">&#125;</span>
-        <span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-        <span class="token comment">// 处理断网的情况</span>
-        <span class="token comment">// store.commit('changeNetwork', false);</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token comment">// 封装的require请求</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">require</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">option</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">fulfill<span class="token punctuation">,</span>reject</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-    Vue<span class="token punctuation">.</span><span class="token function">axios</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">res</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-      <span class="token function">fulfill</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">rej</span><span class="token punctuation">)</span><span class="token operator">=></span><span class="token punctuation">&#123;</span>
-      <span class="token keyword">if</span><span class="token punctuation">(</span>rej<span class="token punctuation">.</span>response<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">reject</span><span class="token punctuation">(</span>rej<span class="token punctuation">.</span>response<span class="token punctuation">)</span>
-      <span class="token punctuation">&#125;</span><span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>rej<span class="token punctuation">.</span>require<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-        <span class="token function">reject</span><span class="token punctuation">(</span>rej<span class="token punctuation">.</span>require<span class="token punctuation">)</span>
-      <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
-        <span class="token function">reject</span><span class="token punctuation">(</span>rej<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
-      <span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> require<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="hljs-comment">// 响应拦截器</span>
+axios.<span class="hljs-property">interceptors</span>.<span class="hljs-property">response</span>.<span class="hljs-title function_">use</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">config</span>) &#123;
+    <span class="hljs-keyword">if</span> (config.<span class="hljs-property">status</span> === <span class="hljs-number">200</span> || config.<span class="hljs-property">status</span> === <span class="hljs-number">204</span>) &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">resolve</span>(config);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(config);
+    &#125;
+&#125;,<span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) &#123;
+    <span class="hljs-keyword">if</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>) &#123;
+        <span class="hljs-keyword">switch</span> (error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>) &#123;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">400</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;发出的请求有错误，服务器没有进行新建或修改数据的操作==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;                
+        <span class="hljs-keyword">case</span> <span class="hljs-number">401</span>: <span class="hljs-comment">//未登录 重定向，跳转登录页面</span>
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;token:登录失效==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span> + <span class="hljs-string">&quot;:&quot;</span> + store.<span class="hljs-property">state</span>.<span class="hljs-property">Roles</span>)
+            <span class="hljs-comment">// router.replace(&#123; path: &#x27;/Login&#x27;, &#125;);</span>
+            <span class="hljs-keyword">break</span>;          
+        <span class="hljs-keyword">case</span> <span class="hljs-number">403</span>: <span class="hljs-comment">//token过期，清除本地token和清空vuex中token对象，跳转登录页面</span>
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;用户得到授权，但是访问是被禁止的==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">404</span>: <span class="hljs-comment">//资源不存在</span>
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;网络请求不存在==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">406</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;请求的格式不可得==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">410</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;请求的资源被永久删除，且不会再得到的==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">422</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;当创建一个对象时，发生一个验证错误==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">500</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;服务器发生错误，请检查服务器==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">502</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;网关错误==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">503</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;服务不可用，服务器暂时过载或维护==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">504</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;网关超时==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-attr">default</span>:
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;其他错误错误==&gt;&quot;</span> + error.<span class="hljs-property">response</span>.<span class="hljs-property">status</span>)
+        &#125;
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">Promise</span>.<span class="hljs-title function_">reject</span>(error.<span class="hljs-property">response</span>);
+    &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-comment">// 处理断网的情况</span>
+        <span class="hljs-comment">// store.commit(&#x27;changeNetwork&#x27;, false);</span>
+    &#125;
+&#125;)
+<span class="hljs-comment">// 封装的require请求</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">require</span> = (<span class="hljs-params">option</span>)=&gt;&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">fulfill,reject</span>)=&gt;</span>&#123;
+    <span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">axios</span>(option).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res</span>)=&gt;</span>&#123;
+      <span class="hljs-title function_">fulfill</span>(res)
+    &#125;).<span class="hljs-title function_">catch</span>(<span class="hljs-function">(<span class="hljs-params">rej</span>)=&gt;</span>&#123;
+      <span class="hljs-keyword">if</span>(rej.<span class="hljs-property">response</span>)&#123;
+        <span class="hljs-title function_">reject</span>(rej.<span class="hljs-property">response</span>)
+      &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(rej.<span class="hljs-property">require</span>)&#123;
+        <span class="hljs-title function_">reject</span>(rej.<span class="hljs-property">require</span>)
+      &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-title function_">reject</span>(rej.<span class="hljs-property">message</span>)
+      &#125;
+    &#125;)
+  &#125;)
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-built_in">require</span>;</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>/config/geteway.js</span></div><code class="language-javascript"><span class="token comment">// export const network='https://api.ixiaowai.cn'</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> network<span class="token operator">=</span><span class="token string">''</span> <span class="token comment">//通过vue-cli设置服务器代理，在上线前需要改正</span>
-<span class="token keyword">export</span> <span class="token keyword">const</span> auto<span class="token operator">=</span><span class="token string">'api'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>/config/geteway.js</span></div><code class="hljs js"><span class="hljs-comment">// export const network=&#x27;https://api.ixiaowai.cn&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> network=<span class="hljs-string">&#x27;&#x27;</span> <span class="hljs-comment">//通过vue-cli设置服务器代理，在上线前需要改正</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> auto=<span class="hljs-string">&#x27;api&#x27;</span></code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>vue.config.js</span></div><code class="language-javascript">module<span class="token punctuation">.</span>exports<span class="token operator">=</span><span class="token punctuation">&#123;</span>
-  <span class="token literal-property property">devServer</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">proxy</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-      <span class="token string-property property">"/api"</span><span class="token operator">:</span><span class="token punctuation">&#123;</span>
-        <span class="token literal-property property">target</span><span class="token operator">:</span> <span class="token string">'https://api.ixiaowai.cn/'</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">changeOrigin</span><span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">,</span>
-        <span class="token literal-property property">pathRewrite</span><span class="token operator">:</span><span class="token punctuation">&#123;</span> <span class="token comment">//重写请求路径，将api标记清除</span>
-          <span class="token string-property property">'^/api'</span><span class="token operator">:</span><span class="token string">''</span>
-        <span class="token punctuation">&#125;</span>
-      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre><div class="caption"><span>vue.config.js</span></div><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span>=&#123;
+  <span class="hljs-attr">devServer</span>:&#123;
+    <span class="hljs-attr">proxy</span>:&#123;
+      <span class="hljs-string">&quot;/api&quot;</span>:&#123;
+        <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;https://api.ixiaowai.cn/&#x27;</span>,
+        <span class="hljs-attr">changeOrigin</span>:<span class="hljs-literal">true</span>,
+        <span class="hljs-attr">pathRewrite</span>:&#123; <span class="hljs-comment">//重写请求路径，将api标记清除</span>
+          <span class="hljs-string">&#x27;^/api&#x27;</span>:<span class="hljs-string">&#x27;&#x27;</span>
+        &#125;
+      &#125;,
+    &#125;
+  &#125;
+&#125;</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>/api/other.js</span></div><code class="language-javascript"><span class="token keyword">import</span> requires <span class="token keyword">from</span> <span class="token string">'@/utils/require'</span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span>network<span class="token punctuation">,</span>auto<span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'@/config/geteway'</span>
+<pre><div class="caption"><span>/api/other.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> requires <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/utils/require&#x27;</span>
+<span class="hljs-keyword">import</span> &#123;network,auto&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/config/geteway&#x27;</span>
 
-<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">saying</span><span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">params</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  <span class="token comment">//接口请求</span>
-  <span class="token keyword">return</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-    <span class="token literal-property property">url</span><span class="token operator">:</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>network<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>auto<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">/ylapi.php</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
-    <span class="token literal-property property">method</span><span class="token operator">:</span><span class="token string">'GET'</span><span class="token punctuation">,</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> saying=<span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>)&#123;  <span class="hljs-comment">//接口请求</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">require</span>(&#123;
+    <span class="hljs-attr">url</span>:<span class="hljs-string">`<span class="hljs-subst">$&#123;network&#125;</span>/<span class="hljs-subst">$&#123;auto&#125;</span>/ylapi.php`</span>,
+    <span class="hljs-attr">method</span>:<span class="hljs-string">&#x27;GET&#x27;</span>,
     params
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  &#125;)
+&#125;</code></pre>
 
 <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="响应式的边界问题"><a href="#响应式的边界问题" class="headerlink" title="响应式的边界问题"></a>响应式的边界问题</h3><p>需要注意的是，相比较vue2，vue3中的原始数据不是响应式的</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-      <span class="token literal-property property">someObject</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">const</span> newObject <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>someObject <span class="token operator">=</span> newObject
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> &#123;
+      <span class="hljs-attr">someObject</span>: &#123;&#125;
+    &#125;
+  &#125;,
+  <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">const</span> newObject = &#123;&#125;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">someObject</span> = newObject
 
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>newObject <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>someObject<span class="token punctuation">)</span> <span class="token comment">// false</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(newObject === <span class="hljs-variable language_">this</span>.<span class="hljs-property">someObject</span>) <span class="hljs-comment">// false</span>
+  &#125;
+&#125;</code></pre>
 
 <h3 id="Vue的代码风格：选项式API和组合式API"><a href="#Vue的代码风格：选项式API和组合式API" class="headerlink" title="Vue的代码风格：选项式API和组合式API"></a>Vue的代码风格：选项式API和组合式API</h3><p>与选项式API不同的是，组合式API需要搭配 <code>&lt;script setup&gt;</code> 进行使用； </p>
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>选项式</span></div><code class="language-javascript"><span class="token operator">&lt;</span>script<span class="token operator">></span>
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
-  <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span>
-      <span class="token literal-property property">count</span><span class="token operator">:</span> <span class="token number">0</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-    <span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token operator">++</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-  <span class="token function">mounted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The initial count is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span><span class="token keyword">this</span><span class="token punctuation">.</span>count<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<pre><div class="caption"><span>选项式</span></div><code class="hljs js">&lt;script&gt;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">return</span> &#123;
+      <span class="hljs-attr">count</span>: <span class="hljs-number">0</span>
+    &#125;
+  &#125;,
+  <span class="hljs-attr">methods</span>: &#123;
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>++
+    &#125;
+  &#125;,
+  <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`The initial count is <span class="hljs-subst">$&#123;<span class="hljs-variable language_">this</span>.count&#125;</span>.`</span>)
+  &#125;
+&#125;
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"increment"</span><span class="token operator">></span>Count is<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> count <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span>Count is: &#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
+</code></pre>
 
-<pre class="line-numbers language-javascript" data-language="javascript"><div class="caption"><span>组合式</span></div><code class="language-javascript"><span class="token operator">&lt;</span>script setup<span class="token operator">></span>
-<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> ref<span class="token punctuation">,</span> onMounted <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vue'</span>
+<pre><div class="caption"><span>组合式</span></div><code class="hljs js">&lt;script setup&gt;
+<span class="hljs-keyword">import</span> &#123; ref, onMounted &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-<span class="token comment">// 响应式状态</span>
-<span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token function">ref</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
-<span class="token comment">// 用来修改状态、触发更新的函数</span>
-<span class="token keyword">function</span> <span class="token function">increment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  count<span class="token punctuation">.</span>value<span class="token operator">++</span>
-<span class="token punctuation">&#125;</span>
+<span class="hljs-comment">// 响应式状态</span>
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// 用来修改状态、触发更新的函数</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) &#123;
+  count.<span class="hljs-property">value</span>++
+&#125;
 
-<span class="token comment">// 生命周期钩子</span>
-<span class="token function">onMounted</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The initial count is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>count<span class="token punctuation">.</span>value<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">></span>
+<span class="hljs-comment">// 生命周期钩子</span>
+<span class="hljs-title function_">onMounted</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`The initial count is <span class="hljs-subst">$&#123;count.value&#125;</span>.`</span>)
+&#125;)
+&lt;/script&gt;
 
-<span class="token operator">&lt;</span>template<span class="token operator">></span>
-  <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">"increment"</span><span class="token operator">></span>Count is<span class="token operator">:</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> count <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span>Count is: &#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
+</code></pre>
 
 <h2 id="涉及知识"><a href="#涉及知识" class="headerlink" title="涉及知识"></a>涉及知识</h2><p><strong>Vite</strong><br>官网：<a href="https://cn.vitejs.dev/">https://cn.vitejs.dev/</a> Vite是一个前端构建工具，它包含一个开发服务器，一套构建指令。vite 以当前工作目录作为根目录启动开发服务器。你也可以通过 vite serve some/sub/dir 来指定一个替代的根目录。 注意的是 index.html 与项目根目录，vite以index.html作为入口文件。也支持多个 .html 作入口点的 多页面应用模式</p>
 <p><strong>Vitest</strong><br>Vitest 是一个由 Vite 提供支持的极速单元测试框架</p>

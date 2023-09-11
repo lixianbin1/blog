@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -184,10 +193,24 @@
 <h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>推荐官网下载安装<br>官网：<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a><br>下载镜像网站：vscode.cdn.azure.cn</p>
 <p>在官方点击下载后，下载速度如果很慢，点击复制下载链接，将下载链接的地址中的 <code>az764295.vo.msecnd.net</code> 替换成 <code>vscode.cdn.azure.cn</code> 之后输入URL下载安装</p>
 <h2 id="登录账号"><a href="#登录账号" class="headerlink" title="登录账号"></a>登录账号</h2><p>可以选择登录微软账号或者GitHub账号进行配置同步和拓展同步。之后在其他电脑登录后就可以直接同步，不需要重新搜索和安装拓展插件了</p>
-<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Chinese 汉化VsCode界面</span><br><span class="line">GitLens 点击当前代码，可以知道当前所选这行代码是谁写的</span><br><span class="line">Vue Language vue代码高亮显示</span><br></pre></td></tr></table></figure>
+<h2 id="插件推荐"><a href="#插件推荐" class="headerlink" title="插件推荐"></a>插件推荐</h2><pre><code class="hljs coq">Chinese 汉化VsCode界面
+GitLens 点击当前代码，可以知道当前所选这行代码是谁写的
+Vue <span class="hljs-keyword">Language</span> vue代码高亮显示</code></pre>
 
 <h2 id="各类配置"><a href="#各类配置" class="headerlink" title="各类配置"></a>各类配置</h2><p>点击左下角设置按钮，可以通过设置编辑器字体样式大小，可以通过设置的主题的文件配置进行自定义修改</p>
-<figure class="highlight json"><figcaption><span>settings.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;editor.fontSize&quot;</span><span class="punctuation">:</span> <span class="number">13</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;workbench.preferredDarkColorTheme&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Default Light+&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;workbench.colorCustomizations&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="comment">//覆盖默认配置</span></span><br><span class="line">        <span class="attr">&quot;editor.background&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#353c45&quot;</span><span class="punctuation">,</span> <span class="comment">//编辑器背景色</span></span><br><span class="line">        <span class="comment">// &quot;editor.selectionBackground&quot;: &quot;#5a5f21&quot;, //用户选中代码段的颜色 </span></span><br><span class="line">        <span class="comment">// &quot;editor.findMatchBackground&quot;: &quot;#ff0000&quot;, //当前搜索匹配的颜色</span></span><br><span class="line">        <span class="comment">// &quot;editor.findMatchHighlightBackground&quot;: &quot;#fa0a01&quot;, //其他搜索匹配项的颜色</span></span><br><span class="line">        <span class="comment">// &quot;editor.findRangeHighlightBackground&quot;: &quot;#ff9900&quot;, //限制搜索范围的颜色</span></span><br><span class="line">        <span class="comment">// &quot;editor.lineHighlightBackground&quot;: &quot;#3a2f2f&quot;, //光标所在行高亮内容的背景颜色</span></span><br><span class="line">        <span class="comment">// &quot;editor.lineHighlightBorder&quot;: &quot;#f33f3f&quot; //光标所在行四周边框的背景颜色</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>settings.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;editor.fontSize&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">13</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;workbench.preferredDarkColorTheme&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Default Light+&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;workbench.colorCustomizations&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">//覆盖默认配置</span>
+        <span class="hljs-attr">&quot;editor.background&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#353c45&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//编辑器背景色</span>
+        <span class="hljs-comment">// &quot;editor.selectionBackground&quot;: &quot;#5a5f21&quot;, //用户选中代码段的颜色 </span>
+        <span class="hljs-comment">// &quot;editor.findMatchBackground&quot;: &quot;#ff0000&quot;, //当前搜索匹配的颜色</span>
+        <span class="hljs-comment">// &quot;editor.findMatchHighlightBackground&quot;: &quot;#fa0a01&quot;, //其他搜索匹配项的颜色</span>
+        <span class="hljs-comment">// &quot;editor.findRangeHighlightBackground&quot;: &quot;#ff9900&quot;, //限制搜索范围的颜色</span>
+        <span class="hljs-comment">// &quot;editor.lineHighlightBackground&quot;: &quot;#3a2f2f&quot;, //光标所在行高亮内容的背景颜色</span>
+        <span class="hljs-comment">// &quot;editor.lineHighlightBorder&quot;: &quot;#f33f3f&quot; //光标所在行四周边框的背景颜色</span>
+    <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <h2 id="问题集合"><a href="#问题集合" class="headerlink" title="问题集合"></a>问题集合</h2><h3 id="使用终端无法执行Yarn命令"><a href="#使用终端无法执行Yarn命令" class="headerlink" title="使用终端无法执行Yarn命令"></a>使用终端无法执行Yarn命令</h3><p>yarn : 无法加载文件 E:\Node\node_global\yarn.ps1，因为在此系统上禁止运行脚本。</p>
 <blockquote>

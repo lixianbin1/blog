@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -196,7 +205,12 @@
 <h3 id="安装热更新模块"><a href="#安装热更新模块" class="headerlink" title="安装热更新模块"></a>安装热更新模块</h3><blockquote>
 <p>npm install hotnode</p>
 </blockquote>
-<figure class="highlight plaintext"><figcaption><span>package.json</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">···</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;start&quot;: &quot;hotnode index.js&quot;,</span><br><span class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">&#125;,</span><br><span class="line">····</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs stata">···
+<span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+  <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;hotnode index.js&quot;</span>,
+  <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;</span><span class="hljs-keyword">Error</span>: <span class="hljs-keyword">no</span> <span class="hljs-keyword">test</span> specified\<span class="hljs-string">&quot; &amp;&amp; exit 1&quot;</span>
+&#125;,
+····</code></pre>
 
 
 <p>在 node 项目开发中，每次更新都要手动更新一遍服务器，相当麻烦，所以迫切需要热更新模块来解决手动更新的麻烦。安装好后，在package.json 里配置 自定义命令,之后执行 启动命令 <code>npm start</code> 就好了</p>
@@ -217,13 +231,85 @@
 <h3 id="可选安装模块"><a href="#可选安装模块" class="headerlink" title="可选安装模块"></a>可选安装模块</h3><h4 id="log4js-日志管理模块"><a href="#log4js-日志管理模块" class="headerlink" title="log4js 日志管理模块"></a>log4js 日志管理模块</h4><blockquote>
 <p>npm install log4js</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 入口配置</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">const log4js = require(&#x27;log4js&#x27;);</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">  appenders: &#123; cheese: &#123; type: &#x27;file&#x27;, filename: &#x27;cheese.log&#x27; &#125; &#125;,</span><br><span class="line">  categories: &#123; default: &#123; appenders: [&#x27;cheese&#x27;], level: &#x27;trace&#x27; &#125; &#125;</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"># appenders：以 file 的形式将日志记录在 cheese.log 中</span><br><span class="line"># categories：将错误级别记录在 cheese 配置中</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs php"><span class="hljs-comment"># 入口配置</span>
+
+...
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">log4js</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;log4js&#x27;</span>);
+log4js.<span class="hljs-title function_ invoke__">configure</span>(&#123;
+  <span class="hljs-attr">appenders</span>: &#123; <span class="hljs-attr">cheese</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;file&#x27;</span>, <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;cheese.log&#x27;</span> &#125; &#125;,
+  <span class="hljs-attr">categories</span>: &#123; <span class="hljs-attr">default</span>: &#123; <span class="hljs-attr">appenders</span>: [<span class="hljs-string">&#x27;cheese&#x27;</span>], <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;trace&#x27;</span> &#125; &#125;
+&#125;)
+...
+
+<span class="hljs-comment"># appenders：以 file 的形式将日志记录在 cheese.log 中</span>
+<span class="hljs-comment"># categories：将错误级别记录在 cheese 配置中</span>
+</code></pre>
 
 <p>当项目开始运行的时候，很多时候管理人员需要对项目的运行状态进行检查，需要知晓项目的运作情况，这个时候就需要一个日志记录器.默认情况下，不会进行日志输出，需要在入口js 中进行配置。具体的配置可以查看官网文档参考我的使用</p>
 <h2 id="node-的入口文件"><a href="#node-的入口文件" class="headerlink" title="node 的入口文件"></a>node 的入口文件</h2><p>设置一个入口文件 index.js,在最开始的时候执行。</p>
-<figure class="highlight plaintext"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">const express=require(&#x27;express&#x27;)</span><br><span class="line">const Router=require(&#x27;./router&#x27;)  //路由文件</span><br><span class="line">const Inter=require(&#x27;./Interface&#x27;)//接口文件</span><br><span class="line">const bodyParser = require(&#x27;body-parser&#x27;)</span><br><span class="line"></span><br><span class="line">const log4js = require(&#x27;log4js&#x27;); //日志配置</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">  appenders: &#123; cheese: &#123; type: &#x27;file&#x27;, filename: &#x27;cheese.log&#x27; &#125; &#125;,</span><br><span class="line">  categories: &#123; default: &#123; appenders: [&#x27;cheese&#x27;], level: &#x27;trace&#x27; &#125; &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const app=express(); //</span><br><span class="line">  app.use(bodyParser.json());</span><br><span class="line">  app.use(bodyParser.urlencoded(&#123;extended: false&#125;));</span><br><span class="line"></span><br><span class="line">const server=app.listen(8888,()=&gt;&#123;</span><br><span class="line">  logger.trace(&#x27;服务器启动,正在监听8888端口&#x27;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//接口</span><br><span class="line">Inter.api(express,app)</span><br><span class="line"></span><br><span class="line">//路由</span><br><span class="line">Router.middle(express,app)</span><br></pre></td></tr></table></figure>
+<pre><div class="caption"><span>index.js</span></div><code class="hljs php"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">express</span>=<span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">Router</span>=<span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;./router&#x27;</span>)  <span class="hljs-comment">//路由文件</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">Inter</span>=<span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;./Interface&#x27;</span>)<span class="hljs-comment">//接口文件</span>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">bodyParser</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)
 
-<h3 id="接口的编辑"><a href="#接口的编辑" class="headerlink" title="接口的编辑"></a>接口的编辑</h3><figure class="highlight plaintext"><figcaption><span>Interface.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">const api=(express,app)=&gt;&#123;</span><br><span class="line">  const mysql=require(&#x27;mysql&#x27;);</span><br><span class="line">  const connection=mysql.createConnection(&#123; //连接 mysql 的配置</span><br><span class="line">    host :&#x27;localhost&#x27;,</span><br><span class="line">    user :&#x27;root&#x27;,</span><br><span class="line">    password :&#x27;&#x27;,</span><br><span class="line">    // port: &#x27;8888&#x27;,</span><br><span class="line">    database :&#x27;mysql&#x27;</span><br><span class="line">  &#125;);</span><br><span class="line">  connection.connect()</span><br><span class="line"></span><br><span class="line">  //查询接口</span><br><span class="line">  app.get(&#x27;/list&#x27;,(require,response,next)=&gt;&#123;</span><br><span class="line">    let name=require.query.name</span><br><span class="line">    let sql=&#x27;SELECT * FROM websites&#x27;;</span><br><span class="line">    if(name)&#123;</span><br><span class="line">      sql = &quot;SELECT * FROM websites WHERE name LIKE &quot;+mysql.escape(name)</span><br><span class="line">    &#125;</span><br><span class="line">    // 执行数据库命令，按返回的数据返回状态</span><br><span class="line">    connection.query(sql,function (err, result) &#123;</span><br><span class="line">      if(err)&#123;</span><br><span class="line">        response.status(500).json(&#123;</span><br><span class="line">          code:500,</span><br><span class="line">          message:err.toString()</span><br><span class="line">          // message:&quot;数据库查询出错！&quot;</span><br><span class="line">        &#125;)</span><br><span class="line">        logger.error(err.toString());</span><br><span class="line">        return</span><br><span class="line">      &#125;</span><br><span class="line">      response.json([</span><br><span class="line">        ...result</span><br><span class="line">      ]);</span><br><span class="line">      response.end();</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">log4js</span> = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;log4js&#x27;</span>); <span class="hljs-comment">//日志配置</span>
+log4js.<span class="hljs-title function_ invoke__">configure</span>(&#123;
+  <span class="hljs-attr">appenders</span>: &#123; <span class="hljs-attr">cheese</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;file&#x27;</span>, <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;cheese.log&#x27;</span> &#125; &#125;,
+  <span class="hljs-attr">categories</span>: &#123; <span class="hljs-attr">default</span>: &#123; <span class="hljs-attr">appenders</span>: [<span class="hljs-string">&#x27;cheese&#x27;</span>], <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;trace&#x27;</span> &#125; &#125;
+&#125;);
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">app</span>=<span class="hljs-title function_ invoke__">express</span>(); <span class="hljs-comment">//</span>
+  app.<span class="hljs-keyword">use</span>(bodyParser.<span class="hljs-title function_ invoke__">json</span>());
+  app.<span class="hljs-keyword">use</span>(bodyParser.<span class="hljs-title function_ invoke__">urlencoded</span>(&#123;<span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span>&#125;));
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">server</span>=app.<span class="hljs-title function_ invoke__">listen</span>(<span class="hljs-number">8888</span>,()=&gt;&#123;
+  logger.<span class="hljs-title function_ invoke__">trace</span>(<span class="hljs-string">&#x27;服务器启动,正在监听8888端口&#x27;</span>);
+&#125;)
+
+<span class="hljs-comment">//接口</span>
+Inter.<span class="hljs-title function_ invoke__">api</span>(express,app)
+
+<span class="hljs-comment">//路由</span>
+Router.<span class="hljs-title function_ invoke__">middle</span>(express,app)</code></pre>
+
+<h3 id="接口的编辑"><a href="#接口的编辑" class="headerlink" title="接口的编辑"></a>接口的编辑</h3><pre><div class="caption"><span>Interface.js</span></div><code class="hljs javascript">...
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">api</span>=(<span class="hljs-params">express,app</span>)=&gt;&#123;
+  <span class="hljs-keyword">const</span> mysql=<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mysql&#x27;</span>);
+  <span class="hljs-keyword">const</span> connection=mysql.<span class="hljs-title function_">createConnection</span>(&#123; <span class="hljs-comment">//连接 mysql 的配置</span>
+    host :<span class="hljs-string">&#x27;localhost&#x27;</span>,
+    user :<span class="hljs-string">&#x27;root&#x27;</span>,
+    password :<span class="hljs-string">&#x27;&#x27;</span>,
+    <span class="hljs-comment">// port: &#x27;8888&#x27;,</span>
+    database :<span class="hljs-string">&#x27;mysql&#x27;</span>
+  &#125;);
+  connection.<span class="hljs-title function_">connect</span>()
+
+  <span class="hljs-comment">//查询接口</span>
+  app.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/list&#x27;</span>,<span class="hljs-function">(<span class="hljs-params"><span class="hljs-built_in">require</span>,response,next</span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">let</span> name=<span class="hljs-built_in">require</span>.<span class="hljs-property">query</span>.<span class="hljs-property">name</span>
+    <span class="hljs-keyword">let</span> sql=<span class="hljs-string">&#x27;SELECT * FROM websites&#x27;</span>;
+    <span class="hljs-keyword">if</span>(name)&#123;
+      sql = <span class="hljs-string">&quot;SELECT * FROM websites WHERE name LIKE &quot;</span>+mysql.<span class="hljs-built_in">escape</span>(name)
+    &#125;
+    <span class="hljs-comment">// 执行数据库命令，按返回的数据返回状态</span>
+    connection.<span class="hljs-title function_">query</span>(sql,<span class="hljs-keyword">function</span> (<span class="hljs-params">err, result</span>) &#123;
+      <span class="hljs-keyword">if</span>(err)&#123;
+        response.<span class="hljs-title function_">status</span>(<span class="hljs-number">500</span>).<span class="hljs-title function_">json</span>(&#123;
+          <span class="hljs-attr">code</span>:<span class="hljs-number">500</span>,
+          <span class="hljs-attr">message</span>:err.<span class="hljs-title function_">toString</span>()
+          <span class="hljs-comment">// message:&quot;数据库查询出错！&quot;</span>
+        &#125;)
+        logger.<span class="hljs-title function_">error</span>(err.<span class="hljs-title function_">toString</span>());
+        <span class="hljs-keyword">return</span>
+      &#125;
+      response.<span class="hljs-title function_">json</span>([
+        ...result
+      ]);
+      response.<span class="hljs-title function_">end</span>();
+    &#125;)
+  &#125;)
+&#125;)
+...</code></pre>
 
 <p>至此一个简单的应用就算是好了，但是如果想要运用在实践上，那么还需要考虑更细化的问题，返回的状态协议，上传文件的处理，sql反注入以及日志的细化处理，中间件的处理，路由的一系列处理等等。当然一个好的开始总是好的，剩下的问题可以看后面的笔记以及附录。</p>
 <h2 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h2><h3 id="怎么建立约束键？"><a href="#怎么建立约束键？" class="headerlink" title="怎么建立约束键？"></a>怎么建立约束键？</h3><p>在 phpmyadmin 中，约束键是表与表之间的关联，它们可以都是主键，首先在表的-操作界面-将表的存储引擎设置为InnoDB，排序规则调整为utf8_general_ci。然后进入数据库的-设计器界面-选择左侧的创建关系，最后选择两个表的字段连接，填写删除和更新配置：cascade(级联：在父表数据被删除后，子表对应数据也被删除) set Null(在父表数据被删除后，子表对应数据设置为null) no action(不采取行动) RESTRICT(在删除父表数据的时候，如有关联，禁止删除)</p>
@@ -233,13 +319,45 @@
 <li>2：创建服务器 （服务器可以监听客户端请求，类似apache）</li>
 <li>3：接收请求和响应数据 （接受请求，返回数据）</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 引入required模块</span><br><span class="line">var http = require(&#x27;http&#x27;);</span><br><span class="line"></span><br><span class="line">// 创建服务器</span><br><span class="line">http.createServer(function(request,response)&#123;</span><br><span class="line"></span><br><span class="line">  // 发送 HTTP 头部 </span><br><span class="line">  // HTTP 状态值: 200 : OK</span><br><span class="line">  // 内容类型: text/plain</span><br><span class="line">  response.writeHead(200, &#123;&#x27;Content-Type&#x27;: &#x27;text/plain&#x27;&#125;);</span><br><span class="line">  // 发送响应数据 &quot;Hello World&quot;</span><br><span class="line">  response.end(&#x27;Hello World\n&#x27;);</span><br><span class="line"></span><br><span class="line">&#125;).listen(8888);</span><br><span class="line"></span><br><span class="line">// 终端打印如下信息</span><br><span class="line">console.log(&#x27;Server running at http://127.0.0.1:8888/&#x27;);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 引入required模块
+var http = require(<span class="hljs-string">&#x27;http&#x27;</span>);
+
+<span class="hljs-regexp">//</span> 创建服务器
+http.createServer(<span class="hljs-keyword">function</span>(request,response)&#123;
+
+  <span class="hljs-regexp">//</span> 发送 HTTP 头部 
+  <span class="hljs-regexp">//</span> HTTP 状态值: <span class="hljs-number">200</span> : OK
+  <span class="hljs-regexp">//</span> 内容类型: text/plain
+  response.writeHead(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;text/plain&#x27;</span>&#125;);
+  <span class="hljs-regexp">//</span> 发送响应数据 <span class="hljs-string">&quot;Hello World&quot;</span>
+  response.end(<span class="hljs-string">&#x27;Hello World\n&#x27;</span>);
+
+&#125;).listen(<span class="hljs-number">8888</span>);
+
+<span class="hljs-regexp">//</span> 终端打印如下信息
+console.log(<span class="hljs-string">&#x27;Server running at http://127.0.0.1:8888/&#x27;</span>);</code></pre>
 
 <blockquote>
 <p>第一行请求（require）Node.js 自带的 http 模块，并且把它赋值给 http 变量。<br>接下来我们调用 http 模块提供的函数： createServer 。这个函数会返回 一个对象，这个对象有一个叫做 listen 的方法，这个方法有一个数值参数， 指定这个 HTTP 服务器监听的端口号。</p>
 </blockquote>
 <h2 id="NodeJS的模块系统"><a href="#NodeJS的模块系统" class="headerlink" title="NodeJS的模块系统"></a>NodeJS的模块系统</h2><p>为了让Node.js的文件可以相互调用，Node.js提供了一个简单的模块系统，一个 Node.js 文件就是一个模块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//hello.js </span><br><span class="line">function Hello() &#123; </span><br><span class="line">    var name; </span><br><span class="line">    this.setName = function(thyName) &#123; </span><br><span class="line">        name = thyName; </span><br><span class="line">    &#125;; </span><br><span class="line">    this.sayHello = function() &#123; </span><br><span class="line">        console.log(&#x27;Hello &#x27; + name); </span><br><span class="line">    &#125;; </span><br><span class="line">&#125;; </span><br><span class="line">module.exports = Hello;</span><br><span class="line"></span><br><span class="line">//main.js </span><br><span class="line">var Hello = require(&#x27;./hello&#x27;); </span><br><span class="line">hello = new Hello(); </span><br><span class="line">hello.setName(&#x27;BYVoid&#x27;); </span><br><span class="line">hello.sayHello(); </span><br></pre></td></tr></table></figure>
+<pre><code class="hljs javascript"><span class="hljs-comment">//hello.js </span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Hello</span>(<span class="hljs-params"></span>) &#123; 
+    <span class="hljs-keyword">var</span> name; 
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">setName</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params">thyName</span>) &#123; 
+        name = thyName; 
+    &#125;; 
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">sayHello</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123; 
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;Hello &#x27;</span> + name); 
+    &#125;; 
+&#125;; 
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">Hello</span>;
+
+<span class="hljs-comment">//main.js </span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Hello</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./hello&#x27;</span>); 
+hello = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Hello</span>(); 
+hello.<span class="hljs-title function_">setName</span>(<span class="hljs-string">&#x27;BYVoid&#x27;</span>); 
+hello.<span class="hljs-title function_">sayHello</span>();</code></pre>
 
 <h2 id="npm-及相关的模块"><a href="#npm-及相关的模块" class="headerlink" title="npm 及相关的模块"></a>npm 及相关的模块</h2><p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题.express是常用的 Node.js web框架模块</p>
 <blockquote>
@@ -247,11 +365,34 @@
 </blockquote>
 <p>NPM的一些常用命令和使用技巧……</p>
 <h3 id="event-模块"><a href="#event-模块" class="headerlink" title="event 模块"></a>event 模块</h3><p>events 模块只提供了一个对象： events.EventEmitter。EventEmitter 的核心就是事件触发与事件监听器功能的封装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 引入 events 模块</span><br><span class="line">var events = require(&#x27;events&#x27;);</span><br><span class="line">// 创建 eventEmitter 对象</span><br><span class="line">var eventEmitter = new events.EventEmitter();</span><br><span class="line"></span><br><span class="line">// 绑定事件及事件的处理程序</span><br><span class="line">eventEmitter.on(&#x27;eventName&#x27;, eventHandler);</span><br><span class="line"></span><br><span class="line">eventEmitter.on(&#x27;someEvent&#x27;, function(arg1, arg2) &#123; </span><br><span class="line">    console.log(&#x27;listener1&#x27;, arg1, arg2); </span><br><span class="line">&#125;); </span><br><span class="line"></span><br><span class="line">// 触发事件</span><br><span class="line">eventEmitter.emit(&#x27;eventName&#x27;);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arcade"><span class="hljs-comment">// 引入 events 模块</span>
+<span class="hljs-keyword">var</span> events = require(<span class="hljs-string">&#x27;events&#x27;</span>);
+<span class="hljs-comment">// 创建 eventEmitter 对象</span>
+<span class="hljs-keyword">var</span> eventEmitter = <span class="hljs-keyword">new</span> events.EventEmitter();
+
+<span class="hljs-comment">// 绑定事件及事件的处理程序</span>
+eventEmitter.on(<span class="hljs-string">&#x27;eventName&#x27;</span>, eventHandler);
+
+eventEmitter.on(<span class="hljs-string">&#x27;someEvent&#x27;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">arg1, arg2</span>) &#123; 
+    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;listener1&#x27;</span>, arg1, arg2); 
+&#125;); 
+
+<span class="hljs-comment">// 触发事件</span>
+eventEmitter.emit(<span class="hljs-string">&#x27;eventName&#x27;</span>);</code></pre>
 
 
 <h3 id="fs-readFile-模块"><a href="#fs-readFile-模块" class="headerlink" title="fs.readFile 模块"></a>fs.readFile 模块</h3><p>fs.readFile() 是异步函数用于读取文件;如果在读取文件过程中发生错误，错误 err 对象就会输出错误信息。<br>如果没发生错误，readFile 跳过 err 对象的输出，文件内容就通过回调函数输出</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var fs = require(&quot;fs&quot;);</span><br><span class="line"></span><br><span class="line">fs.readFile(&#x27;input.txt&#x27;, function (err, data) &#123;</span><br><span class="line">   if (err)&#123;</span><br><span class="line">      console.log(err.stack);</span><br><span class="line">      return;</span><br><span class="line">   &#125;</span><br><span class="line">   console.log(data.toString());</span><br><span class="line">&#125;);</span><br><span class="line">console.log(&quot;程序执行完毕&quot;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arcade"><span class="hljs-keyword">var</span> fs = require(<span class="hljs-string">&quot;fs&quot;</span>);
+
+fs.readFile(<span class="hljs-string">&#x27;input.txt&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
+   <span class="hljs-keyword">if</span> (err)&#123;
+      <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(err.stack);
+      <span class="hljs-keyword">return</span>;
+   &#125;
+   <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(data.toString());
+&#125;);
+<span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;程序执行完毕&quot;</span>);
+</code></pre>
 
 <h3 id="Buffer-缓存区-模块"><a href="#Buffer-缓存区-模块" class="headerlink" title="Buffer(缓存区) 模块"></a>Buffer(缓存区) 模块</h3><p>JavaScript 语言自身只有字符串数据类型，没有二进制数据类型，为了处理二进制数据，因此在定义了Buffer类型<br>Node 目前支持的字符编码：</p>
 <ul>
@@ -264,23 +405,156 @@
 <li>binary - latin1 的别名。</li>
 <li>hex - 将每个字节编码为两个十六进制字符。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 创建一个长度为 10、且用 0 填充的 Buffer。</span><br><span class="line">const buf1 = Buffer.alloc(10);</span><br><span class="line">// 创建一个长度为 10、且用 0x1 填充的 Buffer。 </span><br><span class="line">const buf2 = Buffer.alloc(10, 1);</span><br><span class="line"></span><br><span class="line">// 创建一个长度为 10、且未初始化的 Buffer。</span><br><span class="line">// 这个方法比调用 Buffer.alloc() 更快，</span><br><span class="line">// 但返回的 Buffer 实例可能包含旧数据，</span><br><span class="line">// 因此需要使用 fill() 或 write() 重写。</span><br><span class="line">const buf3 = Buffer.allocUnsafe(10);</span><br><span class="line"></span><br><span class="line">// 创建256长度的的buffer，然后重写</span><br><span class="line">buf = Buffer.alloc(256);</span><br><span class="line">len = buf.write(&quot;www.runoob.com&quot;);</span><br><span class="line">console.log(&quot;写入字节数 : &quot;+  len);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 创建一个长度为 <span class="hljs-number">10</span>、且用 <span class="hljs-number">0</span> 填充的 Buffer。
+const buf1 = Buffer.alloc(<span class="hljs-number">10</span>);
+<span class="hljs-regexp">//</span> 创建一个长度为 <span class="hljs-number">10</span>、且用 <span class="hljs-number">0</span>x1 填充的 Buffer。 
+const buf2 = Buffer.alloc(<span class="hljs-number">10</span>, <span class="hljs-number">1</span>);
+
+<span class="hljs-regexp">//</span> 创建一个长度为 <span class="hljs-number">10</span>、且未初始化的 Buffer。
+<span class="hljs-regexp">//</span> 这个方法比调用 Buffer.alloc() 更快，
+<span class="hljs-regexp">//</span> 但返回的 Buffer 实例可能包含旧数据，
+<span class="hljs-regexp">//</span> 因此需要使用 fill() 或 write() 重写。
+const buf3 = Buffer.allocUnsafe(<span class="hljs-number">10</span>);
+
+<span class="hljs-regexp">//</span> 创建<span class="hljs-number">256</span>长度的的buffer，然后重写
+buf = Buffer.alloc(<span class="hljs-number">256</span>);
+len = buf.write(<span class="hljs-string">&quot;www.runoob.com&quot;</span>);
+console.log(<span class="hljs-string">&quot;写入字节数 : &quot;</span>+  len);</code></pre>
 
 <h2 id="REPL（交互式解释器）"><a href="#REPL（交互式解释器）" class="headerlink" title="REPL（交互式解释器）"></a>REPL（交互式解释器）</h2><p>node自带交互式解释器，它可以读取(读取用户输入)，执行(执行输入的数据结构)，打印(输出结果)，循环(循环操作以上步骤直到用户两次按下 ctrl-c 按钮退出).Node 的交互式解释器可以很好的调试 Javascript 代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 启动终端</span><br><span class="line">$ node</span><br><span class="line"></span><br><span class="line">// 它可以执行简单的运算表达式，变量和多行表达式</span><br><span class="line">&gt; 1+2</span><br><span class="line"></span><br><span class="line">&gt;do &#123;</span><br><span class="line">... x++;</span><br><span class="line">... console.log(&quot;x: &quot; + x);</span><br><span class="line">... &#125; while ( x &lt; 5 );</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs node-repl">// 启动终端
+$ node
+
+// 它可以执行简单的运算表达式，变量和多行表达式
+<span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-number">1</span>+<span class="hljs-number">2</span></span>
+
+&gt;do &#123;
+<span class="hljs-meta prompt_">...</span> <span class="language-javascript">x++;</span>
+<span class="hljs-meta prompt_">...</span> <span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;x: &quot;</span> + x);</span>
+<span class="hljs-meta prompt_">...</span> <span class="language-javascript">&#125; <span class="hljs-keyword">while</span> ( x &lt; <span class="hljs-number">5</span> );</span></code></pre>
 
 <h2 id="NodeJS-的路由"><a href="#NodeJS-的路由" class="headerlink" title="NodeJS 的路由"></a>NodeJS 的路由</h2><p>我们要为路由提供请求的 URL 和其他需要的 GET 及 POST 参数，随后路由需要根据这些数据来执行相应的代码<br>为了解析这些数据，我们需要额外的 Node.JS 模块，它们分别是 url 和 querystring 模块</p>
 <p>server.js</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var http = require(&quot;http&quot;);</span><br><span class="line">var url = require(&quot;url&quot;);</span><br><span class="line"> </span><br><span class="line">function start() &#123;</span><br><span class="line">  function onRequest(request, response) &#123;</span><br><span class="line">    var pathname = url.parse(request.url).pathname;</span><br><span class="line">    console.log(&quot;Request for &quot; + pathname + &quot; received.&quot;);</span><br><span class="line">    response.writeHead(200, &#123;&quot;Content-Type&quot;: &quot;text/plain&quot;&#125;);</span><br><span class="line">    response.write(&quot;Hello World&quot;);</span><br><span class="line">    response.end();</span><br><span class="line">  &#125;</span><br><span class="line"> </span><br><span class="line">  http.createServer(onRequest).listen(8888);</span><br><span class="line">  console.log(&quot;Server has started.&quot;);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">exports.start = start;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs qml"><span class="hljs-keyword">var</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;http&quot;</span>);
+<span class="hljs-keyword">var</span> <span class="hljs-built_in">url</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;url&quot;</span>);
+ 
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">start</span>(<span class="hljs-params"></span>) </span>&#123;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onRequest</span>(<span class="hljs-params">request, response</span>) </span>&#123;
+    <span class="hljs-keyword">var</span> pathname = <span class="hljs-built_in">url</span>.parse(request.url).pathname;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Request for &quot;</span> + pathname + <span class="hljs-string">&quot; received.&quot;</span>);
+    response.writeHead(<span class="hljs-number">200</span>, &#123;<span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);
+    response.write(<span class="hljs-string">&quot;Hello World&quot;</span>);
+    response.end();
+  &#125;
+ 
+  http.createServer(onRequest).listen(<span class="hljs-number">8888</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;Server has started.&quot;</span>);
+&#125;
+ 
+exports.start = start;</code></pre>
 
 <p>router</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function route(pathname) &#123;</span><br><span class="line">  console.log(&quot;pathname&quot;  + pathname);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">exports.route = route;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arcade"><span class="hljs-keyword">function</span> <span class="hljs-title function_">route</span>(<span class="hljs-params">pathname</span>) &#123;
+  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&quot;pathname&quot;</span>  + pathname);
+&#125;
+ 
+exports.route = route;</code></pre>
 
 <p>index.js</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var server = require(&quot;./server&quot;);</span><br><span class="line">var router = require(&quot;./router&quot;);</span><br><span class="line"> </span><br><span class="line">server.start(router.route);</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs abnf">var server <span class="hljs-operator">=</span> require(<span class="hljs-string">&quot;./server&quot;</span>)<span class="hljs-comment">;</span>
+var router <span class="hljs-operator">=</span> require(<span class="hljs-string">&quot;./router&quot;</span>)<span class="hljs-comment">;</span>
+ 
+server.start(router.route)<span class="hljs-comment">;</span></code></pre>
 
 <h2 id="Node-静态文件服务"><a href="#Node-静态文件服务" class="headerlink" title="Node 静态文件服务"></a>Node 静态文件服务</h2><p>通过创建服务，将文件资源挂载在服务上；</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var http = require(&#x27;http&#x27;);</span></span><br><span class="line"><span class="comment">// var fs = require(&#x27;fs&#x27;);</span></span><br><span class="line"><span class="comment">// var url = require(&#x27;url&#x27;);</span></span><br><span class="line"><span class="comment">// var path = require(&quot;path&quot;)</span></span><br><span class="line"><span class="comment">// var c = require(&#x27;child_process&#x27;);</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> http <span class="keyword">from</span> <span class="string">&#x27;http&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> fs <span class="keyword">from</span> <span class="string">&#x27;fs&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> url <span class="keyword">from</span> <span class="string">&#x27;url&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> path <span class="keyword">from</span> <span class="string">&quot;path&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> c <span class="keyword">from</span> <span class="string">&#x27;child_process&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建服务器</span></span><br><span class="line">http.<span class="title function_">createServer</span>( <span class="keyword">function</span> (<span class="params">request, response</span>) &#123; </span><br><span class="line">   <span class="comment">// 解析请求，包括文件名</span></span><br><span class="line">   <span class="keyword">var</span> pathname = url.<span class="title function_">parse</span>(request.<span class="property">url</span>).<span class="property">pathname</span>;</span><br><span class="line">   <span class="keyword">var</span> extname = path.<span class="title function_">extname</span>(pathname);</span><br><span class="line">   <span class="comment">// 输出请求的文件名</span></span><br><span class="line">   <span class="comment">// console.log(&quot;Request for &quot; + pathname + &quot; received.&quot;);</span></span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 从文件系统中读取请求的文件内容</span></span><br><span class="line">   fs.<span class="title function_">readFile</span>(pathname.<span class="title function_">substr</span>(<span class="number">1</span>), <span class="keyword">function</span> (<span class="params">err, data</span>) &#123;</span><br><span class="line">        <span class="keyword">let</span> type = <span class="title function_">memu</span>(extname);</span><br><span class="line">        <span class="keyword">if</span> (err) &#123;</span><br><span class="line">           response.<span class="title function_">writeHead</span>(<span class="number">404</span>, &#123;<span class="string">&#x27;Content-Type&#x27;</span>: type&#125;);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;             </span><br><span class="line">           response.<span class="title function_">writeHead</span>(<span class="number">200</span>, &#123;</span><br><span class="line">              <span class="string">&#x27;Content-Length&#x27;</span>: data.<span class="property">length</span>,</span><br><span class="line">              <span class="string">&#x27;Content-Type&#x27;</span>: type</span><br><span class="line">           &#125;);    </span><br><span class="line">           </span><br><span class="line">           <span class="comment">// 响应文件内容</span></span><br><span class="line">           response.<span class="title function_">write</span>(data);        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//  发送响应数据</span></span><br><span class="line">        response.<span class="title function_">end</span>();</span><br><span class="line">   &#125;);   </span><br><span class="line">&#125;).<span class="title function_">listen</span>(<span class="number">9000</span>);</span><br><span class="line">c.<span class="title function_">exec</span>(<span class="string">&#x27;start http://localhost:9000/index.html&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">memu</span>(<span class="params">exname</span>)&#123;</span><br><span class="line">    <span class="keyword">switch</span>(exname)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.html&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;text/html&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.css&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;text/css&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.jpg&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;image/jpg&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.png&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;image/png&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.js&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;text/javascript&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.json&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;text/json&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.jpeg&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;image/jpeg&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.gif&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;image/gif&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.svg&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;image/svg+xml&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.rtf&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;application/rtf&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.woff&quot;</span>:<span class="keyword">case</span> <span class="string">&quot;.woff2&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;application/x-font-woff&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;.webm&quot;</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;video/webm&quot;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="attr">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;text/plain&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 控制台会输出以下信息</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27; \n \</span></span><br><span class="line"><span class="string">请勿关闭本窗口,打开浏览器访问下列地址  \n\</span></span><br><span class="line"><span class="string">&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27; http://localhost:9000/index.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs js"><span class="hljs-comment">// var http = require(&#x27;http&#x27;);</span>
+<span class="hljs-comment">// var fs = require(&#x27;fs&#x27;);</span>
+<span class="hljs-comment">// var url = require(&#x27;url&#x27;);</span>
+<span class="hljs-comment">// var path = require(&quot;path&quot;)</span>
+<span class="hljs-comment">// var c = require(&#x27;child_process&#x27;);</span>
+
+<span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;http&#x27;</span>;
+<span class="hljs-keyword">import</span> fs <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;fs&#x27;</span>;
+<span class="hljs-keyword">import</span> url <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;url&#x27;</span>;
+<span class="hljs-keyword">import</span> path <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;path&quot;</span>;
+<span class="hljs-keyword">import</span> c <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;child_process&#x27;</span>;
+
+<span class="hljs-comment">// 创建服务器</span>
+http.<span class="hljs-title function_">createServer</span>( <span class="hljs-keyword">function</span> (<span class="hljs-params">request, response</span>) &#123; 
+   <span class="hljs-comment">// 解析请求，包括文件名</span>
+   <span class="hljs-keyword">var</span> pathname = url.<span class="hljs-title function_">parse</span>(request.<span class="hljs-property">url</span>).<span class="hljs-property">pathname</span>;
+   <span class="hljs-keyword">var</span> extname = path.<span class="hljs-title function_">extname</span>(pathname);
+   <span class="hljs-comment">// 输出请求的文件名</span>
+   <span class="hljs-comment">// console.log(&quot;Request for &quot; + pathname + &quot; received.&quot;);</span>
+   
+   <span class="hljs-comment">// 从文件系统中读取请求的文件内容</span>
+   fs.<span class="hljs-title function_">readFile</span>(pathname.<span class="hljs-title function_">substr</span>(<span class="hljs-number">1</span>), <span class="hljs-keyword">function</span> (<span class="hljs-params">err, data</span>) &#123;
+        <span class="hljs-keyword">let</span> type = <span class="hljs-title function_">memu</span>(extname);
+        <span class="hljs-keyword">if</span> (err) &#123;
+           response.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">404</span>, &#123;<span class="hljs-string">&#x27;Content-Type&#x27;</span>: type&#125;);
+        &#125;<span class="hljs-keyword">else</span>&#123;             
+           response.<span class="hljs-title function_">writeHead</span>(<span class="hljs-number">200</span>, &#123;
+              <span class="hljs-string">&#x27;Content-Length&#x27;</span>: data.<span class="hljs-property">length</span>,
+              <span class="hljs-string">&#x27;Content-Type&#x27;</span>: type
+           &#125;);    
+           
+           <span class="hljs-comment">// 响应文件内容</span>
+           response.<span class="hljs-title function_">write</span>(data);        
+        &#125;
+        <span class="hljs-comment">//  发送响应数据</span>
+        response.<span class="hljs-title function_">end</span>();
+   &#125;);   
+&#125;).<span class="hljs-title function_">listen</span>(<span class="hljs-number">9000</span>);
+c.<span class="hljs-title function_">exec</span>(<span class="hljs-string">&#x27;start http://localhost:9000/index.html&#x27;</span>);
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">memu</span>(<span class="hljs-params">exname</span>)&#123;
+    <span class="hljs-keyword">switch</span>(exname)&#123;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.html&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/html&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.css&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/css&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.jpg&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpg&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.png&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/png&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.js&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/javascript&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.json&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/json&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.jpeg&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/jpeg&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.gif&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/gif&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.svg&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;image/svg+xml&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.rtf&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/rtf&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.woff&quot;</span>:<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.woff2&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;application/x-font-woff&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;.webm&quot;</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;video/webm&quot;</span>;
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-attr">default</span>:
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;text/plain&quot;</span>;
+    &#125;
+&#125;
+
+<span class="hljs-comment">// 控制台会输出以下信息</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27; \n \</span>
+<span class="hljs-string">请勿关闭本窗口,打开浏览器访问下列地址  \n\</span>
+<span class="hljs-string">&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27; http://localhost:9000/index.html&#x27;</span>)</code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

@@ -27,10 +27,19 @@
 <link rel="stylesheet" href="/blog/css/Awesome.min.css">
 
 
+  <!-- 引入主CSS -->
   
 <link rel="stylesheet" href="/blog/css/index.css">
-<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
 
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+  <!-- 
+<script src="/blog/styles/highlight/javascript.min.js"></script>
+ -->
 
   
   
@@ -178,9 +187,14 @@
   <article class="passage-article">
     <p>相信大家都知道响应式布局，也知道通过媒体查询来设置不同宽度的样式文件来适应不同屏幕的客户端。但是很多时候，对媒体查询却认识不够全面，当用到到时候，还是需要重新查阅文档，翻找文章。很多时候都是因为对其对认识不够深刻。</p>
 <h2 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h2><p>在很多时候，当看到媒体查询我们都会潜意识认为它只是用来适配手机和PC的，但是这是不全面的。还有一种客户端总是被忽视的，那就是打印部分。通过媒体类型，我们首先应该设置的是计算机彩屏和打印黑白屏的区分（这也是以防万一，万一有需要要打印网页或者其他）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 计算机彩屏 --&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;site.css&quot; media=&quot;screen&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 打印预览或打印 --&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;print.css&quot; media=&quot;print&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 计算机彩屏 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;site.css&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;screen&quot;</span> /&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 打印预览或打印 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;print.css&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;print&quot;</span> /&gt;</span></code></pre>
 <p>或者</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//屏幕宽度最小是800px的打印机</span><br><span class="line">@media print and (min-width: 800px) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs arduino"><span class="hljs-comment">//屏幕宽度最小是800px的打印机</span>
+@<span class="hljs-function">media print <span class="hljs-title">and</span> <span class="hljs-params">(min-width: <span class="hljs-number">800</span>px)</span> </span>&#123; ... &#125;</code></pre>
 
 <ul>
 <li>all —用于所有类型</li>
@@ -193,10 +207,25 @@
 </ul>
 <h2 id="查询规则"><a href="#查询规则" class="headerlink" title="查询规则"></a>查询规则</h2><p>相信大家都是用css媒体查询来匹配对应的客户端，当然用插件自动生成也很方便。</p>
 <p>关键字 <code>and</code>(且) <code>or</code>(或) <code>not</code>(非)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//屏幕宽度最小是800px的所有类型(当然all 是默认值)的客户端</span><br><span class="line">@media all and (min-width: 800px) &#123; ... &#125;</span><br><span class="line">@media (min-width: 800px) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">//屏幕宽度最小800px且最大1200px的所有类型的客户端</span><br><span class="line">@media (min-width:800px) and (max-width:1200px) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">//屏幕宽度最小800px或方向是纵向的所有类型的客户端</span><br><span class="line">@media (min-width:800px) or (orientation:portrait) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">//屏幕宽度最小不是800px的所有类型的客户端</span><br><span class="line">@media (not min-width:800px)&#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs scss"><span class="hljs-comment">//屏幕宽度最小是800px的所有类型(当然all 是默认值)的客户端</span>
+<span class="hljs-keyword">@media</span> all <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">800px</span>) &#123; ... &#125;
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>: <span class="hljs-number">800px</span>) &#123; ... &#125;
+
+<span class="hljs-comment">//屏幕宽度最小800px且最大1200px的所有类型的客户端</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">800px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1200px</span>) &#123; ... &#125;
+
+<span class="hljs-comment">//屏幕宽度最小800px或方向是纵向的所有类型的客户端</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">800px</span>) <span class="hljs-keyword">or</span> (<span class="hljs-attribute">orientation</span>:portrait) &#123; ... &#125;
+
+<span class="hljs-comment">//屏幕宽度最小不是800px的所有类型的客户端</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-keyword">not</span> <span class="hljs-attribute">min-width</span>:<span class="hljs-number">800px</span>)&#123; ... &#125;</code></pre>
 
 <p>屏幕方向 <code>orientation</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//横向模式</span><br><span class="line">@media (orientation: landscape) &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">//纵向模式</span><br><span class="line">@media (orientation: portrait) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs scss"><span class="hljs-comment">//横向模式</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">orientation</span>: landscape) &#123; ... &#125;
+
+<span class="hljs-comment">//纵向模式</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">orientation</span>: portrait) &#123; ... &#125;</code></pre>
 
 <h2 id="媒体属性"><a href="#媒体属性" class="headerlink" title="媒体属性"></a>媒体属性</h2><p>媒体属性有很多，但最常用的还是屏幕宽度或高度等大小相关的属性，当然也有很多冷门属性，平时用不到的</p>
 <table>

@@ -1,0 +1,27 @@
+figure{
+    background: #2b2b2b;
+    margin: 5px;
+    padding: 0 10px;
+}
+.hljs-comment, .hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+}
+.gutter{
+    color:#ccc
+}
+.highlight .sh{
+    color:#ccc
+}
+
+code.hljs{
+    background: #2b2b2b;
+    margin: 5px;
+    padding: 0 10px;
+}
+.hljs.sh{
+    color:#ccc
+}
+.hljs.js{
+    color:#ccc
+}
