@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="昔年我亦赴科场，偶遇仙师古道旁。一阵香风飘羽袖，千条云带绕霓裳。开言句句谈玄理，劝世声声唱洞章。我贵我荣都不羡，重重再教炼黄房。** 吕洞宾 《指玄篇 上篇 其二》 **">
+  <meta name="description" content="昔年我亦赴科场，偶遇仙师古道旁。一阵香风飘羽袖，千条云带绕霓裳。开言句句谈玄理，劝世声声唱洞章。我贵我荣都不羡，重重再教炼黄房。吕洞宾 《指玄篇 上篇 其二》">
 
   
   
@@ -180,7 +180,107 @@
   </h1>
   
   <article class="passage-article">
-    
+    <p>这个是关于VUE集成PWA功能的相关配置及介绍。下面的网址为PWA示例网站</p>
+<p><a href="https://lixianbin1.github.io/PWA-Example/#/">https://lixianbin1.github.io/PWA-Example/#/</a></p>
+<h2 id="安装-vite-plugin-pwa"><a href="#安装-vite-plugin-pwa" class="headerlink" title="安装 vite-plugin-pwa"></a>安装 vite-plugin-pwa</h2><p><a href="https://vite-pwa-org.netlify.app/guide/">vite-plugin-pwa 官方文档</a></p>
+<pre class="line-numbers language-none"><code class="language-none">yarn add vite-plugin-pwa -D<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// vite.config.js / vite.config.ts</span>
+<span class="token keyword">import</span> <span class="token punctuation">&#123;</span> VitePWA <span class="token punctuation">&#125;</span> <span class="token keyword">from</span> <span class="token string">'vite-plugin-pwa'</span>
+
+<span class="token comment">// 说是无配置，但是还是有着最低的配置要求，必须提供以下，此为最低配置</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">plugins</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token function">VitePWA</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">includeAssets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'favicon.ico'</span><span class="token punctuation">,</span> <span class="token string">'apple-touch-icon.png'</span><span class="token punctuation">,</span> <span class="token string">'mask-icon.svg'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">manifest</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// PWA App名称</span>
+        <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'My Awesome App'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">short_name</span><span class="token operator">:</span> <span class="token string">'MyApp'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">description</span><span class="token operator">:</span> <span class="token string">'My Awesome App description'</span><span class="token punctuation">,</span> <span class="token comment">//PWA APP介绍词</span>
+        <span class="token literal-property property">theme_color</span><span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span> <span class="token comment">//主题色</span>
+        <span class="token literal-property property">icons</span><span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token comment">//icon图标，用于在不同的终端显示不同的图标</span>
+          <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'pwa-192x192.png'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'192x192'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span>
+          <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+          <span class="token punctuation">&#123;</span>
+            <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'pwa-512x512.png'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'512x512'</span><span class="token punctuation">,</span>
+            <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span>
+          <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// vite.config.js / vite.config.ts</span>
+
+<span class="token keyword">const</span> pwaOptions <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">mode</span><span class="token operator">:</span> <span class="token string">'development'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">base</span><span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">includeAssets</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'favicon.svg'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">manifest</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">'PWA Router'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">short_name</span><span class="token operator">:</span> <span class="token string">'PWA Router'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">theme_color</span><span class="token operator">:</span> <span class="token string">'#ffffff'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">icons</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'pwa-192x192.png'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'192x192'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'pwa-512x512.png'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'512x512'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#123;</span>
+        <span class="token literal-property property">src</span><span class="token operator">:</span> <span class="token string">'pwa-512x512.png'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">sizes</span><span class="token operator">:</span> <span class="token string">'512x512'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+        <span class="token literal-property property">purpose</span><span class="token operator">:</span> <span class="token string">'any maskable'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// 通过process.env 环境变量对项目中配置进行控制</span>
+  <span class="token literal-property property">devOptions</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">enabled</span><span class="token operator">:</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">SW_DEV</span> <span class="token operator">===</span> <span class="token string">'true'</span><span class="token punctuation">,</span>
+    <span class="token comment">/*当使用generateSW时，PWA插件将切换到经典*/</span>
+    <span class="token literal-property property">type</span><span class="token operator">:</span> <span class="token string">'module'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">navigateFallback</span><span class="token operator">:</span> <span class="token string">'index.html'</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">suppressWarnings</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">const</span> replaceOptions <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token literal-property property">__DATE__</span><span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toISOString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span>
+<span class="token keyword">const</span> claims <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">CLAIMS</span> <span class="token operator">===</span> <span class="token string">'true'</span>
+<span class="token keyword">const</span> reload <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">RELOAD_SW</span> <span class="token operator">===</span> <span class="token string">'true'</span>
+<span class="token keyword">const</span> selfDestroying <span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">SW_DESTROY</span> <span class="token operator">===</span> <span class="token string">'true'</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">SW</span> <span class="token operator">===</span> <span class="token string">'true'</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  pwaOptions<span class="token punctuation">.</span>srcDir <span class="token operator">=</span> <span class="token string">'src'</span>
+  pwaOptions<span class="token punctuation">.</span>filename <span class="token operator">=</span> claims <span class="token operator">?</span> <span class="token string">'claims-sw.ts'</span> <span class="token operator">:</span> <span class="token string">'prompt-sw.ts'</span>
+  pwaOptions<span class="token punctuation">.</span>strategies <span class="token operator">=</span> <span class="token string">'injectManifest'</span>
+  <span class="token punctuation">;</span><span class="token punctuation">(</span>pwaOptions<span class="token punctuation">.</span>manifest <span class="token keyword">as</span> Partial<span class="token operator">&lt;</span>ManifestOptions<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'PWA Inject Manifest'</span>
+  <span class="token punctuation">;</span><span class="token punctuation">(</span>pwaOptions<span class="token punctuation">.</span>manifest <span class="token keyword">as</span> Partial<span class="token operator">&lt;</span>ManifestOptions<span class="token operator">></span><span class="token punctuation">)</span><span class="token punctuation">.</span>short_name <span class="token operator">=</span> <span class="token string">'PWA Inject'</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>claims<span class="token punctuation">)</span>
+  pwaOptions<span class="token punctuation">.</span>registerType <span class="token operator">=</span> <span class="token string">'autoUpdate'</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>reload<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  replaceOptions<span class="token punctuation">.</span>__RELOAD_SW__ <span class="token operator">=</span> <span class="token string">'true'</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>selfDestroying<span class="token punctuation">)</span>
+  pwaOptions<span class="token punctuation">.</span>selfDestroying <span class="token operator">=</span> selfDestroying
+
+    <span class="token operator">...</span><span class="token punctuation">.</span>
+    <span class="token function">VitePWA</span><span class="token punctuation">(</span>pwaOptions<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -188,7 +288,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vite-plugin-pwa"><span class="toc-text">安装 vite-plugin-pwa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-text">自定义配置</span></a></li></ol>
   </div>
 </aside>
 
