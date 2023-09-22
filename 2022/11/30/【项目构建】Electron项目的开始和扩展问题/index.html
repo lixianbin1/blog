@@ -37,9 +37,6 @@
 <link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
 <link rel="stylesheet" href="/blog/styles/highlight/index.css">
 
-  <!-- 
-<script src="/blog/styles/highlight/javascript.min.js"></script>
- -->
 
   
   
@@ -189,22 +186,21 @@
   </h1>
   
   <article class="passage-article">
-    <p>Electron是一个使用 JavaScript、HTML 和 CSS 构建桌面应用程序的框架。 嵌入 Chromium 和 Node.js 到 二进制的 Electron 允许您保持一个 JavaScript 代码代码库并创建 在Windows上运行的跨平台应用</p>
-<h2 id="使用须知"><a href="#使用须知" class="headerlink" title="使用须知"></a>使用须知</h2><p>Electron 需要 node 的支持，文中举例，默认 yarn 和 node 是已经安装了，如果没有安装，请先安装后；</p>
-<h2 id="项目的开启"><a href="#项目的开启" class="headerlink" title="项目的开启"></a>项目的开启</h2><p>在项目开始时，我不打算使用vue，react进行开发，打算使用原生js进行项目开发</p>
-<pre><code class="hljs sh"><span class="hljs-comment"># 创建文件夹并进入文件夹</span>
+    <h2 id="项目的开启"><a href="#项目的开启" class="headerlink" title="项目的开启"></a>项目的开启</h2><h3 id="原生项目的构建"><a href="#原生项目的构建" class="headerlink" title="原生项目的构建"></a>原生项目的构建</h3><pre><code class="hljs sh"><span class="hljs-comment"># 创建文件夹并进入文件夹</span>
 <span class="hljs-built_in">mkdir</span> demo &amp;&amp; <span class="hljs-built_in">cd</span> demo
 
 <span class="hljs-comment"># 初始化项目</span>
-yarn init
+yarn init -y
 
 <span class="hljs-comment"># 安装 electron</span>
-yarn add --dev electron</code></pre>
+yarn add --dev electron
+
+<span class="hljs-comment"># </span></code></pre>
 
 <pre><div class="caption"><span>package.json</span></div><code class="hljs json">...
-<span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;main.js&quot;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;main.js&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//入口文件</span>
 <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
-  <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron .&quot;</span>
+  <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron .&quot;</span> <span class="hljs-comment">//启动命令</span>
 <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre>
 
 <pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; app, <span class="hljs-title class_">BrowserWindow</span> ,<span class="hljs-title class_">Menu</span>&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
@@ -228,7 +224,13 @@ yarn add --dev electron</code></pre>
       <span class="hljs-attr">preload</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;preload.js&#x27;</span>)
     &#125;
   &#125;)
-  win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>) <span class="hljs-comment">// 加载渲染html文件，也可以指定URL</span>
+
+  <span class="hljs-comment">//开启调试模式 =&gt; 模式：`right` `left` `bottom` `detach`</span>
+  win.<span class="hljs-property">webContents</span>.<span class="hljs-title function_">openDevTools</span>(&#123;<span class="hljs-attr">mode</span>:<span class="hljs-string">&#x27;detach&#x27;</span>&#125;)
+
+  <span class="hljs-comment">// 加载渲染html文件，也可以指定URL</span>
+  win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>)
+
   <span class="hljs-comment">// 优化渲染：第一次完成绘制时，如果窗口还没有被显示，渲染进程会发出 ready-to-show 事件 </span>
   win.<span class="hljs-title function_">once</span>(<span class="hljs-string">&#x27;ready-to-show&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
     win.<span class="hljs-title function_">show</span>()
@@ -248,7 +250,9 @@ app.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27
   <span class="hljs-keyword">if</span> (process.<span class="hljs-property">platform</span> !== <span class="hljs-string">&#x27;darwin&#x27;</span>) app.<span class="hljs-title function_">quit</span>()
 &#125;)</code></pre>
 
-<pre><div class="caption"><span>preload.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; contextBridge &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);
+<p>preload 预加载脚本,将不同类型的进程桥接在一起,通过 versions 这一全局变量，将 Electron 的 process.versions 对象暴露给渲染器</p>
+<pre><div class="caption"><span>preload.js</span></div><code class="hljs js">
+<span class="hljs-keyword">const</span> &#123; contextBridge &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);
 <span class="hljs-comment">// 预加载脚本,将不同类型的进程桥接在一起</span>
 contextBridge.<span class="hljs-title function_">exposeInMainWorld</span>(<span class="hljs-string">&#x27;versions&#x27;</span>, &#123;
   <span class="hljs-attr">node</span>: <span class="hljs-function">() =&gt;</span> process.<span class="hljs-property">versions</span>.<span class="hljs-property">node</span>,
@@ -259,7 +263,6 @@ contextBridge.<span class="hljs-title function_">exposeInMainWorld</span>(<span 
 <pre><div class="caption"><span>index.html</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
-    <span class="hljs-comment">&lt;!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Security-Policy&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;&quot;</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -269,23 +272,75 @@ contextBridge.<span class="hljs-title function_">exposeInMainWorld</span>(<span 
     Chromium <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;chrome-version&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>,
     and Electron <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;electron-version&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>.
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    &lt;！-- 执行脚本，可以添加其他的执行脚本 --&gt;
+    <span class="hljs-comment">&lt;!-- 执行脚本，可以添加其他的执行脚本 --&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
-<pre><div class="caption"><span>renderer.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> information = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;info&#x27;</span>);
+<pre><div class="caption"><span>renderer.js</span></div><code class="hljs js"><span class="hljs-comment">//通过renderer.js读取各个模块的版本号并显示</span>
+<span class="hljs-keyword">const</span> information = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;info&#x27;</span>);
 information.<span class="hljs-property">innerText</span> = <span class="hljs-string">`This app is using Chrome (v<span class="hljs-subst">$&#123;versions.chrome()&#125;</span>), Node.js (v<span class="hljs-subst">$&#123;versions.node()&#125;</span>), and Electron (v<span class="hljs-subst">$&#123;versions.electron()&#125;</span>)`</span>;</code></pre>
 
-<h2 id="数据持久存储"><a href="#数据持久存储" class="headerlink" title="数据持久存储"></a>数据持久存储</h2><h3 id="electron-store"><a href="#electron-store" class="headerlink" title="electron-store"></a>electron-store</h3><p>专门给electron设置的存储数据库， 保存和加载用户首选项，应用程序状态，缓存等</p>
+<h3 id="Vue项目的构建"><a href="#Vue项目的构建" class="headerlink" title="Vue项目的构建"></a>Vue项目的构建</h3><p>目前市面上大多采用了 <code>electron-vue</code>(已废弃) 和  <code>vue-cli-plugin-electron-builder</code> 来实习vue开发Electron的方法。</p>
+<p><a href="https://github.com/SimulatedGREG/electron-vue">electron-vue(已废弃)</a></p>
+<p><a href="https://github.com/nklayman/vue-cli-plugin-electron-builder">vue-cli-plugin-electron-builder</a></p>
+<h2 id="项目的调试"><a href="#项目的调试" class="headerlink" title="项目的调试"></a>项目的调试</h2><h2 id="数据持久存储"><a href="#数据持久存储" class="headerlink" title="数据持久存储"></a>数据持久存储</h2><h3 id="electron-store"><a href="#electron-store" class="headerlink" title="electron-store"></a>electron-store</h3><p>专门给electron设置的存储数据库， 保存和加载用户首选项，应用程序状态，缓存等</p>
 <blockquote>
 <p>yarn add electron-store || npm install electron-store</p>
 </blockquote>
-<pre><code class="hljs"></code></pre>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// main.js</span>
+<span class="hljs-keyword">const</span> &#123; app,ipcMain&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">Store</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron-store&#x27;</span>);
+<span class="hljs-keyword">const</span> store = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Store</span>();
 
-<h2 id="项目的打包"><a href="#项目的打包" class="headerlink" title="项目的打包"></a>项目的打包</h2><h3 id="Electron-Forge"><a href="#Electron-Forge" class="headerlink" title="Electron Forge"></a>Electron Forge</h3><p>安装 <code>Electron Forge</code> ,通过这个打包成无需安装的免安装版，也可以打包成exe安装软件，但是这个太拉了，不用这个。</p>
+<span class="hljs-comment">// 定义ipcRenderer监听事件</span>
+ipcMain.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;setStore&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">_, key, value</span>) =&gt;</span> &#123;
+  store.<span class="hljs-title function_">set</span>(key, value)
+&#125;)
+ipcMain.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;getStore&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">_, key</span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">let</span> value = store.<span class="hljs-title function_">get</span>(key)
+  _.<span class="hljs-property">returnValue</span> = value || <span class="hljs-string">&quot;&quot;</span>
+&#125;)</code></pre>
+
+<pre><div class="caption"><span>preload.js</span></div><code class="hljs js"><span class="hljs-comment">// preload.js</span>
+<span class="hljs-keyword">const</span> &#123; contextBridge,ipcRenderer &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);
+
+<span class="hljs-comment">// 主进程和渲染进程进行通信，并暴露接口</span>
+<span class="hljs-keyword">const</span> electronHandler = &#123;
+  <span class="hljs-attr">ipcRenderer</span>: &#123;
+    <span class="hljs-attr">setStoreValue</span>: <span class="hljs-function">(<span class="hljs-params">key, value</span>) =&gt;</span> &#123;
+      ipcRenderer.<span class="hljs-title function_">send</span>(<span class="hljs-string">&quot;setStore&quot;</span>, key, value)
+    &#125;,
+    <span class="hljs-title function_">getStoreValue</span>(<span class="hljs-params">key</span>) &#123;
+      <span class="hljs-keyword">const</span> resp = ipcRenderer.<span class="hljs-title function_">sendSync</span>(<span class="hljs-string">&quot;getStore&quot;</span>, key)
+      <span class="hljs-keyword">return</span> resp
+    &#125;,
+  &#125;
+&#125;
+contextBridge.<span class="hljs-title function_">exposeInMainWorld</span>(<span class="hljs-string">&#x27;electron&#x27;</span>, electronHandler);</code></pre>
+
+<pre><div class="caption"><span>index.html</span></div><code class="hljs js"><span class="hljs-comment">//存储及读取</span>
+electron.<span class="hljs-property">ipcRenderer</span>.<span class="hljs-title function_">setStoreValue</span>(<span class="hljs-string">&#x27;token&#x27;</span>, <span class="hljs-string">&#x27;123456&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(electron.<span class="hljs-property">ipcRenderer</span>.<span class="hljs-title function_">getStoreValue</span>(<span class="hljs-string">&#x27;token&#x27;</span>))</code></pre>
+
+<h2 id="项目的打包"><a href="#项目的打包" class="headerlink" title="项目的打包"></a>项目的打包</h2><h3 id="Electron-Forge"><a href="#Electron-Forge" class="headerlink" title="Electron Forge"></a>Electron Forge</h3><p>安装 <code>Electron Forge</code> ,通过这个打包成无需安装的免安装版，也可以打包成exe安装软件，但是这个太拉了，不用这个,考虑 <a href="#Inno_Setup">Inno Setup</a>。</p>
 <pre><code class="hljs elm"><span class="hljs-title">yarn</span> add <span class="hljs-comment">--dev @electron-forge/cli</span>
 <span class="hljs-title">npx</span> electron-forge <span class="hljs-keyword">import</span></code></pre>
+
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.0.1&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;config&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;forge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+      <span class="hljs-attr">&quot;packagerConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;makers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">&#123;</span>
+          <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@electron-forge/maker-zip&quot;</span>
+        <span class="hljs-punctuation">&#125;</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">&#125;</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
 
 <ul>
 <li>命令集合</li>
@@ -296,7 +351,10 @@ yarn package
 <span class="hljs-regexp">//</span> 打包命令，打包成为exe安装执行文件
 yarn make</code></pre>
 
+<span id="Inno_Setup"/>
+
 <h3 id="Inno-Setup"><a href="#Inno-Setup" class="headerlink" title="Inno Setup"></a>Inno Setup</h3><p>打包软件，官方没有中文版本IDE，需要使用可以通过网络进行收集，<a href="https://share.weiyun.com/7t83n8BF">中文版InnoSetup</a></p>
+<p><a href="https://jrsoftware.org/isdl.php">Inno Setup 官网</a></p>
 <p>如果需要打包成中文安装包，需要将配置文件修改为中文版本的，复制安装目录下的 <code>Default.isl</code> 文件，黏贴在 <code>Languages</code> 目录文件下，重命名为 <code>Chinese</code>，然后修改里面的内容为下列； 注意格式需要为 <code>UTF-8 with BOM</code> 否则会出现乱码。<br>或者直接下载，然后将其放入 <code>Languages</code> 目录文件下 <a href="/blog/down/Chinese.isl">下载文件</a></p>
   </article>
   <aside class="table-content" id="site-toc">
@@ -305,7 +363,7 @@ yarn make</code></pre>
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%A1%BB%E7%9F%A5"><span class="toc-text">使用须知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%90%AF"><span class="toc-text">项目的开启</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%AD%98%E5%82%A8"><span class="toc-text">数据持久存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#electron-store"><span class="toc-text">electron-store</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%89%93%E5%8C%85"><span class="toc-text">项目的打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-Forge"><span class="toc-text">Electron Forge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inno-Setup"><span class="toc-text">Inno Setup</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%90%AF"><span class="toc-text">项目的开启</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="toc-text">原生项目的构建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="toc-text">Vue项目的构建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%B0%83%E8%AF%95"><span class="toc-text">项目的调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%AD%98%E5%82%A8"><span class="toc-text">数据持久存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#electron-store"><span class="toc-text">electron-store</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%89%93%E5%8C%85"><span class="toc-text">项目的打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-Forge"><span class="toc-text">Electron Forge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inno-Setup"><span class="toc-text">Inno Setup</span></a></li></ol></li></ol>
   </div>
 </aside>
 
