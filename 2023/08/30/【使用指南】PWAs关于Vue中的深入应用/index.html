@@ -15,7 +15,7 @@
   
 
   
-  <meta name="description" content="昔年我亦赴科场，偶遇仙师古道旁。一阵香风飘羽袖，千条云带绕霓裳。开言句句谈玄理，劝世声声唱洞章。我贵我荣都不羡，重重再教炼黄房。吕洞宾 《指玄篇 上篇 其二》">
+  <meta name="description" content="渐进式 Web 应用（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。它像网站一样，PWA 可以通过一个代码库在多个平台和设备上运行。它也像一个特定平台的应用程序一样，可以安装在设备上，可以离线和在后台运行，并且可以与设备和其他已安装的应用程序集成。">
 
   
   
@@ -178,7 +178,7 @@
       </span>
     
     <span>
-       | <i class="fa fa-calendar"></i>更新时间:2023-8-30 9:22 
+       | <i class="fa fa-calendar"></i>更新时间:2023-10-18 15:30 
     </span>
   </div>
   <h1 class="passage-title">
@@ -186,22 +186,19 @@
   </h1>
   
   <article class="passage-article">
-    <p>这个是关于VUE集成PWA功能的相关配置及介绍。下面的网址为PWA示例网站</p>
-<p><a href="https://lixianbin1.github.io/PWA-Example/#/">https://lixianbin1.github.io/PWA-Example/#/</a></p>
-<h2 id="安装-vite-plugin-pwa"><a href="#安装-vite-plugin-pwa" class="headerlink" title="安装 vite-plugin-pwa"></a>安装 vite-plugin-pwa</h2><p><a href="https://vite-pwa-org.netlify.app/guide/">vite-plugin-pwa 官方文档</a></p>
-<pre><code class="hljs routeros">yarn <span class="hljs-built_in">add</span> vite-plugin-pwa -D</code></pre>
+    <p>渐进式 Web 应用（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。它像网站一样，PWA 可以通过一个代码库在多个平台和设备上运行。它也像一个特定平台的应用程序一样，可以安装在设备上，可以离线和在后台运行，并且可以与设备和其他已安装的应用程序集成。下面的网址为PWA示例网站 <a href="https://lixianbin1.github.io/PWA-Example/#/">lixianbin1 - PWA-Example</a></p>
+<h2 id="vite-plugin-pwa"><a href="#vite-plugin-pwa" class="headerlink" title="vite-plugin-pwa"></a>vite-plugin-pwa</h2><p>以下是关于VUE集成PWA功能的相关介绍及配置。 <a href="https://vite-pwa-org.netlify.app/guide/">vite-plugin-pwa</a> 将帮助您将配置几乎为零的 PWA 添加到现有应用程序中。该插件将为常见用例添加合理的内置默认配置。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs armasm"><span class="hljs-comment">// 可以使用 Yarn 或者 NPM</span>
+<span class="hljs-symbol">yarn</span> <span class="hljs-keyword">add</span> vite-plugin-pwa -D</code></pre>
 
-<pre><code class="hljs js"><span class="hljs-comment">// vite.config.js / vite.config.ts</span>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><pre><code class="hljs js"><span class="hljs-comment">// vite.config.js</span>
 <span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">VitePWA</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-pwa&#x27;</span>
-
-<span class="hljs-comment">// 说是无配置，但是还是有着最低的配置要求，必须提供以下，此为最低配置</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  <span class="hljs-attr">plugins</span>: [
+  <span class="hljs-attr">plugins</span>: [ <span class="hljs-comment">//说是无配置，但是还是有着最低的配置要求，必须提供以下，此为最低配置</span>
     <span class="hljs-title class_">VitePWA</span>(&#123;
       <span class="hljs-attr">includeAssets</span>: [<span class="hljs-string">&#x27;favicon.ico&#x27;</span>, <span class="hljs-string">&#x27;apple-touch-icon.png&#x27;</span>, <span class="hljs-string">&#x27;mask-icon.svg&#x27;</span>],
       <span class="hljs-attr">manifest</span>: &#123;
-        <span class="hljs-comment">// PWA App名称</span>
-        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;My Awesome App&#x27;</span>,
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;My Awesome App&#x27;</span>, <span class="hljs-comment">//PWA App名称</span>
         <span class="hljs-attr">short_name</span>: <span class="hljs-string">&#x27;MyApp&#x27;</span>,
         <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;My Awesome App description&#x27;</span>, <span class="hljs-comment">//PWA APP介绍词</span>
         <span class="hljs-attr">theme_color</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>, <span class="hljs-comment">//主题色</span>
@@ -222,8 +219,7 @@
   ]
 &#125;</code></pre>
 
-<h2 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h2><pre><code class="hljs js"><span class="hljs-comment">// vite.config.js / vite.config.ts</span>
-
+<h3 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h3><pre><code class="hljs js"><span class="hljs-comment">// vite.config.js / vite.config.ts</span>
 <span class="hljs-keyword">const</span> pwaOptions = &#123;
   <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,
   <span class="hljs-attr">base</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
@@ -248,14 +244,12 @@
         <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;512x512&#x27;</span>,
         <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>,
         <span class="hljs-attr">purpose</span>: <span class="hljs-string">&#x27;any maskable&#x27;</span>,
-      &#125;,
+      &#125;,<span class="hljs-number">0</span>
     ],
   &#125;,
-  <span class="hljs-comment">// 通过process.env 环境变量对项目中配置进行控制</span>
-  <span class="hljs-attr">devOptions</span>: &#123;
+  <span class="hljs-attr">devOptions</span>: &#123; <span class="hljs-comment">//通过process.env环境变量对项目中配置进行控制</span>
     <span class="hljs-attr">enabled</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">SW_DEV</span> === <span class="hljs-string">&#x27;true&#x27;</span>,
-    <span class="hljs-comment">/*当使用generateSW时，PWA插件将切换到经典*/</span>
-    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;module&#x27;</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;module&#x27;</span>, <span class="hljs-comment">/*当使用generateSW时，PWA插件将切换到经典*/</span>
     <span class="hljs-attr">navigateFallback</span>: <span class="hljs-string">&#x27;index.html&#x27;</span>,
     <span class="hljs-attr">suppressWarnings</span>: <span class="hljs-literal">true</span>,
   &#125;,
@@ -294,7 +288,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-vite-plugin-pwa"><span class="toc-text">安装 vite-plugin-pwa</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-text">自定义配置</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vite-plugin-pwa"><span class="toc-text">vite-plugin-pwa</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-text">自定义</span></a></li></ol></li></ol>
   </div>
 </aside>
 

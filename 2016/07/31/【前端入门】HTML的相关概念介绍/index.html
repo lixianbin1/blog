@@ -11,11 +11,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="前端入门," />
+    <meta name="keywords" content="前端入门,HTML," />
   
 
   
-  <meta name="description" content="超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言，html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体。">
+  <meta name="description" content="重新整理一下关于前端的技术和概念性认识，巩固下自己的基础知识点。超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言，html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体。">
 
   
   
@@ -178,7 +178,7 @@
       </span>
     
     <span>
-       | <i class="fa fa-calendar"></i>更新时间:2023-9-11 10:56 
+       | <i class="fa fa-calendar"></i>更新时间:2023-9-26 10:56 
     </span>
   </div>
   <h1 class="passage-title">
@@ -186,20 +186,47 @@
   </h1>
   
   <article class="passage-article">
-    <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><blockquote>
-<p>超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言</p>
-</blockquote>
-<p>html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体</p>
-<h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><blockquote>
-<p>大多数 HTML 元素被定义为块级元素或行内元素。</p>
-</blockquote>
-<p><strong>块级元素在浏览器显示时，通常会以新行来开始（和结束）</strong>。块级元素有 h1-h6，div，p，ul等，行内元素有a，br，b，en，i，span等，img和input则属于行内置换元素。<strong>置换元素在浏览器中会根据元素的标签和属性，来决定元素的具体显示内容</strong>想图片会根据src来显示图片信息，如不设置宽高，会按其内置宽高显示</p>
-<h3 id="文本格式"><a href="#文本格式" class="headerlink" title="文本格式"></a>文本格式</h3><p>在HTML中有着格式化标签，其中包括： 字体加粗 <code>&lt;b&gt;加粗&lt;/b&gt;</code> ； 字体倾斜 <code>&lt;i&gt;倾斜&lt;/i&gt;</code> ； 文字下标 <code>&lt;sub&gt;下标&lt;/sub&gt;</code> ； 文字上标 <code>&lt;sup&gt;下标&lt;/sup&gt;</code> ； 语气强调 <code>&lt;strong&gt;强调：字体表现加粗&lt;/strong&gt;</code>； 轻度强调 <code>&lt;em&gt;强调：字体表现倾斜&lt;/em&gt;</code> ； 键盘文本 <code>&lt;kbd&gt; ctrl &lt;/kbd&gt;</code> ； 计算机代码 <code>&lt;code&gt; console&lt;/code&gt;</code> ； 预格式文本 <code>&lt;pre&gt; 有几个空格，就空几个 &lt;/pre&gt;</code> </p>
+    <p>超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言，html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体。</p>
+<h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><p>大多数 HTML 元素被定义为块级元素或行内元素。</p>
+<p><strong><code>块级元素</code>独占一行，总在新行开始，高度，行高，内边距和外边距都是可控制，宽度默认和浏览器宽度一致。</strong>例如：h1-h6，div，p，ul等，</p>
+<p><strong><code>行内元素</code>则可以和其他元素在一行，宽度和内容有关；</strong> 例如：a，b，en，span等。</p>
+<p><strong><code>行内块级元素</code>（内联块级元素，行内置换元素）则介于两者之间</strong> 例如：img和input。</p>
+<p><strong><code>置换元素</code>在浏览器中会根据元素的标签和属性，来决定元素的具体显示内容</strong> 例如：img</p>
+<p><strong><code>空标签</code>即不包裹内容的标签</strong>，例如 br hr img 等</p>
+<h3 id="文本格式"><a href="#文本格式" class="headerlink" title="文本格式"></a>文本格式</h3><p>在HTML中有着格式化标签，其中包括： </p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">字体加粗 <code>&lt;b&gt;加粗&lt;/b&gt;</code></td>
+<td align="left">字体倾斜 <code>&lt;i&gt;倾斜&lt;/i&gt;</code></td>
+</tr>
+<tr>
+<td align="left">文字下标 <code>&lt;sub&gt;下标&lt;/sub&gt;</code></td>
+<td align="left">文字上标 <code>&lt;sup&gt;下标&lt;/sup&gt;</code></td>
+</tr>
+<tr>
+<td align="left">语气强调 <code>&lt;strong&gt;强调：字体表现加粗&lt;/strong&gt;</code></td>
+<td align="left">轻度强调 <code>&lt;em&gt;强调：字体表现倾斜&lt;/em&gt;</code></td>
+</tr>
+<tr>
+<td align="left">键盘文本 <code>&lt;kbd&gt; ctrl &lt;/kbd&gt;</code></td>
+<td align="left">计算机代码 <code>&lt;code&gt; console&lt;/code&gt;</code></td>
+</tr>
+<tr>
+<td align="left">预格式文本 <code>&lt;pre&gt; 有几个空格，就空几个 &lt;/pre&gt;</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
 <h3 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h3><blockquote>
 <p>根据内容和结构选择合适的标签，便于开发者阅读同时对搜索引擎友好让机器很好的解析.</p>
 </blockquote>
-<p>例如根据 头部标签选择 <code>header</code> 标签，根据内容段落选择 <code>article</code> 和 <code>p</code>，根据表单输入选择 <code>aside</code> 和 <code>input</code> 等。这样文档结构定义明确便于后期维护。html5新增加的语义元素有：<code>header</code>（定义头部）；<code>nav</code>（定义导航链接）；<code>footer</code>（定义页尾）；<code>section</code>（定位文档中的节，页眉，页脚）<code>article</code>（定义独立内容：文章，评论）；<code>aside</code>（定义所处内容之外的内容）；<code>figure</code>（定义独立的流内容，照片，图表）</p>
-<h3 id="字符实体"><a href="#字符实体" class="headerlink" title="字符实体"></a>字符实体</h3><p>在 HTML 中，某些字符是预留的，不允许在文本中使用，其中有<br>【空格 <code>&amp;nbsp;</code>】【&lt; <code>&amp;lt;</code>】 【&gt; <code>&amp;gt;</code>】【&amp; <code>&amp;amp;</code>】【￥ <code>&amp;yen;</code>】【&copy; <code>&amp;copy;</code>】【&reg; <code>&amp;reg;</code>】</p>
+<p>例如根据 头部标签选择 <code>header</code> 标签，根据内容段落选择 <code>article</code> 和 <code>p</code>，根据表单输入选择 <code>aside</code> 和 <code>input</code> 等。这样文档结构定义明确便于后期维护。html5新增加的语义元素有：<code>header</code>(定义头部)；<code>nav</code>(定义导航链接)；<code>footer</code>(定义页尾)；<code>section</code>(定位文档中的节，页眉，页脚)<code>article</code>(定义独立内容：文章，评论)；<code>aside</code>(定义所处内容之外的内容)；<code>figure</code>(定义独立的流内容，照片，图表)</p>
+<h3 id="字符实体"><a href="#字符实体" class="headerlink" title="字符实体"></a>字符实体</h3><p>在 HTML 中，某些字符是预留的，不允许在文本中使用，其中有 【空格 <code>&amp;nbsp;</code>】【&lt; <code>&amp;lt;</code>】 【&gt; <code>&amp;gt;</code>】【&amp; <code>&amp;amp;</code>】【￥ <code>&amp;yen;</code>】【&copy; <code>&amp;copy;</code>】【&reg; <code>&amp;reg;</code>】</p>
 <h3 id="web存储"><a href="#web存储" class="headerlink" title="web存储"></a>web存储</h3><p>HTML5 提供了两种在客户端存储数据的新方法： 【<strong>localStorage</strong> - 没有时间限制的数据存储；】【sessionStorage -当用户关闭浏览器窗口后，数据会被删除】。两者有大小限制，一般为5Mb；</p>
 <h3 id="web-worker"><a href="#web-worker" class="headerlink" title="web worker"></a>web worker</h3><blockquote>
 <p>web worker 是运行在后台的 JavaScript，不会影响页面的性能。</p>
@@ -288,7 +315,7 @@ FALLBACK:
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML"><span class="toc-text">HTML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">文本格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-text">标签语义化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93"><span class="toc-text">字符实体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%AD%98%E5%82%A8"><span class="toc-text">web存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web-worker"><span class="toc-text">web worker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-text">HTML5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">HTML5兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas-%E7%94%BB%E5%B8%83"><span class="toc-text">canvas 画布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVG-%E5%8F%AF%E4%BC%B8%E7%BC%A9%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%BD%A2"><span class="toc-text">SVG 可伸缩矢量图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MathML"><span class="toc-text">MathML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E5%8A%9F%E8%83%BD"><span class="toc-text">拖放功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98-%E7%A6%BB%E7%BA%BF"><span class="toc-text">web应用缓存 离线</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">文本格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-text">标签语义化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93"><span class="toc-text">字符实体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%AD%98%E5%82%A8"><span class="toc-text">web存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web-worker"><span class="toc-text">web worker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-text">HTML5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">HTML5兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas-%E7%94%BB%E5%B8%83"><span class="toc-text">canvas 画布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVG-%E5%8F%AF%E4%BC%B8%E7%BC%A9%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%BD%A2"><span class="toc-text">SVG 可伸缩矢量图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MathML"><span class="toc-text">MathML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E5%8A%9F%E8%83%BD"><span class="toc-text">拖放功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98-%E7%A6%BB%E7%BA%BF"><span class="toc-text">web应用缓存 离线</span></a></li></ol>
   </div>
 </aside>
 
@@ -307,6 +334,12 @@ FALLBACK:
       </div>
     </aside>
   
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/HTML/"><i class="fa fa-tags"></i>HTML</a>
+    
+    </div>
   
 </div>
 
