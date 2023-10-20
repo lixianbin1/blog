@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Vue项目集成富文本编辑器 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="功能需求,Vue Ueditor," />
+  
+
+  
+  <meta name="description" content="UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码，同时支持复制携带样式">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-10-20
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-10-20 16:23 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Vue项目集成富文本编辑器
+  </h1>
+  
+  <article class="passage-article">
+    <p>UEditor 是由百度「FEX前端研发团队」开发的所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码，同时支持复制携带样式</p>
+<p>目前<a href="http://fex.baidu.com/ueditor/">UEditor官方文档</a>网站已经被百度给关闭了，但是<a href="https://github.com/fex-team/ueditor">GitHub仓库</a>还在。而且有其他的<a href="http://fex-team.github.io/ueditor/">文档网站</a></p>
+<h2 id="项目开启"><a href="#项目开启" class="headerlink" title="项目开启"></a>项目开启</h2><h3 id="下载Ueditor"><a href="#下载Ueditor" class="headerlink" title="下载Ueditor"></a>下载Ueditor</h3><p>在 GitHub 上<a href="https://github.com/fex-team/ueditor/releases">下载压缩包</a>,并将压缩包解压放入 <code>public</code> 目录</p>
+<h3 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h3><p>安装 <a href="mailto:&#x76;&#x75;&#x65;&#x2d;&#x75;&#x65;&#100;&#105;&#x74;&#x6f;&#x72;&#x2d;&#119;&#x72;&#97;&#112;&#64;&#51;&#x2e;&#x78;">&#x76;&#x75;&#x65;&#x2d;&#x75;&#x65;&#100;&#105;&#x74;&#x6f;&#x72;&#x2d;&#119;&#x72;&#97;&#112;&#64;&#51;&#x2e;&#x78;</a>(该版本仅支持Vue3) <code>yarn add vue-ueditor-wrap@3.x</code></p>
+<blockquote>
+<p>yarn add <a href="mailto:&#x76;&#117;&#101;&#x2d;&#x75;&#101;&#100;&#x69;&#116;&#x6f;&#114;&#45;&#x77;&#x72;&#97;&#112;&#64;&#x33;&#46;&#x78;">&#x76;&#117;&#101;&#x2d;&#x75;&#101;&#100;&#x69;&#116;&#x6f;&#114;&#45;&#x77;&#x72;&#97;&#112;&#64;&#x33;&#46;&#x78;</a></p>
+</blockquote>
+<h3 id="注册组件"><a href="#注册组件" class="headerlink" title="注册组件"></a>注册组件</h3><pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createApp &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">VueUeditorWrap</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-ueditor-wrap&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span>;
+
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">use</span>(<span class="hljs-title class_">VueUeditorWrap</span>).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>);</code></pre>
+
+<h3 id="编辑页面"><a href="#编辑页面" class="headerlink" title="编辑页面"></a>编辑页面</h3><pre><div class="caption"><span>home.vue</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">vue-ueditor-wrap</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;msg&quot;</span> <span class="hljs-attr">:config</span>=<span class="hljs-string">&quot;editorConfig&quot;</span> <span class="hljs-attr">editor-id</span>=<span class="hljs-string">&quot;editor-demo-01&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">vue-ueditor-wrap</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;</span>
+<span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span>
+<span class="language-javascript">    <span class="hljs-keyword">const</span> msg = <span class="hljs-title function_">ref</span>(<span class="hljs-string">&#x27;&lt;h2&gt;Hello World!&lt;/h2&gt;&#x27;</span>);</span>
+<span class="language-javascript">    <span class="hljs-keyword">const</span> editorConfig = <span class="hljs-title function_">reactive</span>(&#123;</span>
+<span class="language-javascript">        <span class="hljs-attr">UEDITOR_HOME_URL</span>: <span class="hljs-string">&#x27;/UEditor/&#x27;</span>, <span class="hljs-comment">//public的静态目录</span></span>
+<span class="language-javascript">        <span class="hljs-attr">serverUrl</span>: <span class="hljs-string">&#x27;//ueditor.zhenghaochuan.com/cos&#x27;</span>,  <span class="hljs-comment">//后端上传的服务地址</span></span>
+<span class="language-javascript">    &#125;)</span>
+<span class="language-javascript">&#125;;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<h3 id="展示页面"><a href="#展示页面" class="headerlink" title="展示页面"></a>展示页面</h3><pre><div class="caption"><span>page.vue</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width: 100%; min-height:500px;height: 675px;&quot;</span> </span>
+<span class="hljs-tag">        <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;editorRef&quot;</span> </span>
+<span class="hljs-tag">        <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./iframe.html&quot;</span> </span>
+<span class="hljs-tag">        <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;0&quot;</span> </span>
+<span class="hljs-tag">    &gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-comment">// 编辑器ref</span></span>
+<span class="language-javascript"><span class="hljs-keyword">const</span> editorRef = <span class="hljs-title function_">ref</span>()</span>
+<span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-comment">// 设置数据，使用iframe展示，防止样式污染</span></span>
+<span class="language-javascript"><span class="hljs-title function_">details</span>(&#123;<span class="hljs-attr">id</span>:route.<span class="hljs-property">query</span>.<span class="hljs-property">id</span>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">res:any</span>) =&gt;</span> &#123;</span>
+<span class="language-javascript">    state.<span class="hljs-property">text</span> = res.<span class="hljs-property">data</span>.<span class="hljs-property">text</span></span>
+<span class="language-javascript">    <span class="hljs-keyword">const</span> frame = editorRef.<span class="hljs-property">value</span>.<span class="hljs-property">contentWindow</span>;</span>
+<span class="language-javascript">    frame.<span class="hljs-title function_">postMessage</span>(state.<span class="hljs-property">text</span>);</span>
+<span class="language-javascript">&#125;)</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%90%AF"><span class="toc-text">项目开启</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDUeditor"><span class="toc-text">下载Ueditor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%BB%84%E4%BB%B6"><span class="toc-text">安装组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E7%BB%84%E4%BB%B6"><span class="toc-text">注册组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E9%A1%B5%E9%9D%A2"><span class="toc-text">编辑页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%95%E7%A4%BA%E9%A1%B5%E9%9D%A2"><span class="toc-text">展示页面</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/10/20/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91Vue%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Vue-Ueditor/"><i class="fa fa-tags"></i>Vue Ueditor</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
