@@ -232,7 +232,11 @@
 <span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 清除未跟踪的文件</span>
 <span class="hljs-string">git</span> <span class="hljs-string">checkout</span>  <span class="hljs-comment"># 未提交的返回原状</span>
 <span class="hljs-string">git</span> <span class="hljs-string">checkout</span> <span class="hljs-string">HEAD</span> <span class="hljs-string">src</span>/<span class="hljs-string">views</span>/<span class="hljs-string">SecurityTokens</span>/  <span class="hljs-comment"># 清除提交的部分文件修改</span>
-<span class="hljs-string">git</span> <span class="hljs-string">stash</span>     <span class="hljs-comment"># 将修改放入暂存区</span>
+
+<span class="hljs-comment"># 中间的commit回退</span>
+<span class="hljs-string">git</span> <span class="hljs-string">rebase</span> -<span class="hljs-string">i</span> <span class="hljs-string">HEAD</span>~<span class="hljs-string">8</span>          <span class="hljs-comment"># 调整最近的8次commit的顺序或者删除。将需要回退的commit调整到最新。</span>
+<span class="hljs-string">git</span> <span class="hljs-string">reset</span> <span class="hljs-built_in">--hard</span> <span class="hljs-string">xxx</span>          <span class="hljs-comment"># 本地版本回退</span>
+<span class="hljs-string">git</span> <span class="hljs-string">push</span> -<span class="hljs-string">f</span>                   <span class="hljs-comment"># 远程版本回退(-f 强制推送)</span>
 
 <span class="hljs-comment"># 快照工作区（暂存区）</span>
 <span class="hljs-string">git</span> <span class="hljs-string">stash</span>        <span class="hljs-comment"># 将修改进行快照</span>

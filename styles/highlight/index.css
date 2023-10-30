@@ -25,3 +25,16 @@ code.hljs{
 .hljs.js{
     color:#ccc
 }
+.caption{
+    border: 1px solid;
+    background: antiquewhite;
+}
+pre{
+    line-height:1.4;
+}
+.passage-article blockquote{
+    background:#eee;
+}
+body{
+    background:#eee
+}
