@@ -28,6 +28,13 @@ code.hljs{
 .caption{
     border: 1px solid;
     background: antiquewhite;
+    margin: 5px;
+    padding: 0 1em;
+    margin-bottom: -5px;
+}
+pre code.hljs{
+    padding: 0.5em 1em;
+    font-size: 13px;
 }
 pre{
     line-height:1.4;

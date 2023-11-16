@@ -49,7 +49,6 @@ main {
     width: 200%;}
 }
 .passage-article > table thead th,.passage-article > table tbody tr td{white-space:nowrap;}
-
 .clearfix {
   *zoom: 1;
   /* 兼容 IE 低版本 */ }
@@ -1017,4 +1016,18 @@ main {
 #gitalk-container{
   max-width: 1024px;
   margin: 0 auto;
+}
+
+/*about岁月史书*/
+#xianbin .timeline .timeline-title::before,#xianbin .timeline .timeline-subtitle::before,#xianbin .timeline .timeline-item::before,#xianbin .timeline-item time{
+  top:16px;
+}
+#xianbin .timeline-item time{
+  left: -140px;
+}
+#xianbin .timeline-item{
+  padding-left: 0;
+}
+#xianbin .ccc{
+  color:#999;
 }
