@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>电脑装系统的过程及遇到的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="奇技淫巧," />
+  
+
+  
+  <meta name="description" content="为心之所愿，当披荆斩棘佚名">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-11-23
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/"><i class="fa fa-bookmark"></i>奇技淫巧</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-11-23 9:48 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    电脑装系统的过程及遇到的问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="安装系统"><a href="#安装系统" class="headerlink" title="安装系统"></a>安装系统</h2><p>当你拿着一个新的固态硬盘，然后手头上又只有一台连着网络的电脑的时候，一堆人让你拿U盘做PE启动盘，那要是没有呐。</p>
+<p>1：去官网上下一个ios镜像系统。或者你找一个系统之家下载一个你认为安全的系统ios镜像<br>2：下载一个<code>WinNTSetup</code>,然后打开，选择<code>ios文件</code>，选择你要安装系统的系统引导的<code>ESP</code>区(你放在哪个盘，哪个盘开机就是必须的)，再选择你需要安装在哪个盘。<br>3：安装完成后，开机进入你安装的系统，看你需要双系统还是不需要，如果需要就不用再动了，如果不需要就打开系统设置(左下角搜索<code>msconfig</code>)。进入引导，把不需要的系统删除，然后重启。</p>
+<h3 id="激活系统"><a href="#激活系统" class="headerlink" title="激活系统"></a>激活系统</h3><p>以下是<code>Win10专业版系统</code>的激活方式:</p>
+<blockquote>
+<p>鼠标右击<code>开始</code>，选择Windows PowerShell（管理员）,点击打开<br>输入<code>slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX</code> 按回车键<br>输入<code>slmgr /skms kms.03k.org</code> 按回车键<br>输入<code>slmgr /ato</code>按回车键</p>
+</blockquote>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><h4 id="双系统，把旧固态卸载了，就启动不了"><a href="#双系统，把旧固态卸载了，就启动不了" class="headerlink" title="双系统，把旧固态卸载了，就启动不了"></a>双系统，把旧固态卸载了，就启动不了</h4><p>你的新固态的引导区在旧固态上，新固态安装的系统，但是把旧固态下了，没有系统引导区就启动不了。</p>
+<p>解决方案：重新装回新系统，使用 <code>DiskGenius</code>, 在你的新固态上建立一个 <code>100M</code> 或者 <code>300M</code> 的 <code>ESP</code>区，克隆你旧固态上的 <code>ESP</code>区 到新固态的 <code>ESP</code>区。然后把旧固态下了，进入新固态的系统后打开系统设置(左下角搜索<code>msconfig</code>)。进入引导，把不需要的系统删除，然后重启。</p>
+<h4 id="Boot-上没看到我的固态，设置不了启动项"><a href="#Boot-上没看到我的固态，设置不了启动项" class="headerlink" title="Boot 上没看到我的固态，设置不了启动项"></a>Boot 上没看到我的固态，设置不了启动项</h4><p>开机的时候，选择 <code>F2</code> 进入 <code>Bios</code> ,切换到 <code>Advanced</code> 选择 <code>Os Support</code> 菜单，切换到 <code>Legacy OS</code>, 然后 <code>F4</code> 重启。再次进入 <code>F2</code> ,切换到 <code>Boot</code> ,滚动到底部，选择 <code>Haed Disk Drive BBS Prior ities</code> 进入选择，选择你的固态到第一个启动项，然后回车回到 <code>Boot</code> 界面，就可以在 <code>Boot</code> 中看到你的固态了。<br>** 注意：直接使用WinNtSetup安装的系统好像只能通过<code>UEFI</code>启动,不能设置 <code>Legacy OS</code>**</p>
+<h4 id="Win10系统桌面怎么没有我的电脑"><a href="#Win10系统桌面怎么没有我的电脑" class="headerlink" title="Win10系统桌面怎么没有我的电脑"></a>Win10系统桌面怎么没有我的电脑</h4><p>右键进入个性化设置，选择主题，点击桌面图标设置，然后勾选你想要在桌面显示的功能，最后应用即可。</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><blockquote>
+<p>登录微软账号，登录Edge的同步账号及配置，修改Edge，系统的下载路径。</p>
+</blockquote>
+<h2 id="安装软件"><a href="#安装软件" class="headerlink" title="安装软件"></a>安装软件</h2><p>7Z，迅雷，比特彗星，IDM(吾爱破解)，QQ，微信，网易云，酷狗，洛雪音乐(GitHub)</p>
+<h3 id="开发软件"><a href="#开发软件" class="headerlink" title="开发软件"></a>开发软件</h3><a href="/blog/2020/12/15/%E3%80%90%E9%85%8D%E7%BD%AE%E6%89%8B%E5%86%8C%E3%80%91%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" title="开发环境的构建及相关配置">开发环境的构建及相关配置</a>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-text">安装系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BF%80%E6%B4%BB%E7%B3%BB%E7%BB%9F"><span class="toc-text">激活系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">遇到的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%8A%8A%E6%97%A7%E5%9B%BA%E6%80%81%E5%8D%B8%E8%BD%BD%E4%BA%86%EF%BC%8C%E5%B0%B1%E5%90%AF%E5%8A%A8%E4%B8%8D%E4%BA%86"><span class="toc-text">双系统，把旧固态卸载了，就启动不了</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Boot-%E4%B8%8A%E6%B2%A1%E7%9C%8B%E5%88%B0%E6%88%91%E7%9A%84%E5%9B%BA%E6%80%81%EF%BC%8C%E8%AE%BE%E7%BD%AE%E4%B8%8D%E4%BA%86%E5%90%AF%E5%8A%A8%E9%A1%B9"><span class="toc-text">Boot 上没看到我的固态，设置不了启动项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Win10%E7%B3%BB%E7%BB%9F%E6%A1%8C%E9%9D%A2%E6%80%8E%E4%B9%88%E6%B2%A1%E6%9C%89%E6%88%91%E7%9A%84%E7%94%B5%E8%84%91"><span class="toc-text">Win10系统桌面怎么没有我的电脑</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="toc-text">安装软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%BD%AF%E4%BB%B6"><span class="toc-text">开发软件</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
