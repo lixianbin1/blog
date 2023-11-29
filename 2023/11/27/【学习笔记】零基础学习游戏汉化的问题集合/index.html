@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>零基础学习游戏汉化的问题集合 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记," />
+  
+
+  
+  <meta name="description" content="有时候玩个游戏，不想等游戏汉化组或者官网怎么办，答案是，靠自己。刚好之前一直很想学习一下游戏汉化，所以，开干！">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/about/" target="_self">关于</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-11-27
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-11-27 9:41 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    零基础学习游戏汉化的问题集合
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>正常来说，游戏汉化组一般分为两种，一种是为爱发电，出于对游戏的热爱以及喜欢，开始游戏汉化工作。还有一种是商业汉化，也就是盗版网站出钱，养人汉化。然后汉化组里面又分成几组，技术组和文本组，技术组负责对游戏进行拆包，提取文本，替换文本和压包。文本组单纯负责文本汉化。所以游戏汉化一般分为几步，第一步：游戏拆包。第二步：提取文本，第三步：文本翻译，第四步：替换文本，第五步：游戏封包。所以普通玩家想参与进游戏的汉化工作，一般只能进行文本翻译工作。</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>正常来说，运气很好的时候，一切都很顺利，运气差的时候，一替换文本，打包后就报错。因为有时候有的游戏是靠文本里的字段和长度进行的逻辑判断，一但你文本替换掉了，长度和位置发生了变化，那游戏就容易报错。</p>
+<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><h3 id="Exe简单汉化"><a href="#Exe简单汉化" class="headerlink" title="Exe简单汉化"></a>Exe简单汉化</h3><h4 id="Notepad"><a href="#Notepad" class="headerlink" title="Notepad++"></a>Notepad++</h4><p>有些没有加壳的执行文件，可以通过<code>NotePad++</code>直接打开二进制文件，进行文本替换</p>
+<h4 id="PE-Explorer"><a href="#PE-Explorer" class="headerlink" title="PE Explorer"></a>PE Explorer</h4><p><code>PE Explorer</code> 基础汉化，用<code>PE Explorer</code>软件汉化导致无法保存语言包，而且<code>PE Explorer</code> v1版本只能用于汉化32位执行程序。v2版本目前好像只能读取。 在汉化软件的时候，很少有人会用到这个软件去汉化英文exe程序</p>
+<p>V1版本教程: 使用<code>PE Explorer</code>打开<code>exe</code>软件，点击菱形的资源编辑器功能，如果是灰色，代表是加壳的exe程序，需要进行脱壳处理，如果是彩色，则直接可以读取并编辑，然后修改需要需求的标题，最后</p>
+<p><img src="/blog/images/list/2023112701.png" alt="Bubbling"></p>
+<h3 id="游戏拆包"><a href="#游戏拆包" class="headerlink" title="游戏拆包"></a>游戏拆包</h3><h4 id="查壳脱壳"><a href="#查壳脱壳" class="headerlink" title="查壳脱壳"></a>查壳脱壳</h4><blockquote>
+<p>正式开始，首先你得有一款需要你进行汉化的游戏，然后需要用到查壳工具，查壳工具的作用是能够查询出来exe程序是否加壳，如果exe程序加壳了，就要先脱壳才能找到需要汉化的英文内容，还能查询exe程序使用那些编程语言编写的，才能够对症下药，使用不同的汉化工具，比如：有些NET语言写的软件，就要用到NET反编译工具才能够汉化。</p>
+</blockquote>
+<p>脱壳的一般流程：查壳(PEID、FI、PE-SCAN)—&gt;寻找OEP(OD)—&gt;脱壳/Dump(LordPE、PeDumper、OD自带的脱壳插件、PETools)—&gt;修复(Import REConstructor)</p>
+<p>常见的三种壳：压缩壳、保护壳、捆绑壳</p>
+<p><code>PEID</code> 查壳工具：仅支持32位执行程序，不支持64位。<br><code>ExeinfoPe</code> 查壳工具：直接将需要查看的可执行exe程序拖入软件，</p>
+<h4 id="汉化软件"><a href="#汉化软件" class="headerlink" title="汉化软件"></a>汉化软件</h4><p>汉化的话，肯定都喜欢能汉化出语言包，来供大家耍。 <code>Radialix 3</code> , <code>Sisulizer 4</code> 和 <code>SDL Passolo</code> 就是一些软件本地化工具，可以用来制作语言包。</p>
+<p><a href="https://www.bilibili.com/video/BV1PF411p7G4/">UE4游戏汉化教程</a></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">简单介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">遇到的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B"><span class="toc-text">正式开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Exe%E7%AE%80%E5%8D%95%E6%B1%89%E5%8C%96"><span class="toc-text">Exe简单汉化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Notepad"><span class="toc-text">Notepad++</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PE-Explorer"><span class="toc-text">PE Explorer</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E6%8B%86%E5%8C%85"><span class="toc-text">游戏拆包</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E5%A3%B3%E8%84%B1%E5%A3%B3"><span class="toc-text">查壳脱壳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B1%89%E5%8C%96%E8%BD%AF%E4%BB%B6"><span class="toc-text">汉化软件</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/11/27/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E6%B8%B8%E6%88%8F%E6%B1%89%E5%8C%96%E7%9A%84%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
