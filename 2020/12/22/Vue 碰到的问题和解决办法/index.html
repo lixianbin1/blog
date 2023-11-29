@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Vue 碰到的问题和解决办法 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="项目构建," />
+  
+
+  
+  <meta name="description" content="世间无物可开怀，奉劝世人莫自埋，好趁风云真际会，须求鸾凤暗和谐。两重天地谁能配，四个阴阳我会排。会得此玄玄内事，不愁当道有狼豺。吕洞宾 《指玄篇 上篇 其六》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-22
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/"><i class="fa fa-bookmark"></i>项目构建</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2020-12-22 19:56 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Vue 碰到的问题和解决办法
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2020121004.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <h2 id="在Vue-中-import-引入的路径中的-指代什么？"><a href="#在Vue-中-import-引入的路径中的-指代什么？" class="headerlink" title="在Vue 中 import 引入的路径中的 @ 指代什么？"></a>在Vue 中 import 引入的路径中的 @ 指代什么？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import require from &#x27;@/utils/require&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>在Vue中，@ 是指代 /src 目录，是为了防止复杂路径导致的出错;</p>
+<h2 id="请求报错-No-‘Access-Control-Allow-Origin’？"><a href="#请求报错-No-‘Access-Control-Allow-Origin’？" class="headerlink" title="请求报错 No ‘Access-Control-Allow-Origin’？"></a>请求报错 No ‘Access-Control-Allow-Origin’？</h2><p>该错误很大可能是属于请求跨域报错，需要使用vue-cli设置代理，在根目录创建 <code>vue.config.js</code></p>
+<figure class="highlight js"><figcaption><span>vue.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>=&#123;</span><br><span class="line">  <span class="attr">devServer</span>:&#123;</span><br><span class="line">    <span class="attr">proxy</span>:&#123;</span><br><span class="line">      <span class="string">&#x27;user/&#x27;</span>:&#123;</span><br><span class="line">        <span class="attr">target</span>:<span class="string">&quot;https:xxxx&quot;</span>,</span><br><span class="line">        <span class="attr">changeOrigin</span>:<span class="literal">true</span>,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8Vue-%E4%B8%AD-import-%E5%BC%95%E5%85%A5%E7%9A%84%E8%B7%AF%E5%BE%84%E4%B8%AD%E7%9A%84-%E6%8C%87%E4%BB%A3%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">在Vue 中 import 引入的路径中的 @ 指代什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E6%8A%A5%E9%94%99-No-%E2%80%98Access-Control-Allow-Origin%E2%80%99%EF%BC%9F"><span class="toc-text">请求报错 No ‘Access-Control-Allow-Origin’？</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2021/01/10/%E3%80%90%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5%E3%80%91%E4%BA%86%E4%B8%8D%E8%B5%B7%E7%9A%84%E4%BF%AE%E4%BB%99%E6%A8%A1%E6%8B%9F%E5%99%A8/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2021/01/10/%E3%80%90%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5%E3%80%91%E4%BA%86%E4%B8%8D%E8%B5%B7%E7%9A%84%E4%BF%AE%E4%BB%99%E6%A8%A1%E6%8B%9F%E5%99%A8/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

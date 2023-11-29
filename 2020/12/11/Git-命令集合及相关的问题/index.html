@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Git 的命令集合及相关的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Git," />
+  
+
+  
+  <meta name="description" content="寻天撅地见天光，种得金花果是强。那怕世间诸饿鬼，何愁地下老阎王。正心收住黄龙髓，张口擒吞白虎浆。不是圣师当日诀，谁人做得者文章。** 吕洞宾 《指玄篇 上篇 其四》 **">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-11
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2020-12-11 14:23 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Git 的命令集合及相关的问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"># 查看所有配置</span><br><span class="line">git config --list</span><br><span class="line"></span><br><span class="line"># 基本操作</span><br><span class="line">git add xxxx  # 添加文件</span><br><span class="line">git rm xxxx   # 删除文件</span><br><span class="line">git commit -m&quot;备注&quot; # 提交版本 -m添加备注</span><br><span class="line">git push origin master # 提交代码到远程分支master</span><br><span class="line"></span><br><span class="line"># 仓库管理（xxx为仓库地址）</span><br><span class="line">git clone xxx            # 克隆远程仓库</span><br><span class="line">git clone --depth=1 xxx  # 克隆最新一次commit仓库</span><br><span class="line">git remote -v            # 查看远程仓库</span><br><span class="line">git remote rm origin     # 删除现有远程仓库 </span><br><span class="line">git remote add origin xxx     # 添加新远程仓库</span><br><span class="line">git remote set-url origin xxx # 修改远程仓库</span><br><span class="line">git config --system --unset credential.helper  #身份验证失败清除缓存</span><br><span class="line"></span><br><span class="line"># 分支管控</span><br><span class="line">git branch      # 查看分支列表</span><br><span class="line">git branch -a   # 查看远程分支</span><br><span class="line">git checkout -b dev            # 创建分支dev（-b切换）</span><br><span class="line">git checkout -b dev origin/dev # 创建分支并关联远程分支</span><br><span class="line">git checkout master # 切换分支</span><br><span class="line">git branch -d dev              # 删除分支dev</span><br><span class="line">git push origin --delete xxx   # 删除远程分支</span><br><span class="line">git branch --set-upstream-to origin/develop develop # 关联远程分支</span><br><span class="line">git merge dev  #合并dev到当前分支</span><br><span class="line"></span><br><span class="line"># 版本控制</span><br><span class="line">git log       # 查看提交历史</span><br><span class="line">git reflog    # 查看历史版本</span><br><span class="line">git reset --hard xxx  #本地版本回退</span><br><span class="line">git push -f  #远程版本回退(-f 强制推送)</span><br><span class="line">git clean -df # 删除未追踪的文件</span><br><span class="line"></span><br><span class="line"># 模块更新后回退</span><br><span class="line">git clean -df # 清除未跟踪的文件</span><br><span class="line">git checkout  # 未提交的返回原状</span><br><span class="line">git stash     # 将修改放入暂存区</span><br><span class="line"></span><br><span class="line"># 快照工作区（暂存区）</span><br><span class="line">git stash        # 将修改进行快照</span><br><span class="line">git stash list   # 查看所有快照</span><br><span class="line">git stash apply stash@&#123;0&#125; # 返回指定快照</span><br><span class="line">git stash drop stash@&#123;0&#125;  # 删除指定快照</span><br><span class="line">git stash pop    # 解冻并删除快照</span><br><span class="line"></span><br><span class="line"># 标签（进行版本管理）</span><br><span class="line">git tag      # 查看所有标签</span><br><span class="line">git tag v1.0 # 创建本地标签TAG(-a 标签名，-m说明，-d删除)</span><br><span class="line">git tag v0.9 f5s51f   # 创建指定提交TAG</span><br><span class="line">git push origin v1.0  # 推送指定标签</span><br><span class="line"></span><br><span class="line"># 跟踪文件（忽略文件即取消跟踪）</span><br><span class="line"># 注意 后面一点</span><br><span class="line">git rm -r --cached . # 不删除本地文件，对所有文件都取消跟踪</span><br><span class="line">git rm -r --f .      # 删除本地文件，对所有文件都取消跟踪</span><br><span class="line"></span><br><span class="line">git rm --cached readme1.txt # 删除readme1.txt的跟踪，并保留在本地</span><br><span class="line">git rm --f readme1.txt # 删除readme1.txt的跟踪，并且删除本地文件。</span><br></pre></td></tr></table></figure>
+
+<h2 id="忽略文件规则"><a href="#忽略文件规则" class="headerlink" title="忽略文件规则"></a>忽略文件规则</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 创建文件 .gitignore</span><br><span class="line"></span><br><span class="line">// 添加忽略规则</span><br><span class="line">#               表示此为注释,将被Git忽略</span><br><span class="line">*.a             表示忽略所有 .a 结尾的文件</span><br><span class="line">!lib.a          表示但lib.a除外</span><br><span class="line">/TODO           表示仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO</span><br><span class="line">build/          表示忽略 build/目录下的所有文件，过滤整个build文件夹；</span><br><span class="line">doc/*.txt       表示会忽略doc/notes.txt但不包括 doc/server/arch.txt</span><br><span class="line"> </span><br><span class="line">bin/:           表示忽略当前路径下的bin文件夹，该文件夹下的所有内容都会被忽略，不忽略 bin 文件</span><br><span class="line">/bin:           表示忽略根目录下的bin文件</span><br><span class="line">/*.c:           表示忽略cat.c，不忽略 build/cat.c</span><br><span class="line">debug/*.obj:    表示忽略debug/io.obj，不忽略 debug/common/io.obj和tools/debug/io.obj</span><br><span class="line">**/foo:         表示忽略/foo,a/foo,a/b/foo等</span><br><span class="line">a/**/b:         表示忽略a/b, a/x/b,a/x/y/b等</span><br><span class="line">!/bin/run.sh    表示不忽略bin目录下的run.sh文件</span><br><span class="line">*.log:          表示忽略所有 .log 文件</span><br><span class="line">config.php:     表示忽略当前路径的 config.php 文件</span><br><span class="line"> </span><br><span class="line">/mtk/           表示过滤整个文件夹</span><br><span class="line">*.zip           表示过滤所有.zip文件</span><br><span class="line">/mtk/do.c       表示过滤某个具体文件</span><br></pre></td></tr></table></figure>
+
+<h2 id="生成密钥流程"><a href="#生成密钥流程" class="headerlink" title="生成密钥流程"></a>生成密钥流程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">// 查看密钥目录</span><br><span class="line">$ cd ~/.ssh</span><br><span class="line"></span><br><span class="line">// 配置用户</span><br><span class="line">$ git config --global user.name &quot;name&quot;　　</span><br><span class="line">//name改成你要的名字，别傻傻的写个name上去</span><br><span class="line">$ git config --global user.email &quot;88888@qq.com&quot;　　</span><br><span class="line">//88888@qq.com改成你的邮箱</span><br><span class="line"></span><br><span class="line">// 生成密钥命令</span><br><span class="line">$ ssh-keygen -t rsa -C &quot;8888@qq.com&quot;</span><br><span class="line">//改成你的邮箱</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6%E8%A7%84%E5%88%99"><span class="toc-text">忽略文件规则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E6%B5%81%E7%A8%8B"><span class="toc-text">生成密钥流程</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2020/12/11/Git-%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Git/"><i class="fa fa-tags"></i>Git</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2020/12/10/NPM%20%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2020/12/15/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E6%9E%84%E5%BB%BA%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2020/12/10/NPM%20%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

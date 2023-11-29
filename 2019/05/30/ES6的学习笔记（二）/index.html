@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>ES6 的学习笔记（二） | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,ES6," />
+  
+
+  
+  <meta name="description" content="在ES6之前 Javascr 有五种基本原始数据类型：string，number，boolean，Null，undefined，和 复杂数据类型 object。现在ES6 新增加一种原始数据类型：Symbol，它表示独一无二的值。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-05-30
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:NaN-NaN-NaN NaN:NaN 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    ES6 的学习笔记（二）
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="独一无二的Symbol"><a href="#独一无二的Symbol" class="headerlink" title="独一无二的Symbol"></a>独一无二的Symbol</h2><p>在ES6之前 Javascr 有五种基本原始数据类型：string，number，boolean，Null，undefined，和 复杂数据类型 object。现在ES6 新增加一种原始数据类型：<strong>Symbol，它表示独一无二的值</strong>。Symbol 值通过Symbol函数生成。且不能与其他类型的值进行混合运算</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">let s1 = Symbol(&#x27;foo&#x27;);</span><br><span class="line">let s2 = Symbol(&#x27;foo&#x27;);</span><br><span class="line">s1 === s2 // false</span><br><span class="line"></span><br><span class="line">// Symbol 值作为对象属性名时，不能用点运算符</span><br><span class="line">let a=Symbol()</span><br><span class="line">let b=&#123;</span><br><span class="line">    [a]:&#x27;c&#x27;,</span><br><span class="line">	a:&#x27;d&#x27;</span><br><span class="line">&#125;</span><br><span class="line">b.a // &#x27;d&#x27;</span><br><span class="line">b[a] // &#x27;c&#x27;</span><br><span class="line">b[&#x27;a&#x27;] // &#x27;d&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong></p>
+<ul>
+<li><code>Symbol</code> 作为属性名，该属性不会出现在<code>for...in</code>、<code>for...of</code>循环中，也不会被<code>Object.keys()</code>、<code>Object.getOwnPropertyNames()</code>、<code>JSON.stringify()</code>返回.但是，它也不是私有属性，有一个<code>Object.getOwnPropertySymbols</code>方法，可以获取指定对象的所有 Symbol 属性名</li>
+</ul>
+<h3 id="Symbol的扩展运用"><a href="#Symbol的扩展运用" class="headerlink" title="Symbol的扩展运用"></a>Symbol的扩展运用</h3><p><strong>Symbol.for()</strong> 接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值。如果有，就返回这个 Symbol 值，否则就新建并返回一个以该字符串为名称的 Symbol 值.和Symbol() 不同的是，你调用Symbol（）多少次，它就创建多少个不同的Symbol，而Symbol.for（）则没有才创建，否则返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let s1 = Symbol.for(&#x27;foo&#x27;);</span><br><span class="line">let s2 = Symbol.for(&#x27;foo&#x27;);</span><br><span class="line"></span><br><span class="line">s1 === s2 // true</span><br></pre></td></tr></table></figure>
+
+<p><strong>Symbol.keyFor()</strong> 方法返回一个已登记的 Symbol 类型值的key</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let s1 = Symbol.for(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s1) // &quot;foo&quot;</span><br><span class="line"></span><br><span class="line">//Symbol()写法没有登记机制，所以每次调用都会返回一个不同的值</span><br><span class="line">let s2 = Symbol(&quot;foo&quot;);</span><br><span class="line">Symbol.keyFor(s2) // undefined</span><br></pre></td></tr></table></figure>
+
+<h2 id="Set和-Map数据结构"><a href="#Set和-Map数据结构" class="headerlink" title="Set和 Map数据结构"></a>Set和 Map数据结构</h2><h3 id="Set-数据结构"><a href="#Set-数据结构" class="headerlink" title="Set 数据结构"></a>Set 数据结构</h3><p>Set 数据结构类似数组，但是它的成员的值都是唯一，没有重复的值，<code>Set</code> 本身就是一个构造函数，用于生存Set 数据结构</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const s = new Set();</span><br><span class="line">[2, 3, 5, 5, 2, 2].forEach(x =&gt; s.add(x));</span><br><span class="line">s // [2,3,5]</span><br><span class="line"></span><br><span class="line">// Set 由内部算法进行判断成员值是否相等，类似“===”（全等），区别在于：在Set中 NaN等于NaN；“===”（全等）则否认他们相等</span><br><span class="line"></span><br><span class="line">[...new Set(array)] // 可用于去除数组的重复</span><br><span class="line">[...new Set(&#x27;ababbc&#x27;)].join(&#x27;&#x27;) // 可用于去除字符串的重复</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Set 结构的实例有以下属性。</p>
+</blockquote>
+<ul>
+<li><code>Set.prototype.constructor</code>：构造函数，默认就是Set函数。</li>
+<li><code>Set.prototype.size</code>：返回Set实例的成员总数。</li>
+</ul>
+<blockquote>
+<p>Set 实例的操作方法（用于操作数据）</p>
+</blockquote>
+<ul>
+<li><code>add(value</code>)：添加某个值，返回 <code>Set</code> 结构本身。</li>
+<li><code>delete(value)</code>：删除某个值，返回一个布尔值，表示删除是否成功。</li>
+<li><code>has(value)</code>：返回一个布尔值，表示该值是否为Set的成员。</li>
+<li><code>clear()</code>：清除所有成员，没有返回值。</li>
+</ul>
+<blockquote>
+<p>Set 实例的遍历方法（用于遍历成员。）。</p>
+</blockquote>
+<ul>
+<li><code>keys()</code>：返回键名的遍历器 </li>
+<li><code>values()</code>：返回键值的遍历器 </li>
+<li><code>entries()</code>：返回键值对的遍历器</li>
+<li><code>forEach()</code>：使用回调函数遍历每个成员</li>
+</ul>
+<h3 id="Map-数据结构"><a href="#Map-数据结构" class="headerlink" title="Map 数据结构"></a>Map 数据结构</h3><p>Map 类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。Map提供了“值—值”的对应，是一种更完善的 Hash 结构实现。如果你需要“键值对”的数据结构，也许 Map 比 Object 更合适</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">let map = new Map([</span><br><span class="line">  [&#x27;name&#x27;, &#x27;张三&#x27;],</span><br><span class="line">  [&#x27;title&#x27;, &#x27;Author&#x27;]</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line">map.size // 2</span><br><span class="line">map.has(&#x27;name&#x27;) // true</span><br><span class="line">map.get(&#x27;name&#x27;) // &quot;张三&quot;</span><br><span class="line"></span><br><span class="line">const o = &#123;p: &#x27;Hello World&#x27;&#125;;</span><br><span class="line">map.set(o, &#x27;content&#x27;) // 以对象o作为健名</span><br><span class="line">map.get(o) // &quot;content&quot;</span><br><span class="line">map.has(o) // true</span><br><span class="line">map.delete(o) // true</span><br><span class="line">map.has(o) // false</span><br><span class="line"></span><br><span class="line">//只有对同一个对象的引用，Map 结构才将其视为同一个键</span><br><span class="line">map.set([&#x27;a&#x27;], 555);</span><br><span class="line">map.get([&#x27;a&#x27;]) // undefined</span><br><span class="line"></span><br><span class="line">// Map 转数组</span><br><span class="line">[...map] </span><br></pre></td></tr></table></figure>
+
+
+<blockquote>
+<p>Map 数据结构的操作方法 （用于操作数据）</p>
+</blockquote>
+<ul>
+<li><code>set()</code> 设置键名key对应的键值为value，然后返回整个 Map 结构。如果key已经有值，则键值会被更新，否则就新生成该键</li>
+<li><code>get()</code> 读取key对应的键值，如果找不到key，返回undefined</li>
+<li><code>has()</code> 返回一个布尔值，表示某个键是否在当前 Map 对象之中</li>
+<li><code>delete()</code> 删除某个键，返回true。如果删除失败，返回false</li>
+<li><code>clear()</code> 清除所有成员，没有返回值</li>
+</ul>
+<blockquote>
+<p>Map 数据结构的遍历方法（用于遍历成员。）</p>
+</blockquote>
+<ul>
+<li><code>keys()</code>：返回键名的遍历器。 </li>
+<li><code>values()</code>：返回键值的遍历器。</li>
+<li><code>entries()</code>：返回所有成员的遍历器。</li>
+<li><code>forEach()</code>：遍历 Map 的所有成员。</li>
+</ul>
+<h2 id="数据结构的遍历循环"><a href="#数据结构的遍历循环" class="headerlink" title="数据结构的遍历循环"></a>数据结构的遍历循环</h2><p>Javascript中，数据集合在新增了 Set 和 Map 后，目前有四种，Array， Object，Set，和 Map.而JS 可以通过遍历机制对数据集合进行遍历操作（即依次处理该数据结构的所有成员）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">let Arr = [1,2,3]</span><br><span class="line"></span><br><span class="line">for(let i=0;i&lt;Arr.length;i++)&#123; //for 循环</span><br><span class="line">    console.log(Arr[i])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(let i in Arr)&#123;</span><br><span class="line">    console.log(Arr[i])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for(let i of Arr)&#123;</span><br><span class="line">    console.log(i)</span><br><span class="line">&#125;</span><br><span class="line">//如果是数组，三者目前效果都是 1 2 3 。当然forEach will 和do/will 也可以用于遍历</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="异步编程相关Promise"><a href="#异步编程相关Promise" class="headerlink" title="异步编程相关Promise"></a>异步编程相关Promise</h2><p>Promise 是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6 将其写进了语言标准，统一了用法，原生提供了Promise对象,Promise对象存在三种状态：<code>pending</code>（进行中）、<code>fulfilled</code>（已成功）<code>和rejected</code>（已失败）。只有异步操作可以改变状态，且改变后无法修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">const promise = new Promise((resolve,reject)=&gt;&#123;</span><br><span class="line">  console.log(&#x27;1&#x27;)</span><br><span class="line">  if(true)&#123; // 可以通过条件判断执行不同的状态或只执行成功</span><br><span class="line">    resolve(&#x27;成功&#x27;)</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">    reject(&#x27;失败&#x27;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">promise.then(function(value) &#123;</span><br><span class="line">  console.log(value) // 成功后的回调</span><br><span class="line">&#125;, function(error) &#123;</span><br><span class="line">  console.log(error) // 失败后的回调</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">console.log(&#x27;2&#x27;)</span><br><span class="line"></span><br><span class="line">// 图片加载异步执行函数</span><br><span class="line">function loadImageAsync(url) &#123;</span><br><span class="line">  return new Promise(function(resolve, reject) &#123;</span><br><span class="line">    const image = new Image();</span><br><span class="line">    image.src = url;</span><br><span class="line">    image.onload = function() &#123;</span><br><span class="line">    	console.log(url + new Date().getTime())</span><br><span class="line">      resolve(image);</span><br><span class="line">    &#125;;</span><br><span class="line">    image.onerror = function() &#123;</span><br><span class="line">      reject(new Error(&#x27;Could not load image at &#x27; + url));</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>例子的执行顺序为：1 ，2 ，成功。因为异步回调只有在所有同步任务执行完才会执行。<code>resolve</code> 状态必须是要有。<code>reject</code> 状态可选</p>
+<h3 id="Promise-的数据处理"><a href="#Promise-的数据处理" class="headerlink" title="Promise 的数据处理"></a>Promise 的数据处理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">promise</span><br><span class="line">.then((resolve)=&gt;&#123; </span><br><span class="line">    // 执行状态成功的回调</span><br><span class="line">&#125;,(reject)=&gt;&#123;</span><br><span class="line">    // 执行状态失败的回调(包括代码出错)</span><br><span class="line">&#125;)</span><br><span class="line">.catch((err)=&gt;&#123; // 和then 第二个参数对比，建议使用 catch 捕获</span><br><span class="line">    // 执行状态失败的回调(包括代码出错)</span><br><span class="line">&#125;)</span><br><span class="line">.finally(() =&gt; &#123;</span><br><span class="line">    // 无论怎样都会执行的回调</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="异步编程相关Generator"><a href="#异步编程相关Generator" class="headerlink" title="异步编程相关Generator"></a>异步编程相关Generator</h2><p>Generator 函数是 ES6 提供的一种异步编程解决方案，Generator 有两个特征。一是，function关键字与函数名之间有一个星号；二是，函数体内部使用yield表达式. Generator 函数和普通函数最大区别在于它是分段执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function* generator()&#123;</span><br><span class="line">    console.log(&#x27;1&#x27;)</span><br><span class="line">    yield &#x27;hello&#x27;</span><br><span class="line">    yield &#x27;word&#x27;</span><br><span class="line">    return &#x27;end&#x27;</span><br><span class="line">&#125;</span><br><span class="line">let gen=generator()</span><br><span class="line">gen.next() // &#123; value: &#x27;hello&#x27;, done: false &#125;</span><br><span class="line">gen.next() // &#123; value: &#x27;word&#x27;, done: false &#125;</span><br><span class="line">gen.next() // &#123; value: &#x27;end&#x27;, done: true &#125;</span><br><span class="line">gen.next() // &#123; value: &#x27;end&#x27;, done: true &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Generator 函数分段执行，yield表达式是切割分段的标记，通过<code>next()</code> 调用，除此外 <code>for...of...</code> 可以遍历Generator 函数且不需要<code>next()</code></p>
+<h3 id="Generator-数据操作"><a href="#Generator-数据操作" class="headerlink" title="Generator 数据操作"></a>Generator 数据操作</h3><blockquote>
+<p>Generator.prototype.throw()</p>
+</blockquote>
+<p>在函数体外抛出错误，然后在 Generator 函数体内捕获</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var g = function* () &#123;</span><br><span class="line">  try &#123;</span><br><span class="line">    console.log(1)</span><br><span class="line">    yield &#x27;one&#x27;;</span><br><span class="line">    console.log(2)</span><br><span class="line">    yield &#x27;two&#x27;;</span><br><span class="line">    return &#x27;three&#x27;</span><br><span class="line">  &#125; catch (e) &#123;</span><br><span class="line">    console.log(&#x27;内部捕获&#x27;, e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var i = g();</span><br><span class="line">i.next();</span><br><span class="line"></span><br><span class="line">try &#123;</span><br><span class="line">  i.throw(&#x27;a&#x27;);</span><br><span class="line">  i.throw(&#x27;b&#x27;);</span><br><span class="line">&#125; catch (e) &#123;</span><br><span class="line">  console.log(&#x27;外部捕获&#x27;, e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Generator.prototype.return()</p>
+</blockquote>
+<p>返回给定的值，并且终结遍历 Generator 函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function* gen() &#123;</span><br><span class="line">  yield 1;</span><br><span class="line">  yield 2;</span><br><span class="line">  yield 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var g = gen();</span><br><span class="line"></span><br><span class="line">g.next()        // &#123; value: 1, done: false &#125;</span><br><span class="line">g.return(&#x27;foo&#x27;) // &#123; value: &quot;foo&quot;, done: true &#125;</span><br><span class="line">g.next()        // &#123; value: undefined, done: true &#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8B%AC%E4%B8%80%E6%97%A0%E4%BA%8C%E7%9A%84Symbol"><span class="toc-text">独一无二的Symbol</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Symbol%E7%9A%84%E6%89%A9%E5%B1%95%E8%BF%90%E7%94%A8"><span class="toc-text">Symbol的扩展运用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set%E5%92%8C-Map%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">Set和 Map数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">Set 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">Map 数据结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E9%81%8D%E5%8E%86%E5%BE%AA%E7%8E%AF"><span class="toc-text">数据结构的遍历循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3Promise"><span class="toc-text">异步编程相关Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise-%E7%9A%84%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">Promise 的数据处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3Generator"><span class="toc-text">异步编程相关Generator</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Generator-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="toc-text">Generator 数据操作</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/05/30/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/ES6/"><i class="fa fa-tags"></i>ES6</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2019/06/02/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2019/05/26/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2019/06/02/JS%20%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2019/05/26/ES6%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>区块链Polymesh学习笔记 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记," />
+  
+
+  
+  <meta name="description" content="Polymesh是一种技术，使您能够在区块链上创建，发行和管理数字证券。其快速上市方法旨在将传统证券的监管和合规性与区块链技术联系起来。Polymesh的方法与以太坊等通用区块链的方法之间的主要区别在于，Polymesh的设计侧重于特定需求的精确解决方案，而不是抽象需求的通用解决方案。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+<link rel="stylesheet" href="/blog/styles/components/highlight/highlight.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+  
+    
+<script src="/blog/common/Av.min.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+    
+<script src="/blog/common/Valine.min.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"gE1EosDsVgB2slV4E92yPkcG-gzGzoHsz","appkey":"niR787UVTMyJQrR6gmOiJCKe","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/blog/" target="_self">主页</a>
+      
+        <a href="/blog/archives/" target="_self">归档</a>
+      
+        <a href="/blog/tags/" target="_self">标签</a>
+      
+        <a href="/blog/categories/" target="_self">分类</a>
+      
+        <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">日记</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/%E6%97%A5%E8%AE%B0" target="_self">
+            日记
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-10-18
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-11-25 9:19 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    区块链Polymesh学习笔记
+  </h1>
+  
+  <article class="passage-article">
+    <p>Polymesh是一种使您能够在区块链上创建、发行和管理数字证券的技术，旨在将传统证券的监管和合规与区块链技术联系起来，专门为受监管资产构建的机构级许可区块链。Polymesh的技术和基础设施在提高传统投资银行流程的效率方面具有巨大潜力。<br>起源：Polymesh的构建是为了响应行业对证券专用区块链的需求，该区块链可以管理治理，身份，合规性，机密性和结算。 </p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>Governance治理：对于以实物资产为后盾的代币而言，区块链中的争议性分叉带来了重大的法律和税务挑战。Polymesh使用行业领先的治理模式来防止分叉，并引导链条的演变。<br>Identity身份：证券发行和转让需要一个已知的身份，但大多数连锁店都是以假名建立的。Polymesh使用客户尽职调查流程，确保链上的所有参与者都得到验证，所有交易都由授权实体编写。<br>Compliance合规：构建在通用区块链之上的解决方案难以处理遵守法规所需的复杂逻辑。<br>Confidentiality保密性：大多数市场参与者需要他们的头寸和交易保密，但任何人都可以在通用区块链上看到持仓。Polymesh 设计了一种安全的资产管理协议，可实现机密资产的发行和转移。<br>Settlement结算：结算挑战阻碍了区块链成为资产所有权的黄金记录。通过在协议层创建资产，Polymesh能够提供一种简化的转账方法，无需预融资即可实现即时结算，通过交易确认防止不必要的空投，并可以提供确定性的最终结果</p>
+<h3 id="Governance-治理"><a href="#Governance-治理" class="headerlink" title="Governance 治理"></a>Governance 治理</h3><p>对于以实物资产为后盾的代币而言，区块链中的争议性分叉带来了重大的法律和税务挑战。Polymesh使用行业领先的治理模式来防止分叉，并引导链条的演变</p>
+<p>Polymesh 通过将治理(Governance)纳入其核心来应对治理挑战。Polymesh 基于基板框架构建，提供无分支运行时升级。它还通过依靠管理委员会来引导链条绕过潜在的问题或分歧，从而降低了硬分叉的风险。<br>管理委员会会由主要利益相关者组成，他们审查委员会或代币持有者提交的Polymesh改进提案（PIP）。治理委员会找到共识，并为链条的未来发展规划前进的道路。<br>Governance（治理）包含了三组利益相关者，POLYX代币持有者,委员会,委员会</p>
+<ul>
+<li>区块奖励和罚款：对于创建的每个区块，创作节点操作员及其抵押人都将在 POLYX 中获得奖励，然而，未能达到该链的性能标准可能导致节点运营商在POLYX中被罚款。</li>
+<li>许可链：许可的区块链需要用户在有身份证明的情况下访问区块链</li>
+<li>PIP：Polymesh改进提案（Polymesh Improvement Proposal）</li>
+<li>POLYX代币持有者：任何POLYX代币持有者都可以提交社区策划的PIP并与其他持有者互动，以便他们可以发出批准或不批准的信号</li>
+<li>委员会：委员会是个人团体，最多有20名成员，按主题分类。委员会可以提交委员会 PIP，这些 PIP 类似于社区策划的 PIP，只是它们不能发出信号，并且可以随时由理事会以任何顺序颁布。</li>
+<li>理事会：作为Polymesh的决策机构，管理委员会的主要作用是管理区块链，找到共识，并制定发展方向。它可以快速提出建议，以处理紧急解决办法，并管理各委员会和理事会本身。</li>
+</ul>
+<h3 id="Identity-身份"><a href="#Identity-身份" class="headerlink" title="Identity 身份"></a>Identity 身份</h3><p>匿名是许多区块链的关键原则，但这种精神使得满足身份验证的合规要求和履行KYC义务变得非常困难。在 Polymesh 上，所有用户（无论是发行人、投资者、节点运营商还是抵押人）都必须由客户尽职调查（CDD）提供商进行核实验证</p>
+<p>发行人和金融中介机构可以检查区块链，以确认有关合规监管所需的参与者身份的问题，Polymesh上的身份提高了合规性和安全性，因为代币持有者不能通过使用多个身份来持有资产来破坏规则。用户只能通过其链上身份进行操作，并且所有链上身份都通过去中心化标识符（DID）引用，此外，发行人和机构不需要重新识别用户，用户也不必重新提交其信息。这简化了身份验证过程，同时显著降低了成本。最终，Polymesh专门构建的基础设施更具弹性，不易受到针对其声誉系统的攻击（即Sybil攻击），并促进更好的合规性，在Polymesh，不禁止使用不同的DID操作多个复数目表帐户。也就是说，投资者根据其司法管辖区承担监管合规义务。可以说，通常不允许使用多个帐户来混淆受监管证券的可报告持有量。Polymesh 提供了一种称为Polymesh唯一标识系统 （PUIS） 的机制，用于自我报告多个帐户之间的链接，作为检测手段</p>
+<ul>
+<li>CDD：客户尽职调查（customer due diligence）</li>
+<li>DID：中心化标识符（decentralised identifiers）是一种新型的标识符，可实现可验证的去中心化数字身份</li>
+<li>PUIS：Polymesh唯一标识系统（Polymesh Unique Identity System）Polymesh 提供的用于自我报告多个帐户之间的链接机制，作为检测手段，旨在抵御Sybil类型的攻击</li>
+</ul>
+<h3 id="Compliance-合规"><a href="#Compliance-合规" class="headerlink" title="Compliance 合规"></a>Compliance 合规</h3><p>证券型代币受越来越多的法规约束，但通用区块链难以满足遵守所需的复杂逻辑。Polymesh将法规遵从性构建到链中，使处理速度更快，协议费用更低，可以随着需求和管理复杂性的增长而扩展。</p>
+<p>Polymesh 通过全面的自动化实现合规性问题，从而实现更快的处理速度和更低的协议费用。发行人可以制定灵活且可扩展的规则，自动执行规则，而无需手动或半手动批准单个转账，从而最终降低成本。规则可以根据资产的类型、司法管辖区和监管制度进行组合和定制</p>
+<h3 id="Confidentiality-保密性"><a href="#Confidentiality-保密性" class="headerlink" title="Confidentiality 保密性"></a>Confidentiality 保密性</h3><p>大多数市场参与者需要他们的仓位(头寸)和交易保持机密，但任何人都可以在公共区块链上看到持股。Polymesh具有安全的资产管理协议，可实现机密资产的发行和转移。</p>
+<p>在Polymesh上，代币持有者持有和转移的金额被加密并通过零知识证明保密。通过其机密交易，许可的区块链允许发行人将证券型代币配置为机密。<br>这种对资产、交易和仓位(头寸)保密性的关注是Polymesh身份模型的核心，并有助于混淆用户的仓位。</p>
+<ul>
+<li>零知识证明：zero-knowledge proofs，零知识证明是在20世纪80年代初提出的。它指的是证明者能够在不向验证者提供任何有用的信息的情况下，使验证者相信某个论断是正确的</li>
+</ul>
+<h3 id="Settlement-结算"><a href="#Settlement-结算" class="headerlink" title="Settlement 结算"></a>Settlement 结算</h3><p>Polymesh提供了一种简化的传输方法和确定性最终性，使区块链上的即时结算成为可能。</p>
+<p>通过在协议层创建资产，Polymesh为传输和确定性最终性提供了一种简化的方法。 Polymesh在不需要预融资的情况下减少了交付失败，并可以通过祖父协议（GRANDPA）工具提供确定性最终性，以及严格的身份验证要求、全面的合规性验证框架和无叉升级过程。归根结底，由于管理、身份和合规性交织在链的核心中，在Polymesh上可以实现交易最终性或结算</p>
+<ul>
+<li>GRANDPA：祖父协议（基于GHOST的递归祖先派生前缀协议）在混合共识区块链中提供近乎即时的、异步的，负责任安全的最终确定性</li>
+</ul>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>POLYX：POLYX是根据瑞士法律，基于瑞士金融监管机构FINMA的指导的实用型代币。被视为为Polymesh的燃料.原生的Polymesh代币，它用于质押，治理和交易费用</li>
+<li>uID：uID 可以是个人或组织。一个 uID 可以控制多个帐户，但任何人都不应拥有多个 uID</li>
+<li>DID：中心化标识符（decentralised identifiers）作为一串数字代表一个帐户。您可能不能选择您的DID，但它足以混淆以保护您的隐私</li>
+<li>NPoS：股权证明共识机制（Nominated proof–of–stake）</li>
+<li>Security tokens：证券型代币，与传统证券类似，证券型代币是代表资产所有权权益的金融工具——只是它们被数字化（代币化）创建，以释放区块链的力量</li>
+<li>代币化：在区块链上发行代币以数字方式表示资产的行为称为代币化</li>
+<li>钱包：一个应用程序，为用户提供交互节目，存储，管理用户密钥和地址。跟踪余额及创建和签名交易</li>
+<li>实体：一个具有Polymesh DID 的公司或者组织，实体具有自己的Polymesh DID，具有零个或多个辅助密钥和一个主密钥。</li>
+<li>KYC：KYC（Know Your Customer）即充分了解你的客户，对账户持有人的强化审查，了解资金来源合法性，是反洗钱用于预防腐败的制度基础。</li>
+<li>PIA：主发行代理，当代币的总供应量增加时，它被称为发行。负责发行的账户通常称为主发行代理 </li>
+<li>leg：leg是结算的最小单位。</li>
+<li>instruction：指令，它汇聚一定的leg来创建不可分割的动作</li>
+<li>venue：场地，这是一个逻辑对象，旨在收集指令。它还与某些访问权限相关联，例如谁可以向其添加指令</li>
+</ul>
+<h3 id="Polymesh钱包扩展、地址和密钥"><a href="#Polymesh钱包扩展、地址和密钥" class="headerlink" title="Polymesh钱包扩展、地址和密钥"></a>Polymesh钱包扩展、地址和密钥</h3><p>Polymesh钱包使您能够管理您的Polymesh帐户，并与Polymesh和Polymesh去中心化应用程序（dApps）进行交互,目前，Polymesh钱包可作为Chrome扩展程序使用，并支持Chrome以及基于Chrome的浏览器,它可以创建和管理密钥，查看和监控每个密钥的 POLYX 余额，安全签署交易。控制 POLYX 和数字资产与您的帐户之间的转移等等</p>
+<ul>
+<li>dApps: 去中心化应用程序(decentralized apps)</li>
+</ul>
+<h3 id="Security-tokens-证券型代币"><a href="#Security-tokens-证券型代币" class="headerlink" title="Security tokens 证券型代币"></a>Security tokens 证券型代币</h3><p>在区块链上发行代币以数字方式表示资产的行为称为代币化，分发安全令牌的过程称为安全令牌产品 （STO）。STO类似于首次公开募股（IPO），因为它们允许组织根据其资产的分配筹集资金。这种分配，当通过Polymesh的结算机制完成时，确保合规性并满足资产转移的监管要求。保证取决于最终在资产发起人控制下的合规性规则。存在一个并非不可能的情况，即发起人没有做好功课，因此不了解他们的合规规则应该是什么，并使其过于宽松</p>
+<p>通过使用安全令牌，可以删除传统的中间商以节省成本。此外，高效的筹款和交易，减少的结算时间，以及改善股息发行流程，投票能力和清算偏好是效率收益。</p>
+<h2 id="Polymesh-SDK"><a href="#Polymesh-SDK" class="headerlink" title="Polymesh SDK"></a>Polymesh SDK</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>在你建立的项目里安装 <code>@polymeshassociation/local-signing-manager</code> <code>@polymeshassociation/polymesh-sdk</code> <code>node-polyfill-webpack-plugin</code></p>
+<blockquote>
+<p>yarn add @polymeshassociation/local-signing-manager @polymeshassociation/polymesh-sdk<br>yarn add @polymeshassociation/browser-extension-signing-manager @polkadot/ui-keyring<br>yarn add –dev node-polyfill-webpack-plugin</p>
+</blockquote>
+<p>在 vue.config.js 中 配置相关代码</p>
+<figure class="highlight js"><figcaption><span>vue.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">NodePolyfillPlugin</span> = <span class="built_in">require</span>(<span class="string">&#x27;node-polyfill-webpack-plugin&#x27;</span>)</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">      <span class="keyword">new</span> <span class="title class_">NodePolyfillPlugin</span>()</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">transpileDependencies</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><figcaption><span>main.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">BrowserExtensionSigningManager</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@polymeshassociation/browser-extension-signing-manager&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Polymesh</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@polymeshassociation/polymesh-sdk&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> keyring <span class="keyword">from</span> <span class="string">&#x27;@polkadot/ui-keyring&#x27;</span></span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="title class_">BrowserExtensionSigningManager</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">appName</span>: <span class="string">&#x27;Demo&#x27;</span>, <span class="comment">//项目名称，可以随意更改</span></span><br><span class="line">  <span class="attr">extensionName</span>: <span class="string">&#x27;polywallet&#x27;</span> <span class="comment">// Chrmoe</span></span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="keyword">async</span> signingManager =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">connect</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Polymesh</span>.<span class="title function_">connect</span>(&#123;</span><br><span class="line">      <span class="attr">nodeUrl</span>: <span class="string">&#x27;wss://testnet-rpc.polymesh.live&#x27;</span>, <span class="comment">// 区块链后端网络，示例为polymesh测试网络</span></span><br><span class="line">      signingManager,</span><br><span class="line">      <span class="attr">middleware</span>: &#123; <span class="comment">// 可选：中间件配置，如没有可以不选择</span></span><br><span class="line">        <span class="attr">link</span>: <span class="string">&#x27;https://testnet-graphql.polymesh.live&#x27;</span>,</span><br><span class="line">        <span class="attr">key</span>: <span class="string">&#x27;deprecated&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> api = <span class="keyword">await</span> <span class="title function_">connect</span>()</span><br><span class="line">  <span class="comment">// 监听浏览器扩展polywallet钱包账户切换变化</span></span><br><span class="line">  signingManager.<span class="title function_">onAccountChange</span>(<span class="keyword">async</span> accounts =&gt; &#123;</span><br><span class="line">    location.<span class="title function_">reload</span>()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 监控切换网络变化</span></span><br><span class="line">  signingManager.<span class="title function_">onNetworkChange</span>(<span class="keyword">async</span> networkInfo =&gt; &#123;</span><br><span class="line">    location.<span class="title function_">reload</span>()</span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">// 初始化polkadot钥匙配置 polkadot用于创建账户</span></span><br><span class="line">  keyring.<span class="title function_">loadAll</span>(&#123; <span class="attr">ss58Format</span>: <span class="number">42</span>, <span class="attr">type</span>: <span class="string">&#x27;sr25519&#x27;</span> &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">render</span>: <span class="function"><span class="params">h</span> =&gt;</span> <span class="title function_">h</span>(<span class="title class_">App</span>)</span><br><span class="line">  &#125;).$mount(<span class="string">&#x27;#app&#x27;</span>)</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;error create :&#x27;</span>, e)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><ul>
+<li><p>具体API可以看 Polymesh-SDK 的 <code>wiki</code>  <a target="_blank" rel="noopener" href="https://github.com/PolymeshAssociation/polymesh-sdk/wiki/">点击进入</a></p>
+</li>
+<li><p>也可以参考我个人所编辑的介绍文档 <a target="_blank" rel="noopener" href="https://github.com/lixianbin1/polymesh-sdk-wiki">点击进入</a></p>
+</li>
+</ul>
+<p>账户的相关接口<br>api.client.accountManagement </p>
+<p>资产的相关接口<br>api.client.assets</p>
+<p>声明的相关接口<br>api.client.Claims</p>
+<p>身份标识的相关接口<br>api.client.Identities</p>
+<p>网络功能的相关接口<br>api.client.network</p>
+<p>结算的相关接口<br>api.client.Settlements</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-text">特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Governance-%E6%B2%BB%E7%90%86"><span class="toc-text">Governance 治理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Identity-%E8%BA%AB%E4%BB%BD"><span class="toc-text">Identity 身份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Compliance-%E5%90%88%E8%A7%84"><span class="toc-text">Compliance 合规</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Confidentiality-%E4%BF%9D%E5%AF%86%E6%80%A7"><span class="toc-text">Confidentiality 保密性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Settlement-%E7%BB%93%E7%AE%97"><span class="toc-text">Settlement 结算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Polymesh%E9%92%B1%E5%8C%85%E6%89%A9%E5%B1%95%E3%80%81%E5%9C%B0%E5%9D%80%E5%92%8C%E5%AF%86%E9%92%A5"><span class="toc-text">Polymesh钱包扩展、地址和密钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-tokens-%E8%AF%81%E5%88%B8%E5%9E%8B%E4%BB%A3%E5%B8%81"><span class="toc-text">Security tokens 证券型代币</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Polymesh-SDK"><span class="toc-text">Polymesh SDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API"><span class="toc-text">API</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2022/10/18/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E5%8C%BA%E5%9D%97%E9%93%BEPolymesh%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    
+<div class="site-footer-wrapper">
+<!--
+  <div class="footer-top">
+    <a class="left" href="/blog/2022/10/28/%E3%80%90%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E3%80%91React%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%E5%92%8C%E6%89%A9%E5%B1%95%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a class="right" href="/blog/2022/10/14/%E3%80%90%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E3%80%91Vue3%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%E5%92%8C%E6%89%A9%E5%B1%95%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+-->
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+<!--     <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div> -->
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/blog/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/blog/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+
+  <div class="bottom-bar-left">
+<!--
+    <a href="/blog/2022/10/28/%E3%80%90%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E3%80%91React%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%E5%92%8C%E6%89%A9%E5%B1%95%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/blog/2022/10/14/%E3%80%90%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E3%80%91Vue3%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%BC%80%E5%A7%8B%E5%92%8C%E6%89%A9%E5%B1%95%E9%97%AE%E9%A2%98/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+-->
+  </div>
+
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
