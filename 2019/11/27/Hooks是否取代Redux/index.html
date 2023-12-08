@@ -100,6 +100,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/diary/" target="_self">日记</a>
+      
         <a href="/blog/about/" target="_self">关于</a>
       
     </nav>
@@ -150,6 +152,12 @@
         </li>
       
         <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
           <a href="/blog/about/" target="_self">
             关于
           </a>
@@ -182,10 +190,10 @@
   </h1>
   
   <article class="passage-article">
-    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天，看到新闻高以翔猝死，诶，默哀三秒······。真是世事难料，我们还是应该注意身体，尤其是开发人员，猝死的新闻更是是应接不暇。</p>
-<h2 id="先问是不是，在问为什么"><a href="#先问是不是，在问为什么" class="headerlink" title="先问是不是，在问为什么"></a>先问是不是，在问为什么</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook作为React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性.自发布以来，大家就开始利用它来达成各种业务需求。然后，大家就会发出疑问，Hook是否将取代Redux的位置，用于React状态管理？首先知乎热评：先问是不是，在问为什么？那么Hook取代Redux这个问题存不存在呢，我觉得是不存在的。Redux是 JavaScript 状态容器，提供可预测化的状态管理。<br>而Hook仅仅只是作为React的新特性。Redux的地位自然是无可撼动。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那Hook是不是能取代Redux在React中的地位呢。我觉得可能会拉走一部分开发人员，毕竟React-redux作为第三方插件，导入项目中，哪怕是打包压缩也会增加项目的大小。当然这是我个人观点，还是得根据实际来看，如果项目状态树复杂多变，项目大而繁琐，那么肯定是需要react-redux来进行状态管理的，那如果项目小状态简单，但是又有扩展需求，那么Hook也是完全可以的。官方表示Hook的开发是针对 “难以复用类组件之前的逻辑，生命周期包含不相关的逻辑，类组件之间的逻辑复杂难理解”这几个问题进行的。文档表示不要滥用context，它会使组件变的难以复用。因此官方可能并未考虑用Hook取代react-redux。所以说了这么多，我的观点是Hook不会取代react-redux的地位。</p>
-<h2 id="useContext实现状态共享"><a href="#useContext实现状态共享" class="headerlink" title="useContext实现状态共享"></a>useContext实现状态共享</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;useContext可以让你在组件之间共享应用的状态，而不需要通过prop传递。首先，我们需要了解 context。context提供一种方法，用于全局传递，使得组件之间不用显式地通过 props 传递数据</p>
+    <p>　　今天，看到新闻高以翔猝死，诶，默哀三秒······。真是世事难料，我们还是应该注意身体，尤其是开发人员，猝死的新闻更是是应接不暇。</p>
+<h2 id="先问是不是，在问为什么"><a href="#先问是不是，在问为什么" class="headerlink" title="先问是不是，在问为什么"></a>先问是不是，在问为什么</h2><p>　　Hook作为React 16.8 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性.自发布以来，大家就开始利用它来达成各种业务需求。然后，大家就会发出疑问，Hook是否将取代Redux的位置，用于React状态管理？首先知乎热评：先问是不是，在问为什么？那么Hook取代Redux这个问题存不存在呢，我觉得是不存在的。Redux是 JavaScript 状态容器，提供可预测化的状态管理。<br>而Hook仅仅只是作为React的新特性。Redux的地位自然是无可撼动。</p>
+<p>　　那Hook是不是能取代Redux在React中的地位呢。我觉得可能会拉走一部分开发人员，毕竟React-redux作为第三方插件，导入项目中，哪怕是打包压缩也会增加项目的大小。当然这是我个人观点，还是得根据实际来看，如果项目状态树复杂多变，项目大而繁琐，那么肯定是需要react-redux来进行状态管理的，那如果项目小状态简单，但是又有扩展需求，那么Hook也是完全可以的。官方表示Hook的开发是针对 “难以复用类组件之前的逻辑，生命周期包含不相关的逻辑，类组件之间的逻辑复杂难理解”这几个问题进行的。文档表示不要滥用context，它会使组件变的难以复用。因此官方可能并未考虑用Hook取代react-redux。所以说了这么多，我的观点是Hook不会取代react-redux的地位。</p>
+<h2 id="useContext实现状态共享"><a href="#useContext实现状态共享" class="headerlink" title="useContext实现状态共享"></a>useContext实现状态共享</h2><p>　　useContext可以让你在组件之间共享应用的状态，而不需要通过prop传递。首先，我们需要了解 context。context提供一种方法，用于全局传递，使得组件之间不用显式地通过 props 传递数据</p>
 <ul>
 <li>React.createContext: 创建一个 Context 对象，该对象拥有 Provider 和 Consumer 属性</li>
 <li>Context.Provider: 接受一个 value 参数，在 value 参数更新的时候通知 Consumer</li>

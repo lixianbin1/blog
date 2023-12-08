@@ -100,6 +100,8 @@
       
         <a href="/blog/categories/" target="_self">分类</a>
       
+        <a href="/blog/diary/" target="_self">日记</a>
+      
         <a href="/blog/about/" target="_self">关于</a>
       
     </nav>
@@ -150,6 +152,12 @@
         </li>
       
         <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
           <a href="/blog/about/" target="_self">
             关于
           </a>
@@ -186,23 +194,77 @@
   </h1>
   
   <article class="passage-article">
-    <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>正常来说，游戏汉化组一般分为两种，一种是为爱发电，出于对游戏的热爱以及喜欢，开始游戏汉化工作。还有一种是商业汉化，也就是盗版网站出钱，养人汉化。然后汉化组里面又分成几组，技术组和文本组，技术组负责对游戏进行拆包，提取文本，替换文本和压包。文本组单纯负责文本汉化。所以游戏汉化一般分为几步，第一步：游戏拆包。第二步：提取文本，第三步：文本翻译，第四步：替换文本，第五步：游戏封包。所以普通玩家想参与进游戏的汉化工作，一般只能进行文本翻译工作。</p>
-<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><h3 id="查看是否加壳"><a href="#查看是否加壳" class="headerlink" title="查看是否加壳"></a>查看是否加壳</h3><h3 id="查看Unity资源"><a href="#查看Unity资源" class="headerlink" title="查看Unity资源"></a>查看Unity资源</h3><blockquote>
-<p>AssetStudio</p>
+    <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>正常来说，游戏汉化组一般分为两种，一种是为爱发电，出于对游戏的热爱以及喜欢，开始游戏汉化工作。还有一种是商业汉化，也就是网站出钱养人汉化，或者汉化组自己接活。然后汉化组里面又分成几组，技术组和文本组，技术组负责对游戏进行拆包，提取文本，替换文本和压包。文本组单纯负责文本汉化。所以游戏汉化一般分为几步，第一步：游戏拆包。第二步：提取文本，第三步：文本翻译，第四步：替换文本，第五步：游戏封包。所以普通玩家想参与进游戏的汉化工作，一般只能进行文本翻译工作。</p>
+<h2 id="正式开始"><a href="#正式开始" class="headerlink" title="正式开始"></a>正式开始</h2><p>目前了解到游戏汉化有有两种方式，一种通过游戏解包，直接替换游戏的文本文件(比如字体，文本，图片之类的)。第二种通过插件 <code>BepInEx</code> + <code>XUnity.AutoTranslator</code> 的方式进行翻译。</p>
+<h3 id="正统解包汉化"><a href="#正统解包汉化" class="headerlink" title="正统解包汉化"></a>正统解包汉化</h3><h4 id="查看是否加壳"><a href="#查看是否加壳" class="headerlink" title="查看是否加壳"></a>查看是否加壳</h4><h4 id="查看Unity资源"><a href="#查看Unity资源" class="headerlink" title="查看Unity资源"></a>查看Unity资源</h4><blockquote>
+<p>AssetStudio </p>
 </blockquote>
-<p>可以通过 <code>AssetStudio</code> 打开游戏里的资源文件，预览各个资源</p>
-<h3 id="替换Unity资源"><a href="#替换Unity资源" class="headerlink" title="替换Unity资源"></a>替换Unity资源</h3><p>大部分游戏汉化，替换的都是游戏里的字体和文本，游戏里字体分三种（TTF，TMP，UGUI）。<br>TTF为动态字体，大部分游戏不用，TMP静态字体，大部分不支持中文。UGUI为位图字体，需要制作位图。</p>
+<p>可以通过 <code>AssetStudio</code> 打开游戏里的资源文件，预览各个资源。</p>
+<h4 id="替换Unity资源"><a href="#替换Unity资源" class="headerlink" title="替换Unity资源"></a>替换Unity资源</h4><p>大部分游戏汉化，替换的都是游戏里的字体和文本，游戏里字体分三种（TTF，TMP，UGUI）。<br>TTF为动态字体，大部分游戏不用，TMP静态字体，大部分不支持中文。UGUI为位图字体，需要制作位图。</p>
+<pre><code class="hljs markdown"><span class="hljs-bullet">-</span> data/
+<span class="hljs-bullet">   -</span> level x :多为一些场景资源
+</code></pre>
+
+<p>文本资源一般有以下框架类型</p>
+<ul>
+<li>UGUI</li>
+<li>NGUI</li>
+<li>IMGUI (默认禁用)</li>
+<li>TextMeshPro</li>
+<li>TextMesh (默认禁用, 文本通常漂浮在3D空间中)</li>
+<li>FairyGUI for Unity</li>
+<li>Utage (VN 游戏引擎)</li>
+</ul>
 <blockquote>
 <p>AssetBundleExtractor </p>
 </blockquote>
 <p>可以通过 <code>AssetBundleExtractor</code> 替换各个资源</p>
 <p>1：替换TMP字体文件</p>
-<p>通过 <code>AssetStudio</code> 查找字体名称带 <code>SDF</code> 文字的字体资源(<code>MonoBehaviour</code>类型)（这是可以改名称的，但大部分是默认）。然后查看当前游戏的<code>Unity</code> 版本号，通过差不多的版本号制作<code>TMP</code>字体，打包成demo，然后打开<code>UABEA</code>，提取制作的<code>TMP</code>字体,然后导出需要替换字体的原字体资源，然后打开字体的绑定包，修改绑定的字体路径和GUID。最后替换字体。</p>
-<h2 id="学习扩展"><a href="#学习扩展" class="headerlink" title="学习扩展"></a>学习扩展</h2><p>思路：<br>1：看看游侠汉化组的ttf字体和otf字体有没有改变（没有改变）<br>2：通过英文字体制作TMP中文字体替换(不显示中文)<br>3：通过带空格的文本制作TMP中文字体（英文字体还是只显示一个单词）<br>4：不替换ttf，只替换tmp试试（英文字体还是只显示一个单词）</p>
-<p>把原版的ttf字体删除，看看原版是不是用的ttf字体</p>
+<p>通过 <code>AssetStudio</code> 查找字体名称带 <code>SDF</code> 文字的字体资源(<code>MonoBehaviour</code>类型)（这是可以改名称的，但大部分是默认）。然后查看当前游戏的<code>Unity</code> 版本号，通过差不多的版本号制作<code>TMP</code>字体，打包成demo，然后打开<code>UABEA</code>，提取制作的<code>TMP</code>字体,然后导出需要替换字体的原字体资源，然后打开字体的绑定包，修改绑定的字体路径和GUID。最后替换字体。替换完成后，通过另存为保存为游戏文件并进行替换测试。（注意：记得备份游戏文件）</p>
+<h4 id="反编译Unity"><a href="#反编译Unity" class="headerlink" title="反编译Unity"></a>反编译Unity</h4><p>如果游戏的目录下 <code>assets\bin\Data\Managed</code> 出现了 <code>Assembly-CSharp.dll</code>，那么说明是 <code>mono</code> 类型的，游戏逻辑就在 <code>Assembly-CSharp.dll</code> 和其它同路径下的文件里，此时用 <code>dnspy</code> 逆向。如果没有看到<code>Assembly-CSharp.dll</code>， 但是在 <code>lib</code> 目录下看到了 <code>libil2cpp.so</code> 那么说明是 <code>IL2CPP</code> 类型的，需要使用 <code>Il2CppDumper</code> + <code>ida</code> + 其它进行逆向。</p>
+<h5 id="dnSpy"><a href="#dnSpy" class="headerlink" title="dnSpy"></a>dnSpy</h5><p><a href="https://github.com/dnSpy/dnSpy">https://github.com/dnSpy/dnSpy</a></p>
+<blockquote>
+<p>备份游戏，下载游戏对应版本的<code>dnSpy</code><br>防止修改导致的文件损坏，。<code>dnSpy</code>有64位版本和32位版本，分别为<code>dnSpy.exe</code> 及 <code>dnSpy-x86.exe</code>，请根据游戏版本进行选择</p>
+</blockquote>
+<blockquote>
+<p>下载调试版本mono.dll<br>下载完成后，替换<code>mono.dll</code>文件,根据游戏位数选择替换的mono.dll</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// 不同游戏版本下的文件路径</span>
+\XXX_Data\<span class="hljs-title class_">Mono</span>\mono.<span class="hljs-property">dll</span>
+\XXX_Data\<span class="hljs-title class_">Mono</span>\<span class="hljs-title class_">EmbedRuntime</span>\mono.<span class="hljs-property">dll</span>
+\XXX_Data\<span class="hljs-title class_">MonoBleedingEdge</span>\<span class="hljs-title class_">EmbedRuntime</span>\mono-<span class="hljs-number">2.0</span>-bdwgc.<span class="hljs-property">dll</span>
+\<span class="hljs-title class_">Mono</span>\<span class="hljs-title class_">EmbedRuntime</span>\mono.<span class="hljs-property">dll</span>
+\<span class="hljs-title class_">MonoBleedingEdge</span>\<span class="hljs-title class_">EmbedRuntime</span>\mono-<span class="hljs-number">2.0</span>-bdwgc.<span class="hljs-property">dll</span></code></pre>
+
+<blockquote>
+<p>添加环境变量</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-attr">DNSPY_UNITY_DBG</span>:
+--<span class="hljs-keyword">debugger</span>-agent=transport=dt_socket,server=y,address=<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">55555</span>,defer=y,no-hide-<span class="hljs-keyword">debugger</span>
+<span class="hljs-attr">DNSPY_UNITY_DBG2</span>:
+--<span class="hljs-keyword">debugger</span>-agent=transport=dt_socket,server=y,address=<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">55555</span>,suspend=n,no-hide-<span class="hljs-keyword">debugger</span></code></pre>
+
+<blockquote>
+<p>打开dnSpy，进行断点调试</p>
+</blockquote>
+<h5 id="iLSpy"><a href="#iLSpy" class="headerlink" title="iLSpy"></a>iLSpy</h5><p><a href="https://github.com/icsharpcode/ILSpy">https://github.com/icsharpcode/ILSpy</a></p>
+<h3 id="插件方法汉化"><a href="#插件方法汉化" class="headerlink" title="插件方法汉化"></a>插件方法汉化</h3><h4 id="安装BepInEx"><a href="#安装BepInEx" class="headerlink" title="安装BepInEx"></a>安装BepInEx</h4><p><a href="https://github.com/BepInEx/BepInEx">https://github.com/BepInEx/BepInEx</a><br><a href="https://wiki.aoe.top/BepInEx/Development.html">https://wiki.aoe.top/BepInEx/Development.html</a></p>
+<h4 id="AutoTranslator"><a href="#AutoTranslator" class="headerlink" title="AutoTranslator"></a>AutoTranslator</h4><p><a href="https://github.com/bbepis/XUnity.AutoTranslator">https://github.com/bbepis/XUnity.AutoTranslator</a></p>
+<h2 id="学习扩展"><a href="#学习扩展" class="headerlink" title="学习扩展"></a>学习扩展</h2><p>思路：<br>1：看看游侠汉化组的ttf字体和otf字体有没有改变（没有改变）<br>2：通过英文字体制作TMP中文字体替换(不显示中文)<br>3：通过带空格的文本制作TMP中文字体（英文字体还是只显示一个单词）<br>4：不替换ttf，只替换tmp试试（英文字体还是只显示一个单词）<br>5：把原版的ttf字体删除，看看原版是不是用的ttf字体（不是用的ttf）<br>6：把TMP字体删了，看会不会使用TTF（会使用，但使用的是Arial）</p>
+<p>把tmp删了，同时换一个眼认出来的ttf字体。<br>换个字库制作TMP字体</p>
+<p>通过doSpy调试程序</p>
 <h3 id="资源教程"><a href="#资源教程" class="headerlink" title="资源教程"></a>资源教程</h3><p><a href="https://www.bilibili.com/video/BV1PF411p7G4/">UE4游戏汉化教程</a></p>
 <p><a href="https://www.cnblogs.com/guobaoxu/category/1616009.html">https://www.cnblogs.com/guobaoxu/category/1616009.html</a></p>
 <p><a href="https://www.perfare.net/archives/1366">https://www.perfare.net/archives/1366</a></p>
+<p><a href="https://mod.3dmgame.com/read/3">https://mod.3dmgame.com/read/3</a></p>
+<p>I2 Localization 文本提取</p>
+<p>CJK宏包对中文字体的支持比较麻烦，已经不再推荐使用。<br>xeCJK以及luatexja宏包在CJK基础上封装了对汉字排版细节的处理功能。<br>ctex宏包和文档类进一步封装了CJK、xeCJK、luatexja等宏包，使得用户在排版中文时不再考虑排版引擎等细节</p>
+<p>插件翻译</p>
+<pre><code class="hljs mipsasm">首先找个能上 GitHub 的工具，然后搜索 <span class="hljs-keyword">BepInEx </span>和 XUnity.AutoTranslator
+游戏是 <span class="hljs-number">64</span> 位的，所以下<span class="hljs-number">64</span>位的 <span class="hljs-keyword">BepInEx </span>和 XUnity.AutoTranslator，下载完成后放入到游戏根目录中，就是跟HELLION.EXE 同一级目录，然后打开一次游戏关掉。
+进入\<span class="hljs-keyword">BepInEx\config\找到文件 </span>AutoTranslatorConfig.ini ，打开后找到 [General] 将下面的Language=en改成zh
+FromLanguage=<span class="hljs-keyword">ja </span>改成 en 然后保存重新打开游戏，现在应该能自动帮你翻译了，不能就按ALT+<span class="hljs-number">0</span>选一下翻译引擎。就提示这么多，其他实在不懂的请自己想办法去解决。</code></pre>
+
 <h3 id="相关软件"><a href="#相关软件" class="headerlink" title="相关软件"></a>相关软件</h3><p><a href="https://github.com/sinai-dev/UnityExplorer">https://github.com/sinai-dev/UnityExplorer</a><br><a href="https://github.com/Perfare/Il2CppDumper">https://github.com/Perfare/Il2CppDumper</a></p>
 <h3 id="软件汉化"><a href="#软件汉化" class="headerlink" title="软件汉化"></a>软件汉化</h3><h4 id="查壳脱壳"><a href="#查壳脱壳" class="headerlink" title="查壳脱壳"></a>查壳脱壳</h4><p>查壳工具的作用是能够查询出来exe程序是否加壳，如果exe程序加壳了，就要先脱壳才能找到需要汉化的英文内容，还能查询exe程序使用那些编程语言编写的，才能够对症下药，使用不同的汉化工具，比如：有些NET语言写的软件，就要用到NET反编译工具才能够汉化。 脱壳的一般流程：查壳(PEID、FI、PE-SCAN)—&gt;寻找OEP(OD)—&gt;脱壳/Dump(LordPE、PeDumper、OD自带的脱壳插件、PETools)—&gt;修复(Import REConstructor)。常见的三种壳：压缩壳、保护壳、捆绑壳</p>
 <p><code>PEID</code> 查壳工具：仅支持32位执行程序，不支持64位。<br><code>ExeinfoPe</code> 查壳工具：直接将需要查看的可执行exe程序拖入软件</p>
@@ -221,7 +283,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B"><span class="toc-text">正式开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E5%8A%A0%E5%A3%B3"><span class="toc-text">查看是否加壳</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BUnity%E8%B5%84%E6%BA%90"><span class="toc-text">查看Unity资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2Unity%E8%B5%84%E6%BA%90"><span class="toc-text">替换Unity资源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%89%A9%E5%B1%95"><span class="toc-text">学习扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%95%99%E7%A8%8B"><span class="toc-text">资源教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%BD%AF%E4%BB%B6"><span class="toc-text">相关软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96"><span class="toc-text">软件汉化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E5%A3%B3%E8%84%B1%E5%A3%B3"><span class="toc-text">查壳脱壳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%B1%89%E5%8C%96"><span class="toc-text">简单汉化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">遇到的问题</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D"><span class="toc-text">简单介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8B"><span class="toc-text">正式开始</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%BB%9F%E8%A7%A3%E5%8C%85%E6%B1%89%E5%8C%96"><span class="toc-text">正统解包汉化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%98%AF%E5%90%A6%E5%8A%A0%E5%A3%B3"><span class="toc-text">查看是否加壳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8BUnity%E8%B5%84%E6%BA%90"><span class="toc-text">查看Unity资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2Unity%E8%B5%84%E6%BA%90"><span class="toc-text">替换Unity资源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E7%BC%96%E8%AF%91Unity"><span class="toc-text">反编译Unity</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#dnSpy"><span class="toc-text">dnSpy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#iLSpy"><span class="toc-text">iLSpy</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E6%96%B9%E6%B3%95%E6%B1%89%E5%8C%96"><span class="toc-text">插件方法汉化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85BepInEx"><span class="toc-text">安装BepInEx</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AutoTranslator"><span class="toc-text">AutoTranslator</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E6%89%A9%E5%B1%95"><span class="toc-text">学习扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E6%95%99%E7%A8%8B"><span class="toc-text">资源教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E8%BD%AF%E4%BB%B6"><span class="toc-text">相关软件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E6%B1%89%E5%8C%96"><span class="toc-text">软件汉化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E5%A3%B3%E8%84%B1%E5%A3%B3"><span class="toc-text">查壳脱壳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%B1%89%E5%8C%96"><span class="toc-text">简单汉化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">遇到的问题</span></a></li></ol>
   </div>
 </aside>
 
