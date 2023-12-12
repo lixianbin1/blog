@@ -41,6 +41,11 @@ main {
     main {
       margin: 0 50px; } }
       
+li{
+  list-style-type: disc;
+  margin-left: 25px;
+  text-shadow: 0px 0px 1px #4587ff;
+}
 /*修改样式*/
 .set-li{overflow-x:scroll;}
 @media screen and (max-width:769px){

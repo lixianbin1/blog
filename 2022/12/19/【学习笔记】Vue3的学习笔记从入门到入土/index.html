@@ -6,16 +6,16 @@
   <meta name="author" content="饿包子" />
   
   
-  <title>Vue.js 3的学习笔记 | 饿包子博客</title>
+  <title>Vue3的学习笔记从入门到入土 | 饿包子博客</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="学习笔记," />
+    <meta name="keywords" content="学习笔记,Vue," />
   
 
   
-  <meta name="description" content="横枪与共山河破，罩袍铁衣啸长歌。荡浊红缨丹心证，铁马金戈逆离合战决">
+  <meta name="description" content="Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Teleport、Suspense，以及多根元素模板)。同时它也包含了一些与 Vue 2 非兼容性的变更横枪与共山河破，罩袍铁衣啸长歌。荡浊红缨丹心证，铁马金戈逆离合战决">
 
   
   
@@ -190,95 +190,77 @@
     </span>
   </div>
   <h1 class="passage-title">
-    Vue.js 3的学习笔记
+    Vue3的学习笔记从入门到入土
   </h1>
   
   <article class="passage-article">
     <p>Vue 3 是 Vue 当前的最新主版本。它包含了一些 Vue 2 中没有的新特性 (比如 Teleport、Suspense，以及多根元素模板)。同时它也包含了一些与 Vue 2 非兼容性的变更</p>
-<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p>可以使用vue2版本的选项式编写，也可用使用vue3新添加setup函数</p>
-<pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script&gt;
-<span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<h2 id="简单概念"><a href="#简单概念" class="headerlink" title="简单概念"></a>简单概念</h2><ul>
+<li>什么是Vue，什么是单文件组件</li>
+</ul>
+<p>Vue是基于 HTML、CSS 和 JS 的一套声明式的、组件化的 JavaScript 框架；Vue把 HTML、CSS 和 JS封装在同一个Vue文件里，通过解析模板去进行解析，再通过预处理器去处理。它给我们带来了模板化开发，独立作用域，预处理器等多种优点。</p>
+<ul>
+<li>什么是模板语法</li>
+</ul>
+<p>Vue 使用一种基于 HTML 的模板语法，能够声明式地将数据绑定到 DOM 上。通过解析器进行解析</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>文本插值 &#123;&#123; msg &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">:text</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>属性绑定attar<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">:</span>[<span class="hljs-attr">attar</span>]=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>动态参数attar<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">span</span> @[<span class="hljs-attr">attar</span>]=<span class="hljs-string">&quot;text&quot;</span>&gt;</span>动态方法attar<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
 
+<h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><p>vue目前有两种编写方式，你可以使用vue2版本的选项式编写，也可用使用vue3新添加setup函数,文章后面的示例大部分用了setup语法</p>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-comment">//选项式</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//setup函数</span>
-    <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>) <span class="hljs-comment">//类似data 数据</span>
-    <span class="hljs-keyword">return</span> &#123; <span class="hljs-comment">// 返回值会暴露给模板和其他的选项式 API 钩子</span>
-      count
+  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//data数据</span>
+    <span class="hljs-keyword">return</span>&#123;
+      <span class="hljs-attr">count</span>:<span class="hljs-number">1</span>,
     &#125;
   &#125;,
   <span class="hljs-title function_">mounted</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//生命周期钩子</span>
     <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span>) <span class="hljs-comment">// 0</span>
-  &#125;
-&#125;
-&lt;/script&gt;
-
-<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
-<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">button</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;count++&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
-<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
-
-<h3 id="setup-函数"><a href="#setup-函数" class="headerlink" title="setup() 函数"></a>setup() 函数</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script&gt;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  <span class="hljs-title function_">setup</span>(<span class="hljs-params"></span>) &#123; &#125;,
-  <span class="hljs-comment">//...</span>
-&#125;
-&lt;/script&gt;</code></pre>
-
-<p>或者</p>
-<pre><div class="caption"><span>index.vue</span></div><code class="hljs jsx">&lt;script setup lang=<span class="hljs-string">&quot;ts&quot;</span>&gt;
-
-&lt;/script&gt;</code></pre>
-
-<h2 id="差异点"><a href="#差异点" class="headerlink" title="差异点"></a>差异点</h2><h3 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h3><p><code>ref</code>和<code>reactive</code>是vue3基于组合式api模式下，在<code>setup</code>中用于声明的具有响应式的数据的方法, <code>ref</code>通常用于声明基础类型响应式数据,<code>reactive</code>用于声明复杂类型响应式数据</p>
-<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup&gt;
-  import &#123; reactive &#125; from &#x27;vue&#x27;
-  const state = reactive(&#123; count: 0 &#125;)
-  state.count++ //数据的改变
-  const name = ref(21)
-  name.value=12
-&lt;/script&gt;
-&lt;template&gt;
-  &lt;div&gt;&#123;&#123; state.count &#125;&#125;&lt;/div&gt;
-&lt;/template&gt;</code></pre>
-
-<p>选项式代码则和Vue2相同</p>
-<pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script&gt;
-export default &#123;
-  data() &#123;
-    return &#123;
-      count: 1
-    &#125;
   &#125;,
-  mounted() &#123;
-    this.count++
-  &#125;
-&#125;
-&lt;/script&gt;
-&lt;template&gt;
-  &lt;div&gt;&#123;&#123; count &#125;&#125;&lt;/div&gt;
-&lt;/template&gt;</code></pre>
-
-<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;script setup&gt;
-import &#123; reactive, computed &#125; from &#x27;vue&#x27;
-const state = reactive(&#123;
-  name: &#x27;John Doe&#x27;,
-&#125;)
-const publish = computed(() =&gt; &#123; //计算属性
-  return state.name &gt; 0 ? &#x27;Yes&#x27; : &#x27;No&#x27;
-&#125;)
-&lt;/script&gt;
-&lt;template&gt;
-  &lt;div&gt;&#123;&#123; publish &#125;&#125;&lt;/div&gt;
-&lt;/template&gt;</code></pre>
-
-<p>选项式代码则和Vue2相同</p>
-<pre><code class="hljs js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
-  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;
-    <span class="hljs-comment">//...</span>
-  &#125;,
-  <span class="hljs-attr">computed</span>: &#123;
-    <span class="hljs-comment">//...   </span>
-  &#125;
 &#125;</code></pre>
+
+<h3 id="响应式数据"><a href="#响应式数据" class="headerlink" title="响应式数据"></a>响应式数据</h3><p><code>ref</code>和<code>reactive</code>是vue3基于组合式api模式下，在<code>setup</code>中用于声明的具有响应式的数据的方法, <code>ref</code>通常用于声明基础类型响应式数据,<code>reactive</code>用于声明复杂类型响应式数据</p>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref, reactive &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">1</span>)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(count.<span class="hljs-property">value</span>) <span class="hljs-comment">// 1</span>
+
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123; <span class="hljs-attr">count</span>:<span class="hljs-number">1</span> &#125;)
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(state.<span class="hljs-property">count</span>) <span class="hljs-comment">// 1</span></code></pre>
+
+<h3 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h3><pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; reactive, computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">reactive</span>(&#123;
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;John Doe&#x27;</span>,
+&#125;)
+<span class="hljs-keyword">const</span> publish = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> state.<span class="hljs-property">name</span> == <span class="hljs-string">&#x27;John Doe&#x27;</span> ? <span class="hljs-string">&#x27;Yes&#x27;</span> : <span class="hljs-string">&#x27;No&#x27;</span>
+&#125;)
+
+<span class="hljs-comment">//可编辑计算属性</span>
+<span class="hljs-keyword">const</span> fullName = <span class="hljs-title function_">computed</span>(&#123;
+  <span class="hljs-title function_">get</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">//getter</span>
+    <span class="hljs-keyword">return</span> firstName.<span class="hljs-property">value</span> + <span class="hljs-string">&#x27; &#x27;</span> + lastName.<span class="hljs-property">value</span>
+  &#125;,
+  <span class="hljs-title function_">set</span>(<span class="hljs-params">newValue</span>) &#123; <span class="hljs-comment">//setter</span>
+    [firstName.<span class="hljs-property">value</span>, lastName.<span class="hljs-property">value</span>] = newValue.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27; &#x27;</span>)
+  &#125;
+&#125;)</code></pre>
+
+<h3 id="样式属性"><a href="#样式属性" class="headerlink" title="样式属性"></a>样式属性</h3><p>vue可以动态绑定class和属性</p>
+<pre><div class="caption"><span>index.vue</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123;ref,reactive&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">const</span> isActive = <span class="hljs-title function_">ref</span>(<span class="hljs-literal">true</span>)
+<span class="hljs-keyword">const</span> classObject = <span class="hljs-title function_">reactive</span>(&#123;
+  <span class="hljs-attr">active</span>: <span class="hljs-literal">true</span>
+&#125;)
+<span class="hljs-keyword">const</span> styleObject = <span class="hljs-title function_">reactive</span>(&#123;
+  <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;red&#x27;</span>,
+  <span class="hljs-attr">fontSize</span>: <span class="hljs-string">&#x27;13px&#x27;</span>
+&#125;)
+&lt;div :<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&#123; active: isActive &#125;&quot;</span>&gt;&lt;/div&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">&quot;classObject&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">:style</span>=<span class="hljs-string">&quot;styleObject&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
 
 <h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><p>组合式代码</p>
 <pre><div class="caption"><span>index.vue</span></div><code class="hljs vue">&lt;!-- 
@@ -431,7 +413,7 @@ import ComponentA from &#x27;./ComponentA.vue&#x27;
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#setup-%E5%87%BD%E6%95%B0"><span class="toc-text">setup() 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%AE%E5%BC%82%E7%82%B9"><span class="toc-text">差异点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE"><span class="toc-text">响应式数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%A6%E5%90%AC%E5%99%A8"><span class="toc-text">侦听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref%E5%BC%95%E7%94%A8"><span class="toc-text">ref引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C"><span class="toc-text">组件注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC"><span class="toc-text">组件传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-text">依赖注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-text">自定义指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-%E5%92%8C-reactive-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">ref 和 reactive 的区别</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%A6%82%E5%BF%B5"><span class="toc-text">简单概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="toc-text">简单使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E6%95%B0%E6%8D%AE"><span class="toc-text">响应式数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7"><span class="toc-text">计算属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E5%B1%9E%E6%80%A7"><span class="toc-text">样式属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%A6%E5%90%AC%E5%99%A8"><span class="toc-text">侦听器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ref%E5%BC%95%E7%94%A8"><span class="toc-text">ref引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E6%B3%A8%E5%86%8C"><span class="toc-text">组件注册</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%BC%A0%E5%80%BC"><span class="toc-text">组件传值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5"><span class="toc-text">依赖注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4"><span class="toc-text">自定义指令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ref-%E5%92%8C-reactive-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">ref 和 reactive 的区别</span></a></li></ol></li></ol>
   </div>
 </aside>
 
@@ -442,7 +424,7 @@ import ComponentA from &#x27;./ComponentA.vue&#x27;
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://lixianbin1.github.io/blog/2022/12/19/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91Vue.js%203%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2022/12/19/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91Vue3%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E5%85%A5%E5%9C%9F/</a>
         </div>
       
       <div>
@@ -450,6 +432,12 @@ import ComponentA from &#x27;./ComponentA.vue&#x27;
       </div>
     </aside>
   
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Vue/"><i class="fa fa-tags"></i>Vue</a>
+    
+    </div>
   
 </div>
 

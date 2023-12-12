@@ -20,6 +20,12 @@ pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5p
 .hljs-tag{
   color:#777
 }
+code{
+  color:#D84315
+}
+pre code.hljs{
+  color:#ccc
+}
 
 .hljs-title.function_{
   color:#dbc745
