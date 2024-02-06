@@ -59,6 +59,8 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-06-10",
     passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    username: "lixianbin",
+    password: "mima123",
     is_post: true,
     lock: false,
     author: "饿包子",
@@ -92,18 +94,31 @@
   <div class="site-header-right">
     <nav class="site-header-navigation">
       
-        <a href="/blog/" target="_self">主页</a>
+        
+          <a href="/blog/" target="_self">主页</a>
+        
       
-        <a href="/blog/archives/" target="_self">归档</a>
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
       
-        <a href="/blog/tags/" target="_self">标签</a>
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
       
-        <a href="/blog/categories/" target="_self">分类</a>
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
       
-        <a href="/blog/diary/" target="_self">日记</a>
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
       
-        <a href="/blog/about/" target="_self">关于</a>
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
       
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
     </nav>
     <div class="site-header-btn">
       
@@ -231,6 +246,7 @@
 
 <span class="hljs-comment"># 文件管理</span>
 <span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">x</span> -<span class="hljs-string">f</span>  <span class="hljs-comment"># 删除未被当前分支跟踪的文件</span>
+<span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 清除未跟踪的文件</span>
 
 <span class="hljs-comment"># 版本控制</span>
 <span class="hljs-string">git</span> <span class="hljs-string">log</span>       <span class="hljs-comment"># 查看提交历史</span>
@@ -239,7 +255,6 @@
 <span class="hljs-string">git</span> <span class="hljs-string">reflog</span>    <span class="hljs-comment"># 查看历史版本</span>
 <span class="hljs-string">git</span> <span class="hljs-string">reset</span> <span class="hljs-built_in">--hard</span> <span class="hljs-string">xxx</span>  <span class="hljs-comment"># 本地版本回退</span>
 <span class="hljs-string">git</span> <span class="hljs-string">push</span> -<span class="hljs-string">f</span>   <span class="hljs-comment"># 远程版本回退(-f 强制推送)</span>
-<span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 删除未追踪的文件</span>
 
 <span class="hljs-comment"># 模块更新后回退</span>
 <span class="hljs-string">git</span> <span class="hljs-string">clean</span> -<span class="hljs-string">df</span> <span class="hljs-comment"># 清除未跟踪的文件</span>
@@ -393,17 +408,20 @@ git config core.ignorecase <span class="hljs-literal">false</span></code></pre>
 <li>22 端口被占用或堵塞</li>
 </ul>
 <p>如果是设置过端口禁用的不想换端口就去防火墙设置一下入；GitHub 的的建议是 替换端口 443</p>
-<pre><code class="hljs awk"><span class="hljs-regexp">//</span> 运行以下命令
-$ ssh -T -p <span class="hljs-number">443</span> git@ssh.github.com
-
-<span class="hljs-regexp">//</span> 如果出现以下提示，代表可以用 <span class="hljs-number">443</span> 替换默认的 <span class="hljs-number">22</span> 端口
-&gt; Hi username! Yo<span class="hljs-string">u&#x27;ve successfully authenticated, but GitHub does not</span>
-<span class="hljs-string">&gt; provide shell access.</span>
-<span class="hljs-string"></span>
-<span class="hljs-string">// 首先在 ~/.ssh/ 目录下找到 config 文件，如果没有可以新建，然后添加以下内容</span>
-<span class="hljs-string">Host github.com</span>
-<span class="hljs-string">  Hostname ssh.github.com</span>
-<span class="hljs-string">  Port 443</span></code></pre>
+<pre><code class="hljs crystal">/<span class="hljs-regexp">/ 运行以下命令</span>
+<span class="hljs-regexp">$ ssh -T -p 443 git@ssh.github.com</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">/</span><span class="hljs-regexp">/ 如果出现以下提示，代表可以用 443 替换默认的 22 端口</span>
+<span class="hljs-regexp">&gt; Hi username! You&#x27;ve successfully authenticated, but GitHub does not</span>
+<span class="hljs-regexp">&gt; provide shell access.</span>
+<span class="hljs-regexp"></span>
+<span class="hljs-regexp">/</span><span class="hljs-regexp">/ 首先在 ~/</span>.ssh/ 目录下找到 config 文件，如果没有可以新建，然后添加以下内容
+Host github.com
+User xianbin.me<span class="hljs-variable">@qq</span>.com
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~<span class="hljs-regexp">/.ssh/id</span>_rsa
+Port <span class="hljs-number">443</span></code></pre>
 
 <p>参考链接：<a href="https://help.github.com/en/github/authenticating-to-github/using-ssh-over-the-https-port">GitHub Help</a></p>
 <h3 id="请求-Github仓库的速度很慢"><a href="#请求-Github仓库的速度很慢" class="headerlink" title="请求 Github仓库的速度很慢"></a>请求 Github仓库的速度很慢</h3><p>当你 pull 或者 push 的时候，你会发现，它的速度只有 100kb/s 甚至更慢，拉取一个稍微大一点的仓库，拉取了一两个小时都未必能拉取成功，造成这样的原因同样也有很多：</p>
@@ -523,6 +541,30 @@ $ ssh -T -p <span class="hljs-number">443</span> git@ssh.github.com
       </div>
     
   </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
     <div id="site-layer" style="display:none;">
   <div class="site-layer-content">

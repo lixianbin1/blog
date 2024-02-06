@@ -59,6 +59,8 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-06-10",
     passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    username: "lixianbin",
+    password: "mima123",
     is_post: true,
     lock: false,
     author: "饿包子",
@@ -92,18 +94,31 @@
   <div class="site-header-right">
     <nav class="site-header-navigation">
       
-        <a href="/blog/" target="_self">主页</a>
+        
+          <a href="/blog/" target="_self">主页</a>
+        
       
-        <a href="/blog/archives/" target="_self">归档</a>
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
       
-        <a href="/blog/tags/" target="_self">标签</a>
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
       
-        <a href="/blog/categories/" target="_self">分类</a>
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
       
-        <a href="/blog/diary/" target="_self">日记</a>
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
       
-        <a href="/blog/about/" target="_self">关于</a>
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
       
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
     </nav>
     <div class="site-header-btn">
       
@@ -434,6 +449,17 @@ $(<span class="hljs-string">&#x27;.shadow&#x27;</span>).<span class="hljs-title 
     $(<span class="hljs-string">&#x27;.shadow_box&#x27;</span>).<span class="hljs-title function_">hide</span>()
   $(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>).<span class="hljs-title function_">css</span>(&#123;<span class="hljs-string">&quot;overflow-x&quot;</span>:<span class="hljs-string">&quot;auto&quot;</span>,<span class="hljs-string">&quot;overflow-y&quot;</span>:<span class="hljs-string">&quot;auto&quot;</span>&#125;);
 &#125;)</code></pre>
+
+<p>通过禁止滚动条响应事件，在关闭弹窗后再响应</p>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStopWheel</span>(<span class="hljs-params">e</span>) &#123;
+  e.<span class="hljs-title function_">preventDefault</span>();
+&#125;
+$(<span class="hljs-string">&#x27;.buttom&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-function">()=&gt;</span>&#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;wheel&quot;</span>,handleStopWheel,&#123;<span class="hljs-attr">passive</span>: <span class="hljs-literal">false</span>&#125;)
+&#125;)
+$(<span class="hljs-string">&#x27;#site-toLogin&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&quot;wheel&quot;</span>,handleStopWheel)
+&#125;);</code></pre>
 
 
 <h2 id="设备分类的参考"><a href="#设备分类的参考" class="headerlink" title="设备分类的参考"></a>设备分类的参考</h2><h3 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h3><pre><code class="hljs js"><span class="hljs-comment">//如果是手机端则去百度，不是则去新闻</span>
@@ -1256,6 +1282,30 @@ $scope.<span class="hljs-property">start_time</span>=y+<span class="hljs-string"
       </div>
     
   </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
     <div id="site-layer" style="display:none;">
   <div class="site-layer-content">

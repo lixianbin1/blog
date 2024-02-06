@@ -59,6 +59,8 @@
     welcome: {"enable":false,"interval":30},
     start_time: "2018-06-10",
     passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    username: "lixianbin",
+    password: "mima123",
     is_post: false,
     lock: false,
     author: "饿包子",
@@ -92,18 +94,31 @@
   <div class="site-header-right">
     <nav class="site-header-navigation">
       
-        <a href="/blog/" target="_self">主页</a>
+        
+          <a href="/blog/" target="_self">主页</a>
+        
       
-        <a href="/blog/archives/" target="_self">归档</a>
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
       
-        <a href="/blog/tags/" target="_self">标签</a>
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
       
-        <a href="/blog/categories/" target="_self">分类</a>
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
       
-        <a href="/blog/diary/" target="_self">日记</a>
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
       
-        <a href="/blog/about/" target="_self">关于</a>
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
       
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
     </nav>
     <div class="site-header-btn">
       
@@ -173,6 +188,12 @@
   
     
       <h3 class="timeline-subtitle">2023</h3>
+    
+    <div class="timeline-item">
+      <time>2023-12-22</time>
+      <a target="_self" href="/blog/2023/12/22/%E3%80%90%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5%E3%80%91%E5%85%A8%E9%9D%A2%E6%88%98%E4%BA%89%EF%BC%9A%E6%88%98%E9%94%A4%E7%B3%BB%E5%88%97/">全面战争：战锤系列</a>
+    </div>
+  
     
     <div class="timeline-item">
       <time>2023-09-20</time>
@@ -290,6 +311,30 @@
       </div>
     
   </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
     <div id="site-layer" style="display:none;">
   <div class="site-layer-content">
