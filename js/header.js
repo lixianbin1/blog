@@ -7,6 +7,7 @@
 
   const searchBtn = document.querySelector('#site-search'),
     nav = document.querySelector('#site-nav'),
+    //搜索
     navBtn = document.querySelector('#site-nav-btn'),
     layer = document.querySelector('#site-layer'),
     layerContent = layer.querySelector('.site-layer-content'),
@@ -59,5 +60,46 @@
       layerContent.style.display = '';
     });
   });
-  
+
+
+  //登录JS
+  const { passwords, root } = window.AD_CONFIG;
+  let [password, expires] = atob(window.localStorage.getItem('auth')).split(':'),
+    now = new Date().getTime();
+
+  if(passwords.includes(password) && now < expires) {
+    $('#site-login').remove()
+  }else{
+    $('.loginTo').remove()
+  }
+  $('#canvas').hide()
+
+  $('#site-login').click((e) => {
+    function handleStopWheel(e) {
+      e.preventDefault();
+    }
+    $('#site-toLogin').css('display','block')
+    window.addEventListener("wheel",handleStopWheel,{passive: false})
+    //关闭弹窗
+    $('#site-layer-close').click(() => {
+      $('#site-toLogin').css('display','none')
+      window.removeEventListener("wheel",handleStopWheel)
+    });
+    //阻止冒泡
+    $('.site-toLogin-content').click((e)=>{
+      e.stopPropagation()
+    })
+    //登录
+    $('.submit').click(()=>{
+      const Password = $("#Password").val();
+      if (!!Password) {
+        const password = sha256( Password || "");
+        const day = 86400000; // 一天的毫秒数
+        const expires = new Date().getTime() + day * 3;
+        window.localStorage.setItem('auth', btoa(`${password}:${expires}`));
+        $("#Password").val("");
+      }
+      window.location.href = root;
+    })
+  })
 })();
