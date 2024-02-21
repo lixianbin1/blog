@@ -217,9 +217,9 @@
 
 <span class="hljs-function"><span class="hljs-title">for</span><span class="hljs-params">(let i of arr)</span></span>&#123; console<span class="hljs-selector-class">.log</span>(i) &#125; <span class="hljs-comment">//for of循环，可以循环iterator如set map</span>
 
-arr<span class="hljs-selector-class">.forEach</span>((i)=&gt; cosole<span class="hljs-selector-class">.log</span>(i) )   <span class="hljs-comment">//forEach循环，可以循环数组，iterator</span>
+arr<span class="hljs-selector-class">.forEach</span>((i)=&gt; cosole<span class="hljs-selector-class">.log</span>(i) )   <span class="hljs-comment">//forEach循环，可以循环数组，iterator ,（会修改原数组）</span>
 
-arr<span class="hljs-selector-class">.map</span>((i)=&gt; console<span class="hljs-selector-class">.log</span>(i) )      <span class="hljs-comment">//map循环，可以循环数组,iterator</span></code></pre>
+arr<span class="hljs-selector-class">.map</span>((i)=&gt; console<span class="hljs-selector-class">.log</span>(i) )      <span class="hljs-comment">//map循环，可以循环数组,iterator,（不会修改原数组，return 新数组）</span></code></pre>
 
 <h3 id="怎么交换相等长度的两个数组？"><a href="#怎么交换相等长度的两个数组？" class="headerlink" title="怎么交换相等长度的两个数组？"></a>怎么交换相等长度的两个数组？</h3><p>通过结构赋值的变量交换可以实现，也可以声明一个额外的变量进行置换</p>
 <pre><code class="hljs inform7">let a=<span class="hljs-comment">[1]</span>,b=<span class="hljs-comment">[2]</span>;  <span class="hljs-comment">[a,b]</span>=<span class="hljs-comment">[b,a]</span>;</code></pre>

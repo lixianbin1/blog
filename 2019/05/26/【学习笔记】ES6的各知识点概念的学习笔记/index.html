@@ -295,7 +295,7 @@ s === <span class="hljs-title class_">Boolean</span>.<span class="hljs-property"
 
 <h2 id="数组的扩展运算"><a href="#数组的扩展运算" class="headerlink" title="数组的扩展运算"></a>数组的扩展运算</h2><h3 id="扩展运算符-…"><a href="#扩展运算符-…" class="headerlink" title="扩展运算符 …"></a>扩展运算符 <strong>…</strong></h3><p>扩展运算符（spread）是三个点（…）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。扩展运算符后面还可以放置表达式，只要是数组</p>
 <pre><code class="hljs js"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]) <span class="hljs-comment">// 1 2 3</span>
-<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...(<span class="hljs-number">5</span> &gt; <span class="hljs-number">0</span> ? [<span class="hljs-string">&#x27;a&#x27;</span>] : []))
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(...(<span class="hljs-number">5</span> &gt; <span class="hljs-number">0</span> ? [<span class="hljs-string">&#x27;a&#x27;</span>] : [])) <span class="hljs-comment">// a</span>
 
 <span class="hljs-comment">//  取代 applay</span>
 <span class="hljs-title class_">Math</span>.<span class="hljs-property">max</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, [<span class="hljs-number">14</span>, <span class="hljs-number">3</span>, <span class="hljs-number">77</span>]) <span class="hljs-comment">// 获取数组中最大值</span>

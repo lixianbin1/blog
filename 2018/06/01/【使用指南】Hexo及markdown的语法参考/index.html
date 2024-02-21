@@ -254,11 +254,13 @@
 </ul>
 <pre><code class="hljs awk">&#123;% iframe https:<span class="hljs-regexp">//</span>caniuse.com<span class="hljs-regexp">/css-variables/</span>embed <span class="hljs-number">100</span>% <span class="hljs-number">495</span>px %&#125;</code></pre>
 
-<h3 id="图片及链接"><a href="#图片及链接" class="headerlink" title="图片及链接"></a>图片及链接</h3><pre><code class="hljs arduino"># 图片
-&#123;% img [<span class="hljs-keyword">class</span> <span class="hljs-title class_">names</span>] /images/posts/<span class="hljs-number">1911051.</span>jpg [width] [height] [title text [alt text]] %&#125;
+<h3 id="图片及链接"><a href="#图片及链接" class="headerlink" title="图片及链接"></a>图片及链接</h3><pre><code class="hljs awk"><span class="hljs-comment"># 图片</span>
+![<span class="hljs-regexp">/images/</span>posts<span class="hljs-regexp">/1911051.jpg](https:/</span><span class="hljs-regexp">/docs.github.com/</span>assets<span class="hljs-regexp">/cb-77734/m</span>w-<span class="hljs-number">1440</span><span class="hljs-regexp">/images/</span>help<span class="hljs-regexp">/repository/u</span>se-this-template-button.webp)
 
-<span class="hljs-meta"># link</span>
-# 在文章中插入链接，并自动给外部链接添加 target=<span class="hljs-string">&quot;_blank&quot;</span> 属性。
+&#123;% img [class names] <span class="hljs-regexp">/images/</span>posts/<span class="hljs-number">1911051</span>.jpg [width] [height] [title text [alt text]] %&#125;
+
+<span class="hljs-comment"># link</span>
+<span class="hljs-comment"># 在文章中插入链接，并自动给外部链接添加 target=&quot;_blank&quot; 属性。</span>
 &#123;% link text url [external] [title] %&#125;</code></pre>
 
 <h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><pre><code class="hljs crystal"><span class="hljs-comment"># Youtube 一个视频媒体播放网站</span>
