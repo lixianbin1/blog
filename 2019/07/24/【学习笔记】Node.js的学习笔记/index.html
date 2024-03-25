@@ -214,25 +214,30 @@
 </blockquote>
 <p>初始化一些项目的基础信息，填写好之后，项目就算开始了</p>
 <h2 id="开发环境的配置"><a href="#开发环境的配置" class="headerlink" title="开发环境的配置"></a>开发环境的配置</h2><h3 id="安装数据库相关"><a href="#安装数据库相关" class="headerlink" title="安装数据库相关"></a>安装数据库相关</h3><blockquote>
-<p>安装 MySql，建表，配置约束建</p>
+<p>安装 MySql(选项一)，建表，配置约束建</p>
 </blockquote>
 <p>我之前看了下MySQL 没仔细研究，只能先用可视化工具 phpmyadmin 先用着，等熟悉后在考虑命令编辑的问题，我使用的是 WAMPSERVER 的集成环境，安装好数据库后，登陆 phpmyadmin【 <a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a> 】 再创建要用到的表，这里就不仔细讲了，</p>
 <blockquote>
 <p>npm install mysql</p>
 </blockquote>
 <p>安装mysql 配套模块,node需要 mysql 模块对数据库进行连接，</p>
+<blockquote>
+<p>安装SQLite , 建表</p>
+</blockquote>
+<blockquote>
+<p>npm install sqlite3 –save</p>
+</blockquote>
 <h3 id="安装热更新模块"><a href="#安装热更新模块" class="headerlink" title="安装热更新模块"></a>安装热更新模块</h3><blockquote>
-<p>npm install hotnode</p>
+<p>npm install nodemon </p>
 </blockquote>
 <pre><div class="caption"><span>package.json</span></div><code class="hljs stata">···
 <span class="hljs-string">&quot;scripts&quot;</span>: &#123;
-  <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;hotnode index.js&quot;</span>,
+  <span class="hljs-string">&quot;serve&quot;</span>: <span class="hljs-string">&quot;nodemon index.js&quot;</span>,
   <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;echo \&quot;</span><span class="hljs-keyword">Error</span>: <span class="hljs-keyword">no</span> <span class="hljs-keyword">test</span> specified\<span class="hljs-string">&quot; &amp;&amp; exit 1&quot;</span>
 &#125;,
 ····</code></pre>
 
-
-<p>在 node 项目开发中，每次更新都要手动更新一遍服务器，相当麻烦，所以迫切需要热更新模块来解决手动更新的麻烦。安装好后，在package.json 里配置 自定义命令,之后执行 启动命令 <code>npm start</code> 就好了</p>
+<p>在 node 项目开发中，每次更新都要手动更新一遍服务器，相当麻烦，所以迫切需要热更新模块来解决手动更新的麻烦。安装好后，在package.json 里配置 自定义命令,之后执行 启动命令 <code>npm serve</code> 就好了</p>
 <h3 id="安装Express-模块"><a href="#安装Express-模块" class="headerlink" title="安装Express 模块"></a>安装Express 模块</h3><blockquote>
 <p>npm install express –save</p>
 </blockquote>
@@ -292,7 +297,7 @@ Inter.<span class="hljs-title function_ invoke__">api</span>(express,app)
 Router.<span class="hljs-title function_ invoke__">middle</span>(express,app)</code></pre>
 
 <h3 id="接口的编辑"><a href="#接口的编辑" class="headerlink" title="接口的编辑"></a>接口的编辑</h3><pre><div class="caption"><span>Interface.js</span></div><code class="hljs javascript">...
-<span class="hljs-keyword">const</span> <span class="hljs-title function_">api</span>=(<span class="hljs-params">express,app</span>)=&gt;&#123;
+<span class="hljs-keyword">const</span> api=(<span class="hljs-function">(<span class="hljs-params">express,app</span>)=&gt;</span>&#123;
   <span class="hljs-keyword">const</span> mysql=<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;mysql&#x27;</span>);
   <span class="hljs-keyword">const</span> connection=mysql.<span class="hljs-title function_">createConnection</span>(&#123; <span class="hljs-comment">//连接 mysql 的配置</span>
     host :<span class="hljs-string">&#x27;localhost&#x27;</span>,
