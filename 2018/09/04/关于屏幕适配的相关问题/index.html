@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>关于屏幕适配的相关问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="参考手册," />
+  
+
+  
+  <meta name="description" content="饿包子的博客">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2018-09-04
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"><i class="fa fa-bookmark"></i>参考手册</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-4-9 10:14 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    关于屏幕适配的相关问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="关于屏幕适配的布局"><a href="#关于屏幕适配的布局" class="headerlink" title="关于屏幕适配的布局"></a>关于屏幕适配的布局</h2><h3 id="手机端REM布局"><a href="#手机端REM布局" class="headerlink" title="手机端REM布局"></a>手机端REM布局</h3><p>html 原生 rem 布局</p>
+<p>自动根据屏幕的DPR（设备像素比）动态设置字体大小，以rem为单位: 此方案默认1rem=100px，如需更改，在代码代码最后更改flex(false,100, 1)，此代码仅适用手机，设计稿按屏幕分辨率设计</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">!<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<span class="hljs-keyword">function</span> <span class="hljs-title function_">t</span>(<span class="hljs-params">a</span>)&#123;<span class="hljs-keyword">if</span>(i[a])<span class="hljs-keyword">return</span> i[a].<span class="hljs-property">exports</span>;<span class="hljs-keyword">var</span> n=i[a]=&#123;<span class="hljs-attr">exports</span>:&#123;&#125;,<span class="hljs-attr">id</span>:a,<span class="hljs-attr">loaded</span>:!<span class="hljs-number">1</span>&#125;;<span class="hljs-keyword">return</span> e[a].<span class="hljs-title function_">call</span>(n.<span class="hljs-property">exports</span>,n,n.<span class="hljs-property">exports</span>,t),n.<span class="hljs-property">loaded</span>=!<span class="hljs-number">0</span>,n.<span class="hljs-property">exports</span>&#125;<span class="hljs-keyword">var</span> i=&#123;&#125;;<span class="hljs-keyword">return</span> t.<span class="hljs-property">m</span>=e,t.<span class="hljs-property">c</span>=i,t.<span class="hljs-property">p</span>=<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-title function_">t</span>(<span class="hljs-number">0</span>)&#125;([<span class="hljs-keyword">function</span>(<span class="hljs-params">e,t</span>)&#123;<span class="hljs-string">&quot;use strict&quot;</span>;<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(t,<span class="hljs-string">&quot;__esModule&quot;</span>,&#123;<span class="hljs-attr">value</span>:!<span class="hljs-number">0</span>&#125;);<span class="hljs-keyword">var</span> i=<span class="hljs-variable language_">window</span>;t[<span class="hljs-string">&quot;default&quot;</span>]=i.<span class="hljs-property">flex</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">normal,e,t</span>)&#123;<span class="hljs-keyword">var</span> a=e||<span class="hljs-number">100</span>,n=t||<span class="hljs-number">1</span>,r=i.<span class="hljs-property">document</span>,o=navigator.<span class="hljs-property">userAgent</span>,d=o.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/Android[\S\s]+AppleWebkit\/(\d&#123;3&#125;)/i</span>),l=o.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/U3\/((\d+|\.)&#123;5,&#125;)/i</span>),c=l&amp;&amp;<span class="hljs-built_in">parseInt</span>(l[<span class="hljs-number">1</span>].<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-number">10</span>)&gt;=<span class="hljs-number">80</span>,p=navigator.<span class="hljs-property">appVersion</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(iphone|ipad|ipod)/gi</span>),s=i.<span class="hljs-property">devicePixelRatio</span>||<span class="hljs-number">1</span>;p||d&amp;&amp;d[<span class="hljs-number">1</span>]&gt;<span class="hljs-number">534</span>||c||(s=<span class="hljs-number">1</span>);<span class="hljs-keyword">var</span> u=normal?<span class="hljs-number">1</span>:<span class="hljs-number">1</span>/s,m=r.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;meta[name=&quot;viewport&quot;]&#x27;</span>);m||(m=r.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;meta&quot;</span>),m.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;viewport&quot;</span>),r.<span class="hljs-property">head</span>.<span class="hljs-title function_">appendChild</span>(m)),m.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;content&quot;</span>,<span class="hljs-string">&quot;width=device-width,user-scalable=no,initial-scale=&quot;</span>+u+<span class="hljs-string">&quot;,maximum-scale=&quot;</span>+u+<span class="hljs-string">&quot;,minimum-scale=&quot;</span>+u),r.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span>=normal?<span class="hljs-string">&quot;50px&quot;</span>: a/<span class="hljs-number">2</span>*s*n+<span class="hljs-string">&quot;px&quot;</span>&#125;,e.<span class="hljs-property">exports</span>=t[<span class="hljs-string">&quot;default&quot;</span>]&#125;]);  <span class="hljs-title function_">flex</span>(<span class="hljs-literal">false</span>,<span class="hljs-number">100</span>, <span class="hljs-number">1</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span></code></pre>
+
+<p>网易 rem 布局</p>
+<p>1：设置viewport</p>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--viewport 如果页面不允许缩放请加上 user-scalable=no--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui&quot;</span>&gt;</span></code></pre>
+
+<p>2:根据750px设计稿计算比例</p>
+<pre><code class="hljs js"><span class="hljs-comment">//750px/100=7.5   在页面加载后：需要动态设置font-size</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientWidth</span> /<span class="hljs-number">7.5</span> + <span class="hljs-string">&#x27;px&#x27;</span>;
+
+<span class="hljs-comment">// 也可以设置成百分比 页面中默认100%=16px</span>
+<span class="hljs-comment">// &#123;w/（750/100)&#125;/16</span>
+<span class="hljs-comment">// (w/7.5)/16</span>
+<span class="hljs-comment">// w/120</span>
+<span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span> = <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">clientWidth</span> /<span class="hljs-number">1.2</span> + <span class="hljs-string">&#x27;%&#x27;</span>;</code></pre>
+
+<h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3><p>媒体查询</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;screen and (max-width:600px)&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;small.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> /&gt;</span>
+<span class="hljs-comment">&lt;!--上面表示的是：当屏幕小于或等于600px时，将采用small.css样式来渲染Web页面--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;screen and (min-width:900px)&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;big.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>  /&gt;</span>
+<span class="hljs-comment">&lt;!--上面表示的是：当屏幕大于或等于900px时，将采用big.css样式来渲染Web页面--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;screen and (min-width:600px) and (max-width:900px)&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;style.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> /&gt;</span>
+<span class="hljs-comment">&lt;!--Media Query可以结合多个媒体查询，换句话说，一个Media Query可以包含0到多个表达式，表达式又可以包含0到多个关键字，以及一种Media Type。正如上面的其表示的是当屏幕在600px-900px之间时采用style.css样式来渲染web页面--&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">media</span>=<span class="hljs-string">&quot;screen and (max-device-width: 480px)&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;iphone.css&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> /&gt;</span>
+<span class="hljs-comment">&lt;!--上面的代码指的是iphone.css样式适用于最大设备宽度为480px，比如说iPhone上的显示，这里的max-device-width所指的是设备的实际分辨率，也就是指可视面积分辨率</span>
+<span class="hljs-comment">--&gt;</span></code></pre>
+
+<p>兼容万用</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui&quot;</span> /&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span>
+<span class="language-xml"><span class="language-handlebars">/* 两套代码的解决办法 */</span></span>
+<span class="language-xml"><span class="language-handlebars">//PC端</span></span>
+<span class="language-xml"><span class="language-handlebars">function pc_resize()&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">    if(/Android|webOS|iPhone|BlackBerry/i.test(navigator.userAgent))&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">        window.location.href = &#x27;https://www.xxx.com/m&#x27;</span></span>
+<span class="language-xml"><span class="language-handlebars">    &#125;</span></span>
+<span class="language-xml"><span class="language-handlebars">&#125;</span></span>
+<span class="language-xml"><span class="language-handlebars">pc_resize()</span></span>
+<span class="language-xml"><span class="language-handlebars">//手机端</span></span>
+<span class="language-xml"><span class="language-handlebars">function pe_resize()&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">    var clientWidth=document.documentElement.clientWidth</span></span>
+<span class="language-xml"><span class="language-handlebars">    if(/Android|webOS|iPhone|BlackBerry/i.test(navigator.userAgent))&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">        document.documentElement.style.fontSize=clientWidth/7.5+&#x27;px&#x27;</span></span>
+<span class="language-xml"><span class="language-handlebars">    &#125;else&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">        window.location.href = &#x27;https://www.xxx.com/&#x27;</span></span>
+<span class="language-xml"><span class="language-handlebars">    &#125;</span></span>
+<span class="language-xml"><span class="language-handlebars">&#125;</span></span>
+<span class="language-xml"><span class="language-handlebars">pe_resize()</span></span>
+<span class="language-xml"><span class="language-handlebars">window.onresize=function()&#123;</span></span>
+<span class="language-xml"><span class="language-handlebars">    pe_resize()</span></span>
+<span class="language-xml"><span class="language-handlebars">&#125;</span></span>
+<span class="language-xml"><span class="language-handlebars"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-handlebars"><span class="language-xml"></span></span></span></span>
+<span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"></span></span></span></span>
+<span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;css&quot;</span>&gt;</span><span class="language-css"></span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-comment">/* 一套代码解决方案 */</span></span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">321px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">375px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">11px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">376px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">414px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">12px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">415px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">639px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">15px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">640px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">719px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">20px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">720px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">749px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">22.5px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">750px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">799px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">23.5px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars"><span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">800px</span>)&#123;<span class="hljs-selector-tag">html</span>&#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">25px</span>&#125;&#125;</span></span></span></span></span>
+<span class="language-css"><span class="language-xml"><span class="language-handlebars"><span class="language-xml"><span class="language-handlebars">&lt;style&gt;</span></span></span></span></span></code></pre>
+
+<h2 id="关于页面的相关设置"><a href="#关于页面的相关设置" class="headerlink" title="关于页面的相关设置"></a>关于页面的相关设置</h2><p>lang 属性可用于大部分 HTML 标签，当html 标记为 en 时，谷歌会提醒翻译</p>
+<pre><code class="hljs routeros">&lt;html <span class="hljs-attribute">lang</span>=<span class="hljs-string">&quot;zh-CN&quot;</span>&gt;</code></pre>
+
+<p>关键字，关键词:对搜索引擎友好，在爬虫进行网站收录时会进行标记</p>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;keywords&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;关键字1,关键字2,关键字3&quot;</span>&gt;</code></pre>
+
+<p>网站内容描述</p>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;description&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;对页面的简单的一句话描述&quot;</span>&gt;</code></pre>
+
+<p>标注页面的作者</p>
+<pre><code class="hljs routeros">&lt;meta <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;author&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;Xianbin Li&quot;</span>&gt;</code></pre>
+
+<p>设置手机页面的 viewport 缩放比例</p>
+<pre><code class="hljs routeros">&lt;meta  <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attribute">content</span>=<span class="hljs-string">&quot;width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0&quot;</span>&gt;</code></pre>
+
+<h2 id="常见屏幕大小参考"><a href="#常见屏幕大小参考" class="headerlink" title="常见屏幕大小参考"></a>常见屏幕大小参考</h2><pre><code class="hljs CSS"><span class="hljs-comment">/* device-width 真实显示屏大小 */</span>
+<span class="hljs-comment">/* width 浏览器大小 */</span>
+
+<span class="hljs-comment">/*彩色设备 and 大于等于1920px的屏幕*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1920px</span>)&#123; &#125;
+
+<span class="hljs-comment">/*小于于等于1920px的屏幕 and 大于等于1680px的屏幕*/</span>
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1920px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1680px</span>)&#123; &#125;
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1680px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1366px</span>)&#123; &#125;
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1366px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-width</span>:<span class="hljs-number">1024px</span>)&#123; &#125;
+
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1024px</span>)&#123; &#125;
+
+<span class="hljs-comment">/*ipad pro*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">1024px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-device-width</span>:<span class="hljs-number">769px</span>) &#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">1024px</span>) &#123; &#125;
+<span class="hljs-comment">/*ipad*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">768px</span>) <span class="hljs-keyword">and</span> (<span class="hljs-attribute">min-device-width</span>:<span class="hljs-number">450px</span>) &#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">768px</span>) &#123; &#125;
+<span class="hljs-comment">/*大部分手机*/</span>
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-device-width</span>:<span class="hljs-number">450px</span>)&#123; &#125;
+<span class="hljs-keyword">@media</span> screen <span class="hljs-keyword">and</span> (<span class="hljs-attribute">max-width</span>:<span class="hljs-number">450px</span>) &#123; &#125;</code></pre>
+
+<h2 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h2><pre><code class="hljs JS"><span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="hljs-title function_">test</span>(navigator.<span class="hljs-property">userAgent</span>) ? <span class="hljs-string">&quot;https://www.baidu.com/&quot;</span> :  <span class="hljs-string">&quot;http://news.baidu.com/&quot;</span>;
+
+<span class="hljs-comment">//如果是手机端则去百度，不是则去新闻</span></code></pre>
+
+<h2 id="关于屏幕大小属性参考"><a href="#关于屏幕大小属性参考" class="headerlink" title="关于屏幕大小属性参考"></a>关于屏幕大小属性参考</h2><pre><code class="hljs dart"># 浏览器窗口大小（包括工具栏）
+<span class="hljs-built_in">window</span>.outerHeight
+<span class="hljs-built_in">window</span>.outerWidth
+
+# 窗口文档显示区（不包含滚动条）
+<span class="hljs-built_in">window</span>.innerWidth
+<span class="hljs-built_in">window</span>.innerHeight
+
+# 元素级内部大小（不包含滚动条）
+clientWidth
+clientHeight</code></pre>
+
+<h2 id="关于手机横竖屏的判断"><a href="#关于手机横竖屏的判断" class="headerlink" title="关于手机横竖屏的判断"></a>关于手机横竖屏的判断</h2><pre><code class="hljs mipsasm"><span class="hljs-comment"># 手机转向角度</span>
+window.<span class="hljs-keyword">orientation</span>
+<span class="hljs-keyword"></span>
+<span class="hljs-comment"># PC 端为 undefined；90或-90为横屏幕，剩下则是竖屏</span></code></pre>
+
+<h2 id="关于屏幕的相关说明"><a href="#关于屏幕的相关说明" class="headerlink" title="关于屏幕的相关说明"></a>关于屏幕的相关说明</h2><pre><code class="hljs dns">手机的像素  分辨率在<span class="hljs-number">640*1136</span>是物理像素
+电脑上的px  逻辑像素，浏览器使用的抽象像素</code></pre>
+<blockquote>
+<p>手机浏览器默认做了两件事<br>【1】页面渲染在一个980px(ios)的 viewport；【2】缩放</p>
+</blockquote>
+<p>DPI：打印机每英寸可以喷的墨汁点<br>PPI：屏幕每英寸的像素数量，即单位英寸的像素密度，PPI越高，图像越清楚</p>
+<table>
+<thead>
+<tr>
+<th align="center">-</th>
+<th align="center">ldpi(流畅)</th>
+<th align="center">mdpi(普通)</th>
+<th align="center">hdpi(高清)</th>
+<th align="center">xhdpi(超清)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ppi</td>
+<td align="center">120</td>
+<td align="center">160</td>
+<td align="center">240</td>
+<td align="center">320</td>
+</tr>
+<tr>
+<td align="center">dpr</td>
+<td align="center">0.75</td>
+<td align="center">1.0</td>
+<td align="center">1.5</td>
+<td align="center">2.0</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：高清屏默认缩放比都是2.0</p>
+</blockquote>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E9%80%82%E9%85%8D%E7%9A%84%E5%B8%83%E5%B1%80"><span class="toc-text">关于屏幕适配的布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E7%AB%AFREM%E5%B8%83%E5%B1%80"><span class="toc-text">手机端REM布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-text">响应式布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E9%A1%B5%E9%9D%A2%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE"><span class="toc-text">关于页面的相关设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F%E5%8F%82%E8%80%83"><span class="toc-text">常见屏幕大小参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E5%92%8C-PC-%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机和 PC 的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83"><span class="toc-text">关于屏幕大小属性参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E6%A8%AA%E7%AB%96%E5%B1%8F%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机横竖屏的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AF%B4%E6%98%8E"><span class="toc-text">关于屏幕的相关说明</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

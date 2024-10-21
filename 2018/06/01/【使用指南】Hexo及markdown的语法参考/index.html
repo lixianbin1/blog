@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Hexo及markdown的语法参考 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,Hexo," />
+  
+
+  
+  <meta name="description" content="Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，而Markdown是一个面向网络编写者的文本到HTML转换工具。Markdown允许您使用易于阅读，易于编写的纯文本格式进行编写，然后将其转换为结构有效的XHTML（或HTML）">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2018-06-01
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-7-13 10:46 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Hexo及markdown的语法参考
+  </h1>
+  
+  <article class="passage-article">
+    <p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页，而Markdown是一个面向网络编写者的文本到HTML转换工具。Markdown允许您使用易于阅读，易于编写的纯文本格式进行编写，然后将其转换为结构有效的XHTML（或HTML）</p>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="Front-matter"><a href="#Front-matter" class="headerlink" title="Front-matter"></a>Front-matter</h2><p>Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量，举例来说</p>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">layout:</span> <span class="hljs-string">post</span>       <span class="hljs-comment"># 布局</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">Hello</span> <span class="hljs-string">World</span> <span class="hljs-comment"># 标题</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:25</span>    <span class="hljs-comment"># 建立日期</span>
+<span class="hljs-attr">updated:</span> <span class="hljs-number">2013</span><span class="hljs-string">/7/13</span> <span class="hljs-number">20</span><span class="hljs-string">:46:27</span> <span class="hljs-comment"># 更新日期</span>
+<span class="hljs-attr">comments:</span> <span class="hljs-literal">true</span>     <span class="hljs-comment"># 开启文章的评论功能</span>
+<span class="hljs-attr">tags:</span> <span class="hljs-string">css</span>          <span class="hljs-comment"># 标签（不适用于分页）</span>
+<span class="hljs-attr">categories:</span> <span class="hljs-string">css</span>    <span class="hljs-comment"># 分类（不适用于分页）</span>
+<span class="hljs-attr">permalink:</span> <span class="hljs-string">wwww.xxx.com</span>     <span class="hljs-comment"># 覆盖文章网址</span>
+<span class="hljs-meta">---</span></code></pre>
+
+<h2 id="文章引用及代码块"><a href="#文章引用及代码块" class="headerlink" title="文章引用及代码块"></a>文章引用及代码块</h2><p>文章引用或语句引用，当然这不是硬性规定，一切都可以看个人爱好。</p>
+<blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
+<footer><strong>大卫</strong><cite>《爱的意识》</cite></footer></blockquote>
+
+<hr>
+<p>代码块则一般是用于展示代码或者其他执行性语句，当然也是看个人喜好</p>
+<pre><code class="hljs objc">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
+
+<pre><div class="caption"><span>_.compact</span><a href="http://underscorejs.org/#compact">Underscore.js</a></div><code class="hljs excel">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-built_in">false</span>, <span class="hljs-number">2</span>, &#x27;&#x27;, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
+
+<pre><code class="hljs objc">_.compact([<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-number">3</span>]);
+=&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</code></pre>
+
+<h3 id="内网应用"><a href="#内网应用" class="headerlink" title="内网应用"></a>内网应用</h3><p>有时候你需要引用自己写的文章，那可能只能使用 Hexo 的制定内容</p>
+<pre><code class="hljs twig"><span class="hljs-template-tag">&#123;%</span> <span class="hljs-name">post_link</span> 文章名称去掉md的 显示名称可选 <span class="hljs-template-tag">%&#125;</span><span class="language-xml"></span>
+<span class="language-xml"></span><span class="hljs-template-tag">&#123;%</span> <span class="hljs-name">jsfiddle</span> xianbin/bu<span class="hljs-number">5</span>ntf<span class="hljs-number">8</span>m/<span class="hljs-number">1</span>/ result,html,css <span class="hljs-template-tag">%&#125;</span></code></pre>
+
+<h3 id="外网或者示例"><a href="#外网或者示例" class="headerlink" title="外网或者示例"></a>外网或者示例</h3><ul>
+<li><a href="https://jsfiddle.net/">jsFiddle</a> 代码在线演示的网站，将示例代码展示在上面，由于国内网络问题，可能显示困难</li>
+</ul>
+<pre><code class="hljs twig"><span class="hljs-template-tag">&#123;%</span> <span class="hljs-name">jsfiddle</span> xianbin/bu<span class="hljs-number">5</span>ntf<span class="hljs-number">8</span>m/<span class="hljs-number">1</span>/ result,html,css <span class="hljs-template-tag">%&#125;</span></code></pre>
+<ul>
+<li><a href="https://gist.github.com/">Gist</a> GitHub代码片段演示网站，在文章中嵌入 Gist。由于国内网络问题，可能显示困难</li>
+</ul>
+<pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://gist.github.com/lixianbin1/aeb46f5571f6291fdf05ec5a753bdada.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<ul>
+<li><a href="https://caniuse.com/">iframe</a> 兼容性查询网站，在文章中插入 iframe</li>
+</ul>
+<pre><code class="hljs twig"><span class="hljs-template-tag">&#123;%</span> <span class="hljs-name">if</span>rame https://caniuse.com/css-variables/embed <span class="hljs-number">100</span>% <span class="hljs-number">495</span>px <span class="hljs-template-tag">%&#125;</span></code></pre>
+
+<h3 id="图片及链接"><a href="#图片及链接" class="headerlink" title="图片及链接"></a>图片及链接</h3><pre><code class="hljs awk"><span class="hljs-comment"># 图片</span>
+![<span class="hljs-regexp">/images/</span>posts<span class="hljs-regexp">/1911051.jpg](https:/</span><span class="hljs-regexp">/docs.github.com/</span>assets<span class="hljs-regexp">/cb-77734/m</span>w-<span class="hljs-number">1440</span><span class="hljs-regexp">/images/</span>help<span class="hljs-regexp">/repository/u</span>se-this-template-button.webp)
+
+&#123;% img [class names] <span class="hljs-regexp">/images/</span>posts/<span class="hljs-number">1911051</span>.jpg [width] [height] [title text [alt text]] %&#125;
+
+<span class="hljs-comment"># link</span>
+<span class="hljs-comment"># 在文章中插入链接，并自动给外部链接添加 target=&quot;_blank&quot; 属性。</span>
+&#123;% link text url [external] [title] %&#125;</code></pre>
+
+<h3 id="video"><a href="#video" class="headerlink" title="video"></a>video</h3><pre><code class="hljs crystal"><span class="hljs-comment"># Youtube 一个视频媒体播放网站</span>
+<span class="hljs-comment"># 在文章中插入 Youtube 视频。</span>
+<span class="hljs-template-variable">&#123;% youtube video_id %&#125;</span>
+
+<span class="hljs-comment"># Vimeo 一个高清视频播客网站</span>
+<span class="hljs-comment"># 在文章中插入 Vimeo 视频。</span>
+<span class="hljs-template-variable">&#123;% vimeo video_id %&#125;</span></code></pre>
+
+<h2 id="问题集锦"><a href="#问题集锦" class="headerlink" title="问题集锦"></a>问题集锦</h2><p>Error：Cannot find module ‘chalk’</p>
+<p><code>hexo-cli</code> 低版本bug ,更新 <code>hexo-cli</code> ，如果用的是全局的 <code>hexo-cli</code> ,就更新全局，如果是本地就更新本地</p>
+<h1 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h1><p>Markdown的一些非常见的语法使用。</p>
+<p><a href="https://emojixd.com/">颜文字网站</a></p>
+<blockquote>
+<p>🐼 撰写发布技术文稿（代码支持）<br>🦬 撰写发布学术论文（LaTeX 公式支持）</p>
+</blockquote>
+<h2 id="Todo列表"><a href="#Todo列表" class="headerlink" title="Todo列表"></a>Todo列表</h2><blockquote>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> Pick the flowers</li>
+<li><input disabled="" type="checkbox"> Call John 9303032332</li>
+</ul>
+</blockquote>
+<h3 id="绘制表格"><a href="#绘制表格" class="headerlink" title="绘制表格"></a>绘制表格</h3><pre><code class="hljs gherkin">|<span class="hljs-string"> 项目       </span>|<span class="hljs-string"> 价格   </span>|<span class="hljs-string">  数量  </span>|
+|<span class="hljs-string"> --------   </span>|<span class="hljs-string"> -----: </span>|<span class="hljs-string"> :----: </span>|
+|<span class="hljs-string"> 计算机     </span>|<span class="hljs-string"> \$1600 </span>|<span class="hljs-string">   5    </span>|
+|<span class="hljs-string"> 手机       </span>|<span class="hljs-string">   \$12 </span>|<span class="hljs-string">   12   </span>|
+|<span class="hljs-string"> 管线       </span>|<span class="hljs-string">    \$1 </span>|<span class="hljs-string">  234   </span>|</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo"><span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Front-matter"><span class="toc-text">Front-matter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%BC%95%E7%94%A8%E5%8F%8A%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="toc-text">文章引用及代码块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E7%BD%91%E5%BA%94%E7%94%A8"><span class="toc-text">内网应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E7%BD%91%E6%88%96%E8%80%85%E7%A4%BA%E4%BE%8B"><span class="toc-text">外网或者示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%8F%8A%E9%93%BE%E6%8E%A5"><span class="toc-text">图片及链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#video"><span class="toc-text">video</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6"><span class="toc-text">问题集锦</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown"><span class="toc-text">Markdown</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Todo%E5%88%97%E8%A1%A8"><span class="toc-text">Todo列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%98%E5%88%B6%E8%A1%A8%E6%A0%BC"><span class="toc-text">绘制表格</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2018/06/01/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Hexo%E5%8F%8Amarkdown%E7%9A%84%E8%AF%AD%E6%B3%95%E5%8F%82%E8%80%83/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Hexo/"><i class="fa fa-tags"></i>Hexo</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://taobaofed.org/" target="_blank">淘宝前端团队(FED)</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

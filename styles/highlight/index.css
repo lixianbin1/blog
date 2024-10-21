@@ -1,0 +1,47 @@
+figure{
+    background: #2b2b2b;
+    margin: 5px;
+    padding: 0 10px;
+}
+.hljs-comment, .hljs-quote {
+    color: #5c6370;
+    font-style: italic;
+}
+.gutter{
+    color:#ccc
+}
+.highlight .sh{
+    color:#ccc
+}
+
+code.hljs{
+    background: #2b2b2b;
+    margin: 5px;
+    padding: 0 10px;
+}
+.hljs.sh{
+    color:#ccc
+}
+.hljs.js{
+    color:#ccc
+}
+.caption{
+    border: 1px solid;
+    background: antiquewhite;
+    margin: 5px;
+    padding: 0 1em;
+    margin-bottom: -5px;
+}
+pre code.hljs{
+    padding: 0.5em 1em;
+    font-size: 13px;
+}
+pre{
+    line-height:1.4;
+}
+.passage-article blockquote{
+    background:#eee;
+}
+body{
+    background:#eee
+}
