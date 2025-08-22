@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>前端性能优化毁人不倦 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="毁人不倦," />
+  
+
+  
+  <meta name="description" content="力拔山兮气盖世，时不利兮骓不逝。骓不逝兮可奈何！虞兮虞兮奈若何！项羽 《垓下歌》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-11-12
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E6%AF%81%E4%BA%BA%E4%B8%8D%E5%80%A6/"><i class="fa fa-bookmark"></i>毁人不倦</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2020-11-9 9:56 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    前端性能优化毁人不倦
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="前端相关"><a href="#前端相关" class="headerlink" title="前端相关"></a>前端相关</h2><p><strong>压缩文件</strong></p>
+<blockquote>
+<p>通过压缩JS，CSS，img 等文件的大小，来缩小网站的加载时间，文件小了，请求就快了</p>
+</blockquote>
+<ul>
+<li>通过uglifyify对文件进行压缩（去除空白，长变量名改为短变量名等）</li>
+</ul>
+<p><strong>合并请求</strong></p>
+<blockquote>
+<p>合并请求的主要目的是减少浏览器对服务器发起的请求数，从而减少在发起请求过程中花费的时间。</p>
+</blockquote>
+<ul>
+<li>合并JS、合并CSS以及合并小图片（也就是使用CSS精灵）等方式来减少请求</li>
+</ul>
+<h2 id="后端相关"><a href="#后端相关" class="headerlink" title="后端相关"></a>后端相关</h2><p><strong>开启GZIP压缩</strong></p>
+<blockquote>
+<p>GZIP在服务器进行配置，如果前端往后端传输js数据,可以通过pako库进行字符串压缩</p>
+</blockquote>
+<ul>
+<li>后端在http.conf 配置开启gzip 压缩，后端配置后。浏览器会自动查询是否支持gzip</li>
+</ul>
+<h2 id="前端-后端相关"><a href="#前端-后端相关" class="headerlink" title="前端,后端相关"></a>前端,后端相关</h2><p><strong>WebSocket</strong></p>
+<blockquote>
+<p>WebSocket是全双工通信协议，也就是长链接，</p>
+</blockquote>
+<ul>
+<li>后端在服务器端配置WebSocket，开启WebSocket服务</li>
+<li>前端在链接时，new WebSocket(‘xx’) 通过方法进行信息发送</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>(<span class="hljs-string">&quot;ws://localhost:9000/echo&quot;</span>); 
+
+<span class="hljs-comment">// Web Socket 已连接上，使用 send() 方法发送数据</span>
+ws.<span class="hljs-property">onopen</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+   ws.<span class="hljs-title function_">send</span>(<span class="hljs-string">&quot;发送数据&quot;</span>);
+   <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;数据发送中...&quot;</span>);
+&#125;;
+
+<span class="hljs-comment">// 接受数据</span>
+ws.<span class="hljs-property">onmessage</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params">evt</span>) &#123; 
+   <span class="hljs-keyword">var</span> received_msg = evt.<span class="hljs-property">data</span>;
+   <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;数据已接收...&quot;</span>);
+&#125;;
+
+<span class="hljs-comment">// 关闭 websocket</span>
+ws.<span class="hljs-property">onclose</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123; 
+   <span class="hljs-title function_">alert</span>(<span class="hljs-string">&quot;连接已关闭...&quot;</span>); 
+&#125;;</code></pre>
+
+<p><strong>缓存设置</strong></p>
+<blockquote>
+<p>通过存储已请求的数据，减少数据请求</p>
+</blockquote>
+<ul>
+<li>通过本地存储（cookie，sessionStorage，localStorage）存储非实时数据，减少不必要的数据请求。</li>
+<li>后端对资源进行配置，配置正确的响应头信息，浏览器会根据响应头信息对资源进行缓存</li>
+</ul>
+<p><strong>域名拆分</strong></p>
+<blockquote>
+<p>域名拆分主要是为了增加浏览器下载的并行度，让浏览器能同时发起更多的请求，一般50M以下网页类网站，域名保持在4、5个即可</p>
+</blockquote>
+<ul>
+<li>将JS、CSS和图片分别使用三个域名加载，分别是 <code>http://js.xxx.cn</code> <code>http://css.xxx.cn</code> <code>http://img.xxx.cn</code></li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">前端相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">后端相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF-%E5%90%8E%E7%AB%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">前端,后端相关</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

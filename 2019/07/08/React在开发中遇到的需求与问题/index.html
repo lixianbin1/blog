@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>React在开发中遇到的需求与问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="React," />
+  
+
+  
+  <meta name="description" content="在开发过程中遇到的一些问题，网上存在一些不相关的回答，本着解决问题的想法记下自己的答案，希望以后不在重蹈覆辙也希望能帮助到别人，当然不同的需求存在的问题可能会有不同。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-07-08
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-7-9 17:18 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    React在开发中遇到的需求与问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="需求：点击按钮出现弹窗，点击空白地方弹窗消失"><a href="#需求：点击按钮出现弹窗，点击空白地方弹窗消失" class="headerlink" title="需求：点击按钮出现弹窗，点击空白地方弹窗消失"></a>需求：点击按钮出现弹窗，点击空白地方弹窗消失</h2><h3 id="关联的问题：e-stopPropgation-不起作用；"><a href="#关联的问题：e-stopPropgation-不起作用；" class="headerlink" title="关联的问题：e.stopPropgation() 不起作用；"></a>关联的问题：e.stopPropgation() 不起作用；</h3><p>这种需求在我看来说很简单的，给document 绑定 click事件，点击后选择关闭弹窗，在窗体使用 e.stopPropgation() 来阻止冒泡行为。思路是这样，但是在React 中却不能单纯如此，因为e.stopPropgation() 不能阻止冒泡行为的发生，原因在于react 把事件绑定委托给document ，当你阻止冒泡的时候，document 早就接受到了点击事件，需要使用React 的e.nativeEvent</p>
+<pre><code class="hljs dart"><span class="hljs-keyword">const</span> [<span class="hljs-keyword">show</span>,setShow]=useState(<span class="hljs-keyword">false</span>)
+<span class="hljs-keyword">const</span> Clik=(e)=&gt;&#123;
+  e.stopImmediatePropagation()
+  setShow(<span class="hljs-keyword">false</span>)
+&#125;
+useEffect(()=&gt;&#123;
+  <span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,Clik)
+  <span class="hljs-keyword">return</span> ()=&gt;&#123;<span class="hljs-built_in">document</span>.removeEventListener(<span class="hljs-string">&#x27;click&#x27;</span>,Clik)&#125;
+&#125;,[<span class="hljs-keyword">show</span>])
+...
+
+<span class="hljs-comment">// 以show 作为关闭窗口的开关 </span>
+&#123;show?
+  &lt;div onClick=(e)=&gt;&#123;e.nativeEvent.stopImmediatePropagation();&#125; &gt;窗体&lt;/div&gt;:
+<span class="hljs-string">&#x27;&#x27;</span>&#125;
+</code></pre>
+
+<p>当然在开发过程中遇到了一些问题，如：react 在 document 上绑定事件的时候，获取的 state 是初始化的，react 在路由改变后重新进入的时候，绑定的改变状态的事件还在，组件却不对其做出改变了，当然这些问题与需求是 Hooks 的使用不规范所导致的问题，在你将其不规范的地方改正后，这些问题都会消失</p>
+<h2 id="问题：用户短时间内点击多次所产生的多次请求的问题"><a href="#问题：用户短时间内点击多次所产生的多次请求的问题" class="headerlink" title="问题：用户短时间内点击多次所产生的多次请求的问题"></a>问题：用户短时间内点击多次所产生的多次请求的问题</h2><h3 id="关联的问题：中断之前的网络请求；防止用户的多次点击-函数节流与防抖"><a href="#关联的问题：中断之前的网络请求；防止用户的多次点击-函数节流与防抖" class="headerlink" title="关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖"></a>关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖</h3><p>这样的问题，在很多情况下都会出现，这涉及到前端的一些解决思路节流和防抖。</p>
+<blockquote>
+<p>以按钮点击来举例节流和防抖</p>
+</blockquote>
+<p>函数节流：以固定的频率执行执行函数，不管你点击多快，没达到设定的时间就不执行<br>函数防抖：类似游戏的释放法术，只要你点击了就会重新读条，读条完成才会执行函数</p>
+<blockquote>
+<p>中断网络请求</p>
+</blockquote>
+<p>不同的框架封装着不同的打断方式，</p>
+<pre><code class="hljs php">JS与JQ
+<span class="hljs-comment">//方法就是将XHR对象指向currentAjax，再调用currentAjax的.abort()来中止请求 </span>
+
+<span class="hljs-keyword">var</span> currentAjax = <span class="hljs-literal">null</span>;  
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">startAjax</span>(<span class="hljs-params"></span>)</span>&#123;  
+  <span class="hljs-keyword">if</span>(currentAjax) &#123;currentAjax.<span class="hljs-title function_ invoke__">abort</span>();&#125; 
+  currentAjax = $.<span class="hljs-title function_ invoke__">ajax</span>(&#123;
+    <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;POST&#x27;</span>,
+    <span class="hljs-attr">beforeSend</span>:function()&#123;&#125;,  
+    url:<span class="hljs-string">&#x27;test.php&#x27;</span>,  
+    data:<span class="hljs-string">&#x27;username=xxx&#x27;</span>,  
+    dataType:<span class="hljs-string">&#x27;JSON&#x27;</span>,  
+    error:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<span class="hljs-title function_ invoke__">alert</span>(<span class="hljs-string">&#x27;error&#x27;</span>)&#125;,  
+    success:<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>&#123;<span class="hljs-title function_ invoke__">alert</span>(data)&#125;  
+  &#125;);  
+&#125;  
+
+Angular
+<span class="hljs-comment">//通过注入 `$q` 服务，使用`$q.defer`来停止</span>
+
+<span class="hljs-keyword">var</span> _enj;
+<span class="hljs-variable">$scope</span>.clconversations=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">if</span>(_enj)&#123;_enj.<span class="hljs-title function_ invoke__">resolve</span>()&#125;;
+    _enj = <span class="hljs-variable">$q</span>.<span class="hljs-title function_ invoke__">defer</span>();
+    <span class="hljs-variable">$http</span>.<span class="hljs-title function_ invoke__">get</span>(<span class="hljs-string">&#x27;/Iridium/public/tcpanalysis/getconversations&#x27;</span>,&#123;
+        <span class="hljs-attr">params</span>:&#123;
+            <span class="hljs-attr">start_time</span>: <span class="hljs-variable">$scope</span>.start_time,
+            <span class="hljs-attr">end_time</span>:<span class="hljs-variable">$scope</span>.end_time,
+        &#125;,
+        <span class="hljs-attr">timeout</span>:_enj.promise
+    &#125;).<span class="hljs-title function_ invoke__">then</span>(function(response)&#123;
+        console.<span class="hljs-title function_ invoke__">log</span>(<span class="hljs-string">&#x27;&#x27;</span>)
+	&#125;);
+&#125;
+</code></pre>
+
+<h2 id="需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随"><a href="#需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随" class="headerlink" title="需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随"></a>需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随</h2><h3 id="关联的问题，传统表格中-display：table-系列和高度产生滚动条的冲突"><a href="#关联的问题，传统表格中-display：table-系列和高度产生滚动条的冲突" class="headerlink" title="关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突"></a>关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突</h3><p>这样的问题在很多时候我们都会遇到，在 Html 中，可以通过 html + js 的方式创建 div 模拟 table 表格来进行展示。<br>在react中，我需要把它单独抽出，这样其他地方时候也能用到。</p>
+<pre><code class="hljs typescript"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">var</span> $ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jquery&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span>&lt;<span class="hljs-built_in">any</span>,<span class="hljs-built_in">any</span>&gt;&#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"><span class="hljs-attr">props</span>:<span class="hljs-built_in">any</span></span>) &#123;
+    <span class="hljs-variable language_">super</span>(props);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+      <span class="hljs-attr">id</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">id</span>||<span class="hljs-string">&#x27;l_&#x27;</span>+(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>()+<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">random</span>()).<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">3</span>),
+      <span class="hljs-attr">clas</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">className</span>||<span class="hljs-string">&#x27;&#x27;</span>,
+      <span class="hljs-attr">height</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">height</span>||<span class="hljs-string">&#x27;300px&#x27;</span>,
+    &#125;
+  &#125;
+  <span class="hljs-keyword">static</span> contextTypes=&#123;  
+    <span class="hljs-attr">router</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    &#125;
+  &#125;
+  mounted = <span class="hljs-literal">false</span>;
+  <span class="hljs-title function_">componentWillMount</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mounted</span> = <span class="hljs-literal">true</span>;
+  &#125;
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">resize</span>()
+  &#125;
+  <span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">resize</span>()
+  &#125;
+  <span class="hljs-title function_">componentWillUnmount</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mounted</span> = <span class="hljs-literal">false</span>;
+  &#125;
+  <span class="hljs-title function_">resize</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">let</span> id=<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">id</span>
+    <span class="hljs-keyword">let</span> tbody=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">tbody</span>
+    <span class="hljs-keyword">if</span>(tbody.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;
+      <span class="hljs-keyword">let</span> ltable=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;table&#x27;</span>)
+      <span class="hljs-keyword">let</span> thead0=ltable[<span class="hljs-number">0</span>].<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;thead&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> thead1=ltable[<span class="hljs-number">1</span>].<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;thead&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> ltbody=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&#x27;l_table_body&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> th0=thead0.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;th&#x27;</span>)
+      <span class="hljs-keyword">let</span> th1=thead1.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;th&#x27;</span>)
+      thead0.<span class="hljs-property">style</span>.<span class="hljs-property">minWidth</span>=thead1.<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      ltable[<span class="hljs-number">0</span>].<span class="hljs-property">style</span>.<span class="hljs-property">width</span>=ltable[<span class="hljs-number">1</span>].<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;th1.<span class="hljs-property">length</span>;i++)&#123;
+        th0[i].<span class="hljs-property">style</span>.<span class="hljs-property">width</span>=th1[i].<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      &#125;
+      $(ltbody).<span class="hljs-title function_">scroll</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"><span class="hljs-attr">e</span>:<span class="hljs-built_in">any</span></span>)&#123;
+        <span class="hljs-keyword">let</span> div=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&#x27;l_table_head&#x27;</span>)[<span class="hljs-number">0</span>]
+        div.<span class="hljs-property">scrollLeft</span>=e.<span class="hljs-property">target</span>.<span class="hljs-property">scrollLeft</span>
+      &#125;)
+    &#125;
+  &#125;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">let</span> thead=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">thead</span>,tbody=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">tbody</span>
+    <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#123;this.state.id&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;</span>&quot;<span class="hljs-attr">l_table</span> &quot;+<span class="hljs-attr">this.state.clas</span>&#125;&gt;</span></span>
+<span class="language-xml">      &#123;this.props.title?</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_title&quot;</span>&gt;</span>&#123;this.props.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>:&#x27;&#x27;</span>
+<span class="language-xml">      &#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_head l_scroll_hide&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            &#123;thead.map((e:any,i:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;i&#125;</span>&gt;</span>&#123;e.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_body&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;height:this.state.height&#125;&#125;</span>&gt;</span></span>
+<span class="language-xml">        &#123;tbody.length&gt;0?</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            &#123;thead.map((e:any,i:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;i&#125;</span>&gt;</span>&#123;e.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span></span>
+<span class="language-xml">            &#123;tbody.map((tr:any,a:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;a&#125;</span>&gt;</span></span>
+<span class="language-xml">              &#123;thead.map((td:any,b:any)=&gt;&#123;</span>
+<span class="language-xml">                if(td.render)&#123;</span>
+<span class="language-xml">                  return <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;b&#125;</span>&gt;</span>&#123;td.render(tr)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span>
+<span class="language-xml">                &#125;else&#123;</span>
+<span class="language-xml">                  return <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;b&#125;</span>&gt;</span>&#123;td.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span>
+<span class="language-xml">                &#125;</span>
+<span class="language-xml">              &#125;)&#125;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>:</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_nodata&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>No Date<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        &#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+  &#125;
+&#125;</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E7%82%B9%E5%87%BB%E6%8C%89%E9%92%AE%E5%87%BA%E7%8E%B0%E5%BC%B9%E7%AA%97%EF%BC%8C%E7%82%B9%E5%87%BB%E7%A9%BA%E7%99%BD%E5%9C%B0%E6%96%B9%E5%BC%B9%E7%AA%97%E6%B6%88%E5%A4%B1"><span class="toc-text">需求：点击按钮出现弹窗，点击空白地方弹窗消失</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9Ae-stopPropgation-%E4%B8%8D%E8%B5%B7%E4%BD%9C%E7%94%A8%EF%BC%9B"><span class="toc-text">关联的问题：e.stopPropgation() 不起作用；</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A%E7%94%A8%E6%88%B7%E7%9F%AD%E6%97%B6%E9%97%B4%E5%86%85%E7%82%B9%E5%87%BB%E5%A4%9A%E6%AC%A1%E6%89%80%E4%BA%A7%E7%94%9F%E7%9A%84%E5%A4%9A%E6%AC%A1%E8%AF%B7%E6%B1%82%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">问题：用户短时间内点击多次所产生的多次请求的问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%9A%E4%B8%AD%E6%96%AD%E4%B9%8B%E5%89%8D%E7%9A%84%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%EF%BC%9B%E9%98%B2%E6%AD%A2%E7%94%A8%E6%88%B7%E7%9A%84%E5%A4%9A%E6%AC%A1%E7%82%B9%E5%87%BB-%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E4%B8%8E%E9%98%B2%E6%8A%96"><span class="toc-text">关联的问题：中断之前的网络请求；防止用户的多次点击;函数节流与防抖</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%EF%BC%8C%E8%A6%81%E6%B1%82%E7%AB%96%E5%90%91%E6%BB%9A%E5%8A%A8%EF%BC%8C%E8%A1%A8%E5%A4%B4%E5%9B%BA%E5%AE%9A%EF%BC%8C%E6%A8%AA%E5%90%91%E6%BB%9A%E5%8A%A8%EF%BC%8C%E8%A1%A8%E5%A4%B4%E8%83%BD%E8%B7%9F%E9%9A%8F"><span class="toc-text">需求：数据表格，要求竖向滚动，表头固定，横向滚动，表头能跟随</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E8%81%94%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BC%A0%E7%BB%9F%E8%A1%A8%E6%A0%BC%E4%B8%AD-display%EF%BC%9Atable-%E7%B3%BB%E5%88%97%E5%92%8C%E9%AB%98%E5%BA%A6%E4%BA%A7%E7%94%9F%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9A%84%E5%86%B2%E7%AA%81"><span class="toc-text">关联的问题，传统表格中 display：table 系列和高度产生滚动条的冲突</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/07/08/React%E5%9C%A8%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%9C%80%E6%B1%82%E4%B8%8E%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/React/"><i class="fa fa-tags"></i>React</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

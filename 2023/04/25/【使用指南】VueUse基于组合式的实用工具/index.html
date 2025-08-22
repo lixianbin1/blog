@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>VueUse基于组合式的实用工具 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,Vue," />
+  
+
+  
+  <meta name="description" content="VueUse基于Vue组合式API的实用工具集，VueUse是一款基于组合式API的函数集合">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-04-25
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-4-25 11:3 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    VueUse基于组合式的实用工具
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>yarn add @vueuse/core || npm i @vueuse/core</p>
+</blockquote>
+<pre><div class="caption"><span>vite.config.js</span></div><code class="hljs js"><span class="hljs-comment">// vite.config.js</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-title class_">AutoImport</span>(&#123;
+      <span class="hljs-comment">//...</span>
+      <span class="hljs-attr">imports</span>: [
+        <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>, <span class="hljs-comment">//基于组合式API的集合工具</span>
+        <span class="hljs-string">&#x27;@vueuse/head&#x27;</span>, <span class="hljs-comment">//添加Meta的标签，更好的SEO</span>
+      ],
+    &#125;)
+  ]
+&#125;)</code></pre>
+
+<h2 id="核心函数"><a href="#核心函数" class="headerlink" title="核心函数"></a>核心函数</h2><h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><ul>
+<li>createGlobalState - 将状态保存全局作用域中，以便跨Vue实例复用。</li>
+<li>createInjectionState - 创建可以注入到组件中的全局状态。</li>
+<li>createSharedComposable - 让一个钩子函数可用于多个Vue实例中。</li>
+<li>useAsyncState - 响应式获取异步状态。不会阻塞setup 函数，在promise完成后，将自动触发。</li>
+<li>useDebouncedRefHistory - useRefHistory 的简写，带有防抖过滤器。</li>
+<li>useLastChanged - 记录最后一次更改的时间戳</li>
+<li>useLocalStorage - 响应式的 LocalStorage</li>
+<li>useManualRefHistory - 调用 commit() 时，手动跟踪ref的更改历史，提供撤消和重做功能</li>
+<li>useRefHistory - 跟踪 ref 的更改历史，提供撤消和重做功能</li>
+<li>useSessionStorage - 响应式SessionStorage</li>
+<li>useStorage - 响应式 LocalStorage/SessionStorage</li>
+<li>useStorageAsync - 支持异步的响应式Storage</li>
+<li>useThrottledRefHistory - 带节流过滤器的 useRefHistory 的简写。</li>
+</ul>
+<h4 id="createGlobalState"><a href="#createGlobalState" class="headerlink" title="createGlobalState"></a>createGlobalState</h4><p>将状态保存全局作用域中，以便跨Vue实例复用。</p>
+<pre><div class="caption"><span>store.js</span></div><code class="hljs js"><span class="hljs-comment">// store.js</span>
+<span class="hljs-keyword">import</span> &#123; ref,computed &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; createGlobalState,useStorage &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-comment">//存储在内存中</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useGlobalState = <span class="hljs-title function_">createGlobalState</span>(
+  <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+    <span class="hljs-keyword">const</span> doubleCount = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> count.<span class="hljs-property">value</span> * <span class="hljs-number">2</span>)
+    <span class="hljs-keyword">const</span> <span class="hljs-title function_">increment</span>=(<span class="hljs-params"></span>)=&gt;&#123;
+      count.<span class="hljs-property">value</span>++
+    &#125;
+    <span class="hljs-keyword">return</span> &#123; count, doubleCount, increment &#125;
+  &#125;
+)</code></pre>
+
+<h4 id="createInjectionState"><a href="#createInjectionState" class="headerlink" title="createInjectionState"></a>createInjectionState</h4><p>创建可以注入到组件中的全局状态。</p>
+<h4 id="createSharedComposable"><a href="#createSharedComposable" class="headerlink" title="createSharedComposable"></a>createSharedComposable</h4><p>让一个钩子函数可用于多个Vue实例中，且在不同的组件共享一个状态</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; createSharedComposable, useMouse &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+<span class="hljs-keyword">const</span> useSharedMouse = <span class="hljs-title function_">createSharedComposable</span>(useMouse)
+<span class="hljs-keyword">const</span> &#123; x, y &#125; = <span class="hljs-title function_">useSharedMouse</span>()</code></pre>
+
+<h4 id="useAsyncState"><a href="#useAsyncState" class="headerlink" title="useAsyncState"></a>useAsyncState</h4><p>响应式获取异步状态。不会阻塞setup 函数，在promise完成后，将自动触发</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> axios <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;axios&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; useAsyncState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-keyword">const</span> &#123; state, isReady, isLoading &#125; = <span class="hljs-title function_">useAsyncState</span>(
+  axios.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/todos/1&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> t.<span class="hljs-property">data</span>),
+  &#123; <span class="hljs-attr">id</span>: <span class="hljs-literal">null</span> &#125;,
+)</code></pre>
+
+<h4 id="useDebouncedRefHistory"><a href="#useDebouncedRefHistory" class="headerlink" title="useDebouncedRefHistory"></a>useDebouncedRefHistory</h4><p>useRefHistory 的简写，带有防抖过滤器。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; useDebouncedRefHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// 以一秒的防抖器，当数据修改后，添加记录</span>
+<span class="hljs-keyword">const</span> &#123; history, undo, redo &#125; = <span class="hljs-title function_">useDebouncedRefHistory</span>(counter, &#123; <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">debounce</span>: <span class="hljs-number">1000</span> &#125;)</code></pre>
+
+<h4 id="useLastChanged"><a href="#useLastChanged" class="headerlink" title="useLastChanged"></a>useLastChanged</h4><p>记录最后一次更改的时间戳</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useLastChanged &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+<span class="hljs-keyword">const</span> a = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> lastChanged = <span class="hljs-title function_">useLastChanged</span>(a)
+
+a.<span class="hljs-property">value</span> = <span class="hljs-number">1</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(lastChanged.<span class="hljs-property">value</span>)</code></pre>
+
+<h4 id="useLocalStorage"><a href="#useLocalStorage" class="headerlink" title="useLocalStorage"></a>useLocalStorage</h4><p>响应式的LocalStorage，用法同 <code>useStorage</code></p>
+<h4 id="useManualRefHistory"><a href="#useManualRefHistory" class="headerlink" title="useManualRefHistory"></a>useManualRefHistory</h4><p>调用 commit() 时，手动跟踪ref的更改历史，提供撤消和重做功能</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; useManualRefHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// 跟踪ref数据的历史记录</span>
+<span class="hljs-keyword">const</span> &#123; history, commit, undo, redo &#125; = <span class="hljs-title function_">useManualRefHistory</span>(counter)
+
+<span class="hljs-comment">// 当调用commit的时候，才会添加记录</span>
+counter.<span class="hljs-property">value</span> += <span class="hljs-number">1</span>
+<span class="hljs-title function_">commit</span>()</code></pre>
+
+<h4 id="useRefHistory"><a href="#useRefHistory" class="headerlink" title="useRefHistory"></a>useRefHistory</h4><p>跟踪 ref 的更改历史，提供撤消和重做功能</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; useRefHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> &#123; history, undo, redo &#125; = <span class="hljs-title function_">useRefHistory</span>(counter)</code></pre>
+
+<h4 id="useSessionStorage"><a href="#useSessionStorage" class="headerlink" title="useSessionStorage"></a>useSessionStorage</h4><p>响应式SessionStorage，用法同 <code>useStorage</code></p>
+<h4 id="useStorage"><a href="#useStorage" class="headerlink" title="useStorage"></a>useStorage</h4><p>响应式 LocalStorage/SessionStorage</p>
+<pre><div class="caption"><span>store.js</span></div><code class="hljs js"><span class="hljs-keyword">import</span> &#123; useStorage &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-comment">// 类似setItem 默认为localStorage</span>
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">useStorage</span>(<span class="hljs-string">&#x27;my-store&#x27;</span>, &#123; <span class="hljs-attr">hello</span>: <span class="hljs-string">&#x27;hi&#x27;</span>, <span class="hljs-attr">greeting</span>: <span class="hljs-string">&#x27;Hello&#x27;</span> &#125;)
+
+<span class="hljs-comment">// 指定类型 localStorage/sessionStorage</span>
+<span class="hljs-keyword">const</span> state = <span class="hljs-title function_">useStorage</span>(<span class="hljs-string">&#x27;my-store&#x27;</span>, &#123; <span class="hljs-attr">hello</span>: <span class="hljs-string">&#x27;hi&#x27;</span>, <span class="hljs-attr">greeting</span>: <span class="hljs-string">&#x27;hello&#x27;</span> &#125;, <span class="hljs-variable language_">localStorage</span>)
+
+<span class="hljs-comment">// 和createGlobalState同时使用作为全局持久存储</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useGlobalState2 = <span class="hljs-title function_">createGlobalState</span>(
+  <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">useStorage</span>(<span class="hljs-string">&#x27;vue-use-locale-storage&#x27;</span>, &#123;
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Banana&#x27;</span>,
+      <span class="hljs-attr">color</span>: <span class="hljs-string">&#x27;Yellow&#x27;</span>,
+      <span class="hljs-attr">size</span>: <span class="hljs-string">&#x27;Medium&#x27;</span>,
+    &#125;),
+)</code></pre>
+
+
+<h4 id="useStorageAsync"><a href="#useStorageAsync" class="headerlink" title="useStorageAsync"></a>useStorageAsync</h4><p>支持异步的响应式Storage，用法同 <code>useStorage</code> </p>
+<h4 id="useThrottledRefHistory"><a href="#useThrottledRefHistory" class="headerlink" title="useThrottledRefHistory"></a>useThrottledRefHistory</h4><p>带节流过滤器的 useRefHistory 的简写。</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; useThrottledRefHistory &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@vueuse/core&#x27;</span>
+
+<span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-comment">// 以一秒的节流器，当数据修改后，添加记录</span>
+<span class="hljs-keyword">const</span> &#123; history, undo, redo &#125; = <span class="hljs-title function_">useThrottledRefHistory</span>(counter, &#123; <span class="hljs-attr">deep</span>: <span class="hljs-literal">true</span>, <span class="hljs-attr">throttle</span>: <span class="hljs-number">1000</span> &#125;)</code></pre>
+
+
+
+<h3 id="Element"><a href="#Element" class="headerlink" title="Element"></a>Element</h3><ul>
+<li>useActiveElement - 响应式 document.activeElement</li>
+<li>useDocumentVisibility - 响应式跟踪 document.visibilityState</li>
+<li>useDraggable - 使元素可拖拽。</li>
+<li>useDropZone - 创建一个可以放置文件的区域。</li>
+<li>useElementBounding - 让HTML元素的bounding box 响应式</li>
+<li>useElementSize - 元素尺寸大小响应式</li>
+<li>useElementVisibility - 跟踪元素在视口中的可见性。</li>
+<li>useIntersectionObserver - 响应式监听目标元素的可见性。</li>
+<li>useMouseInElement - 响应式获取鼠标相对于元素的位置</li>
+<li>useMutationObserver - 监听DOM树修改 MutationObserver MDN</li>
+<li>useResizeObserver - 监听元素内容和边框尺寸的变化。</li>
+<li>useWindowFocus - 使用 window.onfocus 和 window.onblur 事件响应式跟踪窗口焦点。</li>
+<li>useWindowScroll - 响应式获取窗口的滚动位置。</li>
+<li>useWindowSize - 响应式获取窗口尺寸</li>
+</ul>
+<h4 id="useActiveElement"><a href="#useActiveElement" class="headerlink" title="useActiveElement"></a>useActiveElement</h4><p>响应式 document.activeElement</p>
+<h4 id="useDocumentVisibility"><a href="#useDocumentVisibility" class="headerlink" title="useDocumentVisibility"></a>useDocumentVisibility</h4><p>响应式跟踪 document.visibilityState</p>
+<h4 id="useDraggable"><a href="#useDraggable" class="headerlink" title="useDraggable"></a>useDraggable</h4><p>使元素可拖拽</p>
+<pre><code class="hljs vue">&lt;script setup lang=&quot;ts&quot;&gt;
+import &#123; ref &#125; from &#x27;vue&#x27;
+import &#123; useDraggable &#125; from &#x27;@vueuse/core&#x27;
+
+const el = ref&lt;HTMLElement | null&gt;(null)
+
+// `style` will be a helper computed for `left: ?px; top: ?px;`
+const &#123; x, y, style &#125; = useDraggable(el, &#123;
+  initialValue: &#123; x: 40, y: 40 &#125;,
+&#125;)
+&lt;/script&gt;
+
+&lt;template&gt;
+  &lt;div ref=&quot;el&quot; :style=&quot;style&quot; style=&quot;position: fixed&quot;&gt;
+    Drag me! I am at &#123;&#123;x&#125;&#125;, &#123;&#123;y&#125;&#125;
+  &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+
+<h4 id="useDropZone"><a href="#useDropZone" class="headerlink" title="useDropZone"></a>useDropZone</h4><p>创建一个可以放置文件的区域。</p>
+<h4 id="useElementBounding"><a href="#useElementBounding" class="headerlink" title="useElementBounding"></a>useElementBounding</h4><p>让HTML元素的bounding box 响应式</p>
+<h4 id="useElementSize"><a href="#useElementSize" class="headerlink" title="useElementSize"></a>useElementSize</h4><p>元素尺寸大小响应式</p>
+<h4 id="useElementVisibility"><a href="#useElementVisibility" class="headerlink" title="useElementVisibility"></a>useElementVisibility</h4><p>跟踪元素在视口中的可见性。</p>
+<h4 id="useIntersectionObserver"><a href="#useIntersectionObserver" class="headerlink" title="useIntersectionObserver"></a>useIntersectionObserver</h4><p>响应式监听目标元素的可见性。</p>
+<h4 id="useMouseInElement"><a href="#useMouseInElement" class="headerlink" title="useMouseInElement"></a>useMouseInElement</h4><p>响应式获取鼠标相对于元素的位置</p>
+<h4 id="useMutationObserver"><a href="#useMutationObserver" class="headerlink" title="useMutationObserver"></a>useMutationObserver</h4><p>监听DOM树修改 MutationObserver MDN</p>
+<h4 id="useResizeObserver"><a href="#useResizeObserver" class="headerlink" title="useResizeObserver"></a>useResizeObserver</h4><p>监听元素内容和边框尺寸的变化。</p>
+<h4 id="useWindowFocus"><a href="#useWindowFocus" class="headerlink" title="useWindowFocus"></a>useWindowFocus</h4><p>使用 window.onfocus 和 window.onblur 事件响应式跟踪窗口焦点。</p>
+<h4 id="useWindowScroll"><a href="#useWindowScroll" class="headerlink" title="useWindowScroll"></a>useWindowScroll</h4><p>响应式获取窗口的滚动位置。</p>
+<h4 id="useWindowSize"><a href="#useWindowSize" class="headerlink" title="useWindowSize"></a>useWindowSize</h4><p>响应式获取窗口尺寸</p>
+<p>组件中的使用</p>
+<pre><div class="caption"><span>Hello.vue</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">import</span> &#123; useCounterStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/stores/counter&#x27;</span></span>
+<span class="language-javascript"><span class="hljs-keyword">const</span> counter = <span class="hljs-title function_">useCounterStore</span>()</span>
+<span class="language-javascript">counter.<span class="hljs-property">count</span>++</span>
+<span class="language-javascript"><span class="hljs-comment">// 自动补全！ ✨</span></span>
+<span class="language-javascript">counter.$patch(&#123; <span class="hljs-attr">count</span>: counter.<span class="hljs-property">count</span> + <span class="hljs-number">1</span> &#125;)</span>
+<span class="language-javascript"><span class="hljs-comment">// 或使用 action 代替</span></span>
+<span class="language-javascript">counter.<span class="hljs-title function_">increment</span>()</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- 直接从 store 中访问 state --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Current Count: &#123;&#123; counter.count &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
+
+<h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><ul>
+<li>useBluetooth - 响应式 Web Bluetooth API。提供连接低功耗蓝牙外设并与之交互的能力。</li>
+<li>useBreakpoints - 响应式获取视口断点</li>
+<li>useBroadcastChannel - 响应式 BroadcastChannel API</li>
+<li>useBrowserLocation - 响应式获取 Location</li>
+<li>useClipboard - 响应式 Clipboard API。剪贴板 API 提供了响应剪贴板命令（剪切、复制和粘贴）与异步读写系统剪贴板的能力。从权限 Permissions API。获取权限之后，才能访问剪贴板内容；如果用户没有授予权限，则不允许读取或更改剪贴板内容。</li>
+<li>useColorMode - 具有自动数据持久化的响应式颜色模式（深色/浅色/自定义）。</li>
+<li>useCssVar - 操作css变量</li>
+<li>useDark - 具有自动数据持久性的响应式暗黑模式。<br>useEventListener - 轻松使用事件监听。在挂载时使用 addEventListener 注册，在卸载时自动使用removeEventListener 。</li>
+<li>useEyeDropper - 响应式 EyeDropper API</li>
+<li>useFavicon - 响应式 favicon</li>
+<li>useFileDialog - 轻松打开文件对话框。</li>
+<li>useFileSystemAccess - 创建和读写本地文件FileSystemAccessAPI</li>
+<li>useFullscreen - 响应式Fullscreen API。它添加了以全屏模式呈现特定元素（及其后代）的方法，并在不再需要时退出全屏模式。这使得可以使用用户的整个屏幕呈现所需的内容（例如在线游戏），从屏 - 幕上隐藏所有的浏览器用户界面以及其他应用，直到关闭全屏模式。</li>
+<li>useGamepad - provides reactive bindings for the Gamepad API</li>
+<li>useImage - 在浏览器中响应式加载图像，你可以等待结果显示或显示一个回退方案</li>
+<li>useMediaControls - audio 和 video 元素的响应式媒体控件。</li>
+<li>useMediaQuery - 响应式Media Query。创建 MediaQueryList 对象后，您可以查询结果或在结果更改时接收通知。</li>
+<li>useMemory - 响应式获取内存信息</li>
+<li>useObjectUrl - 响应式的用URL表示对象</li>
+<li>usePermission - 响应式 Permissions API。权限 API 提供的工具允许开发者在权限方面实现更好的用户体验。</li>
+<li>usePreferredColorScheme - 响应式 prefers-color-scheme</li>
+<li>usePreferredContrast - 响应式 prefers-contrast</li>
+<li>usePreferredDark - 响应式深色主题偏好</li>
+<li>usePreferredLanguages - 响应式 Navigator Languages。为web开发人员提供有关用户首选语言的信息。例如，这可能有助于根据用户的首选语言调整用户界面的语言，以提供更好的体验。</li>
+<li>usePreferredReducedMotion - 响应式prefers-reduced-motion</li>
+<li>useScreenOrientation - 响应式Screen Orientation API。它为web开发者提供有关用户当前屏幕方向的信息。</li>
+<li>useScreenSafeArea - 响应式 env(safe-area-inset-*)</li>
+<li>useScriptTag - 注入 script 标签</li>
+<li>useShare - 响应式 Web Share API。浏览器提供可以共享文本或文件内容的功能。</li>
+<li>useStyleTag - head上注入响应式 style 元素</li>
+<li>useTextareaAutosize - 根据内容自动更新文本区域的高度。</li>
+<li>useTextDirection - 响应式操作元素文本 方向</li>
+<li>useTitle - 响应式document title</li>
+<li>useUrlSearchParams - 响应式URLSearchParams</li>
+<li>useVibrate - 响应式 Vibration API</li>
+<li>useWakeLock - 响应式屏幕唤醒 API。提供了一种方法来防止设备在应用程序需要继续运行时调暗或锁定屏幕。</li>
+<li>useWebNotification - 响应式 Notification</li>
+<li>useWebWorker - 简单的 Web Workers 注册和通信。</li>
+<li>useWebWorkerFn - 使用 Promise 语法，在不阻塞 UI 的情况下运行复杂功能，运行在 alewin/ - useWorker。</li>
+</ul>
+<h3 id="Sensors"><a href="#Sensors" class="headerlink" title="Sensors"></a>Sensors</h3><ul>
+<li>onClickOutside - 监听元素外部的点击事件，对模态框和下拉菜单很有用。</li>
+<li>onKeyStroke - 监听键盘事件</li>
+<li>onLongPress - 监听一个元素的长按事件。</li>
+<li>onStartTyping - 当用户开始在不可编辑的元素上输入时触发。</li>
+<li>useBattery - 响应式 Battery Status API，更多时候被称之为 Battery API</li>
+<li>useDeviceMotion - 响应式 DeviceMotionEvent，为 web 开发者提供了关于设备的位置和方向的改变速度的信息。</li>
+<li>useDeviceOrientation - 响应式DeviceOrientationEvent。提供给网页开发者当设备在浏览页面时物理旋转的信息。</li>
+<li>useDevicePixelRatio - 响应式跟踪window.devicePixelRatio</li>
+<li>useDevicesList - 列出可用的输入输出设备的响应式列表</li>
+<li>useDisplayMedia - 响应式 mediaDevices.getDisplayMedia流</li>
+<li>useElementByPoint - 以坐标点响应式操作元素。</li>
+<li>useElementHover - 响应元素的悬停状态</li>
+<li>useFocus - 响应式跟踪或设置 DOM 元素的焦点状态。状态变化以反映目标元素是否是焦点元素，从外部设置响应值为 true 和 false，将分别触发 focus 和 blur 事件。</li>
+<li>useFocusWithin - 用于跟踪元素或其后代之一是否获取了焦点的响应式工具。匹配 :focus-within 伪类的行为。一个常见的用例是在表单元素上查看整个表单是否获取了焦点。</li>
+<li>useFps - 响应式 FPS（每秒帧数）。</li>
+<li>useGeolocation - 响应式 Geolocation API。允许用户向 web 应用程序提供他们的位置。出于隐私考虑，报告地理位置前会先请求用户许可。</li>
+<li>useIdle - 跟踪用户是否处于非活动状态。</li>
+<li>useInfiniteScroll - 元素无限滚动。</li>
+<li>useKeyModifier - 响应式 键盘修饰键状态。跟踪任何修饰键的状态 - 请参阅浏览器兼容性说明。</li>
+<li>useMagicKeys - 响应式按下状态，支持组合键。</li>
+<li>useMouse - 响应式获取鼠标位置</li>
+<li>useMousePressed - 响应式鼠标按下状态。由目标元素的 mousedown touchstart 事件触发，并由window上的 mouseup mouseleave touchend touchcancel 事件释放。</li>
+<li>useNavigatorLanguage - 响应式 navigator.language。</li>
+<li>useNetwork - 响应式 Network status。网络状态 API 可以获取到系统的网络连接信息，比如说连接方式是 WiFi 还是蜂窝。应用程序可以根据此信息为用户展现不同清晰度的内容。该 API 是由 NetworkInformation 接口和 Navigator 接口上新增的一个 connection 属性组成的。</li>
+<li>useOnline - 响应式在线状态，useNetwork的包装器</li>
+<li>usePageLeave - 响应式获取鼠标是否离开页面。</li>
+<li>useParallax - 轻松创建视差效果。如果不支持旋转，它会使用 useDeviceOrientation 并回退到 useMouse</li>
+<li>usePointer - 响应式 指针状态</li>
+<li>usePointerLock - 响应式 指针锁定</li>
+<li>usePointerSwipe - 基于PointerEvents的响应式滑动检测</li>
+<li>useScroll - 响应式获取滚动位置和状态。</li>
+<li>useScrollLock - 锁定元素的滚动。</li>
+<li>useSpeechRecognition - 响应式SpeechRecognition。</li>
+<li>useSpeechSynthesis - 响应式 SpeechSynthesis</li>
+<li>useSwipe - 基于 TouchEvents的响应式滑动检测</li>
+<li>useTextSelection - 基于 Window.getSelection 响应 - 式跟踪用户文本选择</li>
+<li>useUserMedia - 响应式 mediaDevices.getUserMedia流</li>
+</ul>
+<h3 id="Network"><a href="#Network" class="headerlink" title="Network"></a>Network</h3><ul>
+<li>useEventSource - 使用EventSource 或 Server-Sent-Events 实例会对 HTTP 服务开启一个持久化的连接，以 text/event-stream 格式发送事件。</li>
+<li>useFetch - 响应式 Fetch API，提供中止请求、在请求被触发之前拦截请求、在 url 更改时自动重新获取请求以及使用预定义选项创建您自己的 useFetch。</li>
+<li>useWebSocket - 响应式 WebSocket</li>
+</ul>
+<h3 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h3><ul>
+<li>useInterval - 每隔一段时间响应式增加计数</li>
+<li>useIntervalFn - 带控件的 setInterval 包装器</li>
+<li>useNow - 响应式获取当前 Date 实例。</li>
+<li>useRafFn - 在每个 requestAnimationFrame 上调用函数。可控制暂停和恢复。</li>
+<li>useTimeout - 在给定时间后更新值。</li>
+<li>useTimeoutFn - 带控件的 setTimeout 包装器。</li>
+<li>useTimestamp - 响应式获取当前时间戳</li>
+<li>useTransition - 值之间的过度</li>
+</ul>
+<h3 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h3><h3 id="Watch"><a href="#Watch" class="headerlink" title="Watch"></a>Watch</h3><h3 id="Reactivity"><a href="#Reactivity" class="headerlink" title="Reactivity"></a>Reactivity</h3><h3 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h3><h3 id="Time"><a href="#Time" class="headerlink" title="Time"></a>Time</h3><h3 id="Utilities"><a href="#Utilities" class="headerlink" title="Utilities"></a>Utilities</h3>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0"><span class="toc-text">核心函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-text">State</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#createGlobalState"><span class="toc-text">createGlobalState</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#createInjectionState"><span class="toc-text">createInjectionState</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#createSharedComposable"><span class="toc-text">createSharedComposable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useAsyncState"><span class="toc-text">useAsyncState</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDebouncedRefHistory"><span class="toc-text">useDebouncedRefHistory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useLastChanged"><span class="toc-text">useLastChanged</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useLocalStorage"><span class="toc-text">useLocalStorage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useManualRefHistory"><span class="toc-text">useManualRefHistory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useRefHistory"><span class="toc-text">useRefHistory</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useSessionStorage"><span class="toc-text">useSessionStorage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useStorage"><span class="toc-text">useStorage</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useStorageAsync"><span class="toc-text">useStorageAsync</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useThrottledRefHistory"><span class="toc-text">useThrottledRefHistory</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Element"><span class="toc-text">Element</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#useActiveElement"><span class="toc-text">useActiveElement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDocumentVisibility"><span class="toc-text">useDocumentVisibility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDraggable"><span class="toc-text">useDraggable</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useDropZone"><span class="toc-text">useDropZone</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementBounding"><span class="toc-text">useElementBounding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementSize"><span class="toc-text">useElementSize</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useElementVisibility"><span class="toc-text">useElementVisibility</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useIntersectionObserver"><span class="toc-text">useIntersectionObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useMouseInElement"><span class="toc-text">useMouseInElement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useMutationObserver"><span class="toc-text">useMutationObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useResizeObserver"><span class="toc-text">useResizeObserver</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowFocus"><span class="toc-text">useWindowFocus</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowScroll"><span class="toc-text">useWindowScroll</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#useWindowSize"><span class="toc-text">useWindowSize</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Browser"><span class="toc-text">Browser</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sensors"><span class="toc-text">Sensors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network"><span class="toc-text">Network</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Animation"><span class="toc-text">Animation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Component"><span class="toc-text">Component</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Watch"><span class="toc-text">Watch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reactivity"><span class="toc-text">Reactivity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Array"><span class="toc-text">Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time"><span class="toc-text">Time</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Utilities"><span class="toc-text">Utilities</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/04/25/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91VueUse%E5%9F%BA%E4%BA%8E%E7%BB%84%E5%90%88%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Vue/"><i class="fa fa-tags"></i>Vue</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

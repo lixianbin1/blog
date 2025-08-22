@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>PWA 渐进式网页应用 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="随笔杂记,PWA," />
+  
+
+  
+  <meta name="description" content="Progressive Web Apps (渐进式网页应用) 简称 PWA。早在2015年就有类似的概念，直到2017年由 Google 实现技术落地。虽然国外不好说，但直到目前为止，国内并未兴起 PWAs 的热潮，取而代之的是微信的小程序及支付宝的小程序等。但是随着时间的发展，各大浏览器厂商纷纷开始支持 PWAs。。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-11-05
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E9%9A%8F%E7%AC%94%E6%9D%82%E8%AE%B0/"><i class="fa fa-bookmark"></i>随笔杂记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-11-19 15:14 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    PWA 渐进式网页应用
+  </h1>
+  
+  <article class="passage-article">
+    <p>Progressive Web Apps (渐进式网页应用) 简称 PWA。早在2015年就有类似的概念，直到2017年由 Google 实现技术落地。虽然国外不好说，但直到目前为止，国内并未兴起 PWAs 的热潮，取而代之的是微信的小程序及支付宝的小程序等。但是随着时间的发展，各大浏览器厂商纷纷开始支持 PWAs。</p>
+<h2 id="怎么才能称为PWA应用"><a href="#怎么才能称为PWA应用" class="headerlink" title="怎么才能称为PWA应用"></a>怎么才能称为PWA应用</h2><p>　　<strong>“PWA不特指一种具体的技术，而是在各个浏览器厂商和众多web开发者的共同努力诞生的。它是一种集合多种技术与标准的混合物，它的背后是整个web社区和web规范”</strong><br>　　正如前文说述，PWA不是使用一种技术创建的。它们代表了构建Web应用程序的新理念，涉及一些特定的模式，API和其他功能。如果一个Web App从一开始就是PWA，那就不那么明显了。当应用程序满足某些要求时，可以将其视为PWA，或者实现一组给定的功能：离线工作，可安装，易于同步，可以发送推送通知等，这里有一些关键的原则来辨别一个web应用是否是一个PWA应用。它应该具有以下特点:</p>
+<ul>
+<li>1：内容可以通过搜索引擎发现，可以出现在设备的主屏幕</li>
+<li>2：可以简单地通过一个URL来分享它，有新的内容它都可以发送通知</li>
+<li>3：可以在离线状态或者是在网速很差的情况下运行</li>
+<li>4：在老版本的浏览器仍旧可以使用，在新版本的浏览器上可以使用全部功能</li>
+</ul>
+<h2 id="PWA有什么优点和缺点"><a href="#PWA有什么优点和缺点" class="headerlink" title="PWA有什么优点和缺点"></a>PWA有什么优点和缺点</h2><p>　　相比原始web，PWA拥有巨大优势，</p>
+<ul>
+<li>1：无需安装，无需下载，只需访问一次就能添加到桌面进行使用</li>
+<li>2：发布和更新不需要APP商店的审核，也不需要重复发布更新</li>
+<li>3：所有网页都能改进为PWA应用，能对用户产生更多的吸引力，并且提高转换效率</li>
+<li>4：不需要开发Android和IOS两个版本</li>
+</ul>
+<p>当然PWA有存在着劣势，这也是无法避免的问题：</p>
+<ul>
+<li>1：游览器对技术支持还不够全面,不是所有游览器都能支持PWA</li>
+<li>2：需要通过第三方库才能调用底层硬件（如摄像头）</li>
+<li>3：国内一些手机厂商对PWA的屏蔽以及小程序对PWA的压制</li>
+</ul>
+<h2 id="PWA的浏览器支持程度"><a href="#PWA的浏览器支持程度" class="headerlink" title="PWA的浏览器支持程度"></a>PWA的浏览器支持程度</h2><p>PWA 不依赖于单个 API ，而是使用各种技术来实现提供最佳 Web 体验的目标，PWA 所需的关键要素是 service worker 支持。 值得庆幸的是，桌面和移动设备上的所有主流浏览器都支持 service worker</p>
+<p>其他功能，如 Web App Manifest，Push，Notifications和 Add to Home Screen 功能也得到了广泛的支持。 目前，Safari 对 Web App Manifest 和 Add to Home Screen 的支持有限，并且不支持 Web 推送通知。 但是，其他主流浏览器支持所有这些功能。</p>
+<p>其中一些 API 是实验性的，文档仍在草稿中，但是看到像 Flipkart 和 AliExpress 这样的成功案例应该说服您尝试在 Web 应用程序中实现一些 PWA 功能。</p>
+<p>最重要的是，您应该遵循渐进增强规则 - 仅在支持它们的情况下使用提供此类增强功能的技术，但如果不支持，则仍然提供应用程序的基本功能。 这样每个人都可以使用它，但那些使用现代浏览器的人将更多地受益于 PWA 功能。</p>
+<ul>
+<li>本段摘自<a href="https://developer.mozilla.org/zh-CN/docs/Web/Progressive_web_apps/Introduction">MDN web docs</a> </li>
+</ul>
+<p>实际上这都是理想状态，Chrome浏览器虽然支持Pwa，但仍然需要客户手动开启Chrome实验室的Pwa功能。而在手机端绝大多数的浏览器并不支持Pwa的实现，可以说说很现实了(你不火就不支持)。不过好在Pwa在实现上花费不多，可以当成一颗闲子来下，支持固然美，不支持也无碍。</p>
+<h3 id="配置Chrome"><a href="#配置Chrome" class="headerlink" title="配置Chrome"></a>配置Chrome</h3><p>Chrome浏览器虽然支持PWA，但是仍然需要用户对浏览器进行配置</p>
+<blockquote>
+<p>首先更新你的 Chrome 版本到 64 或以上。<br>然后在地址栏输入 chrome://flags，找到 Desktop PWAs 的选项将其 Enabled<br>然后重启 Chrome 浏览器。</p>
+</blockquote>
+<h2 id="我该怎么对现有网页改进"><a href="#我该怎么对现有网页改进" class="headerlink" title="我该怎么对现有网页改进"></a>我该怎么对现有网页改进</h2><p>1：<strong>开启 Https支持</strong> ,由于目前 PWA 需要 Https 连接，所有在项目上线后，需要Https支持<br>   在测试环境中，Chrome 允许使用 localhost 或者任何 127.x.x.x 的地址进行测试应用</p>
+<p>2：<strong>创建一个 Web App Manifest</strong>，manifest文件是一个 JSON 格式的文件，位于你项目的根目录, manifest 文件提供了一些网站的信息。</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Manifest">示例参考</a></p>
+<p>3：<strong>创建一个 Service Worker</strong>,这是位于根目录的javascript 文件,是拦截和响应你的网络请求的编程接口</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/ServiceWorker">示例参考</a></p>
+<p>4：构建一个离线页面，离线页面可以是一个静态页面，来说明当前用户请求不可用。也可以用于访问缓存好的页面内容</p>
+<p>目前 PWA 处于Chrome实验室的状态，Android 也不是很支持这个技术，不确定什么时候放开，也许在将来的某天。不过即便如此，PWA的离线缓存依然能带来良好的用户体验。</p>
+<h2 id="PWA-开启安装提示的功能"><a href="#PWA-开启安装提示的功能" class="headerlink" title="PWA 开启安装提示的功能"></a>PWA 开启安装提示的功能</h2><p>在Chrom 浏览器中，PWA功能早期，如果用户需要安装此网站的PWA ，那么需要浏览网站至少30s ，开发人员才能对用户进行提示安装，<br>现在已经取消了这一限制，但是增加了新的限制：需要用户主动点击或者其他互动，开发者才能调用提示接口。<br>（如无必要，尽量不添加，兼容性不是很好）</p>
+<p>自定义安装提示</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> _beforeInstallPrompt;
+<span class="hljs-keyword">if</span> ( <span class="hljs-string">&quot;onbeforeinstallprompt&quot;</span> <span class="hljs-keyword">in</span> <span class="hljs-variable language_">window</span> ) &#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>( <span class="hljs-string">&quot;beforeinstallprompt&quot;</span>, beforeInstallPrompt );
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">beforeInstallPrompt</span>(<span class="hljs-params"> evt </span>) &#123;
+  evt.<span class="hljs-title function_">preventDefault</span>();
+  _beforeInstallPrompt = evt;
+&#125;
+
+<span class="hljs-keyword">let</span> menu=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;addApp&#x27;</span>)
+menu.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;click&#x27;</span>,<span class="hljs-function"><span class="hljs-params">e</span>=&gt;</span>&#123;
+  _beforeInstallPrompt.<span class="hljs-title function_">prompt</span>()
+  _beforeInstallPrompt.<span class="hljs-property">userChoice</span>
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">choiceResult</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span>(choiceResult.<span class="hljs-property">outcome</span> === <span class="hljs-string">&#x27;accepted&#x27;</span>) &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;user accepted A2HS prompt&#x27;</span>)
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;user dismissed A2HS prompt&#x27;</span>)
+    &#125;
+    _beforeInstallPrompt = <span class="hljs-literal">null</span>
+  &#125;)
+&#125;)</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E6%89%8D%E8%83%BD%E7%A7%B0%E4%B8%BAPWA%E5%BA%94%E7%94%A8"><span class="toc-text">怎么才能称为PWA应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="toc-text">PWA有什么优点和缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E7%A8%8B%E5%BA%A6"><span class="toc-text">PWA的浏览器支持程度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEChrome"><span class="toc-text">配置Chrome</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E8%AF%A5%E6%80%8E%E4%B9%88%E5%AF%B9%E7%8E%B0%E6%9C%89%E7%BD%91%E9%A1%B5%E6%94%B9%E8%BF%9B"><span class="toc-text">我该怎么对现有网页改进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PWA-%E5%BC%80%E5%90%AF%E5%AE%89%E8%A3%85%E6%8F%90%E7%A4%BA%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">PWA 开启安装提示的功能</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/11/05/%E3%80%90%E9%9A%8F%E7%AC%94%E6%9D%82%E8%AE%B0%E3%80%91PWA%E6%B8%90%E8%BF%9B%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/PWA/"><i class="fa fa-tags"></i>PWA</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

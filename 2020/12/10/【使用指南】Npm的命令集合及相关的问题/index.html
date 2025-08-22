@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>NPM 的命令集合及相关的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,NPM," />
+  
+
+  
+  <meta name="description" content="玄篇种种说阴阳，二字名为万法王。一粒粟中藏世界，半升铛里煮山江。青龙驾火游莲室，白虎兴波出洞房。此个功夫真是巧，得来平步上天堂。** 吕洞宾 《指玄篇 上篇 其三》 **">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-12-10
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-11-15 9:57 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    NPM 的命令集合及相关的问题
+  </h1>
+  
+  <article class="passage-article">
+    <p>NPM 是一个包依赖管理工具，NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题</p>
+<h2 id="后缀简介"><a href="#后缀简介" class="headerlink" title="后缀简介"></a>后缀简介</h2><pre><code class="hljs ldif"><span class="hljs-literal">-</span>S --save        <span class="hljs-comment"># 生产阶段的依赖</span>
+<span class="hljs-literal">-</span>D --save-dev    <span class="hljs-comment"># 开发阶段的依赖</span>
+<span class="hljs-literal">-</span>O --save-optional    <span class="hljs-comment"># 可选阶段的依赖</span>
+<span class="hljs-literal">-</span>E --save-exact       <span class="hljs-comment"># 指定版本的依赖</span>
+<span class="hljs-literal">-</span>g               <span class="hljs-comment"># 全局安装的模块</span></code></pre>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><pre><code class="hljs coffeescript"><span class="hljs-built_in">npm</span> ls     <span class="hljs-comment"># 查看安装的模块列表</span>
+<span class="hljs-built_in">npm</span> init   <span class="hljs-comment"># 初始化package文件 -y 缩写可以略去填写</span>
+<span class="hljs-built_in">npm</span> help   <span class="hljs-comment"># 查看命令帮助</span>
+<span class="hljs-built_in">npm</span> root   <span class="hljs-comment"># 查看模块的安装路径</span>
+<span class="hljs-built_in">npm</span> config <span class="hljs-comment"># 管理npm的相关配置</span>
+<span class="hljs-built_in">npm</span> cache clean <span class="hljs-comment"># 清除模块缓存</span>
+
+<span class="hljs-built_in">npm</span> install xxx       <span class="hljs-comment"># 安装xxx模块</span>
+<span class="hljs-built_in">npm</span> install xxx -g    <span class="hljs-comment"># 全局安装xxx模块</span>
+<span class="hljs-built_in">npm</span> install xxx@<span class="hljs-number">1.0</span><span class="hljs-number">.0</span> <span class="hljs-comment"># 安装指定1.0.0版本模块</span>
+
+<span class="hljs-built_in">npm</span> update xxx        <span class="hljs-comment"># 更新xxx模块</span>
+<span class="hljs-built_in">npm</span> uninstall xxx     <span class="hljs-comment"># 卸载xxx模块</span>
+<span class="hljs-built_in">npm</span> outdated          <span class="hljs-comment"># 列出所有过时模块</span>
+
+<span class="hljs-built_in">npm</span> config get registry <span class="hljs-comment"># 查看当前npm源</span>
+<span class="hljs-built_in">npm</span> config set registry https://registry.<span class="hljs-built_in">npm</span>.taobao.org <span class="hljs-comment"># 设置淘宝源</span></code></pre>
+
+<h2 id="修改全局包安装命令"><a href="#修改全局包安装命令" class="headerlink" title="修改全局包安装命令"></a>修改全局包安装命令</h2><pre><code class="hljs mipsasm">npm <span class="hljs-built_in">config</span> set <span class="hljs-keyword">prefix </span><span class="hljs-string">&quot;D:\Node\node_global&quot;</span>  <span class="hljs-comment">#修改全局包的安装目录</span>
+npm <span class="hljs-built_in">config</span> set <span class="hljs-keyword">cache </span><span class="hljs-string">&quot;D:\Node\node_cache&quot;</span>    <span class="hljs-comment">#修改全局包的缓存目录</span>
+npm <span class="hljs-built_in">config</span> ls                                <span class="hljs-comment">#查看命令</span></code></pre>
+
+<p>修改目录后，添加环境变量</p>
+<pre><code class="hljs crmsh">NODE_PATH
+D:\<span class="hljs-keyword">Node</span><span class="hljs-title">\node_global</span>\node_modules</code></pre>
+
+<pre><code class="hljs crmsh">path
+D:\<span class="hljs-keyword">Node</span><span class="hljs-title">\node_global</span></code></pre>
+
+<h2 id="相关工具"><a href="#相关工具" class="headerlink" title="相关工具"></a>相关工具</h2><pre><code class="hljs jboss-cli"><span class="hljs-string">//</span> 备用：淘宝源地址
+npm config get registry <span class="hljs-comment">#查看当前npm源</span>
+npm config <span class="hljs-keyword">set</span> registry https:<span class="hljs-string">//registry.npm.taobao.org</span>
+
+<span class="hljs-string">//</span> 直接访问地址，可以查看网络问题
+npm <span class="hljs-params">----------</span> https:<span class="hljs-string">//registry.npmjs.org/</span>
+yarn <span class="hljs-params">---------</span> https:<span class="hljs-string">//registry.yarnpkg.com/</span>
+tencent <span class="hljs-params">------</span> https:<span class="hljs-string">//mirrors.cloud.tencent.com/npm/</span>
+cnpm <span class="hljs-params">---------</span> https:<span class="hljs-string">//r.cnpmjs.org/</span>
+taobao <span class="hljs-params">-------</span> https:<span class="hljs-string">//registry.npmmirror.com/</span>
+npmMirror <span class="hljs-params">----</span> https:<span class="hljs-string">//skimdb.npmjs.com/registry/</span></code></pre>
+
+<h3 id="镜像源管理"><a href="#镜像源管理" class="headerlink" title="镜像源管理"></a>镜像源管理</h3><p>nrm 是npm的镜像源管理工具，有时候国外资源太慢，使用这个就可以快速地在 npm 源间切换</p>
+<blockquote>
+<p>npm install nrm -g</p>
+</blockquote>
+<pre><code class="hljs bash">nrm <span class="hljs-built_in">ls</span>       <span class="hljs-comment">#查看nrm的镜像源列表和当前源</span>
+nrm use xxx  <span class="hljs-comment">#切换到xxx的印象源</span>
+
+nrm add xxx http://xxx.cn/ <span class="hljs-comment">#新增映射源</span>
+nrm del xxx  <span class="hljs-comment">#删除指定的xxx映射源</span>
+nrm <span class="hljs-built_in">test</span> npm <span class="hljs-comment">#测试相应的源的相应时间</span></code></pre>
+
+<h3 id="包更新管理"><a href="#包更新管理" class="headerlink" title="包更新管理"></a>包更新管理</h3><p>npm-check-updates会将package.json依赖项升级到最新版本，而忽略指定的版本；更新包依赖，所以需要全局安装</p>
+<blockquote>
+<p>npm install npm-check-updates -g</p>
+</blockquote>
+<pre><code class="hljs nginx"><span class="hljs-attribute">ncu</span> -v  <span class="hljs-comment">#查看当前ncu版本</span>
+ncu     <span class="hljs-comment">#检测当前项目中可以更新的包依赖</span>
+ncu -g  <span class="hljs-comment">#对全局依赖包进行更新检测</span>
+
+ncu -u  <span class="hljs-comment">#检测后可以执行对本地package更新</span>
+ncu xxx -f  <span class="hljs-comment">#更新本地项目指定依赖包</span>
+
+ncu xxx -x  <span class="hljs-comment">#筛除本地项目中需要更新的包</span>
+ncu <span class="hljs-string">&#x27;/^xxx.*$/&#x27;</span>  <span class="hljs-comment">#使用正则匹配需要更新的包</span></code></pre>
+
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><h3 id="安装出现错误-4048-提示"><a href="#安装出现错误-4048-提示" class="headerlink" title="安装出现错误 -4048 提示"></a>安装出现错误 -4048 提示</h3><p>可能是C盘某些文件夹，用户没有权限修改；用管理员运行CMD在执行；</p>
+<h3 id="eslint-规范指定目录文件"><a href="#eslint-规范指定目录文件" class="headerlink" title="eslint 规范指定目录文件"></a>eslint 规范指定目录文件</h3><p>用eslint去规范指定目录下的文件</p>
+<pre><code class="hljs avrasm">npx vue-<span class="hljs-keyword">cli</span>-service lint D:\Project\Demo\</code></pre>
+
+<h3 id="nrm-列表不显示星号"><a href="#nrm-列表不显示星号" class="headerlink" title="nrm 列表不显示星号"></a>nrm 列表不显示星号</h3><p>找到npm全局安装目录，打开 <code>node_global\node_modules\nrm\cli.js</code>  修改如下代码，之后重现设置即可</p>
+<pre><div class="caption"><span>cli.js</span></div><code class="hljs js">- <span class="hljs-keyword">if</span> (<span class="hljs-title function_">hasOwnProperty</span>(customRegistries, name) &amp;&amp; (name <span class="hljs-keyword">in</span> registries || customRegistries[name].<span class="hljs-property">registry</span> === registry.<span class="hljs-property">registry</span>)) &#123;
++ <span class="hljs-keyword">if</span> (<span class="hljs-title function_">hasOwnProperty</span>(customRegistries, name) || (name <span class="hljs-keyword">in</span> registries || customRegistries[name].<span class="hljs-property">registry</span> === registry.<span class="hljs-property">registry</span>)) &#123;
+      registry[<span class="hljs-variable constant_">FIELD_IS_CURRENT</span>] = <span class="hljs-literal">true</span>;
+      customRegistries[name] = registry;
+  &#125;</code></pre>
+
+<h3 id="安装提示错误-code-EEXIST"><a href="#安装提示错误-code-EEXIST" class="headerlink" title="安装提示错误 code EEXIST"></a>安装提示错误 code EEXIST</h3><p>残留有错误文件，把残留文件删除就行了，一般会提示残留文件目录</p>
+<p>npm ERR! File exists: D:\node\node_modules\node_global\hexo<br>npm ERR! Remove the existing file and try again, or run npm</p>
+<h3 id="运行项目时，提示没找到绑定文件"><a href="#运行项目时，提示没找到绑定文件" class="headerlink" title="运行项目时，提示没找到绑定文件"></a>运行项目时，提示没找到绑定文件</h3><p>运行项目时，提示没找到绑定文件，一般是因为项目依赖包会在安装的时候直接下载预编译的二进制文件，但是如果网络问题，导致没下载成功，也会提示安装成功，但是源代码里没有这个文件，就会提示没有找到绑定文件。</p>
+<pre><code class="hljs subunit"><span class="hljs-keyword">Error: </span>Could not locate the bindings file. Tried:
+→ D:\Software\Object\node-template\node_modules\.pnpm\sqlite3@5.1.7\node_modules\sqlite3\build\node_sqlite3.node</code></pre>
+
+<p>解决方案：</p>
+<p>找到源码的package.json文件，查看编译命令是哪个，执行编译命令</p>
+<p>比如sqlite3：npm rebuild sqlite3</p>
+<h3 id="运行项目的时候，提示包依赖冲突或者包重复"><a href="#运行项目的时候，提示包依赖冲突或者包重复" class="headerlink" title="运行项目的时候，提示包依赖冲突或者包重复"></a>运行项目的时候，提示包依赖冲突或者包重复</h3><p>versionDetect.js:90 @polkadot/util has multiple versions, ensure that there is only one installed.<br>Either remove and explicitly install matching versions or dedupe using your package manager.<br>The following conflicting packages were found<br>  cjs 9.7.2 unknown<br>  cjs 9.7.2 unknown</p>
+<p>在package.json 中尝试锁定依赖包的版本</p>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">&quot;overrides&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;@polkadot/util&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9.7.2&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;@polkadot/util-crypto&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;9.7.2&quot;</span>
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BC%80%E7%AE%80%E4%BB%8B"><span class="toc-text">后缀简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%85%A8%E5%B1%80%E5%8C%85%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="toc-text">修改全局包安装命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%B7%A5%E5%85%B7"><span class="toc-text">相关工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%9C%E5%83%8F%E6%BA%90%E7%AE%A1%E7%90%86"><span class="toc-text">镜像源管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E6%9B%B4%E6%96%B0%E7%AE%A1%E7%90%86"><span class="toc-text">包更新管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="toc-text">相关问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF-4048-%E6%8F%90%E7%A4%BA"><span class="toc-text">安装出现错误 -4048 提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eslint-%E8%A7%84%E8%8C%83%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6"><span class="toc-text">eslint 规范指定目录文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nrm-%E5%88%97%E8%A1%A8%E4%B8%8D%E6%98%BE%E7%A4%BA%E6%98%9F%E5%8F%B7"><span class="toc-text">nrm 列表不显示星号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%8F%90%E7%A4%BA%E9%94%99%E8%AF%AF-code-EEXIST"><span class="toc-text">安装提示错误 code EEXIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE%E6%97%B6%EF%BC%8C%E6%8F%90%E7%A4%BA%E6%B2%A1%E6%89%BE%E5%88%B0%E7%BB%91%E5%AE%9A%E6%96%87%E4%BB%B6"><span class="toc-text">运行项目时，提示没找到绑定文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%8F%90%E7%A4%BA%E5%8C%85%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E6%88%96%E8%80%85%E5%8C%85%E9%87%8D%E5%A4%8D"><span class="toc-text">运行项目的时候，提示包依赖冲突或者包重复</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2020/12/10/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Npm%E7%9A%84%E5%91%BD%E4%BB%A4%E9%9B%86%E5%90%88%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/NPM/"><i class="fa fa-tags"></i>NPM</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

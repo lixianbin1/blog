@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>PWA关于Vue中的深入应用 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,PWA," />
+  
+
+  
+  <meta name="description" content="渐进式 Web 应用（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。它像网站一样，PWA 可以通过一个代码库在多个平台和设备上运行。它也像一个特定平台的应用程序一样，可以安装在设备上，可以离线和在后台运行，并且可以与设备和其他已安装的应用程序集成。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2023-08-30
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-10-18 15:30 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    PWA关于Vue中的深入应用
+  </h1>
+  
+  <article class="passage-article">
+    <a href="/blog/2019/11/05/%E3%80%90%E9%9A%8F%E7%AC%94%E6%9D%82%E8%AE%B0%E3%80%91PWA%E6%B8%90%E8%BF%9B%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8/" title="渐进式 Web 应用">渐进式 Web 应用</a>（Progressive Web App，PWA）是一个使用 web 平台技术构建的应用程序，但它提供的用户体验就像一个特定平台的应用程序。它像网站一样，PWA 可以通过一个代码库在多个平台和设备上运行。它也像一个特定平台的应用程序一样，可以安装在设备上，可以离线和在后台运行，并且可以与设备和其他已安装的应用程序集成。下面的网址为PWA示例网站 [lixianbin1 - PWA-Example](https://lixianbin1.github.io/PWA-Example/#/)
+
+<h2 id="vite-plugin-pwa"><a href="#vite-plugin-pwa" class="headerlink" title="vite-plugin-pwa"></a>vite-plugin-pwa</h2><p>以下是关于VUE集成PWA功能的相关介绍及配置。 <a href="https://vite-pwa-org.netlify.app/guide/">vite-plugin-pwa</a> 将帮助您将配置几乎为零的 PWA 添加到现有应用程序中。该插件将为常见用例添加合理的内置默认配置。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><pre><code class="hljs armasm"><span class="hljs-comment">// 可以使用 Yarn 或者 NPM</span>
+<span class="hljs-symbol">yarn</span> <span class="hljs-keyword">add</span> vite-plugin-pwa -D</code></pre>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><pre><code class="hljs js"><span class="hljs-comment">// vite.config.js</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">VitePWA</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vite-plugin-pwa&#x27;</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;
+  <span class="hljs-attr">plugins</span>: [ <span class="hljs-comment">//说是无配置，但是还是有着最低的配置要求，必须提供以下，此为最低配置</span>
+    <span class="hljs-title class_">VitePWA</span>(&#123;
+      <span class="hljs-attr">includeAssets</span>: [<span class="hljs-string">&#x27;favicon.ico&#x27;</span>, <span class="hljs-string">&#x27;apple-touch-icon.png&#x27;</span>, <span class="hljs-string">&#x27;mask-icon.svg&#x27;</span>],
+      <span class="hljs-attr">manifest</span>: &#123;
+        <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;My Awesome App&#x27;</span>, <span class="hljs-comment">//PWA App名称</span>
+        <span class="hljs-attr">short_name</span>: <span class="hljs-string">&#x27;MyApp&#x27;</span>,
+        <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;My Awesome App description&#x27;</span>, <span class="hljs-comment">//PWA APP介绍词</span>
+        <span class="hljs-attr">theme_color</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>, <span class="hljs-comment">//主题色</span>
+        <span class="hljs-attr">icons</span>: [ <span class="hljs-comment">//icon图标，用于在不同的终端显示不同的图标</span>
+          &#123;
+            <span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;pwa-192x192.png&#x27;</span>,
+            <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;192x192&#x27;</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>
+          &#125;,
+          &#123;
+            <span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;pwa-512x512.png&#x27;</span>,
+            <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;512x512&#x27;</span>,
+            <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>
+          &#125;
+        ]
+      &#125;
+    &#125;)
+  ]
+&#125;</code></pre>
+
+<h3 id="自定义"><a href="#自定义" class="headerlink" title="自定义"></a>自定义</h3><pre><code class="hljs js"><span class="hljs-comment">// vite.config.js / vite.config.ts</span>
+<span class="hljs-keyword">const</span> pwaOptions = &#123;
+  <span class="hljs-attr">mode</span>: <span class="hljs-string">&#x27;development&#x27;</span>,
+  <span class="hljs-attr">base</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+  <span class="hljs-attr">includeAssets</span>: [<span class="hljs-string">&#x27;favicon.svg&#x27;</span>],
+  <span class="hljs-attr">manifest</span>: &#123;
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;PWA Router&#x27;</span>,
+    <span class="hljs-attr">short_name</span>: <span class="hljs-string">&#x27;PWA Router&#x27;</span>,
+    <span class="hljs-attr">theme_color</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>,
+    <span class="hljs-attr">icons</span>: [
+      &#123;
+        <span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;pwa-192x192.png&#x27;</span>,
+        <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;192x192&#x27;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>,
+      &#125;,
+      &#123;
+        <span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;pwa-512x512.png&#x27;</span>,
+        <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;512x512&#x27;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>,
+      &#125;,
+      &#123;
+        <span class="hljs-attr">src</span>: <span class="hljs-string">&#x27;pwa-512x512.png&#x27;</span>,
+        <span class="hljs-attr">sizes</span>: <span class="hljs-string">&#x27;512x512&#x27;</span>,
+        <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;image/png&#x27;</span>,
+        <span class="hljs-attr">purpose</span>: <span class="hljs-string">&#x27;any maskable&#x27;</span>,
+      &#125;,<span class="hljs-number">0</span>
+    ],
+  &#125;,
+  <span class="hljs-attr">devOptions</span>: &#123; <span class="hljs-comment">//通过process.env环境变量对项目中配置进行控制</span>
+    <span class="hljs-attr">enabled</span>: process.<span class="hljs-property">env</span>.<span class="hljs-property">SW_DEV</span> === <span class="hljs-string">&#x27;true&#x27;</span>,
+    <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;module&#x27;</span>, <span class="hljs-comment">/*当使用generateSW时，PWA插件将切换到经典*/</span>
+    <span class="hljs-attr">navigateFallback</span>: <span class="hljs-string">&#x27;index.html&#x27;</span>,
+    <span class="hljs-attr">suppressWarnings</span>: <span class="hljs-literal">true</span>,
+  &#125;,
+&#125;
+
+<span class="hljs-keyword">const</span> replaceOptions = &#123; <span class="hljs-attr">__DATE__</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>() &#125;
+<span class="hljs-keyword">const</span> claims = process.<span class="hljs-property">env</span>.<span class="hljs-property">CLAIMS</span> === <span class="hljs-string">&#x27;true&#x27;</span>
+<span class="hljs-keyword">const</span> reload = process.<span class="hljs-property">env</span>.<span class="hljs-property">RELOAD_SW</span> === <span class="hljs-string">&#x27;true&#x27;</span>
+<span class="hljs-keyword">const</span> selfDestroying = process.<span class="hljs-property">env</span>.<span class="hljs-property">SW_DESTROY</span> === <span class="hljs-string">&#x27;true&#x27;</span>
+
+<span class="hljs-keyword">if</span> (process.<span class="hljs-property">env</span>.<span class="hljs-property">SW</span> === <span class="hljs-string">&#x27;true&#x27;</span>) &#123;
+  pwaOptions.<span class="hljs-property">srcDir</span> = <span class="hljs-string">&#x27;src&#x27;</span>
+  pwaOptions.<span class="hljs-property">filename</span> = claims ? <span class="hljs-string">&#x27;claims-sw.ts&#x27;</span> : <span class="hljs-string">&#x27;prompt-sw.ts&#x27;</span>
+  pwaOptions.<span class="hljs-property">strategies</span> = <span class="hljs-string">&#x27;injectManifest&#x27;</span>
+  ;(pwaOptions.<span class="hljs-property">manifest</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">ManifestOptions</span>&gt;).<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;PWA Inject Manifest&#x27;</span>
+  ;(pwaOptions.<span class="hljs-property">manifest</span> <span class="hljs-keyword">as</span> <span class="hljs-title class_">Partial</span>&lt;<span class="hljs-title class_">ManifestOptions</span>&gt;).<span class="hljs-property">short_name</span> = <span class="hljs-string">&#x27;PWA Inject&#x27;</span>
+&#125;
+
+<span class="hljs-keyword">if</span> (claims)
+  pwaOptions.<span class="hljs-property">registerType</span> = <span class="hljs-string">&#x27;autoUpdate&#x27;</span>
+
+<span class="hljs-keyword">if</span> (reload) &#123;
+  replaceOptions.<span class="hljs-property">__RELOAD_SW__</span> = <span class="hljs-string">&#x27;true&#x27;</span>
+&#125;
+
+<span class="hljs-keyword">if</span> (selfDestroying)
+  pwaOptions.<span class="hljs-property">selfDestroying</span> = selfDestroying
+
+    ....
+    <span class="hljs-title class_">VitePWA</span>(pwaOptions)
+</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vite-plugin-pwa"><span class="toc-text">vite-plugin-pwa</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-text">自定义</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2023/08/30/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91PWA%E5%85%B3%E4%BA%8EVue%E4%B8%AD%E7%9A%84%E6%B7%B1%E5%85%A5%E5%BA%94%E7%94%A8/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/PWA/"><i class="fa fa-tags"></i>PWA</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

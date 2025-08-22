@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>【转载】你会用ES6，那倒是用啊！ | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="文章转载," />
+  
+
+  
+  <meta name="description" content="该文章为转载文章，因为很多时候看到一篇文章，但过段时间就可能会被删除，所以先转载过来，怕不知道什么时候就没了或找不到。作者要是联系，我也会删除。文章不代表本人观点">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-03-01
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E6%96%87%E7%AB%A0%E8%BD%AC%E8%BD%BD/"><i class="fa fa-bookmark"></i>文章转载</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-3-1 9:31 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    【转载】你会用ES6，那倒是用啊！
+  </h1>
+  
+  <article class="passage-article">
+    <p>该文章为转载文章，因为很多时候看到一篇文章，但过段时间就可能会被删除，所以先转载过来，怕不知道什么时候就没了或找不到。作者要是联系，我也会删除。文章不代表本人观点</p>
+<p>【转载】：<a href="https://juejin.cn/post/7016520448204603423">https://juejin.cn/post/7016520448204603423</a></p>
+<p>不是标题党，这是一位leader在一次代码评审会对小组成员发出的“怒吼”，原因是在代码评审中发现很多地方还是采用ES5的写法，也不是说用ES5写法不行，会有BUG，只是造成代码量增多，可读性变差而已。<br>恰好，这位leader有代码洁癖，面对3~5年经验的成员，还写这种水平的代码，极为不满，不断对代码进行吐槽。不过对于他的吐槽，我感觉还是有很大收获的，故就把leader的吐槽记录下来，分享给掘友们，觉得有收获点个赞，有错误的或者更好的写法，非常欢迎在评论中留言。</p>
+<p>ps：ES5之后的JS语法统称ES6！！！</p>
+<h3 id="一、关于取值的吐槽"><a href="#一、关于取值的吐槽" class="headerlink" title="一、关于取值的吐槽"></a>一、关于取值的吐槽</h3><p>取值在程序中非常常见，比如从对象obj中取值</p>
+<pre><code class="hljs dts">const <span class="hljs-attr">obj</span> <span class="hljs-operator">=</span> <span class="hljs-punctuation">&#123;</span>
+<span class="hljs-symbol">    a:</span><span class="hljs-number">1</span>,
+<span class="hljs-symbol">    b:</span><span class="hljs-number">2</span>,
+<span class="hljs-symbol">    c:</span><span class="hljs-number">3</span>,
+<span class="hljs-symbol">    d:</span><span class="hljs-number">4</span>,
+<span class="hljs-symbol">    e:</span><span class="hljs-number">5</span>,
+<span class="hljs-punctuation">&#125;</span></code></pre>
+
+<p>吐槽：</p>
+<pre><code class="hljs abnf">const a <span class="hljs-operator">=</span> obj.a<span class="hljs-comment">;</span>
+const b <span class="hljs-operator">=</span> obj.b<span class="hljs-comment">;</span>
+const c <span class="hljs-operator">=</span> obj.c<span class="hljs-comment">;</span>
+const d <span class="hljs-operator">=</span> obj.d<span class="hljs-comment">;</span>
+const e <span class="hljs-operator">=</span> obj.e<span class="hljs-comment">;</span></code></pre>
+
+<p>或者</p>
+<pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> f = obj.a + obj.d;
+<span class="hljs-keyword">const</span> g = obj.c + obj.e;</code></pre>
+
+<blockquote>
+<p>吐槽：“不会用ES6的解构赋值来取值吗？5行代码用1行代码搞定不香吗？直接用对象名加属性名去取值，要是对象名短还好，很长呢？搞得代码中到处都是这个对象名。”</p>
+</blockquote>
+<p>改进：</p>
+<pre><code class="hljs actionscript"><span class="hljs-keyword">const</span> &#123;a,b,c,d,e&#125; = obj;
+<span class="hljs-keyword">const</span> f = a + d;
+<span class="hljs-keyword">const</span> g = c + e;</code></pre>
+
+<p>反驳<br>不是不用ES6的解构赋值，而是服务端返回的数据对象中的属性名不是我想要的，这样取值，不是还得重新创建个遍历赋值。</p>
+<p>吐槽<br>看来你对ES6的解构赋值掌握的还是不够彻底。如果想创建的变量名和对象的属性名不一致，可以这么写：</p>
+<pre><code class="hljs arcade">const &#123;<span class="hljs-attr">a</span>:a1&#125; = obj;
+<span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(a1);<span class="hljs-comment">// 1</span></code></pre>
+
+<p>补充<br>ES6的解构赋值虽然好用。但是要注意解构的对象不能为undefined、null。否则会报错，故要给被解构的对象一个默认值。</p>
+<pre><code class="hljs dust"><span class="language-xml">const </span><span class="hljs-template-variable">&#123;a,b,c,d,e&#125;</span><span class="language-xml"> = obj || </span><span class="hljs-template-variable">&#123;&#125;</span><span class="language-xml">;</span></code></pre>
+
+<h3 id="二、关于合并数据的吐槽"><a href="#二、关于合并数据的吐槽" class="headerlink" title="二、关于合并数据的吐槽"></a>二、关于合并数据的吐槽</h3><p>比如合并两个数组，合并两个对象。</p>
+<pre><code class="hljs dart"><span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];
+<span class="hljs-keyword">const</span> c = a.concat(b);<span class="hljs-comment">//[1,2,3,1,5,6]</span>
+
+<span class="hljs-keyword">const</span> obj1 = &#123;
+  a:<span class="hljs-number">1</span>,
+&#125;
+<span class="hljs-keyword">const</span> obj2 = &#123;
+  b:<span class="hljs-number">1</span>,
+&#125;
+<span class="hljs-keyword">const</span> obj = <span class="hljs-built_in">Object</span>.assign(&#123;&#125;, obj1, obj2);<span class="hljs-comment">//&#123;a:1,b:1&#125;</span></code></pre>
+
+<p>吐槽<br>ES6的扩展运算符是不是忘记了，还有数组的合并不考虑去重吗？</p>
+<p>改进</p>
+<pre><code class="hljs csharp"><span class="hljs-keyword">const</span> a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>];
+<span class="hljs-keyword">const</span> b = [<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>];
+<span class="hljs-keyword">const</span> c = [...<span class="hljs-function"><span class="hljs-keyword">new</span> <span class="hljs-title">Set</span>(<span class="hljs-params">[...a,...b]</span>)]</span>;<span class="hljs-comment">//[1,2,3,5,6]</span>
+
+<span class="hljs-keyword">const</span> obj1 = &#123;
+  a:<span class="hljs-number">1</span>,
+&#125;
+<span class="hljs-keyword">const</span> obj2 = &#123;
+  b:<span class="hljs-number">1</span>,
+&#125;
+<span class="hljs-keyword">const</span> obj = &#123;...obj1,...obj2&#125;;<span class="hljs-comment">//&#123;a:1,b:1&#125;</span></code></pre>
+<h3 id="三、关于拼接字符串的吐槽"><a href="#三、关于拼接字符串的吐槽" class="headerlink" title="三、关于拼接字符串的吐槽"></a>三、关于拼接字符串的吐槽</h3><pre><code class="hljs javascript"><span class="hljs-keyword">const</span> name = <span class="hljs-string">&#x27;小明&#x27;</span>;
+<span class="hljs-keyword">const</span> score = <span class="hljs-number">59</span>;
+<span class="hljs-keyword">let</span> result = <span class="hljs-string">&#x27;&#x27;</span>;
+<span class="hljs-keyword">if</span>(score &gt; <span class="hljs-number">60</span>)&#123;
+  result = <span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>的考试成绩及格`</span>; 
+&#125;<span class="hljs-keyword">else</span>&#123;
+  result = <span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span>的考试成绩不及格`</span>; 
+&#125;</code></pre>
+<p>吐槽<br>像你们这样用ES6字符串模板，还不如不用，你们根本不清楚在${}中可以做什么操作。在${}中可以放入任意的JavaScript表达式，可以进行运算，以及引用对象属性。<br>改进</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> name = <span class="hljs-string">&#x27;小明&#x27;</span>;
+<span class="hljs-keyword">const</span> score = <span class="hljs-number">59</span>;
+<span class="hljs-keyword">const</span> result = <span class="hljs-string">`<span class="hljs-subst">$&#123;name&#125;</span><span class="hljs-subst">$&#123;score &gt; <span class="hljs-number">60</span>?<span class="hljs-string">&#x27;的考试成绩及格&#x27;</span>:<span class="hljs-string">&#x27;的考试成绩不及格&#x27;</span>&#125;</span>`</span>;</code></pre>
+<h3 id="四、关于if中判断条件的吐槽"><a href="#四、关于if中判断条件的吐槽" class="headerlink" title="四、关于if中判断条件的吐槽"></a>四、关于if中判断条件的吐槽</h3><pre><code class="hljs ada"><span class="hljs-keyword">if</span>(
+    <span class="hljs-keyword">type</span> <span class="hljs-type">== </span><span class="hljs-number">1</span> ||
+    <span class="hljs-keyword">type</span> <span class="hljs-type">== </span><span class="hljs-number">2</span> ||
+    <span class="hljs-keyword">type</span> <span class="hljs-type">== </span><span class="hljs-number">3</span> ||
+    <span class="hljs-keyword">type</span> <span class="hljs-type">== </span><span class="hljs-number">4</span> ||
+)&#123;
+   //...
+&#125;</code></pre>
+<p>吐槽<br>ES6中数组实例方法includes会不会使用呢？<br>改进</p>
+<pre><code class="hljs go"><span class="hljs-keyword">const</span> condition = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>];
+
+<span class="hljs-keyword">if</span>( condition.includes(<span class="hljs-keyword">type</span>) )&#123;
+   <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+<h3 id="五、关于列表搜索的吐槽"><a href="#五、关于列表搜索的吐槽" class="headerlink" title="五、关于列表搜索的吐槽"></a>五、关于列表搜索的吐槽</h3><p>在项目中，一些没分页的列表的搜索功能由前端来实现，搜索一般分为精确搜索和模糊搜索。搜索也要叫过滤，一般用filter来实现。</p>
+<pre><code class="hljs arcade">const a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
+const result = a.<span class="hljs-built_in">filter</span>( 
+  <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>&#123;
+    <span class="hljs-keyword">return</span> item === <span class="hljs-number">3</span>
+  &#125;
+)</code></pre>
+<p>吐槽<br>如果是精确搜索不会用ES6中的find吗？性能优化懂么，find方法中找到符合条件的项，就不会继续遍历数组。<br>改进</p>
+<pre><code class="hljs arcade">const a = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>];
+const result = a.<span class="hljs-built_in">find</span>( 
+  <span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span>&#123;
+    <span class="hljs-keyword">return</span> item === <span class="hljs-number">3</span>
+  &#125;
+)</code></pre>
+<h3 id="六、关于扁平化数组的吐槽"><a href="#六、关于扁平化数组的吐槽" class="headerlink" title="六、关于扁平化数组的吐槽"></a>六、关于扁平化数组的吐槽</h3><p>一个部门JSON数据中，属性名是部门id，属性值是个部门成员id数组集合，现在要把有部门的成员id都提取到一个数组集合中。</p>
+<pre><code class="hljs prolog">const deps = &#123;
+<span class="hljs-string">&#x27;采购部&#x27;</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
+<span class="hljs-string">&#x27;人事部&#x27;</span>:[<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">12</span>],
+<span class="hljs-string">&#x27;行政部&#x27;</span>:[<span class="hljs-number">5</span>,<span class="hljs-number">14</span>,<span class="hljs-number">79</span>],
+<span class="hljs-string">&#x27;运输部&#x27;</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">64</span>,<span class="hljs-number">105</span>],
+&#125;
+let member = [];
+for (let item in deps)&#123;
+    const value = deps[item];
+    if(<span class="hljs-symbol">Array</span>.isArray(value))&#123;
+        member = [...member,...value]
+    &#125;
+&#125;
+member = [...new <span class="hljs-symbol">Set</span>(member)]</code></pre>
+<p>吐槽<br>获取对象的全部属性值还要遍历吗？Object.values忘记了吗？还有涉及到数组的扁平化处理，为啥不用ES6提供的flat方法呢，还好这次的数组的深度最多只到2维，还要是遇到4维、5维深度的数组，是不是得循环嵌套循环来扁平化？<br>改进</p>
+<pre><code class="hljs livescript"><span class="hljs-keyword">const</span> deps = &#123;
+    <span class="hljs-string">&#x27;采购部&#x27;</span>:[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],
+    <span class="hljs-string">&#x27;人事部&#x27;</span>:[<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">12</span>],
+    <span class="hljs-string">&#x27;行政部&#x27;</span>:[<span class="hljs-number">5</span>,<span class="hljs-number">14</span>,<span class="hljs-number">79</span>],
+    <span class="hljs-string">&#x27;运输部&#x27;</span>:[<span class="hljs-number">3</span>,<span class="hljs-number">64</span>,<span class="hljs-number">105</span>],
+&#125;
+<span class="hljs-keyword">let</span> member = <span class="hljs-built_in">Object</span>.values(deps).flat(<span class="hljs-literal">Infinity</span>);</code></pre>
+<p>其中使用Infinity作为flat的参数，使得无需知道被扁平化的数组的维度。<br>补充<br>flat方法不支持IE浏览器。</p>
+<h3 id="七、关于获取对象属性值的吐槽"><a href="#七、关于获取对象属性值的吐槽" class="headerlink" title="七、关于获取对象属性值的吐槽"></a>七、关于获取对象属性值的吐槽</h3><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = obj &amp;&amp; obj.<span class="hljs-keyword">name</span>;</code></pre>
+<p>吐槽<br>ES6中的可选链操作符会使用么？<br>改进</p>
+<pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = obj?.<span class="hljs-keyword">name</span>;</code></pre>
+<h3 id="八、关于添加对象属性的吐槽"><a href="#八、关于添加对象属性的吐槽" class="headerlink" title="八、关于添加对象属性的吐槽"></a>八、关于添加对象属性的吐槽</h3><p>当给对象添加属性时，如果属性名是动态变化的，该怎么处理。</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;&#125;;
+<span class="hljs-keyword">let</span> index = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">let</span> key = <span class="hljs-string">`topic<span class="hljs-subst">$&#123;index&#125;</span>`</span>;
+obj[key] = <span class="hljs-string">&#x27;话题内容&#x27;</span>;</code></pre>
+<p>吐槽<br>为何要额外创建一个变量。不知道ES6中的对象属性名是可以用表达式吗？<br>改进</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">let</span> obj = &#123;&#125;;
+<span class="hljs-keyword">let</span> index = <span class="hljs-number">1</span>;
+obj[<span class="hljs-string">`topic<span class="hljs-subst">$&#123;index&#125;</span>`</span>] = <span class="hljs-string">&#x27;话题内容&#x27;</span>;</code></pre>
+<p>复制代码</p>
+<h3 id="九、关于输入框非空的判断"><a href="#九、关于输入框非空的判断" class="headerlink" title="九、关于输入框非空的判断"></a>九、关于输入框非空的判断</h3><p>在处理输入框相关业务时，往往会判断输入框未输入值的场景。</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">if</span><span class="hljs-params">(value !== null &amp;&amp; value !== undefined &amp;&amp; value !== <span class="hljs-string">&#x27;&#x27;</span>)</span></span>&#123;
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+
+<p>吐槽<br>ES6中新出的空值合并运算符了解过吗，要写那么多条件吗？</p>
+<pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">if</span><span class="hljs-params">((value??<span class="hljs-string">&#x27;&#x27;</span>)</span></span> !== <span class="hljs-string">&#x27;&#x27;</span>)&#123;
+  <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+
+<h3 id="十、关于异步函数的吐槽"><a href="#十、关于异步函数的吐槽" class="headerlink" title="十、关于异步函数的吐槽"></a>十、关于异步函数的吐槽</h3><p>异步函数很常见，经常是用 Promise 来实现。</p>
+<pre><code class="hljs coffeescript">const fn1 = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+      resolve(<span class="hljs-number">1</span>);
+    &#125;, <span class="hljs-number">300</span>);
+  &#125;);
+&#125;
+const fn2 = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>&#123;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-params">(resolve, reject)</span> =&gt;</span> &#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+      resolve(<span class="hljs-number">2</span>);
+    &#125;, <span class="hljs-number">600</span>);
+  &#125;);
+&#125;
+const fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>&#123;
+   fn1().<span class="hljs-keyword">then</span>(res1 =&gt;&#123;
+      console.log(res1);<span class="hljs-regexp">//</span> <span class="hljs-number">1</span>
+      fn2().<span class="hljs-keyword">then</span>(res2 =&gt;&#123;
+        console.log(res2)
+      &#125;)
+   &#125;)
+&#125;</code></pre>
+<p>吐槽<br>如果这样调用异步函数，不怕形成地狱回调啊！<br>改进</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-title function_">fn</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt;&#123;
+  <span class="hljs-keyword">const</span> res1 = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fn1</span>();
+  <span class="hljs-keyword">const</span> res2 = <span class="hljs-keyword">await</span> <span class="hljs-title function_">fn2</span>();
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res1);<span class="hljs-comment">// 1</span>
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(res2);<span class="hljs-comment">// 2</span>
+&#125;</code></pre>
+
+<p>补充<br>但是要做并发请求时，还是要用到Promise.all()。</p>
+<pre><code class="hljs arcade">const fn = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span>&#123;
+   Promise.<span class="hljs-built_in">all</span>([fn1(),fn2()]).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span>&#123;
+       <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(res);<span class="hljs-comment">// [1,2]</span>
+   &#125;) 
+&#125;</code></pre>
+
+<p>如果并发请求时，只要其中一个异步函数处理完成，就返回结果，要用到Promise.race()。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%85%B3%E4%BA%8E%E5%8F%96%E5%80%BC%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">一、关于取值的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E4%BA%8E%E5%90%88%E5%B9%B6%E6%95%B0%E6%8D%AE%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">二、关于合并数据的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%85%B3%E4%BA%8E%E6%8B%BC%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">三、关于拼接字符串的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%85%B3%E4%BA%8Eif%E4%B8%AD%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">四、关于if中判断条件的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%85%B3%E4%BA%8E%E5%88%97%E8%A1%A8%E6%90%9C%E7%B4%A2%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">五、关于列表搜索的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%85%B3%E4%BA%8E%E6%89%81%E5%B9%B3%E5%8C%96%E6%95%B0%E7%BB%84%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">六、关于扁平化数组的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%85%B3%E4%BA%8E%E8%8E%B7%E5%8F%96%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">七、关于获取对象属性值的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%85%B3%E4%BA%8E%E6%B7%BB%E5%8A%A0%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">八、关于添加对象属性的吐槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%85%B3%E4%BA%8E%E8%BE%93%E5%85%A5%E6%A1%86%E9%9D%9E%E7%A9%BA%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">九、关于输入框非空的判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%85%B3%E4%BA%8E%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0%E7%9A%84%E5%90%90%E6%A7%BD"><span class="toc-text">十、关于异步函数的吐槽</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

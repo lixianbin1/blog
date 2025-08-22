@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>HTML的相关概念介绍 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="前端入门,HTML," />
+  
+
+  
+  <meta name="description" content="重新整理一下关于前端的技术和概念性认识，巩固下自己的基础知识点。超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言，html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2016-07-31
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E5%85%A5%E9%97%A8/"><i class="fa fa-bookmark"></i>前端入门</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-9-26 10:56 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    HTML的相关概念介绍
+  </h1>
+  
+  <article class="passage-article">
+    <p>超文本标记语言(简称：HTML)是一种用于创建网页的标准标记语言，html编辑的页面在浏览器上运行，以.html或.htm结尾，是网页内容的载体。</p>
+<h3 id="HTML元素"><a href="#HTML元素" class="headerlink" title="HTML元素"></a>HTML元素</h3><p>大多数 HTML 元素被定义为块级元素或行内元素。</p>
+<p><strong><code>块级元素</code>独占一行，总在新行开始，高度，行高，内边距和外边距都是可控制，宽度默认和浏览器宽度一致。</strong>例如：h1-h6，div，p，ul等，</p>
+<p><strong><code>行内元素</code>则可以和其他元素在一行，宽度和内容有关；</strong> 例如：a，b，en，span等。</p>
+<p><strong><code>行内块级元素</code>（内联块级元素，行内置换元素）则介于两者之间</strong> 例如：img和input。</p>
+<p><strong><code>置换元素</code>在浏览器中会根据元素的标签和属性，来决定元素的具体显示内容</strong> 例如：img</p>
+<p><strong><code>空标签</code>即不包裹内容的标签</strong>，例如 br hr img 等</p>
+<h3 id="文本格式"><a href="#文本格式" class="headerlink" title="文本格式"></a>文本格式</h3><p>在HTML中有着格式化标签，其中包括： </p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">字体加粗 <code>&lt;b&gt;加粗&lt;/b&gt;</code></td>
+<td align="left">字体倾斜 <code>&lt;i&gt;倾斜&lt;/i&gt;</code></td>
+</tr>
+<tr>
+<td align="left">文字下标 <code>&lt;sub&gt;下标&lt;/sub&gt;</code></td>
+<td align="left">文字上标 <code>&lt;sup&gt;下标&lt;/sup&gt;</code></td>
+</tr>
+<tr>
+<td align="left">语气强调 <code>&lt;strong&gt;强调：字体表现加粗&lt;/strong&gt;</code></td>
+<td align="left">轻度强调 <code>&lt;em&gt;强调：字体表现倾斜&lt;/em&gt;</code></td>
+</tr>
+<tr>
+<td align="left">键盘文本 <code>&lt;kbd&gt; ctrl &lt;/kbd&gt;</code></td>
+<td align="left">计算机代码 <code>&lt;code&gt; console&lt;/code&gt;</code></td>
+</tr>
+<tr>
+<td align="left">预格式文本 <code>&lt;pre&gt; 有几个空格，就空几个 &lt;/pre&gt;</code></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<h3 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h3><blockquote>
+<p>根据内容和结构选择合适的标签，便于开发者阅读同时对搜索引擎友好让机器很好的解析.</p>
+</blockquote>
+<p>例如根据 头部标签选择 <code>header</code> 标签，根据内容段落选择 <code>article</code> 和 <code>p</code>，根据表单输入选择 <code>aside</code> 和 <code>input</code> 等。这样文档结构定义明确便于后期维护。html5新增加的语义元素有：<code>header</code>(定义头部)；<code>nav</code>(定义导航链接)；<code>footer</code>(定义页尾)；<code>section</code>(定位文档中的节，页眉，页脚)<code>article</code>(定义独立内容：文章，评论)；<code>aside</code>(定义所处内容之外的内容)；<code>figure</code>(定义独立的流内容，照片，图表)</p>
+<h3 id="字符实体"><a href="#字符实体" class="headerlink" title="字符实体"></a>字符实体</h3><p>在 HTML 中，某些字符是预留的，不允许在文本中使用，其中有 【空格 <code>&amp;nbsp;</code>】【&lt; <code>&amp;lt;</code>】 【&gt; <code>&amp;gt;</code>】【&amp; <code>&amp;amp;</code>】【￥ <code>&amp;yen;</code>】【&copy; <code>&amp;copy;</code>】【&reg; <code>&amp;reg;</code>】</p>
+<h3 id="web存储"><a href="#web存储" class="headerlink" title="web存储"></a>web存储</h3><p>HTML5 提供了两种在客户端存储数据的新方法： 【<strong>localStorage</strong> - 没有时间限制的数据存储；】【sessionStorage -当用户关闭浏览器窗口后，数据会被删除】。两者有大小限制，一般为5Mb；</p>
+<h3 id="web-worker"><a href="#web-worker" class="headerlink" title="web worker"></a>web worker</h3><blockquote>
+<p>web worker 是运行在后台的 JavaScript，不会影响页面的性能。</p>
+</blockquote>
+<p>当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。web worker 运行于后台，可以在页面执行脚本时，仍然执行其他，如点击，选取等 【兼容性：IE不支持】</p>
+<h2 id="HTML5"><a href="#HTML5" class="headerlink" title="HTML5"></a>HTML5</h2><h3 id="HTML5兼容性"><a href="#HTML5兼容性" class="headerlink" title="HTML5兼容性"></a>HTML5兼容性</h3><blockquote>
+<p><strong>浏览器支持</strong> : 一般支持现代浏览器，如果要向以前兼容，则需要设定样式，所有浏览器，包括旧的和最新的，对无法识别的元素会作为内联元素自动处理，所以需要将其设定为块级元素 <code>header, section, footer, aside, nav, article,figure &#123; display: block; &#125;</code>但是ie8或更早的版本，可能不适应，所以要兼容ie9以上，则需要添加 <code>html5shiv.js</code> </p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!--[if lt IE 9]&gt;</span>
+<span class="hljs-comment">    &lt;script src=&quot;http://cdn.static.runoob.com/libs/html5shiv/3.7/html5shiv.min.js&quot;&gt;&lt;/script&gt;（国内镜像）</span>
+<span class="hljs-comment">&lt;![endif]--&gt;</span></code></pre>
+
+<h3 id="canvas-画布"><a href="#canvas-画布" class="headerlink" title="canvas 画布"></a>canvas 画布</h3><blockquote>
+<p>canvas元素用于图形绘制，通过JavaScript脚本来进行绘制</p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 在HTML中创建canvas 元素 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;myCanvas&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;200&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;100&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;border:1px solid #000000;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span></code></pre>
+<pre><code class="hljs js"><span class="hljs-comment">// 通过JS语法绘制图形</span>
+<span class="hljs-keyword">var</span> c=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;myCanvas&quot;</span>);<span class="hljs-comment">//找到canvas元素</span>
+<span class="hljs-keyword">var</span> ctx=c.<span class="hljs-title function_">getContext</span>(<span class="hljs-string">&quot;2d&quot;</span>);<span class="hljs-comment">//创建了context对象</span>
+<span class="hljs-comment">//绘制红色矩形</span>
+ctx.<span class="hljs-property">fillStyle</span>=<span class="hljs-string">&quot;#FF0000&quot;</span>;
+ctx.<span class="hljs-title function_">fillRect</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">150</span>,<span class="hljs-number">75</span>);</code></pre>
+
+<h3 id="SVG-可伸缩矢量图形"><a href="#SVG-可伸缩矢量图形" class="headerlink" title="SVG 可伸缩矢量图形"></a>SVG 可伸缩矢量图形</h3><blockquote>
+<p>SVG 基于 XML，进行图形绘制。这意味着 SVG DOM 中的每个元素都是可用的。您可以为某个元素附加 JavaScript 事件处理器</p>
+</blockquote>
+<p>SVG 与 Canvas两者间的区别</p>
+<ul>
+<li><strong>SVG 是一种使用 XML 描述 2D 图形的语言</strong>; <strong>Canvas 通过 JavaScript 来绘制 2D 图形</strong>。</li>
+<li>在 SVG 中，每个被绘制的图形均被视为对象。如果 SVG 对象的属性发生变化，那么浏览器能够自动重现图形;Canvas 是逐像素进行渲染的,在canvas中，一旦图形被绘制完成，它就不会继续得到浏览器的关注。如果其位置发生变化，那么整个场景也需要重新绘制，包括任何或许已被图形覆盖的对象</li>
+</ul>
+<h3 id="MathML"><a href="#MathML" class="headerlink" title="MathML"></a>MathML</h3><blockquote>
+<p>HTML56 可以在文档中使用 MathML 元素，对应的标签是 <math>…</math><br>MathML 是数学标记语言，是一种基于XML（标准通用标记语言的子集）的标准，用来在互联网上书写数学符号和公式的置标语言</p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">math</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://www.w3.org/1998/Math/MathML&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">mrow</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">msup</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>a<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">msup</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>+<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">msup</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>b<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">msup</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">mo</span>&gt;</span>=<span class="hljs-tag">&lt;/<span class="hljs-name">mo</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">msup</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mi</span>&gt;</span>c<span class="hljs-tag">&lt;/<span class="hljs-name">mi</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">mn</span>&gt;</span>2<span class="hljs-tag">&lt;/<span class="hljs-name">mn</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">msup</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">mrow</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">math</span>&gt;</span></code></pre>
+
+
+<h3 id="拖放功能"><a href="#拖放功能" class="headerlink" title="拖放功能"></a>拖放功能</h3><blockquote>
+<p>在HTML5中，拖放作为一种常见特性，任何元素都能拖放， 兼容性：<strong>IE 9+</strong></p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;div1&quot;</span> <span class="hljs-attr">ondrop</span>=<span class="hljs-string">&quot;drop(event)&quot;</span> <span class="hljs-attr">ondragover</span>=<span class="hljs-string">&quot;allowDrop(event)&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;drag1&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;img_logo.gif&quot;</span> <span class="hljs-attr">draggable</span>=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-attr">ondragstart</span>=<span class="hljs-string">&quot;drag(event)&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;336&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;69&quot;</span> /&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">allowDrop</span>(<span class="hljs-params">ev</span>)&#123; ev.<span class="hljs-title function_">preventDefault</span>(); &#125;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drag</span>(<span class="hljs-params">ev</span>)&#123; ev.<span class="hljs-property">dataTransfer</span>.<span class="hljs-title function_">setData</span>(<span class="hljs-string">&quot;Text&quot;</span>,ev.<span class="hljs-property">target</span>.<span class="hljs-property">id</span>); &#125;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">drop</span>(<span class="hljs-params">ev</span>)&#123;
+    ev.<span class="hljs-title function_">preventDefault</span>();
+    <span class="hljs-keyword">var</span> data=ev.<span class="hljs-property">dataTransfer</span>.<span class="hljs-title function_">getData</span>(<span class="hljs-string">&quot;Text&quot;</span>);
+    ev.<span class="hljs-property">target</span>.<span class="hljs-title function_">appendChild</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(data));
+&#125;</code></pre>
+
+<h3 id="web应用缓存-离线"><a href="#web应用缓存-离线" class="headerlink" title="web应用缓存 离线"></a>web应用缓存 离线</h3><blockquote>
+<p>HTML5 引入了应用程序缓存，这意味着web应用可以缓存，它的优势有：离线浏览 - 用户可在应用离线时使用它们，速度更快 - 已缓存资源加载得更快；减少服务器负载 - 浏览器将只从服务器下载更新过或更改过的资源。 兼容性：<strong>IE不支持</strong></p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;demo.appcache&quot;</span>&gt;</span>  <span class="hljs-comment">&lt;!-- 首先在html 声明manifest=&quot;demo.appcache&quot; --&gt;</span></code></pre>
+
+<pre><code class="hljs sh"><span class="hljs-comment"># 在服务器端创建扩展名为 .appcache 的Manifest文件. 放入服务器根目录</span>
+<span class="hljs-comment"># CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存 </span>
+CACHE MANIFEST
+/theme.css
+/logo.gif
+/main.js
+
+<span class="hljs-comment"># NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存</span>
+NETWORK:
+login.asp
+
+<span class="hljs-comment"># FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）</span>
+FALLBACK:
+/html5/ /404.html</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML%E5%85%83%E7%B4%A0"><span class="toc-text">HTML元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F"><span class="toc-text">文本格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="toc-text">标签语义化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93"><span class="toc-text">字符实体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%AD%98%E5%82%A8"><span class="toc-text">web存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web-worker"><span class="toc-text">web worker</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTML5"><span class="toc-text">HTML5</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTML5%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">HTML5兼容性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canvas-%E7%94%BB%E5%B8%83"><span class="toc-text">canvas 画布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SVG-%E5%8F%AF%E4%BC%B8%E7%BC%A9%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%BD%A2"><span class="toc-text">SVG 可伸缩矢量图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MathML"><span class="toc-text">MathML</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%96%E6%94%BE%E5%8A%9F%E8%83%BD"><span class="toc-text">拖放功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web%E5%BA%94%E7%94%A8%E7%BC%93%E5%AD%98-%E7%A6%BB%E7%BA%BF"><span class="toc-text">web应用缓存 离线</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2016/07/31/%E3%80%90%E5%89%8D%E7%AB%AF%E5%85%A5%E9%97%A8%E3%80%91HTML%E7%9A%84%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/HTML/"><i class="fa fa-tags"></i>HTML</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

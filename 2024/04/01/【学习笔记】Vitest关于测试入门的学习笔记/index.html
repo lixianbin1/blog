@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Vitest关于测试入门的学习笔记 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="学习笔记,Vitest," />
+  
+
+  
+  <meta name="description" content="一个“Jest青春版”，复用Vite的配置、插件、转换器，如果不用Vite，那Vitest的优势瞬间缩水。Vitest的优势配置简单、Vite生态无缝衔接，它是个优秀的补充者，而非颠覆者。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2024-04-01
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>学习笔记</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2024-4-1 10:43 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Vitest关于测试入门的学习笔记
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li><code>工作空间</code>  : Vitest 通过工作空间配置文件提供了对 <code>monorepos</code> （一个仓库管理多个项目的策略） 的内置支持。你可以创建一个工作空间来定义项目的配置。</li>
+</ul>
+<p>在仓库根目录创建工作空间配置, 即使文件夹中没有配置文件，Vitest 也会将 packages 文件夹中的每个文件夹视为单独的项目</p>
+<pre><code class="hljs js"><span class="hljs-comment">// vitest.workspace.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> [<span class="hljs-string">&#x27;packages/*&#x27;</span>]</code></pre>
+
+<ul>
+<li><code>报告器</code> : Vitest 提供了几种内置报告器，可以以不同格式显示测试输出的内容。</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">//...</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineConfig</span>(&#123;
+    <span class="hljs-attr">test</span>: &#123;
+        <span class="hljs-attr">reporters</span>: [<span class="hljs-string">&#x27;verbose&#x27;</span>], <span class="hljs-comment">//详细报告器</span>
+    &#125;
+&#125;)</code></pre>
+
+<ul>
+<li><code>内联测试</code> : Vitest 支持 在源码中进行测试套件的编辑</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// 函数实现</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">...args: number[]</span>) &#123;
+  <span class="hljs-keyword">return</span> args.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> a + b, <span class="hljs-number">0</span>)
+&#125;
+
+<span class="hljs-comment">// 源码内的测试套件</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">vitest</span>) &#123;
+  <span class="hljs-keyword">const</span> &#123; it, expect &#125; = <span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">vitest</span>
+  <span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;add&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-title function_">expect</span>(<span class="hljs-title function_">add</span>()).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">0</span>)
+    <span class="hljs-title function_">expect</span>(<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">1</span>)
+    <span class="hljs-title function_">expect</span>(<span class="hljs-title function_">add</span>(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>)).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">6</span>)
+  &#125;)
+&#125;</code></pre>
+
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="test-别名-it"><a href="#test-别名-it" class="headerlink" title="test 别名 it"></a>test 别名 it</h3><p>test 用于验证代码的正确性 , test 定义了一组关于测试期望的方法。它接收测试名称(类似备注名称)和一个含有测试期望的函数,同时，可以提供一个超时时限（以毫秒为单位）用于指定等待多长时间后终止测试，默认为 5 秒</p>
+<pre><div class="caption"><span>__test__/index.js</span></div><code class="hljs js"><span class="hljs-comment">//示例</span>
+<span class="hljs-keyword">import</span> &#123; test, assert &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">const</span> isDev = process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">&quot;development&quot;</span>; <span class="hljs-comment">//是否在测试环境</span>
+
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;name&#x27;</span>, <span class="hljs-title function_">async</span>()=&gt;&#123;<span class="hljs-comment">/* ... */</span>&#125;,<span class="hljs-number">1000</span>) <span class="hljs-comment">//支持异步</span>
+
+test.<span class="hljs-title function_">skip</span>(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/* ... */</span>&#125;)   <span class="hljs-comment">//跳过测试</span>
+<span class="hljs-comment">//如果想跳过运行某些测试，但又不想删代码，可以使用 test.skip 来跳过这些测试</span>
+
+test.<span class="hljs-title function_">skipIf</span>(isDev)(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/* ... */</span>&#125;) <span class="hljs-comment">//根据条件跳过测试</span>
+<span class="hljs-comment">//如果想在开发环境跳过某些测试，可以使用 test.skipIf 来跳过这些测试</span>
+
+test.<span class="hljs-title function_">runIf</span>(isDev)(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/* ... */</span>&#125;)  <span class="hljs-comment">//根据条件运行测试</span>
+<span class="hljs-comment">//如果只想在开发环境运行某些测试，可以使用 test.runIf 来跳过这些测试</span>
+
+test.<span class="hljs-title function_">only</span>(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/*...*/</span>&#125;) <span class="hljs-comment">//只调试这条测试代码</span>
+<span class="hljs-comment">//如果想调试某些测试，其他测试不运行，则可以使用 test.only;生产环境不保留test.only</span>
+
+test.<span class="hljs-title function_">concurrent</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-title function_">async</span> () =&gt; &#123; &#125;); <span class="hljs-comment">//并行运行异步测试</span>
+test.<span class="hljs-title function_">concurrent</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-title function_">async</span> () =&gt; &#123; &#125;); <span class="hljs-comment">//并行运行异步测试</span>
+<span class="hljs-comment">//test.skip、test.only 和 test.todo 适用于并发测试</span>
+test.<span class="hljs-property">skip</span>.<span class="hljs-title function_">concurrent</span>(<span class="hljs-comment">/* ... */</span>) <span class="hljs-comment">// or test.concurrent.skip(/* ... */)</span>
+
+test.<span class="hljs-title function_">todo</span>(<span class="hljs-string">&#x27;存根&#x27;</span>) <span class="hljs-comment">//存根测试</span>
+test.<span class="hljs-title function_">fails</span>()
+test.<span class="hljs-title function_">each</span>()</code></pre>
+
+<h3 id="expect"><a href="#expect" class="headerlink" title="expect"></a>expect</h3><p>expect 用来创建断言。在当前上下文中，可以使用 assertions 方法来断言一个语句。 Vitest 默认提供 chai 断言，同时基于 chai 实现兼容 Jest 的断言语句</p>
+<pre><div class="caption"><span>__test__/index.js</span></div><code class="hljs js"><span class="hljs-comment">//示例</span>
+<span class="hljs-keyword">import</span> &#123;expect&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">const</span> input = <span class="hljs-number">2</span>
+
+<span class="hljs-title function_">expect</span>(input).<span class="hljs-property">to</span>.<span class="hljs-title function_">equal</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">// chai 风格</span>
+<span class="hljs-title function_">expect</span>(input).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">// jest 风格</span>
+
+<span class="hljs-title function_">expect</span>(input).<span class="hljs-title function_">toBe</span>(<span class="hljs-number">2</span>) <span class="hljs-comment">//断言 input 是 2 </span>
+<span class="hljs-comment">//也就是简单的，我敢说某某是某某。不是就会报错</span>
+
+expect.<span class="hljs-title function_">sort</span>() <span class="hljs-comment">//失败不终止，继续执行</span>
+expect.<span class="hljs-title function_">not</span>()  <span class="hljs-comment">//否定断言</span>
+expect.<span class="hljs-title function_">assertions</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">//断言异步调用了两次</span>
+expect.<span class="hljs-title function_">hasAssertions</span>(); <span class="hljs-comment">//断言异步调用了至少一次</span>
+expect.<span class="hljs-title function_">unreachable</span>(); <span class="hljs-comment">//断言永不执行</span>
+expect.<span class="hljs-property">anything</span>
+expect.<span class="hljs-property">any</span>
+expect.<span class="hljs-property">arrayContaining</span>
+expect.<span class="hljs-property">objectContaining</span>
+expect.<span class="hljs-property">stringContaining</span>
+expect.<span class="hljs-property">stringMatching</span>
+expect.<span class="hljs-property">addSnapshotSerializer</span>
+expect.<span class="hljs-property">extend</span>
+
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBe</span>() <span class="hljs-comment">//相同断言 (禁止使用浮点型)</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeCloseTo</span>() <span class="hljs-comment">//相同断言 (浮点型)</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeUndefined</span>() <span class="hljs-comment">//断言无返回 (或返回undefined)</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeDefined</span>() <span class="hljs-comment">//断言有返回</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeTruthy</span>()  <span class="hljs-comment">//断言结果为真(true)</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeFalsy</span>() <span class="hljs-comment">//断言结果为假(false)</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeNull</span>() <span class="hljs-comment">//断言为null</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeNaN</span>() <span class="hljs-comment">//断言为NaN</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeTypeOf</span>(); <span class="hljs-comment">//类型断言</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toBeInstanceOf</span>(); <span class="hljs-comment">//断言父类</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">5</span>).<span class="hljs-title function_">toBeGreaterThan</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">//断言 5 大于 1</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">5</span>).<span class="hljs-title function_">toBeGreaterThanOrEqual</span>(<span class="hljs-number">1</span>); <span class="hljs-comment">//断言 5 大于等于 1</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toBeLessThan</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">//断言 1 小于 5</span>
+<span class="hljs-title function_">expect</span>(<span class="hljs-number">1</span>).<span class="hljs-title function_">toBeLessThanOrEqual</span>(<span class="hljs-number">5</span>); <span class="hljs-comment">//断言 1 小于等于 5</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toEqual</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toStrictEqual</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toContain</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toContainEqual</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveLength</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveProperty</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toMatch</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toMatchObject</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toThrowError</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toMatchSnapshot</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toMatchInlineSnapshot</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toThrowErrorMatchingSnapshot</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toThrowErrorMatchingInlineSnapshot</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveBeenCalled</span>() <span class="hljs-comment">//断言函数被调用，需要spy函数</span>
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveBeenCalledTimes</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveBeenCalledWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveBeenLastCalledWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveBeenNthCalledWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveReturned</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveReturnedTimes</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveReturnedWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveLastReturnedWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toHaveNthReturnedWith</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">toSatisfy</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">resolves</span>()
+<span class="hljs-title function_">expect</span>().<span class="hljs-title function_">rejects</span>()</code></pre>
+
+<h3 id="bench"><a href="#bench" class="headerlink" title="bench"></a>bench</h3><p>仅在bench模式下可用，bench 用于评估代码的性能 , <code>bench</code> 定义了一个基准。 在 Vitest 术语中，基准是定义一系列操作的函数。 Vitest 多次运行此函数以显示不同的性能结果</p>
+<pre><code class="hljs js"><span class="hljs-comment">//示例</span>
+<span class="hljs-keyword">import</span> &#123; bench &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vitest&quot;</span>;
+
+<span class="hljs-title function_">bench</span>(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-function">() =&gt;</span> &#123;&#125;,&#123; <span class="hljs-attr">time</span>: <span class="hljs-number">1000</span> &#125;); <span class="hljs-comment">//多次执行，用于性能测试</span>
+
+bench.<span class="hljs-title function_">skip</span>(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/* ... */</span>&#125;)   <span class="hljs-comment">//跳过测试</span>
+<span class="hljs-comment">//如果想跳过运行某些测试，但又不想删代码，可以使用 bench.skip 来跳过这些测试</span>
+bench.<span class="hljs-title function_">only</span>(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;<span class="hljs-comment">/*...*/</span>&#125;) <span class="hljs-comment">//只调试这条测试代码</span>
+<span class="hljs-comment">//如果想调试某些测试，其他测试不运行，则可以使用 bench.only;生产环境不保留bench.only</span>
+bench.<span class="hljs-title function_">todo</span>(<span class="hljs-string">&#x27;存根&#x27;</span>) <span class="hljs-comment">//使用 bench.todo 来存根基准，以便以后实施</span></code></pre>
+
+<h3 id="describe-套件"><a href="#describe-套件" class="headerlink" title="describe 套件"></a>describe 套件</h3><p>当你在文件的顶层使用 test 或 bench 时，它们会被收集为它的隐式套件的一部分。 使用 describe 你可以在当前上下文中定义一个新套件，作为一组相关的测试或基准以及其他嵌套套件</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; test,describe &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; testName &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/index&#x27;</span>
+
+<span class="hljs-keyword">const</span> person = &#123;
+  <span class="hljs-attr">isActive</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">32</span>,
+&#125;;
+
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&quot;person&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//类似一个嵌套结构，仅用于展示效果</span>
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;person is defined&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-title function_">expect</span>(person).<span class="hljs-property">toBeDefin</span> <span class="hljs-title function_">ed</span>();
+  &#125;);
+&#125;)
+
+<span class="hljs-comment">// describe.skip 跳过</span>
+describe.<span class="hljs-title function_">skip</span>(<span class="hljs-string">&quot;skipped suite&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    <span class="hljs-comment">// 跳过测试套件，不会有错误</span>
+    assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+  &#125;);
+&#125;);
+
+<span class="hljs-comment">// describe.only 只运行里面的，其他的不运行</span>
+describe.<span class="hljs-title function_">only</span>(<span class="hljs-string">&quot;skipped suite&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//执行</span>
+  <span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+  &#125;);
+&#125;);
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&quot;sqrt&quot;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">//不执行</span>
+  assert.<span class="hljs-title function_">equal</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">sqrt</span>(<span class="hljs-number">4</span>), <span class="hljs-number">3</span>);
+&#125;);
+
+describe.<span class="hljs-property">concurrent</span>
+describe.<span class="hljs-property">shuffle</span>
+describe.<span class="hljs-property">todo</span>
+describe.<span class="hljs-property">each</span></code></pre>
+
+<h3 id="Vi-工具函数"><a href="#Vi-工具函数" class="headerlink" title="Vi 工具函数"></a>Vi 工具函数</h3><pre><code class="hljs js"><span class="hljs-comment">// vi.advanceTimersByTime 定时停止</span>
+<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">setInterval</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(++i), <span class="hljs-number">50</span>);
+vi.<span class="hljs-title function_">advanceTimersByTime</span>(<span class="hljs-number">150</span>); <span class="hljs-comment">// 150 毫秒后停止执行</span>
+
+vi.<span class="hljs-property">advanceTimersToNextTimer</span>
+vi.<span class="hljs-property">clearAllMocks</span>
+vi.<span class="hljs-property">clearAllTimers</span>
+vi.<span class="hljs-property">dynamicImportSettled</span>
+vi.<span class="hljs-property">fn</span>
+vi.<span class="hljs-property">getMockedSystemTime</span>
+vi.<span class="hljs-property">getRealSystemTime</span>
+vi.<span class="hljs-property">mock</span>
+vi.<span class="hljs-property">mocked</span>
+vi.<span class="hljs-property">importActual</span>
+vi.<span class="hljs-property">importMock</span>
+vi.<span class="hljs-property">resetAllMocks</span>
+vi.<span class="hljs-property">resetConfig</span>
+vi.<span class="hljs-property">resetModules</span>
+vi.<span class="hljs-property">restoreAllMocks</span>
+vi.<span class="hljs-property">restoreCurrentDate</span>
+vi.<span class="hljs-property">runAllTicks</span>
+vi.<span class="hljs-property">runAllTimers</span>
+vi.<span class="hljs-property">runOnlyPendingTimers</span>
+vi.<span class="hljs-property">setSystemTime</span>
+vi.<span class="hljs-property">setConfig</span>
+vi.<span class="hljs-property">spyOn</span>
+vi.<span class="hljs-property">stubGlobal</span>
+vi.<span class="hljs-property">unmock</span>
+vi.<span class="hljs-property">useFakeTimers</span>
+vi.<span class="hljs-property">useRealTimers</span></code></pre>
+
+<h3 id="MockInstance-Methods"><a href="#MockInstance-Methods" class="headerlink" title="MockInstance Methods"></a>MockInstance Methods</h3><pre><code class="hljs js">getMockName
+mockClear
+mockName
+mockImplementation
+mockImplementationOnce
+mockRejectedValue
+mockRejectedValueOnce
+mockReset
+mockRestore
+mockResolvedValue
+mockResolvedValueOnce
+mockReturnThis
+mockReturnValue
+mockReturnValueOnce</code></pre>
+
+<h3 id="MockInstance-Properties"><a href="#MockInstance-Properties" class="headerlink" title="MockInstance Properties"></a>MockInstance Properties</h3><pre><code class="hljs js">mock.<span class="hljs-property">calls</span>
+mock.<span class="hljs-property">lastCall</span>
+mock.<span class="hljs-property">results</span>
+mock.<span class="hljs-property">instances</span></code></pre>
+
+
+
+<h2 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h2><h3 id="快照测试"><a href="#快照测试" class="headerlink" title="快照测试"></a>快照测试</h3><p>安装插件 <code>@testing-library</code></p>
+<p>由于涉及到i8n国际翻译插件，需要进行配置，不能直接调用快照，不然会报错。</p>
+<pre><code class="hljs js"><span class="hljs-comment">// __test__/index.test.ts</span>
+<span class="hljs-keyword">import</span> &#123;expect,test,vi&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vitest&#x27;</span>
+<span class="hljs-keyword">import</span> &#123;render&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@testing-library/vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">LoginPage</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/pages/login/index.vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123;i18n&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../src/modules/i18n&#x27;</span>
+
+<span class="hljs-title function_">test</span>(<span class="hljs-string">&#x27;Login 快照&#x27;</span>,<span class="hljs-function">()=&gt;</span>&#123;
+  <span class="hljs-keyword">const</span> &#123; container &#125; = <span class="hljs-title function_">render</span>(<span class="hljs-title class_">LoginPage</span>,&#123;
+    <span class="hljs-attr">global</span>: &#123;
+      <span class="hljs-attr">plugins</span>:[i18n]
+    &#125;
+  &#125;)
+  <span class="hljs-title function_">expect</span>(container).<span class="hljs-title function_">toMatchSnapshot</span>()
+&#125;)</code></pre>
+
+<p>如果涉及到 element-plus 组件，那么也需要进行配置，不然会报错；</p>
+<pre><code class="hljs js"><span class="hljs-comment">//vite.config.js</span>
+<span class="hljs-attr">test</span>:&#123;
+  <span class="hljs-comment">//...</span>
+  <span class="hljs-attr">server</span>:&#123;
+    <span class="hljs-attr">deps</span>: &#123;
+      <span class="hljs-attr">inline</span>: [<span class="hljs-string">&#x27;element-plus&#x27;</span>],
+    &#125;,
+  &#125;
+&#125;,</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">//src/modules/i18n</span>
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">App</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; createI18n &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-i18n&#x27;</span>
+
+<span class="hljs-keyword">const</span> messages = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">fromEntries</span>(
+  <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">entries</span>(<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">glob</span>&lt;&#123; <span class="hljs-attr">default</span>: any &#125;&gt;(<span class="hljs-string">&#x27;../language/*.y(a)?ml&#x27;</span>,&#123; <span class="hljs-attr">eager</span>: <span class="hljs-literal">true</span> &#125;))
+    .<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params">[key, value]</span>) =&gt;</span> &#123;
+      <span class="hljs-keyword">const</span> yaml = key.<span class="hljs-title function_">endsWith</span>(<span class="hljs-string">&#x27;.yaml&#x27;</span>)
+      <span class="hljs-keyword">return</span> [key.<span class="hljs-title function_">slice</span>(<span class="hljs-number">12</span>, yaml ? -<span class="hljs-number">5</span> : -<span class="hljs-number">4</span>), value.<span class="hljs-property">default</span>]
+    &#125;),
+)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> i18n = <span class="hljs-title function_">createI18n</span>(&#123;
+  <span class="hljs-attr">legacy</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en&#x27;</span>,
+  messages,
+&#125;)
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">install</span> = (<span class="hljs-params">app:App</span>) =&gt; &#123;
+  app.<span class="hljs-title function_">use</span>(i18n)
+&#125;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> install</code></pre>
+
+<p>快照的更新命令，如果快照不一致，但是因为需求的改动，确实快照变了，那么需要更新快照。</p>
+<blockquote>
+<p>vitest -u</p>
+</blockquote>
+<h2 id="执行命令"><a href="#执行命令" class="headerlink" title="执行命令"></a>执行命令</h2><pre><code class="hljs js">vitest  <span class="hljs-comment">//监听命令</span>
+<span class="hljs-title class_">Vitest</span> base  <span class="hljs-comment">//筛选命令，只执行以 base 开头的测试文件</span></code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#test-%E5%88%AB%E5%90%8D-it"><span class="toc-text">test 别名 it</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expect"><span class="toc-text">expect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bench"><span class="toc-text">bench</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#describe-%E5%A5%97%E4%BB%B6"><span class="toc-text">describe 套件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vi-%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0"><span class="toc-text">Vi 工具函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MockInstance-Methods"><span class="toc-text">MockInstance Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MockInstance-Properties"><span class="toc-text">MockInstance Properties</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="toc-text">测试代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E7%85%A7%E6%B5%8B%E8%AF%95"><span class="toc-text">快照测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4"><span class="toc-text">执行命令</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2024/04/01/%E3%80%90%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91Vitest%E5%85%B3%E4%BA%8E%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Vitest/"><i class="fa fa-tags"></i>Vitest</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

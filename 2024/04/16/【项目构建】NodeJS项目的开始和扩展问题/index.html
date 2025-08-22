@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>NodeJS项目的开始和扩展问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="项目构建,Node," />
+  
+
+  
+  <meta name="description" content="从零开始搭建一个Node的项目，使用Express框架，使用Sqlite作为数据库，日志管理，身份校验，websocket服务，跨域支持，求体解析，接口文档……">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2024-04-16
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA/"><i class="fa fa-bookmark"></i>项目构建</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2024-4-23 11:19 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    NodeJS项目的开始和扩展问题
+  </h1>
+  
+  <article class="passage-article">
+    <p>从零开始搭建一个Node的项目，使用Express框架，使用Sqlite作为数据库，废话不多说，直接开始</p>
+<h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><ol>
+<li>创建空文件，然后init项目</li>
+</ol>
+<blockquote>
+<p>mkdir node-project<br>cd node-project<br>npm init</p>
+</blockquote>
+<h2 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h2><pre><code class="hljs m">|—— common/       //公共模块 
+  |—— authenticate.js //认证管理
+  |—— database.js     //数据库连接池
+  |—— webSocket.js    //websocket服务
+|—— Interface/    //接口
+  |—— user.js         //用户管理接口
+  |—— ...
+|—— Logs/         //日志
+  |—— info.log      //详细日志文件
+  |—— error.log     //错误日志文件
+  |—— ...
+|—— Routes/       //路由
+|—— SQLiteStudio/ //数据库管理工具（忽略该文件夹）
+|—— .env          //环境变量
+|—— .gitignore    //忽略文件
+|—— index.js      //入口文件
+|—— package.json  //项目配置文件
+|—— README.md     //项目说明
+|—— SQLite.db     //数据库文件
+|—— SQLite.sql    //数据库脚本
+|—— swaggerConfig.js //swagger配置文件</code></pre>
+
+<h2 id="安装相关模块"><a href="#安装相关模块" class="headerlink" title="安装相关模块"></a>安装相关模块</h2><blockquote>
+<p>npm install nodemon –save<br>npm install dotenv –save<br>npm install express –save<br>npm install sqlite3 –save<br>npm install generic-pool –save<br>npm install log4js –save<br>npm install jsonwebtoken –save<br>npm install express-jsdoc-swagger –save<br>npm install swagger-jsdoc –save<br>npm install express-ws –save<br>npm install cors –save<br>npm install body-parser –save</p>
+</blockquote>
+<h3 id="热更新启动"><a href="#热更新启动" class="headerlink" title="热更新启动"></a>热更新启动</h3><p>安装 nodemon 模块，在package.json中添加启动命令。</p>
+<blockquote>
+<p>npm install nodemon –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// package.json</span>
+<span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+  <span class="hljs-string">&quot;dev&quot;</span>: <span class="hljs-string">&quot;nodemon index.js&quot;</span>
+&#125;</code></pre>
+
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>安装 dotenv 模块，创建.env 文件，并设置环境变量。</p>
+<blockquote>
+<p>npm install dotenv –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// .env</span>
+<span class="hljs-variable constant_">PORT</span> = <span class="hljs-number">8888</span>
+<span class="hljs-variable constant_">SECRET_KEY</span> = <span class="hljs-string">&quot;123456&quot;</span></code></pre>
+
+<h3 id="Express"><a href="#Express" class="headerlink" title="Express"></a>Express</h3><p>Express 是一个用于 Node.js 的快速构建的 Web 框架。</p>
+<blockquote>
+<p>npm install express –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;dotenv&#x27;</span>).<span class="hljs-title function_">config</span>();
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">PORT</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">PORT</span> || <span class="hljs-number">8888</span>;
+<span class="hljs-comment">// 启动 Express 服务 </span>
+<span class="hljs-keyword">const</span> c  = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;child_process&#x27;</span>)
+<span class="hljs-keyword">const</span> server=app.<span class="hljs-title function_">listen</span>(<span class="hljs-variable constant_">PORT</span>,<span class="hljs-function">()=&gt;</span>&#123;
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;  Express 服务启动,正在监听&#x27;</span>+ <span class="hljs-variable constant_">PORT</span> +<span class="hljs-string">&#x27;端口&#x27;</span>);
+  c.<span class="hljs-title function_">exec</span>(<span class="hljs-string">&#x27;start http://localhost:8888/docs&#x27;</span>)
+&#125;)</code></pre>
+
+<h3 id="数据库支持"><a href="#数据库支持" class="headerlink" title="数据库支持"></a>数据库支持</h3><p>创建数据库文件，设置连接池，创建连接池管理文件。</p>
+<blockquote>
+<p>npm install sqlite3 –save<br>npm install generic-pool –save</p>
+</blockquote>
+<p>// 跳过预编译，直接源码编译</p>
+<blockquote>
+<p>npm install –build-from-source</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// common/database.js</span>
+<span class="hljs-keyword">const</span> sqlite3 = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;sqlite3&#x27;</span>).<span class="hljs-title function_">verbose</span>(); <span class="hljs-comment">// 引入sqlite3模块</span>
+<span class="hljs-keyword">const</span> genericPool = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;generic-pool&#x27;</span>);  <span class="hljs-comment">// 引入generic-pool模块</span>
+<span class="hljs-keyword">const</span> factory = &#123;
+  <span class="hljs-attr">create</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-comment">// 创建一个数据库实例</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) &#123;
+      <span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> sqlite3.<span class="hljs-title class_">Database</span>(<span class="hljs-string">&#x27;./SQLite.db&#x27;</span>, sqlite3.<span class="hljs-property">OPEN_READWRITE</span> | sqlite3.<span class="hljs-property">OPEN_CREATE</span>, <span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> &#123; <span class="hljs-comment">// 创建数据库实例</span>
+        <span class="hljs-keyword">if</span> (err) &#123;
+          <span class="hljs-title function_">reject</span>(err);
+        &#125; <span class="hljs-keyword">else</span> &#123;
+          <span class="hljs-title function_">resolve</span>(db);
+        &#125;
+      &#125;);
+    &#125;);
+  &#125;,
+  <span class="hljs-attr">destroy</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">db</span>) &#123; <span class="hljs-comment">// 销毁一个数据库实例</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resolve</span>) &#123;
+      db.<span class="hljs-title function_">close</span>();
+      <span class="hljs-title function_">resolve</span>();
+    &#125;);
+  &#125;
+&#125;;
+
+<span class="hljs-keyword">const</span> opts = &#123;
+  <span class="hljs-attr">max</span>: <span class="hljs-number">10</span>, <span class="hljs-comment">// 最大连接数</span>
+  <span class="hljs-attr">min</span>: <span class="hljs-number">2</span>  <span class="hljs-comment">// 最小连接数</span>
+&#125;;
+
+<span class="hljs-keyword">const</span> myPool = genericPool.<span class="hljs-title function_">createPool</span>(factory, opts); <span class="hljs-comment">// 创建连接池</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = myPool; <span class="hljs-comment">// 导出连接池</span></code></pre>
+
+<h3 id="日志管理"><a href="#日志管理" class="headerlink" title="日志管理"></a>日志管理</h3><p>你如果要使用日志管理文件，可以安装以下两大模块之一：</p>
+<ul>
+<li>Log4js 提供了模块化的日志记录功能，可以根据需要为不同的模块或功能分配独立的日志级别，从而实现更精细的信息输出控制。<blockquote>
+<p>npm install log4js –save</p>
+</blockquote>
+</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-comment">// common/log.js</span>
+<span class="hljs-keyword">const</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;log4js&#x27;</span>);
+log4js.<span class="hljs-title function_">configure</span>(&#123;
+  <span class="hljs-attr">appenders</span>: &#123;
+    <span class="hljs-attr">errorFile</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;file&#x27;</span>, <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;../Logs/errors.log&#x27;</span> &#125;,
+    <span class="hljs-attr">debugFile</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;file&#x27;</span>, <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;../Logs/debugs.log&#x27;</span> &#125;,
+    <span class="hljs-attr">infoFile</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;file&#x27;</span>, <span class="hljs-attr">filename</span>: <span class="hljs-string">&#x27;../Logs/info.log&#x27;</span> &#125;,
+    <span class="hljs-attr">error</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;logLevelFilter&#x27;</span>, <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;error&#x27;</span>, <span class="hljs-attr">appender</span>: <span class="hljs-string">&#x27;errorFile&#x27;</span> &#125;,
+    <span class="hljs-attr">debug</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;logLevelFilter&#x27;</span>, <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;debug&#x27;</span>, <span class="hljs-attr">appender</span>: <span class="hljs-string">&#x27;debugFile&#x27;</span>, <span class="hljs-attr">maxLevel</span>: <span class="hljs-string">&#x27;debug&#x27;</span> &#125;,
+    <span class="hljs-attr">info</span>: &#123; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;logLevelFilter&#x27;</span>, <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;info&#x27;</span>, <span class="hljs-attr">appender</span>: <span class="hljs-string">&#x27;infoFile&#x27;</span>, <span class="hljs-attr">maxLevel</span>: <span class="hljs-string">&#x27;info&#x27;</span> &#125;
+  &#125;,
+  <span class="hljs-attr">categories</span>: &#123;
+    <span class="hljs-attr">default</span>: &#123; <span class="hljs-attr">appenders</span>: [<span class="hljs-string">&#x27;info&#x27;</span>, <span class="hljs-string">&#x27;debug&#x27;</span>, <span class="hljs-string">&#x27;error&#x27;</span>], <span class="hljs-attr">level</span>: <span class="hljs-string">&#x27;trace&#x27;</span> &#125;
+  &#125;
+&#125;);
+<span class="hljs-keyword">const</span> logger = log4js.<span class="hljs-title function_">getLogger</span>();
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = logger;</code></pre>
+
+<ul>
+<li>winston是一个日志记录器，它提供了灵活的配置和灵活的输出功能。winston-daily-rotate-file 是一个基于winston的日志模块，它允许你根据日期自动生成日志文件。</li>
+</ul>
+<blockquote>
+<p>npm install winston –save<br>npm install winston-daily-rotate-file –save</p>
+</blockquote>
+<h3 id="身份校验"><a href="#身份校验" class="headerlink" title="身份校验"></a>身份校验</h3><p>JSON Web Token（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑的、自包含的方式，用于作为JSON对象在各方之间安全地传输信息。这种信息可以被验证和信任，因为它是数字签名的。JWT可以使用密钥（例如，秘密或公钥/私钥对）进行签名，也可以选择性地加密其包含的信息</p>
+<blockquote>
+<p>npm install jsonwebtoken –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// common/authenticate.js</span>
+<span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECRET_KEY</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">SECRET_KEY</span>; <span class="hljs-comment">// 密钥</span>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">authenticateToken</span>=<span class="hljs-function">(<span class="hljs-params">req, res, next</span>)=&gt;</span>&#123;
+    <span class="hljs-keyword">const</span> authHeader = req.<span class="hljs-property">headers</span>[<span class="hljs-string">&#x27;authorization&#x27;</span>]; <span class="hljs-comment">// 获取请求头中的token</span>
+    <span class="hljs-keyword">const</span> token = authHeader &amp;&amp; authHeader.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27; &#x27;</span>)[<span class="hljs-number">1</span>];
+    <span class="hljs-keyword">if</span> (token == <span class="hljs-literal">null</span>)&#123;
+        <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">401</span>).<span class="hljs-title function_">send</span>(&#123;<span class="hljs-attr">status</span>:<span class="hljs-string">&quot;401&quot;</span>,<span class="hljs-attr">message</span>:<span class="hljs-string">&#x27;无权限访问&#x27;</span>&#125;)
+    &#125; 
+    jwt.<span class="hljs-title function_">verify</span>(token, <span class="hljs-variable constant_">SECRET_KEY</span>, <span class="hljs-function">(<span class="hljs-params">err, user</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (err)&#123;
+            <span class="hljs-keyword">return</span> res.<span class="hljs-title function_">status</span>(<span class="hljs-number">403</span>).<span class="hljs-title function_">send</span>(&#123;<span class="hljs-attr">status</span>:<span class="hljs-string">&quot;403&quot;</span>,<span class="hljs-attr">message</span>:<span class="hljs-string">&#x27;token无效或已过期&#x27;</span>&#125;)
+        &#125;
+<span class="hljs-comment">/* //临近过期时（前10分钟），刷新token</span>
+<span class="hljs-comment">        let Expiration = process.env.Expiration</span>
+<span class="hljs-comment">        let exp = user.exp * 1000</span>
+<span class="hljs-comment">        let now = new Date().getTime()</span>
+<span class="hljs-comment">        console.log(new Date(exp).toLocaleString(),now - exp)</span>
+<span class="hljs-comment">        if (exp - now &lt;= 60 * 1000) &#123;</span>
+<span class="hljs-comment">            const newToken = jwt.sign(&#123; id: user.UserID, name:user.UserName &#125;, SECRET_KEY, &#123; expiresIn: Expiration &#125;);</span>
+<span class="hljs-comment">            res.setHeader(&#x27;Refresh-Authorization&#x27;,newToken );</span>
+<span class="hljs-comment">        &#125;</span>
+<span class="hljs-comment"> */</span>
+        req.<span class="hljs-property">user</span> = user; <span class="hljs-comment">// 将用户信息存储在请求中</span>
+        <span class="hljs-title function_">next</span>(); <span class="hljs-comment">// 继续执行后续操作</span>
+    &#125;);
+&#125;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// ../Interface/user</span>
+<span class="hljs-keyword">const</span> myPool = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../common/database.js&#x27;</span>);
+
+<span class="hljs-comment">//创建用户,以下的业务代码省略</span>
+<span class="hljs-built_in">exports</span>.<span class="hljs-property">userCreatePost</span> = <span class="hljs-title function_">async</span>(req,res)=&gt;&#123;
+  <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// ./Routes/user.js</span>
+<span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">const</span> router = express.<span class="hljs-title class_">Router</span>();
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">User</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../Interface/user&#x27;</span>)
+<span class="hljs-keyword">const</span> &#123;authenticateToken&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../common/authenticate&#x27;</span>)
+
+<span class="hljs-comment">// 创建用户</span>
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/user/create&#x27;</span>,authenticateToken,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
+  <span class="hljs-title class_">User</span>.<span class="hljs-title function_">userCreatePost</span>(req,res)
+&#125;)</code></pre>
+
+<h3 id="接口文档支持"><a href="#接口文档支持" class="headerlink" title="接口文档支持"></a>接口文档支持</h3><p>如果需要使用接口文档，可以使用以下两个方案中的一个：</p>
+<ul>
+<li>express-jsdoc-swagger 能够根据JSDoc注释自动生成接口文档，并且支持 Swagger UI。介绍更详细，对前端更友好，但是需要自己编写注释。</li>
+</ul>
+<blockquote>
+<p>npm install express-jsdoc-swagger –save<br>npm install swagger-jsdoc –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// swaggerConfig.js</span>
+<span class="hljs-keyword">const</span> options = &#123;
+  <span class="hljs-attr">info</span>: &#123;
+    <span class="hljs-attr">version</span>: <span class="hljs-string">&#x27;1.0.0&#x27;</span>,
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&quot;node-template&quot;</span>,
+    <span class="hljs-attr">description</span>:<span class="hljs-string">&quot;node-template&#x27;s interface documentation&quot;</span>,
+    <span class="hljs-attr">license</span>: &#123;
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;MIT&#x27;</span>,
+    &#125;,
+  &#125;,
+  <span class="hljs-attr">security</span>: &#123;
+    <span class="hljs-title class_">BasicAuth</span>: &#123;
+      <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;http&#x27;</span>,
+      <span class="hljs-attr">scheme</span>: <span class="hljs-string">&#x27;basic&#x27;</span>,
+    &#125;,
+  &#125;,
+  <span class="hljs-attr">baseDir</span>: __dirname,
+  <span class="hljs-attr">filesPattern</span>: <span class="hljs-string">&#x27;./**/*.js&#x27;</span>,
+  <span class="hljs-attr">swaggerUIPath</span>: <span class="hljs-string">&#x27;/docs&#x27;</span>,
+  <span class="hljs-attr">exposeSwaggerUI</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">exposeApiDocs</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">apiDocsPath</span>: <span class="hljs-string">&#x27;/v3/api-docs&#x27;</span>,
+  <span class="hljs-attr">notRequiredAsNullable</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">swaggerUiOptions</span>: &#123;&#125;,
+  <span class="hljs-attr">multiple</span>: <span class="hljs-literal">true</span>,
+&#125;;
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = options;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">const</span> expressJSDocSwagger = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express-jsdoc-swagger&#x27;</span>);
+<span class="hljs-keyword">const</span> swaggerConfig = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./swaggerConfig.js&#x27;</span>)
+<span class="hljs-title function_">expressJSDocSwagger</span>(app)(swaggerConfig);</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// ./Routes/user.js</span>
+
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * 创建用户的请求对象</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@typedef</span> &#123;<span class="hljs-type">object</span>&#125; <span class="hljs-variable">Register</span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;<span class="hljs-type">string</span>&#125; UserName.required - 用户名称</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;<span class="hljs-type">string</span>&#125; Email.required - 用户邮箱</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * POST /api/user/create</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@summary</span> 用户的创建接口</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@tags</span> <span class="hljs-variable">user</span></span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@param</span> &#123;<span class="hljs-type">Register</span>&#125; request.body - 用户信息 - application/json</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-type">object</span>&#125; 200 - 注册成功 - application/json</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 409 - 用户名已存在</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@return</span> 500 - 错误的查询</span>
+<span class="hljs-comment"> * <span class="hljs-doctag">@example</span> <span class="hljs-variable">response</span> - 200 - 注册成功示例 - application/json</span>
+<span class="hljs-comment"> * &#123;</span>
+<span class="hljs-comment"> *     &quot;id&quot;: &quot;XXXXXXXXX&quot;,</span>
+<span class="hljs-comment"> *     &quot;UserName&quot;: &quot;XXXXXXXXXX&quot;,</span>
+<span class="hljs-comment"> *     &quot;status&quot;: &quot;200&quot;,</span>
+<span class="hljs-comment"> *     &quot;message&quot;: &quot;用户注册成功&quot;</span>
+<span class="hljs-comment"> * &#125;</span>
+<span class="hljs-comment"> */</span>
+
+router.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/api/user/create&#x27;</span>,authenticateToken,<span class="hljs-function">(<span class="hljs-params">req,res</span>)=&gt;</span>&#123;
+  <span class="hljs-title class_">User</span>.<span class="hljs-title function_">userCreatePost</span>(req,res)
+&#125;)</code></pre>
+
+<ul>
+<li>swagger-ui-express 是一个基于express的WebSocket中间件，它允许你轻松地使用WebSocket协议。能根据json文件自动生成接口文档，并且支持 Swagger UI。对后端更轻松，但是文档不好看（我不喜欢这种，不仔细介绍了）。</li>
+</ul>
+<blockquote>
+<p>npm install swagger-ui-express –save<br>npm install swagger-jsdoc –save</p>
+</blockquote>
+<pre><code class="hljs json"><span class="hljs-comment">// swagger.json</span>
+<span class="hljs-punctuation">&#123;</span>  
+  <span class="hljs-attr">&quot;openapi&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;3.0.3&quot;</span><span class="hljs-punctuation">,</span>  
+  <span class="hljs-attr">&quot;info&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  
+    <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;My API&quot;</span><span class="hljs-punctuation">,</span>  
+    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span>  
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>  
+  <span class="hljs-attr">&quot;paths&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">//各个接口及相关的内容</span>
+    <span class="hljs-attr">&quot;/users&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  
+      <span class="hljs-attr">&quot;get&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">/*...*/</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>  
+      <span class="hljs-attr">&quot;post&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">/*...*/</span> <span class="hljs-punctuation">&#125;</span>  
+    <span class="hljs-punctuation">&#125;</span>  
+  <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>  
+  <span class="hljs-attr">&quot;components&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">//请求对象和响应对象</span>
+    <span class="hljs-attr">&quot;schemas&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>  
+      <span class="hljs-attr">&quot;User&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-comment">/*...*/</span> <span class="hljs-punctuation">&#125;</span>  
+    <span class="hljs-punctuation">&#125;</span>  
+  <span class="hljs-punctuation">&#125;</span>  
+<span class="hljs-punctuation">&#125;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">const</span> swaggerUi = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;swagger-ui-express&#x27;</span>);
+<span class="hljs-keyword">const</span> swaggerDocument = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./swagger.json&#x27;</span>);
+app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/api-docs&#x27;</span>, swaggerUi.<span class="hljs-property">serve</span>, swaggerUi.<span class="hljs-title function_">setup</span>(swaggerDocument));</code></pre>
+
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><p>你如果要使用WebSocket，可以安装以下两个模块之一：</p>
+<ul>
+<li>ws是一个Node.js模块，主要用于在服务器端实现WebSocket协议。它允许客户端（通常是浏览器）与服务端建立持久化的连接.</li>
+</ul>
+<blockquote>
+<p>npm install ws –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// ./common/webSocket.js</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">WebSocket</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;ws&#x27;</span>);
+<span class="hljs-keyword">const</span> jwt = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jsonwebtoken&#x27;</span>);
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">SECRET_KEY</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">SECRET_KEY</span>; <span class="hljs-comment">// 密钥</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">verifyToken</span>(<span class="hljs-params">token</span>) &#123; <span class="hljs-comment">//验证token  </span>
+    <span class="hljs-keyword">var</span> isValid = <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">var</span> user = <span class="hljs-literal">null</span>;
+    jwt.<span class="hljs-title function_">verify</span>(token, <span class="hljs-variable constant_">SECRET_KEY</span>, <span class="hljs-function">(<span class="hljs-params">err, _user</span>) =&gt;</span> &#123;
+        <span class="hljs-keyword">if</span> (!err)&#123;
+            isValid = <span class="hljs-literal">true</span>
+            user = _user
+        &#125;
+    &#125;);
+    <span class="hljs-keyword">return</span> &#123;isValid,user&#125;;  
+&#125;
+
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">WebSocketServer</span> &#123;  
+    <span class="hljs-title function_">constructor</span>(<span class="hljs-params">port</span>) &#123;  
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">wss</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocket</span>.<span class="hljs-title class_">Server</span>(&#123; 
+            port,
+            <span class="hljs-attr">verifyClient</span>: <span class="hljs-function">(<span class="hljs-params">info, done</span>) =&gt;</span> &#123;
+                <span class="hljs-keyword">const</span> token = info.<span class="hljs-property">req</span>.<span class="hljs-property">headers</span>.<span class="hljs-property">authorization</span> || info.<span class="hljs-property">req</span>.<span class="hljs-property">url</span>.<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;?&#x27;</span>)[<span class="hljs-number">1</span>].<span class="hljs-title function_">split</span>(<span class="hljs-string">&#x27;=&#x27;</span>)[<span class="hljs-number">1</span>];
+                <span class="hljs-keyword">const</span> &#123; isValid, user &#125; = <span class="hljs-title function_">verifyToken</span>(token);
+                <span class="hljs-keyword">if</span> (isValid) &#123;  
+                    info.<span class="hljs-property">req</span>.<span class="hljs-property">user</span> = user; <span class="hljs-comment">//将用户信息附加到请求对象上</span>
+                    <span class="hljs-title function_">done</span>(<span class="hljs-literal">true</span>); <span class="hljs-comment">//验证通过，允许连接  </span>
+                  &#125; <span class="hljs-keyword">else</span> &#123;  
+                    <span class="hljs-title function_">done</span>(<span class="hljs-literal">false</span>, <span class="hljs-number">401</span>, <span class="hljs-string">&#x27;Unauthorized&#x27;</span>); <span class="hljs-comment">//验证失败，拒绝连接并返回 401 状态码  </span>
+                  &#125;  
+            &#125;
+         &#125;); 
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>(); <span class="hljs-comment">//使用Map来存储客户端连接  </span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">wss</span>.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;connection&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">onConnection</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>));  
+    &#125;
+    <span class="hljs-comment">//监听客户端连接</span>
+    <span class="hljs-title function_">onConnection</span>(<span class="hljs-params">ws,req</span>) &#123;
+        <span class="hljs-keyword">const</span> user = req.<span class="hljs-property">user</span>
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span>.<span class="hljs-title function_">set</span>(user.<span class="hljs-property">id</span>, ws); 
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+user.<span class="hljs-property">id</span>+<span class="hljs-string">&quot;用户已上线&quot;</span>);
+        logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+user.<span class="hljs-property">id</span>+<span class="hljs-string">&quot;用户已上线&quot;</span>)
+        ws.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;message&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">messageBuffer</span>) =&gt;</span> &#123;  
+            <span class="hljs-comment">//将Buffer解码为UTF-8字符串  </span>
+            <span class="hljs-keyword">const</span> messageString = messageBuffer.<span class="hljs-title function_">toString</span>(<span class="hljs-string">&#x27;utf8&#x27;</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;接受消息:&#x27;</span>, messageString);  
+            ws.<span class="hljs-title function_">send</span>(<span class="hljs-string">&#x27;Message received: &#x27;</span> + messageString); 
+            
+        &#125;);
+        <span class="hljs-comment">//断开连接</span>
+        ws.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;close&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+            <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">removeClient</span>(ws)
+        &#125;);
+    &#125;
+    <span class="hljs-comment">//广播消息给所有连接的客户端，除了指定的ws  </span>
+    <span class="hljs-title function_">broadcast</span>(<span class="hljs-params">message, exceptWs</span>)&#123;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">client</span>) =&gt;</span> &#123;  
+            <span class="hljs-keyword">if</span> (client !== exceptWs &amp;&amp; client.<span class="hljs-property">readyState</span> === <span class="hljs-title class_">WebSocket</span>.<span class="hljs-property">OPEN</span>) &#123;  
+                client.<span class="hljs-title function_">send</span>(message);  
+            &#125;
+        &#125;);  
+    &#125;
+    <span class="hljs-comment">//推送给特定人员</span>
+    <span class="hljs-title function_">sendMessageToUser</span>(<span class="hljs-params">userId, message</span>) &#123;
+        <span class="hljs-keyword">const</span> ws = <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span>.<span class="hljs-title function_">get</span>(userId);
+        <span class="hljs-keyword">if</span> (ws &amp;&amp; ws.<span class="hljs-property">readyState</span> === <span class="hljs-title class_">WebSocket</span>.<span class="hljs-property">OPEN</span>) &#123;
+            ws.<span class="hljs-title function_">send</span>(message);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+userId+<span class="hljs-string">&quot;用户不在线&quot;</span>);
+            logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+userId+<span class="hljs-string">&quot;用户不在线&quot;</span>)
+        &#125;
+    &#125;
+    <span class="hljs-comment">//从连接列表中移除指定的客户端  </span>
+    <span class="hljs-title function_">removeClient</span>(<span class="hljs-params">userId</span>) &#123;  
+        <span class="hljs-keyword">const</span> ws = <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span>.<span class="hljs-title function_">get</span>(userId);
+        <span class="hljs-keyword">if</span> (ws) &#123;
+            ws.<span class="hljs-title function_">close</span>();
+            <span class="hljs-variable language_">this</span>.<span class="hljs-property">clients</span>.<span class="hljs-title function_">delete</span>(userId);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+userId+<span class="hljs-string">&quot;用户已下线&quot;</span>);
+            logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">&quot;WebSocket :&quot;</span>+userId+<span class="hljs-string">&quot;用户已下线&quot;</span>)
+        &#125;
+    &#125;  
+    <span class="hljs-comment">//启动服务</span>
+    <span class="hljs-title function_">start</span>(<span class="hljs-params"></span>) &#123; 
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;WebSocket 服务启动,正在监听&#x27;</span>+ <span class="hljs-variable language_">this</span>.<span class="hljs-property">wss</span>.<span class="hljs-property">options</span>.<span class="hljs-property">port</span> +<span class="hljs-string">&#x27;端口&#x27;</span>);
+        logger.<span class="hljs-title function_">info</span>(<span class="hljs-string">&#x27;./common/webSocket.js WebSocket服务启动,正在监听&#x27;</span>+ <span class="hljs-variable language_">this</span>.<span class="hljs-property">wss</span>.<span class="hljs-property">options</span>.<span class="hljs-property">port</span> +<span class="hljs-string">&#x27;端口&#x27;</span>);
+    &#125;  
+&#125;  
+
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">WSPORT</span> = process.<span class="hljs-property">env</span>.<span class="hljs-property">WSPORT</span> || <span class="hljs-number">8889</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">WSdev</span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">WebSocketServer</span>(<span class="hljs-variable constant_">WSPORT</span>);
+
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = <span class="hljs-title class_">WSdev</span>;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// ./index.js</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title class_">WSdev</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./common/webSocket&#x27;</span>);
+<span class="hljs-title class_">WSdev</span>.<span class="hljs-title function_">start</span>(); <span class="hljs-comment">//启动 WebSocket 服务</span></code></pre>
+
+<ul>
+<li>express-ws是一个针对Node.js开发者的库，它扩展了流行的Express框架，通过添加对WebSocket协议的支持，让开发者能够利用熟悉的Express API轻松地创建和管理WebSocket服务器。(推荐使用)</li>
+</ul>
+<blockquote>
+<p>npm install express-ws –save</p>
+</blockquote>
+<h3 id="中间件数据处理"><a href="#中间件数据处理" class="headerlink" title="中间件数据处理"></a>中间件数据处理</h3><blockquote>
+<p>npm install cors –save<br>npm install body-parser –save</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">// index.js</span>
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>()
+
+<span class="hljs-keyword">const</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;cors&#x27;</span>)
+app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">cors</span>()) <span class="hljs-comment">//允许跨域:启动所有Cors请求</span>
+
+<span class="hljs-keyword">const</span> bodyParser = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;body-parser&#x27;</span>)
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">json</span>());  <span class="hljs-comment">//解析json数据</span>
+app.<span class="hljs-title function_">use</span>(bodyParser.<span class="hljs-title function_">urlencoded</span>(&#123;<span class="hljs-attr">extended</span>: <span class="hljs-literal">false</span>&#125;));  <span class="hljs-comment">//解析form数据</span></code></pre>
+
+<h2 id="后续扩展"><a href="#后续扩展" class="headerlink" title="后续扩展"></a>后续扩展</h2><blockquote>
+<p>npm install express-session –save<br>npm install express-jwt –save<br>npm install express-validator –save<br>npm install express-winston –save<br>npm install express-rate-limit –save<br>npm install express-ipfilter –save<br>npm install express-ipware –save<br>npm install express-fileupload –save<br>npm install express-flash –save<br>npm install express-handlebars –save<br>npm install express-graphql –save<br>npm install express-graphql-auth –save<br>npm install express-graphql-auth-jwt –save</p>
+</blockquote>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="toc-text">初始化项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">创建项目目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E7%9B%B8%E5%85%B3%E6%A8%A1%E5%9D%97"><span class="toc-text">安装相关模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E6%9B%B4%E6%96%B0%E5%90%AF%E5%8A%A8"><span class="toc-text">热更新启动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Express"><span class="toc-text">Express</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E6%94%AF%E6%8C%81"><span class="toc-text">数据库支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86"><span class="toc-text">日志管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BA%AB%E4%BB%BD%E6%A0%A1%E9%AA%8C"><span class="toc-text">身份校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E6%94%AF%E6%8C%81"><span class="toc-text">接口文档支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket"><span class="toc-text">WebSocket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">中间件数据处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E7%BB%AD%E6%89%A9%E5%B1%95"><span class="toc-text">后续扩展</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Node/"><i class="fa fa-tags"></i>Node</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>功能与样式的参考和奇思妙想 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="功能需求,CSS,Style," />
+  
+
+  
+  <meta name="description" content="在开发过程中，想必会遇到许许多多的问题，需要去查资料，当然我也遇到过，俗话说：好记性不如烂笔头。我相信写下一些笔记什么的应该也有相应的效果，也许它会非常繁琐，也许只是一两个字">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-06-21
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2023-4-13 14:24 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    功能与样式的参考和奇思妙想
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="1：文本相关"><a href="#1：文本相关" class="headerlink" title="1：文本相关"></a>1：文本相关</h2><h3 id="内容进行强制换行"><a href="#内容进行强制换行" class="headerlink" title="内容进行强制换行"></a>内容进行强制换行</h3><p>浏览器需要容器的一个宽度用于内容的换行操作，但是当浏览器判断某些内容为一个单词的时候会拒绝换行</p>
+<pre><code class="hljs css"><span class="hljs-attribute">word-break</span>: break-word; <span class="hljs-comment">/*对单词进行强制拆分*/</span>
+<span class="hljs-attribute">white-space</span>:pre-line;   <span class="hljs-comment">/*保证中文的换行，在碰到边后换行*/</span></code></pre>
+
+<h3 id="禁止复制页面文字"><a href="#禁止复制页面文字" class="headerlink" title="禁止复制页面文字"></a>禁止复制页面文字</h3><p>当你需要长按操作的时候，或者单纯的不想出现复制文本的时候，你可以选择禁止用户复制页面上的文字</p>
+<!-- 以下为演示代码 -->
+<fieldset style="padding:0 20px 10px;">
+  <legend>效果预览</legend>
+  <div> 
+    <p style="">注意，这可以复制</p>
+    <p style="user-select: none;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;" onselectstart="return false">抱歉，这不能复制</p>
+  </div>
+</fieldset>
+<!-- 以上为演示代码 -->
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">body</span> <span class="hljs-attr">onselectstart</span>=<span class="hljs-string">&quot;return false&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre>
+<pre><code class="hljs css">*&#123;
+   -o-<span class="hljs-attribute">user-select</span>: none;
+   -ms-<span class="hljs-attribute">user-select</span>: none;
+   -moz-<span class="hljs-attribute">user-select</span>: none;
+   -webkit-<span class="hljs-attribute">user-select</span>: none;
+   <span class="hljs-attribute">user-select</span>: none;
+&#125;</code></pre>
+
+<h3 id="对内容进行缩放处理"><a href="#对内容进行缩放处理" class="headerlink" title="对内容进行缩放处理"></a>对内容进行缩放处理</h3><p>很多时候，当页面字体太大（最小字体限制12px），会导致页面难看，需要使用缩放对内容进行缩放</p>
+<pre><code class="hljs css"><span class="hljs-selector-class">.div</span>&#123;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">0.5</span>);
+    <span class="hljs-attribute">transform-origin</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">200%</span>;
+&#125;</code></pre>
+<pre><code class="hljs js"><span class="hljs-comment">// 获取元素高度，将margin-bottom 设为原先高度的一半的负值</span>
+$(<span class="hljs-string">&#x27;.set-li&#x27;</span>).<span class="hljs-title function_">map</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">e,a</span>)&#123;
+  <span class="hljs-keyword">var</span> height=$(a).<span class="hljs-title function_">height</span>()/<span class="hljs-number">2</span>
+  $(a).<span class="hljs-title function_">css</span>(<span class="hljs-string">&#x27;margin-bottom&#x27;</span>,-height)
+&#125;)</code></pre>
+
+
+<h3 id="单行多行文本的省略"><a href="#单行多行文本的省略" class="headerlink" title="单行多行文本的省略"></a>单行多行文本的省略</h3><p>在很多时候，我们需要实现单行文本省略和多行文本省略，但多平台的兼容却一直存在</p>
+<pre><code class="hljs css"><span class="hljs-comment">/* 单行文本省略 兼容性：IE7+ */</span>
+<span class="hljs-selector-class">.textOver</span>&#123;
+  <span class="hljs-attribute">white-space</span>: nowrap;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">text-overflow</span>: ellipsis;
+&#125;
+
+<span class="hljs-comment">/* 多行文本省略 仅兼容 webkit 内核浏览器 */</span>
+<span class="hljs-selector-class">.text</span>&#123;
+  <span class="hljs-attribute">word-wrap</span>: break-word;
+  <span class="hljs-attribute">white-space</span>: pre-line;
+  <span class="hljs-attribute">overflow</span>: hidden;
+  <span class="hljs-attribute">text-overflow</span>: ellipsis;
+  <span class="hljs-attribute">display</span>: -webkit-box;
+  -webkit-<span class="hljs-selector-tag">line</span>-clamp: <span class="hljs-number">3</span>;
+  -webkit-<span class="hljs-attribute">box-orient</span>: vertical;
+&#125;</code></pre>
+<p>但是对于多平台兼容，还是有办法的，可能并不是特别完美 兼容性：IE8+</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrap&quot;</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>asdaasdadas<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+<pre><code class="hljs css"><span class="hljs-selector-class">.wrap</span> &#123;<span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;<span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;<span class="hljs-attribute">overflow</span>: hidden;&#125;
+<span class="hljs-selector-class">.wrap</span> <span class="hljs-selector-class">.text</span> &#123;<span class="hljs-attribute">float</span>: right;<span class="hljs-attribute">margin-left</span>:-<span class="hljs-number">20px</span>;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;<span class="hljs-attribute">word-break</span>:break-all;&#125;
+<span class="hljs-selector-class">.wrap</span><span class="hljs-selector-pseudo">:before</span>&#123;<span class="hljs-attribute">float</span>: left;<span class="hljs-attribute">width</span>:<span class="hljs-number">20px</span>;<span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;<span class="hljs-attribute">height</span>: <span class="hljs-number">40px</span>;&#125;
+<span class="hljs-selector-class">.wrap</span><span class="hljs-selector-pseudo">:after</span> &#123;
+  <span class="hljs-attribute">float</span>: right;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;...&quot;</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">3em</span>;<span class="hljs-comment">/* 为三个省略号的宽度 */</span>
+  <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">3em</span>;<span class="hljs-comment">/* 使盒子不占位置 */</span>
+  <span class="hljs-attribute">position</span>: relative;<span class="hljs-comment">/* 移动省略号位置 */</span>
+  <span class="hljs-attribute">left</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">top</span>: -<span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">padding-left</span>: <span class="hljs-number">20px</span>;
+  <span class="hljs-attribute">background-image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">&#x27;透明渐变图片&#x27;</span>); <span class="hljs-comment">/*用于覆盖尾部文本的透明渐变图片*/</span>
+  <span class="hljs-attribute">background-repeat</span>: repeat-y;
+  <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span>;
+&#125;</code></pre>
+
+<h3 id="毛玻璃的样式效果"><a href="#毛玻璃的样式效果" class="headerlink" title="毛玻璃的样式效果"></a>毛玻璃的样式效果</h3><!-- 以下为演示代码 -->
+<fieldset style="padding:0 20px 10px;">
+  <legend>效果预览</legend>
+  <div> 
+    <p style="position: absolute;">注意，这不是演习，重复，这不是演习！</p>
+    <div style="width:200px;height:50px;backdrop-filter: saturate(50%) blur(3px);background: rgba(255,255,255,.5);">
+  </div>
+</fieldset>
+<!-- 以上为演示代码 -->
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">backdrop-filter</span>: <span class="hljs-built_in">saturate</span>(<span class="hljs-number">50%</span>) <span class="hljs-built_in">blur</span>(<span class="hljs-number">8px</span>);
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,.<span class="hljs-number">7</span>);
+&#125;</code></pre>
+
+<h3 id="字体颜色渐变效果"><a href="#字体颜色渐变效果" class="headerlink" title="字体颜色渐变效果"></a>字体颜色渐变效果</h3><!-- 以下为演示代码 -->
+<fieldset style="padding:0 20px 10px;">
+  <legend>效果预览</legend>
+  <div> 
+    <p style="font-size:15px;">
+      公告，注意这个!
+      <span style="background-image: linear-gradient(90deg,#7209d4,#2832d4 33%,#00a5b2);-webkit-background-clip: text;color: transparent;">通缉令</span>
+    </p>
+  </div>
+</fieldset>
+<!-- 以上为演示代码 -->
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span>&#123;
+    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">linear-gradient</span>(<span class="hljs-number">90deg</span>,<span class="hljs-number">#7209d4</span>,<span class="hljs-number">#2832d4</span> <span class="hljs-number">33%</span>,<span class="hljs-number">#00a5b2</span>);
+    -webkit-<span class="hljs-attribute">background-clip</span>: text;
+    <span class="hljs-attribute">color</span>: transparent;
+&#125;</code></pre>
+
+<h3 id="点击获取焦点和tab获取焦点"><a href="#点击获取焦点和tab获取焦点" class="headerlink" title="点击获取焦点和tab获取焦点"></a>点击获取焦点和tab获取焦点</h3><p>默认只有表单类元素可以编辑，但是我们也可以让 p标签获取焦点和编辑，和快捷键tab获取光标</p>
+<!-- 以下为演示代码 -->
+<fieldset style="padding:0 20px 10px;">
+  <legend>效果预览</legend>
+  <div> 
+    <p contenteditable="true">我可以被编辑</p>
+    <p tabindex="0">按下tab键，光标聚焦于我，索引是tab按下依次的顺序</p>
+  </div>
+</fieldset>
+<!-- 以上为演示代码 -->
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">contenteditable</span>=<span class="hljs-string">&quot;true&quot;</span>&gt;</span>我可以被编辑<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">tabindex</span>=<span class="hljs-string">&quot;0&quot;</span>&gt;</span>按下tab键，光标聚焦于我，索引是tab按下依次的顺序<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></code></pre>
+
+<h2 id="2：动画相关"><a href="#2：动画相关" class="headerlink" title="2：动画相关"></a>2：动画相关</h2><h3 id="旋转卡片"><a href="#旋转卡片" class="headerlink" title="旋转卡片"></a>旋转卡片</h3><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> flip &#123;
+  <span class="hljs-number">0%</span> &#123;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">0</span>)
+  &#125;
+  <span class="hljs-number">100%</span> &#123;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">90deg</span>)
+  &#125;
+&#125;
+<span class="hljs-keyword">@keyframes</span> flip_out &#123;
+  <span class="hljs-number">0%</span> &#123;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(-<span class="hljs-number">90deg</span>)
+  &#125;
+  <span class="hljs-number">100%</span> &#123;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">0</span>)
+  &#125;
+&#125;
+
+<span class="hljs-selector-class">.switching</span> &#123;
+  -webkit-<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(-<span class="hljs-number">90deg</span>);
+  -webkit-<span class="hljs-attribute">animation</span>: flip .<span class="hljs-number">4s</span> linear,flip_out .<span class="hljs-number">4s</span> .<span class="hljs-number">41s</span> linear;
+  <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">perspective</span>(<span class="hljs-number">2000px</span>) <span class="hljs-built_in">rotateY</span>(-<span class="hljs-number">90deg</span>);
+  <span class="hljs-attribute">animation</span>: flip .<span class="hljs-number">4s</span> linear,flip_out .<span class="hljs-number">4s</span> .<span class="hljs-number">41s</span> linear
+&#125;
+
+// 点击后，给当前卡片添加 class &quot;switching&quot; ,<span class="hljs-number">0.4s</span> 后将将新卡片的背面显示，旧的隐藏。<span class="hljs-number">0.8s</span> 后 将&quot;switching&quot; 去除。</code></pre>
+
+<h3 id="暂停效果"><a href="#暂停效果" class="headerlink" title="暂停效果"></a>暂停效果</h3><pre><code class="hljs css"><span class="hljs-keyword">@keyframes</span> play-state &#123;
+  <span class="hljs-number">0%</span> &#123;<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">0</span>;&#125;
+  <span class="hljs-number">100%</span> &#123;<span class="hljs-attribute">margin-left</span>: <span class="hljs-number">200px</span>;&#125;
+&#125;
+<span class="hljs-selector-class">.play-state</span> &#123;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<span class="hljs-attribute">margin</span>: <span class="hljs-number">40px</span>;<span class="hljs-attribute">text-align</span>: center;
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">94px</span>;<span class="hljs-attribute">border</span>: <span class="hljs-number">3px</span> solid <span class="hljs-number">#e1efde</span>;<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">animation</span>: play-state <span class="hljs-number">3s</span> linear infinite;<span class="hljs-attribute">cursor</span>: pointer;
+&#125;
+
+<span class="hljs-selector-class">.play-state</span><span class="hljs-selector-pseudo">:hover</span> &#123;
+  <span class="hljs-attribute">animation-play-state</span>: paused; <span class="hljs-comment">/*关键*/</span>
+&#125;</code></pre>
+
+
+<h2 id="3：图片相关"><a href="#3：图片相关" class="headerlink" title="3：图片相关"></a>3：图片相关</h2><h3 id="图片的上传预览"><a href="#图片的上传预览" class="headerlink" title="图片的上传预览"></a>图片的上传预览</h3><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;upload&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;preview&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;预览&quot;</span>/&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript"><span class="hljs-keyword">const</span> upload = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#upload&quot;</span>);</span>
+<span class="language-javascript"><span class="hljs-keyword">const</span> preview = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;#preview&quot;</span>);</span>
+<span class="language-javascript">upload.<span class="hljs-property">onchange</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;</span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> file = upload.<span class="hljs-property">files</span>[<span class="hljs-number">0</span>]; <span class="hljs-comment">//File对象</span></span>
+<span class="language-javascript">  <span class="hljs-keyword">const</span> src = <span class="hljs-variable constant_">URL</span>.<span class="hljs-title function_">createObjectURL</span>(file); </span>
+<span class="language-javascript">  preview.<span class="hljs-property">src</span> = src;</span>
+<span class="language-javascript">&#125;;</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+
+<h3 id="大图从模糊到清晰"><a href="#大图从模糊到清晰" class="headerlink" title="大图从模糊到清晰"></a>大图从模糊到清晰</h3><p>但图片过大的时候，网速慢的时候，图片会呈现断片式加载一截一截的显示，显的比较难看。可以先显示压缩过的模糊的预览图片，在通过new Image() 的方式加载图片，当图片加载好后在替换页面上的图片</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;19.img&quot;</span>/ <span class="hljs-attr">data-url</span>=<span class="hljs-string">&quot;http://xianbin.cf/img/banner/191105.jpg&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;vague&quot;</span>&gt;</span></code></pre>
+<pre><code class="hljs css"><span class="hljs-selector-class">.vague</span>&#123;<span class="hljs-attribute">filter</span>:<span class="hljs-built_in">blur</span>(<span class="hljs-number">2px</span>);<span class="hljs-attribute">transition</span>:all <span class="hljs-number">0.7s</span>;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;&#125;</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">set</span>(<span class="hljs-params">a</span>)&#123;
+    <span class="hljs-keyword">var</span> url=$(a).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;data-url&#x27;</span>)
+    <span class="hljs-keyword">var</span> img=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>();
+    img.<span class="hljs-property">src</span>=url;
+    img.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+        $(a).<span class="hljs-title function_">attr</span>(<span class="hljs-string">&#x27;src&#x27;</span>,url)
+        $(a).<span class="hljs-title function_">removeClass</span>(<span class="hljs-string">&#x27;vague&#x27;</span>)
+    &#125;
+&#125;
+<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;.vague&#x27;</span>)</code></pre>
+
+<h3 id="图片动态加载loading"><a href="#图片动态加载loading" class="headerlink" title="图片动态加载loading"></a>图片动态加载loading</h3><p>设置图片加载中的时候以loading 替代</p>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">load</span>(<span class="hljs-params">view,src</span>)&#123;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+        <span class="hljs-keyword">let</span> img=<span class="hljs-keyword">new</span> <span class="hljs-title class_">Image</span>()
+        img.<span class="hljs-property">src</span>=src
+        img.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+            <span class="hljs-keyword">let</span> box=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(view)
+            box.<span class="hljs-property">src</span>=src
+        &#125;
+    &#125;,<span class="hljs-number">0</span>)
+&#125;
+<span class="hljs-title function_">load</span>(<span class="hljs-string">&#x27;2018A&#x27;</span>,<span class="hljs-string">&#x27;https://clubimg..jpg&#x27;</span>)</code></pre>
+
+<h2 id="4：滚动条相关"><a href="#4：滚动条相关" class="headerlink" title="4：滚动条相关"></a>4：滚动条相关</h2><h3 id="滚动条在鼠标悬浮状态才会显示"><a href="#滚动条在鼠标悬浮状态才会显示" class="headerlink" title="滚动条在鼠标悬浮状态才会显示"></a>滚动条在鼠标悬浮状态才会显示</h3><p>滚动条只有鼠标悬浮在上的时候出现,且元素不出现缩放，重点在于子元素宽度需要比父级小,且使用 margin来处理距离</p>
+<!-- 以下为演示代码 -->
+<style>
+.ScrollBox1{width:100%; height:50px; overflow:hidden; }
+.ScrollBox1:hover{ overflow-y:auto }
+.Scrolltext1{width:100%; margin-left:20px; height:2000px; }
+</style>
+
+<fieldset style="padding:0 20px 10px;">
+  <legend>效果预览</legend>
+  <div class="ScrollBox1"> 
+    <p class="Scrolltext1">
+      公告，注意这个!
+      <span>滚动条</span>
+    </p>
+  </div>
+</fieldset>
+<div>
+<!-- 以上为演示代码 -->
+
+<pre><code class="hljs css"><span class="hljs-selector-class">.div1</span>&#123;<span class="hljs-comment">/* 父级 */</span> <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>; <span class="hljs-attribute">height</span>:<span class="hljs-number">50px</span>; <span class="hljs-attribute">overflow</span>:hidden; &#125;
+<span class="hljs-selector-class">.div1</span><span class="hljs-selector-pseudo">:hover</span>&#123; <span class="hljs-attribute">overflow-y</span>:auto &#125;
+<span class="hljs-selector-class">.div2</span>&#123; <span class="hljs-comment">/* 子级 */</span> <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>; <span class="hljs-attribute">margin-left</span>:<span class="hljs-number">20px</span>; <span class="hljs-attribute">height</span>:<span class="hljs-number">2000px</span>; &#125;</code></pre>
+
+<h3 id="隐藏滚动条"><a href="#隐藏滚动条" class="headerlink" title="隐藏滚动条"></a>隐藏滚动条</h3><p>隐藏竖直滚动条，但页面依然可以滚动   兼容性：兼容 IE9及以上</p>
+<pre><code class="hljs css"><span class="hljs-comment">/* PC端 隐藏滚轮*/</span>
+<span class="hljs-selector-tag">html</span>,<span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;&#125;
+<span class="hljs-selector-tag">html</span> &#123;<span class="hljs-attribute">overflow</span>: hidden;&#125;
+<span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">overflow</span>: auto;<span class="hljs-attribute">width</span>: <span class="hljs-built_in">calc</span>(<span class="hljs-number">100vw</span> + <span class="hljs-number">20px</span>);&#125;
+
+<span class="hljs-comment">/* PE端 隐藏滚轮*/</span>
+::-webkit-scrollbar &#123; <span class="hljs-attribute">display</span>: none; &#125;</code></pre>
+
+<h3 id="弹窗滚动条不滚动"><a href="#弹窗滚动条不滚动" class="headerlink" title="弹窗滚动条不滚动"></a>弹窗滚动条不滚动</h3><p>兼容：兼容 IE8 及以上<br>通过点击出现弹窗后，通过js设置外部滚动条为隐藏</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;buttom&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100%;height:1500px;&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;shadow_box&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;shadow&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text_box&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 点击显示弹窗，设置外部 `css`为 `hidden`</span>
+$(<span class="hljs-string">&#x27;.buttom&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+  $(<span class="hljs-string">&#x27;.shadow_box&#x27;</span>).<span class="hljs-title function_">show</span>()
+  $(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>).<span class="hljs-title function_">css</span>(&#123;<span class="hljs-string">&quot;overflow-x&quot;</span>:<span class="hljs-string">&quot;hidden&quot;</span>,<span class="hljs-string">&quot;overflow-y&quot;</span>:<span class="hljs-string">&quot;hidden&quot;</span>&#125;);
+&#125;)
+
+<span class="hljs-comment">// 点击蒙版，设置外部 `css` 为 `auto`</span>
+$(<span class="hljs-string">&#x27;.shadow&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    $(<span class="hljs-string">&#x27;.shadow_box&#x27;</span>).<span class="hljs-title function_">hide</span>()
+  $(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>).<span class="hljs-title function_">css</span>(&#123;<span class="hljs-string">&quot;overflow-x&quot;</span>:<span class="hljs-string">&quot;auto&quot;</span>,<span class="hljs-string">&quot;overflow-y&quot;</span>:<span class="hljs-string">&quot;auto&quot;</span>&#125;);
+&#125;)</code></pre>
+
+<p>通过禁止滚动条响应事件，在关闭弹窗后再响应</p>
+<pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStopWheel</span>(<span class="hljs-params">e</span>) &#123;
+  e.<span class="hljs-title function_">preventDefault</span>();
+&#125;
+$(<span class="hljs-string">&#x27;.buttom&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-function">()=&gt;</span>&#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&quot;wheel&quot;</span>,handleStopWheel,&#123;<span class="hljs-attr">passive</span>: <span class="hljs-literal">false</span>&#125;)
+&#125;)
+$(<span class="hljs-string">&#x27;#site-toLogin&#x27;</span>).<span class="hljs-title function_">click</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&quot;wheel&quot;</span>,handleStopWheel)
+&#125;);</code></pre>
+
+
+<h2 id="5：设备分类的参考"><a href="#5：设备分类的参考" class="headerlink" title="5：设备分类的参考"></a>5：设备分类的参考</h2><h3 id="关于手机和-PC-的判断"><a href="#关于手机和-PC-的判断" class="headerlink" title="关于手机和 PC 的判断"></a>关于手机和 PC 的判断</h3><pre><code class="hljs js"><span class="hljs-comment">//如果是手机端则去百度，不是则去新闻</span>
+<span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-property">href</span> = <span class="hljs-regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="hljs-title function_">test</span>(navigator.<span class="hljs-property">userAgent</span>) ? <span class="hljs-string">&quot;https://www.baidu.com/&quot;</span> :  <span class="hljs-string">&quot;http://news.baidu.com/&quot;</span>;</code></pre>
+
+<h3 id="关于屏幕大小属性参考"><a href="#关于屏幕大小属性参考" class="headerlink" title="关于屏幕大小属性参考"></a>关于屏幕大小属性参考</h3><pre><code class="hljs dart"># 浏览器窗口大小（包括工具栏）
+<span class="hljs-built_in">window</span>.outerHeight
+<span class="hljs-built_in">window</span>.outerWidth
+
+# 窗口文档显示区（不包含滚动条）
+<span class="hljs-built_in">window</span>.innerWidth
+<span class="hljs-built_in">window</span>.innerHeight
+
+# 元素级内部大小（不包含滚动条）
+clientWidth
+clientHeight</code></pre>
+
+<h3 id="关于手机横竖屏的判断"><a href="#关于手机横竖屏的判断" class="headerlink" title="关于手机横竖屏的判断"></a>关于手机横竖屏的判断</h3><blockquote>
+<p>通过 <code>window.orientation</code> 属性进行判断， PC 端为 undefined，90或-90为横屏幕，剩下则是竖屏</p>
+</blockquote>
+<h3 id="手机和电脑长按的混合处理"><a href="#手机和电脑长按的混合处理" class="headerlink" title="手机和电脑长按的混合处理"></a>手机和电脑长按的混合处理</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> isAndroid=<span class="hljs-regexp">/Android|webOS|iPhone|ipod|ipad|BlackBerry/i</span>.<span class="hljs-title function_">test</span>(navigator.<span class="hljs-property">userAgent</span>)
+<span class="hljs-keyword">let</span> set1,set2,isLong=<span class="hljs-number">0</span>,start=<span class="hljs-literal">false</span>
+<span class="hljs-keyword">let</span> dom=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;aaa&#x27;</span>)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;touchstart&#x27;</span>,a)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;touchmove&#x27;</span>,b)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;touchend&#x27;</span>,c)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;mousedown&#x27;</span>,a)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;mousemove&#x27;</span>,b)
+  dom.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;mouseup&#x27;</span>,c)
+<span class="hljs-keyword">if</span>(isAndroid)&#123;
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchstart&#x27;</span>,a)
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchmove&#x27;</span>,b)
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;touchend&#x27;</span>,c) 
+&#125;<span class="hljs-keyword">else</span>&#123;
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;mousedown&#x27;</span>,a)
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;mousemove&#x27;</span>,b)
+  dom.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;mouseup&#x27;</span>,c)
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">a</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-comment">//多次触发</span>
+  start=<span class="hljs-literal">true</span>
+  set1=<span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;这次是长按&#x27;</span>)
+    isLong=<span class="hljs-number">1</span>
+  &#125;,<span class="hljs-number">800</span>)
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">b</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-comment">//移动</span>
+  <span class="hljs-keyword">if</span>(start)&#123;
+    isLong=<span class="hljs-number">2</span>
+    <span class="hljs-built_in">clearTimeout</span>(set1)
+  &#125;
+&#125;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">c</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-comment">//离开</span>
+  <span class="hljs-keyword">if</span>(isLong==<span class="hljs-number">0</span>)&#123;
+    <span class="hljs-built_in">clearTimeout</span>(set1)
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;这次是单击&#x27;</span>)
+  &#125;
+  isLong=<span class="hljs-number">0</span>
+  start=<span class="hljs-literal">false</span>
+&#125;</code></pre>
+
+<h2 id="6：功能的相关参考"><a href="#6：功能的相关参考" class="headerlink" title="6：功能的相关参考"></a>6：功能的相关参考</h2><h3 id="禁止使用页面后退"><a href="#禁止使用页面后退" class="headerlink" title="禁止使用页面后退"></a>禁止使用页面后退</h3><p>兼容性：不支持IE</p>
+<pre><div class="caption"><span>不支持IE</span></div><code class="hljs js"><span class="hljs-comment">//防止页面后退</span>
+history.<span class="hljs-title function_">pushState</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">document</span>.<span class="hljs-property">URL</span>);
+<span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;popstate&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    history.<span class="hljs-title function_">pushState</span>(<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-variable language_">document</span>.<span class="hljs-property">URL</span>);
+&#125;);
+</code></pre>
+
+<h3 id="点击关闭当前页面"><a href="#点击关闭当前页面" class="headerlink" title="点击关闭当前页面"></a>点击关闭当前页面</h3><p>浏览器出于安全策略的考虑，只允许Javascript 关闭由Javascript 打开的页面，所以当我们需要关闭当前页面的时候，你可以这样</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&quot;window.opener=null;window.open(&#x27;&#x27;,&#x27;_self&#x27;);window.close();&quot;</span>&gt;</span>关闭<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+<blockquote>
+<p>window.opener是一个可读可写的属性，返回对创建该窗口的 Window 对象的引用<br>window.opener.lose()可以关闭父级窗口<br>思路，先设置opener为空，当打开一个空的新窗口，关闭父级窗口，因为打开的是空，所有新的子页面不会出现</p>
+</blockquote>
+<h3 id="表单自动填入功能"><a href="#表单自动填入功能" class="headerlink" title="表单自动填入功能"></a>表单自动填入功能</h3><blockquote>
+<p>在部分浏览器中,会默认开启自动完成功能。注意 属性 name 和 id 会影响改功能；</p>
+</blockquote>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span>/&gt;</span> 
+// 当不存在name 或 id 的时候，自动完成不会开启，只有当其中一个出现的时候才会启动。
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email&quot;</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;off&quot;</span> /&gt;</span>
+// 也可以通过 autocomplate 进行控制。
+</code></pre>
+
+<pre><code class="hljs css">// 自动填写功能默认为黄色，下面的样式会重置它
+<span class="hljs-selector-tag">input</span>:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus &#123;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid green;
+  -webkit-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">fill</span>-<span class="hljs-attribute">color</span>: green;
+  -webkit-<span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0px</span> <span class="hljs-number">1000px</span> <span class="hljs-number">#000</span> inset;
+  <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">5000s</span> ease-in-out <span class="hljs-number">0s</span>;
+&#125;</code></pre>
+
+<h3 id="html动态加载-js文件"><a href="#html动态加载-js文件" class="headerlink" title="html动态加载 js文件"></a>html动态加载 js文件</h3><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">loadScript</span>(<span class="hljs-params">url,callback</span>)&#123;
+    <span class="hljs-keyword">var</span> script=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;script&quot;</span>);
+    script.<span class="hljs-property">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>;
+    <span class="hljs-keyword">if</span>(script.<span class="hljs-property">readyState</span>)&#123;
+        script.<span class="hljs-property">onreadystatechange</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+            <span class="hljs-keyword">if</span>(script.<span class="hljs-property">readyState</span>==<span class="hljs-string">&quot;load&quot;</span>||script.<span class="hljs-property">readyState</span>==<span class="hljs-string">&quot;complete&quot;</span>)&#123;
+                script.<span class="hljs-property">onreadystatechange</span>=<span class="hljs-literal">null</span>;
+                <span class="hljs-title function_">callback</span>();
+            &#125;;
+        &#125;
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        script.<span class="hljs-property">onload</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+            <span class="hljs-title function_">callback</span>();
+        &#125;
+    &#125;
+    script.<span class="hljs-property">src</span>=url;
+&#125;
+
+<span class="hljs-title function_">loadScript</span>(<span class="hljs-string">&quot;jquery.js&quot;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;加载完成&#x27;</span>)
+&#125;)</code></pre>
+
+
+<h3 id="prototype-原型改造"><a href="#prototype-原型改造" class="headerlink" title="prototype 原型改造"></a>prototype 原型改造</h3><pre><code class="hljs js"><span class="hljs-comment">// 通过全局属性进行定义</span>
+
+<span class="hljs-keyword">var</span> a=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;en&quot;</span>)
+a.<span class="hljs-property">addClass</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-keyword">var</span> a=<span class="hljs-variable language_">this</span>.<span class="hljs-title function_">getAttribute</span>(<span class="hljs-string">&quot;class&quot;</span>)
+    <span class="hljs-keyword">if</span>(a)&#123;
+        a=a+<span class="hljs-string">&quot; &quot;</span>+name;
+        <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;class&quot;</span>,a)
+    &#125;<span class="hljs-keyword">else</span>&#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>)
+    &#125;
+&#125;
+a.<span class="hljs-title function_">addClass</span>(<span class="hljs-string">&quot;name&quot;</span>)
+
+<span class="hljs-comment">// 通过prototype进行定义</span>
+
+<span class="hljs-title class_">String</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">lengths</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)&#123;
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">length</span>)
+&#125;
+<span class="hljs-string">&quot;lenght&quot;</span>.<span class="hljs-title function_">lengths</span>()</code></pre>
+
+<h3 id="页面打印及4A大小的设置"><a href="#页面打印及4A大小的设置" class="headerlink" title="页面打印及4A大小的设置"></a>页面打印及4A大小的设置</h3><pre><code class="hljs js"><span class="hljs-keyword">let</span> dom=<span class="hljs-string">&quot;&lt;!DOCTYPE html&gt;...&lt;/html&gt;&quot;</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">doPrint3</span>(<span class="hljs-params">dom</span>)&#123;
+
+    <span class="hljs-comment">//判断iframe是否存在，不存在则创建iframe</span>
+    <span class="hljs-keyword">var</span> iframe=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;print-iframe&quot;</span>);
+    <span class="hljs-keyword">if</span>(!iframe)&#123;  
+        <span class="hljs-keyword">var</span> el = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;printcontent&quot;</span>);
+        iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;IFRAME&#x27;</span>);
+        iframe.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;print-iframe&quot;</span>);
+
+        <span class="hljs-comment">// 需要预览就添加大小。A4的内容大小。不需要就隐藏</span>
+        iframe.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;style&#x27;</span>, <span class="hljs-string">&#x27;width:794px;height:1090px;&#x27;</span>); 
+        <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(iframe);
+
+        <span class="hljs-comment">// 如果传入dom，则打印dom</span>
+        iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-property">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">innerHTML</span>=dom
+        <span class="hljs-keyword">var</span> doc = iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-property">document</span>;
+
+        <span class="hljs-comment">//这里可以自定义打印样式</span>
+        doc.<span class="hljs-title function_">write</span>(<span class="hljs-string">&quot;&lt;LINK rel=&quot;</span>stylesheet<span class="hljs-string">&quot; type=&quot;</span>text/css<span class="hljs-string">&quot; href=&quot;</span>css/print.<span class="hljs-property">css</span><span class="hljs-string">&quot;&gt;&quot;</span>);
+
+        <span class="hljs-comment">//如果不传dom 需要单独打印部分内容</span>
+        <span class="hljs-comment">//doc.write(&#x27;&lt;div&gt;&#x27; + el.innerHTML + &#x27;&lt;/div&gt;&#x27;);</span>
+        <span class="hljs-comment">//doc.close();</span>
+        <span class="hljs-comment">//iframe.contentWindow.focus();            </span>
+    &#125;
+    iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-title function_">print</span>();
+    <span class="hljs-keyword">if</span> (navigator.<span class="hljs-property">userAgent</span>.<span class="hljs-title function_">indexOf</span>(<span class="hljs-string">&quot;MSIE&quot;</span>) &gt; <span class="hljs-number">0</span>)&#123; <span class="hljs-comment">// IE浏览器</span>
+      <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">removeChild</span>(iframe);
+    &#125;
+&#125;</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">// 打印</span>
+<span class="hljs-title function_">doPrint3</span>(<span class="hljs-params">dom</span>)&#123;
+
+    <span class="hljs-comment">//判断iframe是否存在，不存在则创建iframe</span>
+    <span class="hljs-keyword">var</span> iframe=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;print-iframe&quot;</span>);
+    <span class="hljs-keyword">if</span>(!iframe)&#123;
+      iframe = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;IFRAME&#x27;</span>);
+      iframe.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;id&quot;</span>, <span class="hljs-string">&quot;print-iframe&quot;</span>);
+
+      <span class="hljs-comment">// 需要预览就添加大小。A4的内容大小。不需要就隐藏</span>
+      iframe.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&#x27;style&#x27;</span>, <span class="hljs-string">&#x27;width:794px;height:1090px;&#x27;</span>); 
+      <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">appendChild</span>(iframe);
+      iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-property">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">innerHTML</span>=dom  
+    &#125;
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-title function_">print</span>();
+      <span class="hljs-keyword">var</span> doc = iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-property">document</span>;
+      doc.<span class="hljs-title function_">close</span>();
+      iframe.<span class="hljs-property">contentWindow</span>.<span class="hljs-title function_">focus</span>(); 
+      <span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>.<span class="hljs-title function_">removeChild</span>(iframe);
+    &#125;,<span class="hljs-number">10</span>)
+&#125;,</code></pre>
+
+
+
+
+
+<h3 id="数据表格和固定头部的样式"><a href="#数据表格和固定头部的样式" class="headerlink" title="数据表格和固定头部的样式"></a>数据表格和固定头部的样式</h3><pre><div class="caption"><span>React 代码</span></div><code class="hljs js"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">React</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+<span class="hljs-keyword">var</span> $ = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;jquery&#x27;</span>)
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LTable</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">React.Component</span>&lt;any,any&gt;&#123;
+  <span class="hljs-title function_">constructor</span>(<span class="hljs-params">props:any</span>) &#123;
+    <span class="hljs-variable language_">super</span>(props);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>=<span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>.<span class="hljs-title function_">bind</span>(<span class="hljs-variable language_">this</span>)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span> = &#123;
+      <span class="hljs-attr">id</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">id</span>||<span class="hljs-string">&#x27;l_&#x27;</span>+<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">getTime</span>(),
+      <span class="hljs-attr">clas</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">className</span>||<span class="hljs-string">&#x27;&#x27;</span>,
+      <span class="hljs-attr">height</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">height</span>||<span class="hljs-string">&#x27;300px&#x27;</span>,
+    &#125;
+  &#125;
+  <span class="hljs-keyword">static</span> contextTypes=&#123;  
+    <span class="hljs-attr">router</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    &#125;
+  &#125;
+  mounted = <span class="hljs-literal">false</span>;
+  <span class="hljs-title function_">componentWillMount</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mounted</span> = <span class="hljs-literal">true</span>;
+  &#125;
+  <span class="hljs-title function_">componentDidMount</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>)
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">resize</span>()
+  &#125;
+  <span class="hljs-title function_">componentDidUpdate</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">resize</span>()
+  &#125;
+  <span class="hljs-title function_">componentWillUnmount</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">removeEventListener</span>(<span class="hljs-string">&#x27;resize&#x27;</span>,<span class="hljs-variable language_">this</span>.<span class="hljs-property">resize</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">mounted</span> = <span class="hljs-literal">false</span>;
+  &#125;
+  <span class="hljs-title function_">resize</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">let</span> id=<span class="hljs-variable language_">this</span>.<span class="hljs-property">state</span>.<span class="hljs-property">id</span>
+    <span class="hljs-keyword">let</span> tbody=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">tbody</span>
+    <span class="hljs-keyword">if</span>(tbody.<span class="hljs-property">length</span>&gt;<span class="hljs-number">0</span>)&#123;
+      <span class="hljs-keyword">let</span> ltable=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;table&#x27;</span>)
+      <span class="hljs-keyword">let</span> thead0=ltable[<span class="hljs-number">0</span>].<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;thead&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> thead1=ltable[<span class="hljs-number">1</span>].<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;thead&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> ltbody=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&#x27;l_table_body&#x27;</span>)[<span class="hljs-number">0</span>]
+      <span class="hljs-keyword">let</span> th0=thead0.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;th&#x27;</span>)
+      <span class="hljs-keyword">let</span> th1=thead1.<span class="hljs-title function_">getElementsByTagName</span>(<span class="hljs-string">&#x27;th&#x27;</span>)
+      thead0.<span class="hljs-property">style</span>.<span class="hljs-property">minWidth</span>=thead1.<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      ltable[<span class="hljs-number">0</span>].<span class="hljs-property">style</span>.<span class="hljs-property">width</span>=ltable[<span class="hljs-number">1</span>].<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;th1.<span class="hljs-property">length</span>;i++)&#123;
+        th0[i].<span class="hljs-property">style</span>.<span class="hljs-property">width</span>=th1[i].<span class="hljs-property">offsetWidth</span>+<span class="hljs-string">&#x27;px&#x27;</span>
+      &#125;
+      $(ltbody).<span class="hljs-title function_">scroll</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">e:any</span>)&#123;
+        <span class="hljs-keyword">let</span> div=<span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(id)!.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&#x27;l_table_head&#x27;</span>)[<span class="hljs-number">0</span>]
+        div.<span class="hljs-property">scrollLeft</span>=e.<span class="hljs-property">target</span>.<span class="hljs-property">scrollLeft</span>
+      &#125;)
+    &#125;
+  &#125;
+  <span class="hljs-title function_">render</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">let</span> thead=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">thead</span>,tbody=<span class="hljs-variable language_">this</span>.<span class="hljs-property">props</span>.<span class="hljs-property">tbody</span>
+    <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#123;this.state.id&#125;</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&#123;</span>&quot;<span class="hljs-attr">l_table</span> &quot;+<span class="hljs-attr">this.state.clas</span>&#125;&gt;</span></span>
+<span class="language-xml">      &#123;this.props.title?</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_title&quot;</span>&gt;</span>&#123;this.props.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>:&#x27;&#x27;</span>
+<span class="language-xml">      &#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_head l_scroll_hide&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            &#123;thead.map((e:any,i:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;i&#125;</span>&gt;</span>&#123;e.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_table_body&quot;</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;height:this.state.height&#125;&#125;</span>&gt;</span></span>
+<span class="language-xml">        &#123;tbody.length&gt;0?</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            &#123;thead.map((e:any,i:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">th</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;i&#125;</span>&gt;</span>&#123;e.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">th</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">thead</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span></span>
+<span class="language-xml">            &#123;tbody.map((tr:any,a:any)=&gt;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;a&#125;</span>&gt;</span></span>
+<span class="language-xml">              &#123;thead.map((td:any,b:any)=&gt;&#123;</span>
+<span class="language-xml">                if(td.render)&#123;</span>
+<span class="language-xml">                  return <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;b&#125;</span>&gt;</span>&#123;td.render(tr)&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span>
+<span class="language-xml">                &#125;else&#123;</span>
+<span class="language-xml">                  return <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">key</span>=<span class="hljs-string">&#123;b&#125;</span>&gt;</span>&#123;td.title&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span></span>
+<span class="language-xml">                &#125;</span>
+<span class="language-xml">              &#125;)&#125;</span>
+<span class="language-xml">              <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span></span>
+<span class="language-xml">            )&#125;</span>
+<span class="language-xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>:</span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;l_nodata&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>No Date<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">        &#125;</span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+    )
+  &#125;
+&#125;
+</code></pre>
+
+<pre><code class="hljs css"><span class="hljs-selector-class">.l_table</span>&#123;<span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#c3c3c3</span>;<span class="hljs-attribute">background</span>: <span class="hljs-number">#fff</span>;<span class="hljs-attribute">margin-bottom</span>:<span class="hljs-number">20px</span>;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">table</span>&#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">th</span>,<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">td</span>&#123;<span class="hljs-attribute">word-break</span>:keep-all;<span class="hljs-attribute">overflow</span>:hidden;<span class="hljs-attribute">white-space</span>:nowrap;-o-<span class="hljs-attribute">text-overflow</span>:ellipsis;<span class="hljs-attribute">text-overflow</span>:ellipsis;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">table</span>,<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">th</span>,<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">td</span>&#123;<span class="hljs-attribute">border</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">border-spacing</span>:<span class="hljs-number">0</span>;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">td</span>&#123;<span class="hljs-attribute">padding</span>: <span class="hljs-number">6px</span> <span class="hljs-number">10px</span>;<span class="hljs-attribute">max-width</span>: <span class="hljs-number">150px</span>;&#125;
+<span class="hljs-selector-class">.l_table_title</span>&#123;<span class="hljs-attribute">text-align</span>:center;<span class="hljs-attribute">font-weight</span>:<span class="hljs-number">700</span>;<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>;<span class="hljs-attribute">padding</span>:<span class="hljs-number">16px</span> <span class="hljs-number">0</span>;<span class="hljs-attribute">position</span>:relative;<span class="hljs-attribute">top</span>:<span class="hljs-number">1px</span>;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">14px</span>;<span class="hljs-attribute">color</span>:<span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0.65</span>);<span class="hljs-attribute">padding-right</span>:<span class="hljs-number">17px</span>;&#125;
+<span class="hljs-selector-class">.l_scroll_hide</span>::-webkit-scrollbar&#123;<span class="hljs-attribute">background</span>:transparent&#125;
+<span class="hljs-selector-class">.l_scroll_hide</span>&#123;<span class="hljs-attribute">scrollbar-color</span>: transparent transparent;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-tag">th</span>&#123;<span class="hljs-attribute">background</span>:<span class="hljs-number">#fafafa</span>;<span class="hljs-attribute">position</span>:relative;<span class="hljs-attribute">z-index</span>:<span class="hljs-number">1</span>;<span class="hljs-attribute">box-sizing</span>:border-box;<span class="hljs-attribute">padding</span>:<span class="hljs-number">0px</span> <span class="hljs-number">10px</span>;<span class="hljs-attribute">text-align</span><span class="hljs-selector-pseudo">:left</span>&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-class">.l_table_head</span>&#123;<span class="hljs-attribute">border-top</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#e8e8e8</span>;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-class">.l_table_body</span> <span class="hljs-selector-tag">td</span>,<span class="hljs-selector-class">.l_table_head</span> <span class="hljs-selector-tag">th</span>,<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-class">.l_table_body</span> <span class="hljs-selector-tag">th</span>&#123;<span class="hljs-attribute">border-right</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#e8e8e8</span>;<span class="hljs-attribute">border-bottom</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#e8e8e8</span>&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-class">.l_table_head</span>&#123;<span class="hljs-attribute">overflow-x</span>:hidden;<span class="hljs-attribute">overflow-y</span>:scroll;&#125;
+<span class="hljs-selector-class">.l_table</span> <span class="hljs-selector-class">.l_table_body</span>&#123;<span class="hljs-attribute">overflow-y</span>:scroll;<span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">35px</span>;&#125;
+<span class="hljs-selector-class">.l_table_head</span>,<span class="hljs-selector-class">.l_table_body</span> <span class="hljs-selector-tag">thead</span>&#123;<span class="hljs-attribute">line-height</span>:<span class="hljs-number">34px</span>&#125;
+<span class="hljs-selector-class">.l_table_body</span> <span class="hljs-selector-tag">thead</span>&#123;<span class="hljs-attribute">visibility</span>:hidden;&#125;
+<span class="hljs-selector-class">.l_nodata</span>&#123;<span class="hljs-attribute">position</span>:relative;<span class="hljs-attribute">height</span>:<span class="hljs-number">100%</span>&#125;
+<span class="hljs-selector-class">.l_nodata</span> <span class="hljs-selector-tag">span</span>&#123;<span class="hljs-attribute">position</span>:absolute;<span class="hljs-attribute">top</span>:<span class="hljs-built_in">calc</span>(<span class="hljs-number">50%</span> + <span class="hljs-number">10px</span>);<span class="hljs-attribute">left</span>:<span class="hljs-number">50%</span>;<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">translate</span>(-<span class="hljs-number">25%</span>);&#125;</code></pre>
+
+<h3 id="自动化填充的样式修改"><a href="#自动化填充的样式修改" class="headerlink" title="自动化填充的样式修改"></a>自动化填充的样式修改</h3><p>无论浏览器的元素默认样式设置的再怎么绚丽，我们都希望有足够的自由（修改所有的一切）;更何况自动填写那一块黄色的背景和我们设置的风格完全无法融合；</p>
+<pre><code class="hljs css"><span class="hljs-comment">/* 这是谷歌浏览器的样式更改 */</span>
+<span class="hljs-selector-tag">input</span>:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus &#123;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid green;
+  -webkit-<span class="hljs-selector-tag">text</span>-<span class="hljs-attribute">fill</span>-<span class="hljs-attribute">color</span>: green;
+  -webkit-<span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0px</span> <span class="hljs-number">1000px</span> <span class="hljs-number">#000</span> inset;
+  <span class="hljs-attribute">transition</span>: background-color <span class="hljs-number">5000s</span> ease-in-out <span class="hljs-number">0s</span>;
+&#125;
+
+<span class="hljs-comment">/* 通过盒子内阴影将背景颜色遮盖；将背景颜色的过渡时间设长 */</span></code></pre>
+
+<h2 id="7：浏览器开发调试"><a href="#7：浏览器开发调试" class="headerlink" title="7：浏览器开发调试"></a>7：浏览器开发调试</h2><h3 id="CONSOLE-各种提示信息的集合"><a href="#CONSOLE-各种提示信息的集合" class="headerlink" title="CONSOLE 各种提示信息的集合"></a>CONSOLE 各种提示信息的集合</h3><pre><code class="hljs js"><span class="hljs-comment">// 输出信息</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;文字信息&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string">&#x27;提示信息&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">&#x27;警告信息&#x27;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">error</span>(<span class="hljs-string">&#x27;错误信息&#x27;</span>);
+<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;这是一个错误提示&#x27;</span>);
+<span class="hljs-keyword">throw</span> &#123; <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;参数错误&#x27;</span>, <span class="hljs-attr">message</span>: <span class="hljs-string">&#x27;data[0]不存在&#x27;</span>&#125;
+
+<span class="hljs-comment">//当第一参数为false时，输出警告信息第二参数</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">assert</span>(<span class="hljs-literal">false</span>,<span class="hljs-string">&#x27;看不见&#x27;</span>)
+
+<span class="hljs-comment">//输出样式 （IE 不支持）</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;%c我要变色了&quot;</span>,<span class="hljs-string">&quot;color:blue;font-size:20px&quot;</span>)
+
+<span class="hljs-comment">/*分组输出:可折叠*/</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&#x27;第一个组&#x27;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1-1&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1-2&quot;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;1-3&quot;</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>();
+
+<span class="hljs-comment">/*分组输出:可嵌套*/</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&#x27;第一个组&#x27;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&quot;1-1&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&quot;1-1-1&quot;</span>);
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;内容&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>();
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>();
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&quot;1-2&quot;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;内容&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;内容&#x27;</span>);
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;内容&#x27;</span>);
+    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>();
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>();
+
+<span class="hljs-comment">// 表格输出</span>
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Obj</span> = &#123;
+    <span class="hljs-title class_">Obj1</span>: &#123;
+        <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;aaa&quot;</span>,
+        <span class="hljs-attr">b</span>: <span class="hljs-string">&quot;bbb&quot;</span>,
+        <span class="hljs-attr">c</span>: <span class="hljs-string">&quot;ccc&quot;</span>
+    &#125;,
+    <span class="hljs-title class_">Obj2</span>: &#123;
+        <span class="hljs-attr">a</span>: <span class="hljs-string">&quot;aaa&quot;</span>,
+        <span class="hljs-attr">b</span>: <span class="hljs-string">&quot;bbb&quot;</span>,
+        <span class="hljs-attr">c</span>: <span class="hljs-string">&quot;ccc&quot;</span>
+    &#125;
+&#125;
+<span class="hljs-keyword">var</span> <span class="hljs-title class_">Arr</span> = [
+    [<span class="hljs-string">&quot;aa&quot;</span>,<span class="hljs-string">&quot;bb&quot;</span>,<span class="hljs-string">&quot;cc&quot;</span>],
+    [<span class="hljs-string">&quot;dd&quot;</span>,<span class="hljs-string">&quot;ee&quot;</span>,<span class="hljs-string">&quot;ff&quot;</span>],
+    [<span class="hljs-string">&quot;gg&quot;</span>,<span class="hljs-string">&quot;hh&quot;</span>,<span class="hljs-string">&quot;ii&quot;</span>],
+]
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">table</span>(<span class="hljs-title class_">Obj</span>);
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">table</span>(<span class="hljs-title class_">Arr</span>);
+
+<span class="hljs-comment">// 追踪堆栈调用</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">trace</span>(<span class="hljs-string">&#x27;调用&#x27;</span>)
+
+<span class="hljs-comment">// 计时</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">time</span>(<span class="hljs-string">&quot;Chrome中循环1000次的时间&quot;</span>);
+<span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">1000</span>; i++)&#123; &#125;
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">timeEnd</span>(<span class="hljs-string">&quot;Chrome中循环1000次的时间&quot;</span>);</code></pre>
+
+<h2 id="8：加密方案"><a href="#8：加密方案" class="headerlink" title="8：加密方案"></a>8：加密方案</h2><h3 id="AES对称加密"><a href="#AES对称加密" class="headerlink" title="AES对称加密"></a>AES对称加密</h3><p>一般现在的项目，为了通信安全，会考虑信息加密的方案，通过使用AES对传输的内容进行加密，再通过RSA对AES的秘钥进行加密。最后将AES密文和RSA密文传输到后端。<br>像AES对称加密，是通过一个秘钥进行的加密和解密的，所以这个秘钥的安全性极为重要。</p>
+<ul>
+<li>字符串文本的加密和解密</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">CryptoJS</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;crypto-js&quot;</span>
+
+<span class="hljs-comment">// AES加密文本</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesString</span>=(<span class="hljs-params">SymmetricKey,ivString,text</span>)=&gt;&#123;、
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">// 加密</span>
+  <span class="hljs-keyword">let</span> encrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(text, key, &#123;
+    <span class="hljs-attr">iv</span>: iv,
+    <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+    <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>
+  &#125;)
+
+  <span class="hljs-comment">// 密文（Base64 编码）</span>
+  <span class="hljs-keyword">let</span> ciphertext = encrypted.<span class="hljs-title function_">toString</span>();
+  <span class="hljs-keyword">return</span> ciphertext
+&#125;
+
+<span class="hljs-comment">//AES解密文本</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesDcString</span>=(<span class="hljs-params">SymmetricKey,ivString,text</span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">// 解密</span>
+  <span class="hljs-keyword">let</span> encrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(text, key, &#123;
+    <span class="hljs-attr">iv</span>: iv,
+    <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+    <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>
+  &#125;)
+
+  <span class="hljs-comment">// 明文（UTF-8 编码）</span>
+  <span class="hljs-keyword">let</span> message = decrypted.<span class="hljs-title function_">toString</span>(<span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>);
+  <span class="hljs-keyword">return</span> message
+&#125;</code></pre>
+
+<ul>
+<li>读取文件的内容进行加密和解密</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">CryptoJS</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;crypto-js&quot;</span>
+
+<span class="hljs-comment">//AES加密文件</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesFile</span>=(<span class="hljs-params">SymmetricKey,ivString,file</span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">// 创建 FileReader 对象</span>
+  <span class="hljs-keyword">let</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();
+  <span class="hljs-comment">// 设置读取方式为 ArrayBuffer</span>
+  reader.<span class="hljs-title function_">readAsArrayBuffer</span>(file);
+  <span class="hljs-comment">// 监听 loadend 事件</span>
+  reader.<span class="hljs-property">onloadend</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;
+    <span class="hljs-comment">// 获取读取结果（ArrayBuffer）</span>
+    <span class="hljs-keyword">let</span> buffer = reader.<span class="hljs-property">result</span>;
+    <span class="hljs-comment">// 将 ArrayBuffer 转换为 WordArray </span>
+    <span class="hljs-keyword">let</span> wordArray = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">lib</span>.<span class="hljs-property">WordArray</span>.<span class="hljs-title function_">create</span>(buffer);
+
+    <span class="hljs-comment">// 加密</span>
+    <span class="hljs-keyword">let</span> encrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(wordArray, key, &#123;
+      <span class="hljs-attr">iv</span>: iv,
+      <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+      <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>,
+    &#125;);
+    <span class="hljs-comment">// 密文（Base64 编码）</span>
+    <span class="hljs-keyword">let</span> ciphertext = encrypted.<span class="hljs-title function_">toString</span>();
+    <span class="hljs-keyword">return</span> ciphertext
+  &#125;;
+&#125;
+
+<span class="hljs-comment">//AES解密文件</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesDcFile</span>=(<span class="hljs-params">SymmetricKey,ivString,fileText,filename</span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">// 解密</span>
+  <span class="hljs-keyword">var</span> decrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(fileText, key,&#123;
+    <span class="hljs-attr">iv</span>: iv,
+    <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+    <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>
+  &#125;)
+  <span class="hljs-comment">// 将解密后的结果转换为ArrayBuffer格式</span>
+  <span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(decrypted.<span class="hljs-property">sigBytes</span>);
+  <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer);
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; decrypted.<span class="hljs-property">sigBytes</span>; i++) &#123;
+      view[i] = decrypted.<span class="hljs-property">words</span>[i &gt;&gt;&gt; <span class="hljs-number">2</span>] &gt;&gt;&gt; (<span class="hljs-number">24</span> - (i % <span class="hljs-number">4</span>) * <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xff</span>;
+  &#125;
+  <span class="hljs-comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span>
+  <span class="hljs-keyword">var</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([buffer]);
+  <span class="hljs-comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span>
+  <span class="hljs-title function_">saveAs</span>(blob,filename);
+&#125;</code></pre>
+
+<ul>
+<li>将多个文件添加为zip压缩包的加密和解密</li>
+</ul>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; saveAs &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;file-saver&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">CryptoJS</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;crypto-js&quot;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">JSZip</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;jszip&#x27;</span>
+
+
+<span class="hljs-comment">//AES加密文件（将多个文件添加为zip压缩包）</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesFileZip</span>=(<span class="hljs-params">SymmetricKey,ivString,fileList,save=<span class="hljs-literal">false</span>,name=<span class="hljs-string">&#x27;encryption.txt&#x27;</span></span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">//添加文件进zip压缩包</span>
+  <span class="hljs-keyword">const</span> zip = <span class="hljs-keyword">new</span> <span class="hljs-title class_">JSZip</span>()
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> fileList)&#123;
+    zip.<span class="hljs-title function_">file</span>(fileList[i].<span class="hljs-property">name</span>, fileList[i].<span class="hljs-property">raw</span>)
+  &#125;
+
+  <span class="hljs-comment">//对zip压缩包进行加密</span>
+  zip.<span class="hljs-title function_">generateAsync</span>(&#123;<span class="hljs-attr">type</span>:<span class="hljs-string">&quot;uint8array&quot;</span>&#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">zipData</span>) &#123;
+    <span class="hljs-comment">// 使用AES CBC Pkcs7模式进行加密</span>
+    <span class="hljs-keyword">const</span> encryptedData = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">encrypt</span>(<span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">lib</span>.<span class="hljs-property">WordArray</span>.<span class="hljs-title function_">create</span>(zipData), key, &#123;
+      <span class="hljs-attr">iv</span>:iv,
+      <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>,
+      <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>
+    &#125;);
+    <span class="hljs-comment">// 将加密后的数据转换为Base64字符串或其他格式</span>
+    <span class="hljs-keyword">const</span> encryptedBase64 = encryptedData.<span class="hljs-title function_">toString</span>();
+    <span class="hljs-keyword">if</span>(save)&#123; <span class="hljs-comment">//是否将加密后的密文导出为文件</span>
+      <span class="hljs-keyword">let</span> str = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([encryptedBase64], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;text/plain;charset=utf-8&#x27;</span>&#125;);
+      <span class="hljs-title function_">saveAs</span>(str,encryption.<span class="hljs-property">txt</span>);
+    &#125;
+    <span class="hljs-keyword">return</span> encryptedBase64
+  &#125;);
+&#125;
+
+<span class="hljs-comment">//AES解密String到文件（解密压缩包的密文并导出压缩包文件）</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesDcStrToZip</span>=(<span class="hljs-params">SymmetricKey,ivString,text,save=<span class="hljs-literal">true</span>,name=<span class="hljs-string">&#x27;deciphering.zip&#x27;</span></span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">//解密</span>
+  <span class="hljs-keyword">var</span> decrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(text, key,&#123;
+    <span class="hljs-attr">iv</span>: iv,
+    <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+    <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>
+  &#125;)
+
+  <span class="hljs-comment">//是否导出</span>
+  <span class="hljs-keyword">if</span>(save)&#123;
+    <span class="hljs-comment">// 将解密后的结果转换为ArrayBuffer格式</span>
+    <span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(decrypted.<span class="hljs-property">sigBytes</span>);
+    <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer);
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; decrypted.<span class="hljs-property">sigBytes</span>; i++) &#123;
+        view[i] = decrypted.<span class="hljs-property">words</span>[i &gt;&gt;&gt; <span class="hljs-number">2</span>] &gt;&gt;&gt; (<span class="hljs-number">24</span> - (i % <span class="hljs-number">4</span>) * <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xff</span>;
+    &#125;
+    <span class="hljs-comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span>
+    <span class="hljs-keyword">var</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([buffer], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);
+    <span class="hljs-comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span>
+    <span class="hljs-title function_">saveAs</span>(blob,name);
+  &#125;
+  <span class="hljs-keyword">return</span> decrypted
+&#125;
+
+<span class="hljs-comment">//AES解密文本文件到zip文件(将之前加密后导出的密文文件解密导出内容)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">AesDcStrFileToZip</span>=(<span class="hljs-params">SymmetricKey,ivString,file,save=<span class="hljs-literal">true</span>,name=<span class="hljs-string">&#x27;deciphering.zip&#x27;</span></span>)=&gt;&#123;
+
+  <span class="hljs-comment">// 转换为 WordArray 类型</span>
+  <span class="hljs-keyword">const</span> key = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-title class_">SymmetricKey</span>);
+  <span class="hljs-keyword">const</span> iv = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(ivString);
+
+  <span class="hljs-comment">//创建一个FileReader对象</span>
+  <span class="hljs-keyword">let</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();
+  <span class="hljs-comment">//设置编码方式为UTF-8</span>
+  reader.<span class="hljs-title function_">readAsText</span>(file, <span class="hljs-string">&quot;UTF-8&quot;</span>);
+  <span class="hljs-comment">//监听load事件</span>
+  reader.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-comment">//获取读取结果并解密</span>
+    <span class="hljs-keyword">let</span> ciphertext = <span class="hljs-variable language_">this</span>.<span class="hljs-property">result</span>;
+    <span class="hljs-keyword">var</span> decrypted = <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(ciphertext, key,&#123;
+      <span class="hljs-attr">iv</span>: iv,
+      <span class="hljs-attr">mode</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,
+      <span class="hljs-attr">padding</span>: <span class="hljs-title class_">CryptoJS</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span>
+    &#125;)
+    <span class="hljs-keyword">if</span>(save)&#123;
+      <span class="hljs-comment">// 将解密后的结果转换为ArrayBuffer格式</span>
+      <span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayBuffer</span>(decrypted.<span class="hljs-property">sigBytes</span>);
+      <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Uint8Array</span>(buffer);
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; decrypted.<span class="hljs-property">sigBytes</span>; i++) &#123;
+          view[i] = decrypted.<span class="hljs-property">words</span>[i &gt;&gt;&gt; <span class="hljs-number">2</span>] &gt;&gt;&gt; (<span class="hljs-number">24</span> - (i % <span class="hljs-number">4</span>) * <span class="hljs-number">8</span>) &amp; <span class="hljs-number">0xff</span>;
+      &#125;
+      <span class="hljs-comment">// 将ArrayBuffer转换为Blob对象，并指定文件类型（根据实际情况修改）</span>
+      <span class="hljs-keyword">var</span> blob = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Blob</span>([buffer], &#123;<span class="hljs-attr">type</span>: <span class="hljs-string">&quot;text/plain&quot;</span>&#125;);
+      <span class="hljs-comment">// 使用FileSaver.js库来保存Blob对象为文件，并指定文件名（根据实际情况修改）</span>
+      <span class="hljs-title function_">saveAs</span>(blob,name);
+    &#125;
+    <span class="hljs-keyword">return</span> decrypted
+  &#125;;
+&#125;</code></pre>
+
+<h3 id="RSA非对称加密"><a href="#RSA非对称加密" class="headerlink" title="RSA非对称加密"></a>RSA非对称加密</h3><p>非对称加密</p>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> forge <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;node-forge&#x27;</span>;
+
+<span class="hljs-comment">//RSA加密</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">encrypt</span>=(<span class="hljs-params">key,text</span>)=&gt;&#123; <span class="hljs-comment">//参数：公钥，原文</span>
+  <span class="hljs-keyword">var</span> privateKey = forge.<span class="hljs-property">pki</span>.<span class="hljs-title function_">publicKeyFromPem</span>(key); <span class="hljs-comment">//设置公钥</span>
+  <span class="hljs-comment">// 加密</span>
+  <span class="hljs-keyword">var</span> encrypted = privateKey.<span class="hljs-title function_">encrypt</span>(text, <span class="hljs-string">&#x27;RSA-OAEP&#x27;</span>, &#123;
+    <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha256</span>.<span class="hljs-title function_">create</span>(),
+    <span class="hljs-attr">mgf1</span>: &#123;
+      <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha1</span>.<span class="hljs-title function_">create</span>()
+    &#125;
+  &#125;)
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">btoa</span>(encrypted) <span class="hljs-comment">//进行btoa是因为后台需要进行一次base64转码</span>
+&#125;
+
+<span class="hljs-comment">//RSA解密</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">decrypt</span>=(<span class="hljs-params">key,text</span>)=&gt;&#123; <span class="hljs-comment">//参数：私钥，密文</span>
+  <span class="hljs-keyword">var</span> privateKey = forge.<span class="hljs-property">pki</span>.<span class="hljs-title function_">privateKeyFromPem</span>(key); <span class="hljs-comment">//设置私钥</span>
+  <span class="hljs-comment">//解密</span>
+  <span class="hljs-keyword">var</span> encrypted = privateKey.<span class="hljs-title function_">decrypt</span>(<span class="hljs-title function_">atob</span>(text), <span class="hljs-string">&#x27;RSA-OAEP&#x27;</span>, &#123;
+    <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha256</span>.<span class="hljs-title function_">create</span>(),
+    <span class="hljs-attr">mgf1</span>: &#123;
+      <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha1</span>.<span class="hljs-title function_">create</span>()
+    &#125;
+  &#125;)
+  <span class="hljs-keyword">return</span> encrypted
+&#125;
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">decryptFile</span>=(<span class="hljs-params">file,text</span>)=&gt;&#123; <span class="hljs-comment">//.key私钥，密文</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">resolve, reject</span>) &#123;
+    <span class="hljs-keyword">let</span> reader = <span class="hljs-keyword">new</span> <span class="hljs-title class_">FileReader</span>();
+    reader.<span class="hljs-title function_">readAsText</span>(file, <span class="hljs-string">&quot;UTF-8&quot;</span>);
+    reader.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+      <span class="hljs-keyword">let</span> ciphertext = <span class="hljs-variable language_">this</span>.<span class="hljs-property">result</span>;
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(ciphertext)
+      <span class="hljs-keyword">let</span> privateKey = forge.<span class="hljs-property">pki</span>.<span class="hljs-title function_">privateKeyFromPem</span>(ciphertext);
+      <span class="hljs-keyword">try</span>&#123;
+        <span class="hljs-keyword">let</span> encrypted = privateKey.<span class="hljs-title function_">decrypt</span>(<span class="hljs-title function_">atob</span>(text), <span class="hljs-string">&#x27;RSA-OAEP&#x27;</span>, &#123;
+          <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha256</span>.<span class="hljs-title function_">create</span>(),
+          <span class="hljs-attr">mgf1</span>: &#123;
+            <span class="hljs-attr">md</span>: forge.<span class="hljs-property">md</span>.<span class="hljs-property">sha1</span>.<span class="hljs-title function_">create</span>()
+          &#125;
+        &#125;);
+        <span class="hljs-title function_">resolve</span>(encrypted);
+      &#125;<span class="hljs-keyword">catch</span>(err)&#123;
+        <span class="hljs-title function_">reject</span>(err)
+      &#125;
+    &#125;
+  &#125;)
+&#125;</code></pre>
+
+<h2 id="9：数据处理"><a href="#9：数据处理" class="headerlink" title="9：数据处理"></a>9：数据处理</h2><h3 id="数组去除符合条件的子元素"><a href="#数组去除符合条件的子元素" class="headerlink" title="数组去除符合条件的子元素"></a>数组去除符合条件的子元素</h3><p>如果直接使用 for 循环去除，那么会出现错误，原因是函数在不断的去除，而索引没变</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;arr.<span class="hljs-property">length</span>;i++) &#123;
+    <span class="hljs-keyword">if</span>(arr[i] == <span class="hljs-number">2</span>)&#123;
+        arr.<span class="hljs-title function_">splice</span>(i--,<span class="hljs-number">1</span>)
+    &#125;
+&#125;</code></pre>
+
+<h3 id="JS-浮点数精确度问题"><a href="#JS-浮点数精确度问题" class="headerlink" title="JS 浮点数精确度问题"></a>JS 浮点数精确度问题</h3><p>当js进行浮点型计算的时候，会导致计算出错。例：0.69<em>10=6.8999999999999995,因为js作为解释性语言，同其他语言一样在计算小数的时候将小数转二进制不好转换<br>解决办法：将小数转换成整数，计算完成后转换成小数。0.69</em>100*10/100</p>
+<pre><code class="hljs js"><span class="hljs-comment">//处理数字后两位（四舍五入）</span>
+<span class="hljs-number">5.324</span>.<span class="hljs-title function_">toFixed</span>(<span class="hljs-number">2</span>)==<span class="hljs-number">5.32</span></code></pre>
+
+<h3 id="数字转成每隔3位加逗号"><a href="#数字转成每隔3位加逗号" class="headerlink" title="数字转成每隔3位加逗号"></a>数字转成每隔3位加逗号</h3><pre><code class="hljs js"><span class="hljs-keyword">var</span> num_s = <span class="hljs-string">&quot;1232134456.546 &quot;</span>;
+<span class="hljs-keyword">var</span> num=<span class="hljs-built_in">parseFloat</span>(num_s).<span class="hljs-title function_">toLocaleString</span>();</code></pre>
+
+<h3 id="本地时间规则化"><a href="#本地时间规则化" class="headerlink" title="本地时间规则化"></a>本地时间规则化</h3><pre><code class="hljs js"><span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>.<span class="hljs-title function_">toLocaleTimeString</span>()
+<span class="hljs-comment">// 下午 2:30:12</span></code></pre>
+
+<h3 id="获取当前时间及前半个小时"><a href="#获取当前时间及前半个小时" class="headerlink" title="获取当前时间及前半个小时"></a>获取当前时间及前半个小时</h3><pre><code class="hljs JS"><span class="hljs-comment">// 设置年月日 时分</span>
+<span class="hljs-keyword">var</span> a= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
+<span class="hljs-keyword">var</span> y=a.<span class="hljs-title function_">getFullYear</span>();
+<span class="hljs-keyword">var</span> m=a.<span class="hljs-title function_">getMonth</span>()+<span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> d=a.<span class="hljs-title function_">getDate</span>();
+<span class="hljs-keyword">var</span> h=a.<span class="hljs-title function_">getHours</span>();
+<span class="hljs-keyword">var</span> f=a.<span class="hljs-title function_">getMinutes</span>();
+h&lt;<span class="hljs-number">10</span>?h=<span class="hljs-string">&quot;0&quot;</span>+<span class="hljs-attr">h</span>:h=h;
+f&lt;<span class="hljs-number">10</span>?f=<span class="hljs-string">&quot;0&quot;</span>+<span class="hljs-attr">f</span>:f=f;
+$scope.<span class="hljs-property">end_time</span>=y+<span class="hljs-string">&quot;-&quot;</span>+m+<span class="hljs-string">&quot;-&quot;</span>+d+<span class="hljs-string">&quot; &quot;</span>+h+<span class="hljs-string">&quot;:&quot;</span>+f
+
+<span class="hljs-comment">//获取前半个小时的时间挫</span>
+<span class="hljs-keyword">var</span> b= <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(a.<span class="hljs-title function_">getTime</span>()-<span class="hljs-number">1000</span>*<span class="hljs-number">60</span>*<span class="hljs-number">30</span>);
+y=b.<span class="hljs-title function_">getFullYear</span>();
+m=b.<span class="hljs-title function_">getMonth</span>()+<span class="hljs-number">1</span>;
+d=b.<span class="hljs-title function_">getDate</span>();
+h=b.<span class="hljs-title function_">getHours</span>();
+f=b.<span class="hljs-title function_">getMinutes</span>();
+$scope.<span class="hljs-property">start_time</span>=y+<span class="hljs-string">&quot;-&quot;</span>+m+<span class="hljs-string">&quot;-&quot;</span>+d+<span class="hljs-string">&quot; &quot;</span>+h+<span class="hljs-string">&quot;:&quot;</span>+f</code></pre>
+
+<h2 id="10：网络请求"><a href="#10：网络请求" class="headerlink" title="10：网络请求"></a>10：网络请求</h2><h3 id="AJax停止网络请求-abort"><a href="#AJax停止网络请求-abort" class="headerlink" title="AJax停止网络请求 abort()"></a>AJax停止网络请求 abort()</h3><pre><code class="hljs js"><span class="hljs-keyword">var</span> currentAjax = <span class="hljs-literal">null</span>;  
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">startAjax</span>(<span class="hljs-params"></span>)&#123;  
+    <span class="hljs-comment">//方法就是将XHR对象指向currentAjax，再调用currentAjax的.abort()来中止请求 </span>
+    <span class="hljs-keyword">if</span>(currentAjax) &#123;currentAjax.<span class="hljs-title function_">abort</span>();&#125; 
+    currentAjax = $.<span class="hljs-title function_">ajax</span>(&#123;
+           <span class="hljs-attr">type</span>:<span class="hljs-string">&#x27;POST&#x27;</span>,
+           <span class="hljs-attr">beforeSend</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;&#125;,  
+           <span class="hljs-attr">url</span>:<span class="hljs-string">&#x27;test.php&#x27;</span>,  
+           <span class="hljs-attr">data</span>:<span class="hljs-string">&#x27;username=xxx&#x27;</span>,  
+           <span class="hljs-attr">dataType</span>:<span class="hljs-string">&#x27;JSON&#x27;</span>,  
+           <span class="hljs-attr">error</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;error&#x27;</span>)&#125;,
+           <span class="hljs-attr">success</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;<span class="hljs-title function_">alert</span>(data)&#125;
+    &#125;);  
+&#125;</code></pre>
+
+<h3 id="angular-js-http停止请求"><a href="#angular-js-http停止请求" class="headerlink" title="angular.js $http停止请求"></a>angular.js $http停止请求</h3><p>通过注入 <code>$q</code> 服务，使用<code>$q.defer</code>来停止</p>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> _enj;
+$scope.<span class="hljs-property">clconversations</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;
+    <span class="hljs-keyword">if</span>(_enj)&#123;_enj.<span class="hljs-title function_">resolve</span>()&#125;;
+    _enj = $q.<span class="hljs-title function_">defer</span>();
+    $http.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;/Iridium/public/tcpanalysis/getconversations&#x27;</span>,&#123;
+        <span class="hljs-attr">params</span>:&#123;
+            <span class="hljs-attr">start_time</span>: $scope.<span class="hljs-property">start_time</span>,
+            <span class="hljs-attr">end_time</span>:$scope.<span class="hljs-property">end_time</span>,
+        &#125;,
+        <span class="hljs-attr">timeout</span>:_enj.<span class="hljs-property">promise</span>
+    &#125;).<span class="hljs-title function_">then</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>)&#123;
+        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>)
+	&#125;);
+&#125;</code></pre>
+
+<h2 id="Rem布局"><a href="#Rem布局" class="headerlink" title="Rem布局"></a>Rem布局</h2><h3 id="1：网易的rem布局"><a href="#1：网易的rem布局" class="headerlink" title="1：网易的rem布局"></a>1：网易的rem布局</h3><p>1：设置viewport</p>
+<pre><code>&lt;!--viewport 如果页面不允许缩放请加上 user-scalable=no--&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,minimal-ui&quot;&gt;
+</code></pre>
+<p>2:根据750px设计稿计算比例</p>
+<pre><code>//750px/100=7.5   在页面加载后：需要动态设置font-size
+document.documentElement.style.fontSize = document.documentElement.clientWidth /7.5 + &#39;px&#39;;
+
+// 也可以设置成百分比 页面中默认100%=16px
+// &#123;w/（750/100)&#125;/16
+// (w/7.5)/16
+// w/120
+document.documentElement.style.fontSize = document.documentElement.clientWidth /1.2 + &#39;%&#39;;
+</code></pre>
+<h3 id="2：淘宝rem-布局"><a href="#2：淘宝rem-布局" class="headerlink" title="2：淘宝rem 布局"></a>2：淘宝rem 布局</h3><pre><code class="hljs js"><span class="hljs-comment">//自动根据屏幕的DPR（设备像素比）动态设置字体大小，以rem为单位</span>
+&lt;head&gt;
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript">!<span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)&#123;<span class="hljs-keyword">function</span> <span class="hljs-title function_">t</span>(<span class="hljs-params">a</span>)&#123;<span class="hljs-keyword">if</span>(i[a])<span class="hljs-keyword">return</span> i[a].<span class="hljs-property">exports</span>;<span class="hljs-keyword">var</span> n=i[a]=&#123;<span class="hljs-attr">exports</span>:&#123;&#125;,<span class="hljs-attr">id</span>:a,<span class="hljs-attr">loaded</span>:!<span class="hljs-number">1</span>&#125;;<span class="hljs-keyword">return</span> e[a].<span class="hljs-title function_">call</span>(n.<span class="hljs-property">exports</span>,n,n.<span class="hljs-property">exports</span>,t),n.<span class="hljs-property">loaded</span>=!<span class="hljs-number">0</span>,n.<span class="hljs-property">exports</span>&#125;<span class="hljs-keyword">var</span> i=&#123;&#125;;<span class="hljs-keyword">return</span> t.<span class="hljs-property">m</span>=e,t.<span class="hljs-property">c</span>=i,t.<span class="hljs-property">p</span>=<span class="hljs-string">&quot;&quot;</span>,<span class="hljs-title function_">t</span>(<span class="hljs-number">0</span>)&#125;([<span class="hljs-keyword">function</span>(<span class="hljs-params">e,t</span>)&#123;<span class="hljs-string">&quot;use strict&quot;</span>;<span class="hljs-title class_">Object</span>.<span class="hljs-title function_">defineProperty</span>(t,<span class="hljs-string">&quot;__esModule&quot;</span>,&#123;<span class="hljs-attr">value</span>:!<span class="hljs-number">0</span>&#125;);<span class="hljs-keyword">var</span> i=<span class="hljs-variable language_">window</span>;t[<span class="hljs-string">&quot;default&quot;</span>]=i.<span class="hljs-property">flex</span>=<span class="hljs-keyword">function</span>(<span class="hljs-params">normal,e,t</span>)&#123;<span class="hljs-keyword">var</span> a=e||<span class="hljs-number">100</span>,n=t||<span class="hljs-number">1</span>,r=i.<span class="hljs-property">document</span>,o=navigator.<span class="hljs-property">userAgent</span>,d=o.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/Android[\S\s]+AppleWebkit\/(\d&#123;3&#125;)/i</span>),l=o.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/U3\/((\d+|\.)&#123;5,&#125;)/i</span>),c=l&amp;&amp;<span class="hljs-built_in">parseInt</span>(l[<span class="hljs-number">1</span>].<span class="hljs-title function_">split</span>(<span class="hljs-string">&quot;.&quot;</span>).<span class="hljs-title function_">join</span>(<span class="hljs-string">&quot;&quot;</span>),<span class="hljs-number">10</span>)&gt;=<span class="hljs-number">80</span>,p=navigator.<span class="hljs-property">appVersion</span>.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/(iphone|ipad|ipod)/gi</span>),s=i.<span class="hljs-property">devicePixelRatio</span>||<span class="hljs-number">1</span>;p||d&amp;&amp;d[<span class="hljs-number">1</span>]&gt;<span class="hljs-number">534</span>||c||(s=<span class="hljs-number">1</span>);<span class="hljs-keyword">var</span> u=normal?<span class="hljs-number">1</span>:<span class="hljs-number">1</span>/s,m=r.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&#x27;meta[name=&quot;viewport&quot;]&#x27;</span>);m||(m=r.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;meta&quot;</span>),m.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;viewport&quot;</span>),r.<span class="hljs-property">head</span>.<span class="hljs-title function_">appendChild</span>(m)),m.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;content&quot;</span>,<span class="hljs-string">&quot;width=device-width,user-scalable=no,initial-scale=&quot;</span>+u+<span class="hljs-string">&quot;,maximum-scale=&quot;</span>+u+<span class="hljs-string">&quot;,minimum-scale=&quot;</span>+u),r.<span class="hljs-property">documentElement</span>.<span class="hljs-property">style</span>.<span class="hljs-property">fontSize</span>=normal?<span class="hljs-string">&quot;50px&quot;</span>: a/<span class="hljs-number">2</span>*s*n+<span class="hljs-string">&quot;px&quot;</span>&#125;,e.<span class="hljs-property">exports</span>=t[<span class="hljs-string">&quot;default&quot;</span>]&#125;]);  <span class="hljs-title function_">flex</span>(<span class="hljs-literal">false</span>,<span class="hljs-number">100</span>, <span class="hljs-number">1</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+&lt;/head&gt;</code></pre>
+<p>此方案默认1rem=100px，如需更改，在代码代码最后更改flex(false,100, 1)，此代码仅适用手机，设计稿按屏幕分辨率设计，</p>
+<blockquote>
+<p>在相当数量的布局情境中（比如底部导航元素平分屏幕宽，大尺寸元素），你必须使用百分比或者flex才能完美布局！</p>
+</blockquote>
+<h2 id="Flex布局"><a href="#Flex布局" class="headerlink" title="Flex布局"></a>Flex布局</h2><p>Flex布局(弹性布局)在未来将成为主流，目前推荐在手机端使用,React native系列官方建议项目使用flex布局; IE10+</p>
+<pre><code class="hljs css">// 设为 <span class="hljs-attribute">Flex</span> 后，子元素的<span class="hljs-attribute">float</span>、<span class="hljs-attribute">clear</span>和<span class="hljs-attribute">vertical-align</span>属性将失效
+// Webkit 内核的浏览器，必须加上-webkit前缀
+<span class="hljs-selector-class">.box</span>&#123;
+    <span class="hljs-attribute">display</span>: -webkit-flex;
+    <span class="hljs-attribute">display</span>: flex;
+&#125;</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9A%E6%96%87%E6%9C%AC%E7%9B%B8%E5%85%B3"><span class="toc-text">1：文本相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%E5%BC%BA%E5%88%B6%E6%8D%A2%E8%A1%8C"><span class="toc-text">内容进行强制换行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%E9%A1%B5%E9%9D%A2%E6%96%87%E5%AD%97"><span class="toc-text">禁止复制页面文字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E5%86%85%E5%AE%B9%E8%BF%9B%E8%A1%8C%E7%BC%A9%E6%94%BE%E5%A4%84%E7%90%86"><span class="toc-text">对内容进行缩放处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%A1%8C%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E7%9A%84%E7%9C%81%E7%95%A5"><span class="toc-text">单行多行文本的省略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%9B%E7%8E%BB%E7%92%83%E7%9A%84%E6%A0%B7%E5%BC%8F%E6%95%88%E6%9E%9C"><span class="toc-text">毛玻璃的样式效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C"><span class="toc-text">字体颜色渐变效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9%E5%92%8Ctab%E8%8E%B7%E5%8F%96%E7%84%A6%E7%82%B9"><span class="toc-text">点击获取焦点和tab获取焦点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9A%E5%8A%A8%E7%94%BB%E7%9B%B8%E5%85%B3"><span class="toc-text">2：动画相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E5%8D%A1%E7%89%87"><span class="toc-text">旋转卡片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%82%E5%81%9C%E6%95%88%E6%9E%9C"><span class="toc-text">暂停效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9A%E5%9B%BE%E7%89%87%E7%9B%B8%E5%85%B3"><span class="toc-text">3：图片相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E7%9A%84%E4%B8%8A%E4%BC%A0%E9%A2%84%E8%A7%88"><span class="toc-text">图片的上传预览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%9B%BE%E4%BB%8E%E6%A8%A1%E7%B3%8A%E5%88%B0%E6%B8%85%E6%99%B0"><span class="toc-text">大图从模糊到清晰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDloading"><span class="toc-text">图片动态加载loading</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9A%E6%BB%9A%E5%8A%A8%E6%9D%A1%E7%9B%B8%E5%85%B3"><span class="toc-text">4：滚动条相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E6%9D%A1%E5%9C%A8%E9%BC%A0%E6%A0%87%E6%82%AC%E6%B5%AE%E7%8A%B6%E6%80%81%E6%89%8D%E4%BC%9A%E6%98%BE%E7%A4%BA"><span class="toc-text">滚动条在鼠标悬浮状态才会显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E6%BB%9A%E5%8A%A8%E6%9D%A1"><span class="toc-text">隐藏滚动条</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%B9%E7%AA%97%E6%BB%9A%E5%8A%A8%E6%9D%A1%E4%B8%8D%E6%BB%9A%E5%8A%A8"><span class="toc-text">弹窗滚动条不滚动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5%EF%BC%9A%E8%AE%BE%E5%A4%87%E5%88%86%E7%B1%BB%E7%9A%84%E5%8F%82%E8%80%83"><span class="toc-text">5：设备分类的参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E5%92%8C-PC-%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机和 PC 的判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%B1%8F%E5%B9%95%E5%A4%A7%E5%B0%8F%E5%B1%9E%E6%80%A7%E5%8F%82%E8%80%83"><span class="toc-text">关于屏幕大小属性参考</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%89%8B%E6%9C%BA%E6%A8%AA%E7%AB%96%E5%B1%8F%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">关于手机横竖屏的判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA%E5%92%8C%E7%94%B5%E8%84%91%E9%95%BF%E6%8C%89%E7%9A%84%E6%B7%B7%E5%90%88%E5%A4%84%E7%90%86"><span class="toc-text">手机和电脑长按的混合处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EF%BC%9A%E5%8A%9F%E8%83%BD%E7%9A%84%E7%9B%B8%E5%85%B3%E5%8F%82%E8%80%83"><span class="toc-text">6：功能的相关参考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E4%BD%BF%E7%94%A8%E9%A1%B5%E9%9D%A2%E5%90%8E%E9%80%80"><span class="toc-text">禁止使用页面后退</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%85%B3%E9%97%AD%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2"><span class="toc-text">点击关闭当前页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E5%8D%95%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%A5%E5%8A%9F%E8%83%BD"><span class="toc-text">表单自动填入功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD-js%E6%96%87%E4%BB%B6"><span class="toc-text">html动态加载 js文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prototype-%E5%8E%9F%E5%9E%8B%E6%94%B9%E9%80%A0"><span class="toc-text">prototype 原型改造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8F%8A4A%E5%A4%A7%E5%B0%8F%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">页面打印及4A大小的设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E6%A0%BC%E5%92%8C%E5%9B%BA%E5%AE%9A%E5%A4%B4%E9%83%A8%E7%9A%84%E6%A0%B7%E5%BC%8F"><span class="toc-text">数据表格和固定头部的样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E5%A1%AB%E5%85%85%E7%9A%84%E6%A0%B7%E5%BC%8F%E4%BF%AE%E6%94%B9"><span class="toc-text">自动化填充的样式修改</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95"><span class="toc-text">7：浏览器开发调试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CONSOLE-%E5%90%84%E7%A7%8D%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E7%9A%84%E9%9B%86%E5%90%88"><span class="toc-text">CONSOLE 各种提示信息的集合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8%EF%BC%9A%E5%8A%A0%E5%AF%86%E6%96%B9%E6%A1%88"><span class="toc-text">8：加密方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AES%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">AES对称加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RSA%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86"><span class="toc-text">RSA非对称加密</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">9：数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%99%A4%E7%AC%A6%E5%90%88%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0"><span class="toc-text">数组去除符合条件的子元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JS-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E7%A1%AE%E5%BA%A6%E9%97%AE%E9%A2%98"><span class="toc-text">JS 浮点数精确度问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%BD%AC%E6%88%90%E6%AF%8F%E9%9A%943%E4%BD%8D%E5%8A%A0%E9%80%97%E5%8F%B7"><span class="toc-text">数字转成每隔3位加逗号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%97%B6%E9%97%B4%E8%A7%84%E5%88%99%E5%8C%96"><span class="toc-text">本地时间规则化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%E5%8F%8A%E5%89%8D%E5%8D%8A%E4%B8%AA%E5%B0%8F%E6%97%B6"><span class="toc-text">获取当前时间及前半个小时</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10%EF%BC%9A%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82"><span class="toc-text">10：网络请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AJax%E5%81%9C%E6%AD%A2%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82-abort"><span class="toc-text">AJax停止网络请求 abort()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#angular-js-http%E5%81%9C%E6%AD%A2%E8%AF%B7%E6%B1%82"><span class="toc-text">angular.js $http停止请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rem%E5%B8%83%E5%B1%80"><span class="toc-text">Rem布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%EF%BC%9A%E7%BD%91%E6%98%93%E7%9A%84rem%E5%B8%83%E5%B1%80"><span class="toc-text">1：网易的rem布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%EF%BC%9A%E6%B7%98%E5%AE%9Drem-%E5%B8%83%E5%B1%80"><span class="toc-text">2：淘宝rem 布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Flex%E5%B8%83%E5%B1%80"><span class="toc-text">Flex布局</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/06/21/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91%E6%A0%B7%E5%BC%8F%E5%92%8C%E5%8A%9F%E8%83%BD%E7%9A%84%E5%8F%82%E8%80%83%E5%92%8C%E5%A5%87%E6%80%9D%E5%A6%99%E6%83%B3/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/CSS/"><i class="fa fa-tags"></i>CSS</a>
+     
+      <a href="/blog/tags/Style/"><i class="fa fa-tags"></i>Style</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

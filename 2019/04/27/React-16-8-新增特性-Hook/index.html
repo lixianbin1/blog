@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>React 16.8 新增特性 Hook | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="React," />
+  
+
+  
+  <meta name="description" content="在 react 的开发过程中，相信大家都会遇到一些问题，比如：组件的复用，复杂组件的嵌套传值，以及表现在 HTML 上面的多余标签嵌套等等，当然解决问题的办法大家都有。但是可能不是很好用，那么 react 就在 16.8.0 版本为大家增加了一个 Hook 特性用于解决某些问题。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-04-27
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-6-11 17:26 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    React 16.8 新增特性 Hook
+  </h1>
+  
+  <article class="passage-article">
+    <p>在 react 的开发过程中，相信大家都会遇到一些问题，比如：组件的复用，复杂组件的嵌套传值，以及表现在 HTML 上面的多余标签嵌套等等，当然解决问题的办法大家都有。但是可能不是很好用，那么 react 就在 16.8.0 版本为大家增加了一个 Hook 特性用于解决某些问题。大家在使用前，需要将 react 提升至 16.8.0 版本或更新的版本</p>
+<h2 id="学习之前"><a href="#学习之前" class="headerlink" title="学习之前"></a>学习之前</h2><p>在react文档中，这样写到“ Hooks solve a wide variety of seemingly unconnected problems in React that we’ve encountered over five years of writing and maintaining tens of thousands of components.” Hooks解决了五年来各种不相关的问题，我不知道有没有夸张的成分，但是Hooks 确实在更新并完善着 react ，呐。既然更新了。那么就要去学习</p>
+<h2 id="Hook对于State的改变"><a href="#Hook对于State的改变" class="headerlink" title="Hook对于State的改变"></a>Hook对于State的改变</h2><p>在React 中组件分为有状态组件（class）和无状态组件（function），有状态组件有着生命周期方法和状态（state）。而无状态组件则没有这些。React的思想是把页面拆成单独的可复用的组件，但是项目中各组件的沉重繁琐，它们有着各自独立的状态（state），想要复用这些组件就显得很麻烦。所以Hook 给无状态组件（function）带来了 状态方法（useState）和生命周期方法（useEffect）</p>
+<h3 id="声明State"><a href="#声明State" class="headerlink" title="声明State"></a>声明State</h3><p>Hook使用useState 来声明State，在使用useState 的时候，需要先引入React 的useState ，然后当你需要声明state 的时候在函数中使用useState 进行state 声明</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">React</span>,&#123;useState&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">useNext</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-comment">// 声明一个叫“李四”的state，可以通过调用newName来更新当前的name</span>
+  <span class="hljs-keyword">const</span> [name,newName]=<span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;李四&#x27;</span>)
+&#125;</code></pre>
+
+<blockquote>
+<p>注意：React 通过Hook 的调用顺序来将内部state 和Hook 进行关联，所以Hook 只能在组件的最顶层调用，如果有条件判断执行。可以放入Hook 里面进行判断</p>
+</blockquote>
+<h3 id="读取State"><a href="#读取State" class="headerlink" title="读取State"></a>读取State</h3><p>在函数中，可以直接使用state的名字来进行state读取</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useNext</span>(<span class="hljs-params"></span>)&#123;
+  <span class="hljs-comment">// 声明一个叫“李四”的state，可以通过调用newName来更新当前的name</span>
+  <span class="hljs-keyword">const</span> [name,newName]=<span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;李四&#x27;</span>)
+  <span class="hljs-keyword">return</span>(
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>你的名字是 &#123;name&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+  )
+&#125;
+</code></pre>
+
+<h3 id="更新State"><a href="#更新State" class="headerlink" title="更新State"></a>更新State</h3><p>在Hook 中，我们需要使用useState 中声明的setState 来进行state更新</p>
+<pre><code class="hljs abnf">&lt;input type<span class="hljs-operator">=</span><span class="hljs-string">&quot;&quot;</span> name<span class="hljs-operator">=</span><span class="hljs-string">&quot;&quot;</span> onchange<span class="hljs-operator">=</span>&#123;(e) <span class="hljs-operator">=</span>&gt; newName(e)&#125;/&gt;</code></pre>
+
+<h2 id="Hook-对于生命周期的改变"><a href="#Hook-对于生命周期的改变" class="headerlink" title="Hook 对于生命周期的改变"></a>Hook 对于生命周期的改变</h2><p>在React 中,生命周期是很重要的一部分，我们常用的生命周期函数有 componentWillMount componentDidMount componentWillUpdate componentDidUpdate componentWillUnmount 等。当我们使用Hook 的时候，Hook 提供useEffect 让你在函数组件中执行<code>side effects </code></p>
+<blockquote>
+<p>在官方文档中 <code>side effects</code> 被翻译为副作用，我觉得翻译为 干涉操作 可能更好一点,That process of calling into the real world is what side-effects are. <a href="https://goshakkk.name/redux-side-effect-approaches/">https://goshakkk.name/redux-side-effect-approaches/</a></p>
+</blockquote>
+<h3 id="不需要销毁的side-effects"><a href="#不需要销毁的side-effects" class="headerlink" title="不需要销毁的side effects"></a>不需要销毁的side effects</h3><p>当我们需要在Dom更新后执行一些side effects ，如请求数据，切换显示等等，不需要销毁的的操作的时候，可以使用useEffect 来进行实现，useEffect 在默认情况下，它在第一次渲染之后和每次更新之后都会执行</p>
+<pre><code class="hljs arcade"><span class="hljs-keyword">import</span> React, &#123; useState, useEffect &#125; from <span class="hljs-string">&#x27;react&#x27;</span>;
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">Example</span>(<span class="hljs-params"></span>) &#123;
+  const [<span class="hljs-built_in">count</span>, setCount] = useState(<span class="hljs-number">0</span>);
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+    document.title = <span class="hljs-string">`You clicked <span class="hljs-subst">$&#123;<span class="hljs-built_in">count</span>&#125;</span> times`</span>;
+  &#125;);
+
+&#125;</code></pre>
+<blockquote>
+<p>如果某些特定值在两次重渲染之间没有发生变化，你可以通知 React 跳过对 effect 的调用，只要传递数组作为 useEffect 的第二个可选参数即可,如果想执行只运行一次的 effect（仅在组件挂载和卸载时执行），可以传递一个空数组（[]）作为第二个参数。</p>
+</blockquote>
+<pre><code class="hljs arcade">useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+  document.title = <span class="hljs-string">`You clicked <span class="hljs-subst">$&#123;<span class="hljs-built_in">count</span>&#125;</span> times`</span>;
+&#125;, [<span class="hljs-built_in">count</span>]); <span class="hljs-comment">// 仅在 count 更改时更新</span></code></pre>
+
+
+<h3 id="需要销毁的side-effects"><a href="#需要销毁的side-effects" class="headerlink" title="需要销毁的side effects"></a>需要销毁的side effects</h3><p>当组件卸载的时候，某些操作需要及时清理。防止内存泄漏的问题，我们也可以使用useEffect 来进行实现，useEffect 的设计是在同一个地方执行。如果你的 effect 返回一个函数，React 将会在执行清除操作时调用它，</p>
+<p>在 React class 中，你通常会在 componentDidMount 中设置订阅，并在 componentWillUnmount 中清除它。例如，假设我们有一个 ChatAPI 模块，它允许我们订阅好友的在线状态。以下是我们如何使用 class 订阅和显示该状态</p>
+<pre><code class="hljs arcade">useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStatusChange</span>(<span class="hljs-params">status</span>) &#123;
+    setIsOnline(status.isOnline);
+  &#125;
+  ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+  <span class="hljs-comment">// Specify how to clean up after this effect:</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">cleanup</span>(<span class="hljs-params"></span>) &#123;
+    ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+  &#125;;
+&#125;);</code></pre>
+
+<blockquote>
+<p>Effect 还有个目的是要解决 class 中生命周期函数经常包含不相关的逻辑，但又把相关逻辑分离到了几个不同方法中的问题,那么就需要使用到多个Effect Hook 来进行代码分离</p>
+</blockquote>
+<pre><code class="hljs arcade"><span class="hljs-keyword">function</span> <span class="hljs-title function_">FriendStatusWithCounter</span>(<span class="hljs-params">props</span>) &#123;
+  const [<span class="hljs-built_in">count</span>, setCount] = useState(<span class="hljs-number">0</span>);
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+    document.title = <span class="hljs-string">`You clicked <span class="hljs-subst">$&#123;<span class="hljs-built_in">count</span>&#125;</span> times`</span>;
+  &#125;);
+
+  const [isOnline, setIsOnline] = useState(<span class="hljs-literal">null</span>);
+  useEffect(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">handleStatusChange</span>(<span class="hljs-params">status</span>) &#123;
+      setIsOnline(status.isOnline);
+    &#125;
+
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    &#125;;
+  &#125;);
+  <span class="hljs-comment">// ...</span>
+&#125;</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%A6%E4%B9%A0%E4%B9%8B%E5%89%8D"><span class="toc-text">学习之前</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hook%E5%AF%B9%E4%BA%8EState%E7%9A%84%E6%94%B9%E5%8F%98"><span class="toc-text">Hook对于State的改变</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A3%B0%E6%98%8EState"><span class="toc-text">声明State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96State"><span class="toc-text">读取State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0State"><span class="toc-text">更新State</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hook-%E5%AF%B9%E4%BA%8E%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E6%94%B9%E5%8F%98"><span class="toc-text">Hook 对于生命周期的改变</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E9%9C%80%E8%A6%81%E9%94%80%E6%AF%81%E7%9A%84side-effects"><span class="toc-text">不需要销毁的side effects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E9%94%80%E6%AF%81%E7%9A%84side-effects"><span class="toc-text">需要销毁的side effects</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/04/27/React-16-8-%E6%96%B0%E5%A2%9E%E7%89%B9%E6%80%A7-Hook/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/React/"><i class="fa fa-tags"></i>React</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

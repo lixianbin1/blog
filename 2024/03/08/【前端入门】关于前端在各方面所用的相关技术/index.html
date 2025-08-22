@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>关于前端在各方面所用的相关技术 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="前端入门," />
+  
+
+  
+  <meta name="description" content="重新整理一下关于前端在各方面所用的相关技术，开阔一下视野。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2024-03-08
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%89%8D%E7%AB%AF%E5%85%A5%E9%97%A8/"><i class="fa fa-bookmark"></i>前端入门</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2024-3-8 11:25 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    关于前端在各方面所用的相关技术
+  </h1>
+  
+  <article class="passage-article">
+    <h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ul>
+<li><code>html</code> :超文本标记语言,是一种用于创建网页的标准标记语言</li>
+<li><code>CSS</code> :Cascading Style Sheets，层叠样式表，为结构化文档添加样式</li>
+<li><code>javascript(js)</code> :JavaScript 是 Web 的编程语言</li>
+<li><code>JQuery(jq)</code> :一个JavaScript库，封装了很多方便的js函数和属性</li>
+<li><code>Bootstrap</code> :一个功能强大、功能丰富的前端UI库。在几分钟内构建从原型到生产的任何内容</li>
+</ul>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ul>
+<li><code>Electron</code> :Electron是一个使用 JavaScript、HTML 和 CSS 构建<code>桌面应用程序</code>的框架， 内嵌 Chromium 和 Node.js</li>
+<li><code>TypeScript</code> :一个 <code>JavaScript 的超集</code>，支持 ECMAScript 6 标准</li>
+<li><code>Sass</code> : 基于Ruby语言开发而成的专业级<code>CSS 扩展语言</code></li>
+<li><code>less</code> : 是一门向后兼容的 <code>CSS 扩展语言</code></li>
+<li><code>Element UI</code> :一套为 Vue.js 设计的组件库</li>
+</ul>
+<h2 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h2><h3 id="React系"><a href="#React系" class="headerlink" title="React系"></a>React系</h3><ul>
+<li><code>React</code> :一个用于构建 Web 和原生交互界面的（框架）</li>
+<li><code>Redux</code> :一个 JavaScript 状态容器，提供可预测化的状态管理</li>
+<li><code>React Native</code> :React语法的开发安卓和ios应用的框架</li>
+<li><code>Ant Design</code> :用 React 封装了一套 Ant Design 的UI组件库</li>
+<li><code>Flutter</code> :Flutter 是 Google 开源的应用开发框架，可以用一套代码库构建适用于移动、Web、桌面和嵌入式平台的精美应用</li>
+</ul>
+<h3 id="Vue系"><a href="#Vue系" class="headerlink" title="Vue系"></a>Vue系</h3><ul>
+<li><code>Vue</code> :一个渐进式的 JavaScript 框架，用于构建数据驱动的Web页面</li>
+<li><code>vueuse</code> 基于Vue组合式API的实用工具集</li>
+<li><code>Vuex</code> :一个专为 Vue.js 应用程序开发的状态管理模式 + 库。它采用集中式存储管理应用的所有组件的状态</li>
+<li><code>Pinia</code> :一个拥有组合式 API 的 Vue 状态管理库。同时支持 Vue 2 和 Vue 3</li>
+<li><code>Uniapp</code> :用 Vue.js 编写的一套代码库，可发布到移动、Web及各种小程序、快应用等多个平台</li>
+<li><code>Element</code> :一套基于 Vue 2.0 的 Web UI 组件库</li>
+<li><code>Element-Plus</code> :一套基于 Vue 3 的 Web UI 组件库</li>
+</ul>
+<h3 id="Angular系"><a href="#Angular系" class="headerlink" title="Angular系"></a>Angular系</h3><ul>
+<li><code>Angular</code> :一个可以用于构建Web应用的开发平台（框架）</li>
+</ul>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>测试大体分四类：</p>
+<ul>
+<li>端对端测试：利用一个很像用户行为的机器人来和 App 交互，并验证功能是否正常。有时也会说 “功能测试” 或 E2E。</li>
+<li>集成测试：验证多个单元是否能协调共同工作。</li>
+<li>单元测试：验证单独隔离的部分是否正常工作。</li>
+<li>静态测试：捕获写代码时的错别字和类型错误，用 TypeScript 以及 ESLint 等静态检查工具来找出代码问题</li>
+</ul>
+<blockquote>
+<p>测试库</p>
+</blockquote>
+<ul>
+<li><a href="https://eslint.nodejs.cn/">ESLint</a> 静态代码分析工具，用于标记代码中某些编码错误、风格问题和不具结构</li>
+<li><a href="https://www.cypress.io/">cypress</a> 一个用于 Web 应用的端到端测试框架，提供了丰富的界面和文档</li>
+<li><a href="https://www.jestjs.cn/">Jest</a> Facebook 出品，支持浏览器和 Node.js 环境，内置断言、测试覆盖率工具、Mock 工具</li>
+<li><a href="https://cn.vitest.dev/">Vitest</a> 由 Vue / Vite 团队成员开发和维护的单元测试框架，与 Vite 项目集成简单且速度快</li>
+<li><a href="https://mochajs.org/">Mocha</a> 功能丰富的 JavaScript 测试框架，支持浏览器和 Node.js，但需要与其他库如 Chai 结合使用 <a href="https://mochajs.github.net.cn/">中文网站</a></li>
+</ul>
+<h1 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h1><ul>
+<li><code>MySQL</code> :一个关系型数据库管理系统</li>
+<li><code>Node</code> :一个基于 Chrome V8 引擎，开源、跨平台的 JavaScript 运行环境</li>
+<li><code>Nginx</code> :一个 HTTP 和反向代理服务器</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF"><span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-text">基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95"><span class="toc-text">扩展</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%86%E6%9E%B6"><span class="toc-text">框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#React%E7%B3%BB"><span class="toc-text">React系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vue%E7%B3%BB"><span class="toc-text">Vue系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Angular%E7%B3%BB"><span class="toc-text">Angular系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95"><span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8E%E7%AB%AF"><span class="toc-text">后端</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2024/03/08/%E3%80%90%E5%89%8D%E7%AB%AF%E5%85%A5%E9%97%A8%E3%80%91%E5%85%B3%E4%BA%8E%E5%89%8D%E7%AB%AF%E5%9C%A8%E5%90%84%E6%96%B9%E9%9D%A2%E6%89%80%E7%94%A8%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8A%80%E6%9C%AF/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

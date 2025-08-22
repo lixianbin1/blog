@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>样式参考及功能参考 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="功能需求," />
+  
+
+  
+  <meta name="description" content="这是很久以前的作业部落的文章，一些有用但是好处不大的CSS样式和布局（CSS按钮，多列等高，均分等隙等），有些还被新方法和新布局替代，可能更时候做兼容性的东西吧。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2025-03-21
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2025-3-21 9:45 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    样式参考及功能参考
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="按钮样式"><a href="#按钮样式" class="headerlink" title="按钮样式"></a>按钮样式</h2><blockquote>
+<p>一个立体按钮的样式</p>
+</blockquote>
+<p>基于border属性</p>
+<pre><code>width: 50px;
+height: 50px;
+background: red;
+border-top: 3px solid #ff8686;
+border-right: 10px solid #ad0000;
+border-bottom: 10px solid #af0404;
+border-left: 5px solid #ff7878;
+border-radius: 15px;
+</code></pre>
+<div style="height:50px;">
+    <div class="buttom"></div>
+</div>
+
+<style>
+    .buttom{
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-left: 3px solid #ff3535;
+    border-right: 5px solid #c90000;
+    border-bottom: 5px solid #d70000;
+    border-radius: 15px;
+    }
+    .buttom:hover{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-top: 2px solid #893535;
+    border-left: 3px solid #a32929;
+    border-right: 3px solid #a32929;
+    border-bottom: 3px solid #af0404;
+    border-radius: 15px;
+    }
+</style>
+
+<h2 id="多列等高"><a href="#多列等高" class="headerlink" title="多列等高"></a>多列等高</h2><blockquote>
+<p>父级不设高，子元素等高</p>
+</blockquote>
+<p>基于padding margin</p>
+<pre><code>&lt;div style=&quot;width:300px;overflow:hidden&quot;&gt;
+    &lt;div style=&quot;background:red;width:100;float:left;padding-bottom:999px;margin-bottom:-999px;&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;background:blue;width:100;float:left;padding-bottom:999px;margin-bottom:-999px;&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;background:green;width:100;float:left;padding-bottom:999px;margin-bottom:-999px;&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div style="width:150px;overflow:hidden;background:red"><div style="width:50px;min-height:50px;background:blue;float:left;padding-bottom:999px;margin-bottom:-999px;"></div><div style="width:50px;background:yellow;float:left;padding-bottom:999px;margin-bottom:-999px;word-wrap: break-word;">43345425452</div><div style="width:50px;background:green;float:left;padding-bottom:999px;margin-bottom:-999px;"></div></div>
+
+
+<h2 id="均分等隙"><a href="#均分等隙" class="headerlink" title="均分等隙"></a>均分等隙</h2><blockquote>
+<p>一个空间被两个空间隔开相同的距离</p>
+</blockquote>
+<pre><code>&lt;div style=&quot;box-sizing:border-box;padding:0 5px;overflow:hidden&quot;&gt;
+    &lt;div style=&quot;box-sizing:border-box;margin:0 5px;width:calc(50% - 10px);height:100px;float:left&quot;&gt;&lt;/div&gt;
+    &lt;div style=&quot;box-sizing:border-box;margin:0 5px;width:calc(50% - 10px);height:100px;float:left&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<div style="width:200px;background:#ccc;overflow:hidden;box-sizing:border-box;padding:0 5px"><div style="box-sizing:border-box;margin:0 5px;width:calc(50% - 10px);height:100px;float:left;background:red"></div><div style="box-sizing:border-box;margin:0 5px;width:calc(50% - 10px);height:100px;float:left;background:red"></div></div>
+
+<h2 id="纯CSS-旋转-loading"><a href="#纯CSS-旋转-loading" class="headerlink" title="纯CSS 旋转 loading"></a>纯CSS 旋转 loading</h2><pre><code class="hljs stylus"><span class="hljs-comment">/* html */</span>
+ &lt;<span class="hljs-selector-tag">div</span> class=<span class="hljs-string">&quot;an&quot;</span>&gt;&lt;/div&gt;  
+
+<span class="hljs-comment">/* css */</span>
+<span class="hljs-keyword">@keyframes</span> loader &#123;
+  <span class="hljs-number">0%</span> &#123;<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">rotate</span>(<span class="hljs-number">0deg</span>)&#125;
+  <span class="hljs-number">100%</span> &#123;<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">rotate</span>(<span class="hljs-number">360deg</span>)&#125;
+&#125;
+.an&#123;
+  <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>:<span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">50%</span>;
+  <span class="hljs-attribute">border</span>:<span class="hljs-number">10px</span> solid <span class="hljs-number">#f9f9f5</span>;
+  <span class="hljs-attribute">border-top</span>:<span class="hljs-number">10px</span> solid <span class="hljs-number">#36a0f3</span>;
+  <span class="hljs-attribute">animation</span>:loader <span class="hljs-number">500ms</span> infinite linear;
+&#125;</code></pre>
+<p style="width:50px;height:50px;border-radius:50%;border:10px solid #f9f9f5;border-top:10px solid #36a0f3;"></p>
+
+
+<h2 id="背景颜色切换显示"><a href="#背景颜色切换显示" class="headerlink" title="背景颜色切换显示"></a>背景颜色切换显示</h2><pre><code class="hljs css">&#123;
+    -webkit-<span class="hljs-attribute">transition</span>: background-color .<span class="hljs-number">5s</span> ease-in;
+    -moz-<span class="hljs-attribute">transition</span>: background-color .<span class="hljs-number">5s</span> ease-in;
+    <span class="hljs-attribute">transition</span>: background-color .<span class="hljs-number">5s</span> ease-in;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#eee</span>;
+&#125;
+<span class="hljs-selector-pseudo">:hover</span> &#123;
+    <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#090</span>;
+&#125;</code></pre>
+
+
+<h2 id="水平垂直居中参考"><a href="#水平垂直居中参考" class="headerlink" title="水平垂直居中参考"></a>水平垂直居中参考</h2><pre><code class="hljs css"># 水平垂直居中
+
+// 需要宽高,父级有定位
+<span class="hljs-selector-tag">div</span>&#123;
+    <span class="hljs-attribute">margin</span>:auto;
+    <span class="hljs-attribute">top</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">bottom</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">left</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">right</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">position</span>:absolute;
+&#125;
+
+// 不定宽高 父级有定位
+<span class="hljs-selector-tag">div</span>&#123;
+    <span class="hljs-attribute">position</span>:absolute;
+    <span class="hljs-attribute">top</span>:<span class="hljs-number">50%</span>;
+    <span class="hljs-attribute">left</span>:<span class="hljs-number">50%</span>;
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>,-<span class="hljs-number">50%</span>);
+&#125;
+
+# 不定宽度的水平居中
+<span class="hljs-selector-tag">div</span>&#123;
+    <span class="hljs-attribute">display</span>:table;
+    <span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span> auto;
+&#125;</code></pre>
+
+<h2 id="去除textarea样式"><a href="#去除textarea样式" class="headerlink" title="去除textarea样式"></a>去除textarea样式</h2><blockquote>
+<p>去除 textarea 的默认样式，如需去除右下角样式，缺一不可</p>
+</blockquote>
+<pre><code class="hljs css">css&#123;
+    <span class="hljs-attribute">border</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">resize</span>:none;
+    <span class="hljs-attribute">outline</span>:none;
+    <span class="hljs-attribute">box-shadow</span>:none;
+    <span class="hljs-attribute">border-radius</span>:<span class="hljs-number">0</span>;
+&#125;</code></pre>
+<textarea style="background:#ccc;border:0;resize:none;outline:none;box-shadow:none;border-radius:0;"></textarea>
+<textarea></textarea>
+
+
+<h2 id="阴影模拟标签贴纸"><a href="#阴影模拟标签贴纸" class="headerlink" title="阴影模拟标签贴纸"></a>阴影模拟标签贴纸</h2><blockquote>
+<p>hover 样式要随机应变 兼容性：IE9+</p>
+</blockquote>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span> &#123;
+    <span class="hljs-attribute">position</span>: relative;
+    <span class="hljs-attribute">width</span>: <span class="hljs-number">600px</span>;
+    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">48</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">50%</span>);
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">20px</span>;
+&#125;
+
+<span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">::after</span> &#123;
+    <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-attribute">position</span>: absolute;
+    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;
+    <span class="hljs-attribute">left</span>: <span class="hljs-number">5%</span>;
+    <span class="hljs-attribute">right</span>: <span class="hljs-number">5%</span>;
+    <span class="hljs-attribute">bottom</span>: <span class="hljs-number">0</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">10px</span>;
+    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">hsl</span>(<span class="hljs-number">48</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);
+    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate</span>(<span class="hljs-number">0</span>, -<span class="hljs-number">15%</span>) <span class="hljs-built_in">rotate</span>(-<span class="hljs-number">2deg</span>);
+    <span class="hljs-attribute">transform-origin</span>: center center;
+    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">20px</span> <span class="hljs-number">15px</span> <span class="hljs-built_in">hsl</span>(<span class="hljs-number">48</span>, <span class="hljs-number">100%</span>, <span class="hljs-number">20%</span>);
+    <span class="hljs-attribute">z-index</span>:-<span class="hljs-number">1</span>;
+&#125;</code></pre>
+
+
+<h2 id="图片4px像素问题"><a href="#图片4px像素问题" class="headerlink" title="图片4px像素问题"></a>图片4px像素问题</h2><blockquote>
+<p>当一张图片放入一个div中时，div会多出4px像素的高，</p>
+</blockquote>
+<p>这是因为行内元素的基准线的不同</p>
+<p>设置图片为块级元素可以解决</p>
+<pre><code>&lt;img src=&quot;&quot; style=&quot;display:block&quot;&gt;
+</code></pre>
+<p>或更改对其基准线</p>
+<pre><code>&lt;img src=&quot;&quot; style=&quot;vertical-align:text-top;&quot;&gt;
+</code></pre>
+<h2 id="子级突破父级元素"><a href="#子级突破父级元素" class="headerlink" title="子级突破父级元素"></a>子级突破父级元素</h2><blockquote>
+<p>子元素，父元素都不设固定宽,突破父级padding</p>
+</blockquote>
+<pre><code class="hljs applescript">&lt;<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> style=<span class="hljs-string">&quot;margin:0 -10px&quot;</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;</code></pre>
+
+<h2 id="浏览器的最小字体"><a href="#浏览器的最小字体" class="headerlink" title="浏览器的最小字体"></a>浏览器的最小字体</h2><pre><code class="hljs">IE，火狐浏览器最小字体可以到1px
+欧朋，谷歌浏览器的最小字体为12px</code></pre>
+<pre><code class="hljs css">// 可以通过父级元素放大，在transfrom 缩小来制作字体缩小的效果
+<span class="hljs-selector-class">.en</span>&#123;
+	-webkit-<span class="hljs-attribute">transform-origin</span>-<span class="hljs-attribute">x</span>: <span class="hljs-number">0</span>;
+    -webkit-<span class="hljs-attribute">transform</span>: <span class="hljs-built_in">scale</span>(<span class="hljs-number">0.90</span>);
+&#125;
+<span class="hljs-selector-class">.an</span></code></pre>
+
+<h2 id="手机1像素边框太粗"><a href="#手机1像素边框太粗" class="headerlink" title="手机1像素边框太粗"></a>手机1像素边框太粗</h2><p>根本原因:1px使用了2dp渲染，解决办法：使用元素替换border，同时scaleY(0.5)</p>
+<pre><code class="hljs css"><span class="hljs-selector-tag">div</span><span class="hljs-selector-pseudo">:before</span>&#123;
+    <span class="hljs-attribute">position</span>:absolute;
+    <span class="hljs-attribute">top</span>:-<span class="hljs-number">1px</span>;
+    <span class="hljs-attribute">left</span>:<span class="hljs-number">0</span>;
+    <span class="hljs-attribute">content</span>:<span class="hljs-string">&quot;&quot;</span>;
+    <span class="hljs-attribute">width</span>:<span class="hljs-number">100%</span>;
+    <span class="hljs-attribute">height</span>:<span class="hljs-number">1px</span>;
+    <span class="hljs-attribute">border-top</span>:<span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
+    -webkit-<span class="hljs-attribute">transform</span>:<span class="hljs-built_in">scaleY</span>(<span class="hljs-number">0.5</span>);
+&#125;</code></pre>
+
+<h1 id="Echarts-图表"><a href="#Echarts-图表" class="headerlink" title="Echarts 图表"></a>Echarts 图表</h1><h2 id="根据X轴索引值进行分段"><a href="#根据X轴索引值进行分段" class="headerlink" title="根据X轴索引值进行分段"></a>根据X轴索引值进行分段</h2><pre><code class="hljs nix">o<span class="hljs-attr">ption</span> <span class="hljs-operator">=</span> &#123;
+    name:<span class="hljs-string">&quot;根据X轴索引值进行分段&quot;</span>,
+    <span class="hljs-params">xAxis:</span> &#123;
+        <span class="hljs-params">data:</span> [<span class="hljs-string">&quot;1&quot;</span>, <span class="hljs-string">&quot;2&quot;</span>, <span class="hljs-string">&quot;3&quot;</span>, <span class="hljs-string">&quot;4&quot;</span>, <span class="hljs-string">&quot;5&quot;</span>, <span class="hljs-string">&quot;6&quot;</span>, <span class="hljs-string">&quot;7&quot;</span>]
+    &#125;,
+    <span class="hljs-params">visualMap:</span> [&#123;
+        dimension:<span class="hljs-number">0</span>,
+        show:<span class="hljs-literal">true</span>,
+        <span class="hljs-params">pieces:</span> [&#123;
+            <span class="hljs-params">gt:</span> <span class="hljs-number">0</span>,
+            <span class="hljs-params">lte:</span> <span class="hljs-number">5</span>,
+            <span class="hljs-params">color:</span> &#x27;yellow&#x27;
+        &#125;, &#123;
+            <span class="hljs-params">gt:</span> <span class="hljs-number">5</span>,
+            <span class="hljs-params">color:</span> &#x27;blue&#x27;,
+            <span class="hljs-params">type:</span> &#x27;dashed&#x27;,
+
+        &#125;],
+    &#125;],
+    <span class="hljs-params">yAxis:</span> &#123;
+        <span class="hljs-params">type:</span> &#x27;value&#x27;,
+    &#125;,
+    <span class="hljs-params">series:</span> [&#123;
+        <span class="hljs-params">type:</span> &#x27;line&#x27;,
+        <span class="hljs-params">symbol:</span> &#x27;circle&#x27;,
+        <span class="hljs-params">smooth:</span> <span class="hljs-literal">true</span>,
+        <span class="hljs-params">data:</span> [<span class="hljs-number">10</span>, <span class="hljs-number">40</span>, <span class="hljs-number">74</span>, <span class="hljs-number">83</span>, <span class="hljs-number">120</span>, <span class="hljs-number">146</span>, <span class="hljs-number">180</span>]
+    &#125;]
+&#125;;</code></pre>
+
+<h1 id="CSS-功能参考"><a href="#CSS-功能参考" class="headerlink" title="CSS 功能参考"></a>CSS 功能参考</h1><h2 id="伪类获取属性内容"><a href="#伪类获取属性内容" class="headerlink" title="伪类获取属性内容"></a><strong>伪类获取属性内容</strong></h2><p>可以用于提示信息 （兼容IE8+）</p>
+<pre><code class="hljs applescript"><span class="hljs-comment"># Html</span>
+&lt;<span class="hljs-keyword">div</span> data-msg=<span class="hljs-string">&quot;不存在的&quot;</span>&gt; hover &lt;/<span class="hljs-keyword">div</span>&gt;
+
+<span class="hljs-comment"># Css</span>
+<span class="hljs-keyword">div</span>:hover:<span class="hljs-keyword">after</span>&#123;
+    content:attr(data-msg);
+&#125;</code></pre>
+
+<h2 id="使用伪类实现分隔"><a href="#使用伪类实现分隔" class="headerlink" title="使用伪类实现分隔"></a><strong>使用伪类实现分隔</strong></h2><p>可以用于导航栏分割 （兼容IE8+）</p>
+<pre><code class="hljs css"># <span class="hljs-selector-tag">Html</span>
+&lt;<span class="hljs-selector-tag">ul</span>&gt;
+    &lt;<span class="hljs-selector-tag">li</span>&gt;<span class="hljs-selector-tag">a</span>&lt;/<span class="hljs-selector-tag">li</span>&gt;
+    &lt;<span class="hljs-selector-tag">li</span>&gt;&lt;/<span class="hljs-selector-tag">li</span>?
+&lt;/<span class="hljs-selector-tag">ul</span>&gt;
+
+# Css
+<span class="hljs-selector-tag">ul</span> &gt; <span class="hljs-selector-tag">li</span><span class="hljs-selector-pseudo">:not</span>(<span class="hljs-selector-pseudo">:last-child</span>)<span class="hljs-selector-pseudo">::after</span> &#123;
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">&quot;,&quot;</span>;
+&#125;</code></pre>
+
+<h2 id="无需-JS-的VW布局"><a href="#无需-JS-的VW布局" class="headerlink" title="无需 JS 的VW布局"></a><strong>无需 JS 的VW布局</strong></h2><p>可以用于不需要兼容第版本的手机页面（不兼容低版本安卓机）</p>
+<pre><code class="hljs css"># <span class="hljs-number">750px</span> 手机设计稿
+<span class="hljs-selector-tag">html</span>&#123;
+    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">100vw</span> / <span class="hljs-number">750</span>
+&#125;</code></pre>
+
+<h2 id="禁止复制页面文字"><a href="#禁止复制页面文字" class="headerlink" title="禁止复制页面文字"></a>禁止复制页面文字</h2><p>兼容性：IE5+</p>
+<pre><code class="hljs pgsql">&lt;body onselectstart=&quot;return false&quot;&gt;&lt;/body&gt;
+
+*&#123;
+   -o-<span class="hljs-keyword">user</span>-<span class="hljs-keyword">select</span>: <span class="hljs-keyword">none</span>;
+   -ms-<span class="hljs-keyword">user</span>-<span class="hljs-keyword">select</span>: <span class="hljs-keyword">none</span>;
+   -moz-<span class="hljs-keyword">user</span>-<span class="hljs-keyword">select</span>: <span class="hljs-keyword">none</span>;
+   -webkit-<span class="hljs-keyword">user</span>-<span class="hljs-keyword">select</span>: <span class="hljs-keyword">none</span>;
+   <span class="hljs-keyword">user</span>-<span class="hljs-keyword">select</span>: <span class="hljs-keyword">none</span>;
+&#125;</code></pre>
+
+<h2 id="CSS-样式书写顺序"><a href="#CSS-样式书写顺序" class="headerlink" title="CSS 样式书写顺序"></a>CSS 样式书写顺序</h2><p>由于存在浏览器前缀这一问题的存在，并伴随着的时代的发展，浏览器在未来会淘汰掉浏览器前缀这一写法，这会导致的页面的问题</p>
+<pre><code class="hljs css"><span class="hljs-selector-class">.div1</span> &#123;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">30px</span> <span class="hljs-number">10px</span>;
+    -webkit-<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">30px</span> <span class="hljs-number">10px</span>;
+&#125;
+   // 这两个家伙干的不是同一个活 
+<span class="hljs-selector-class">.div2</span>&#123;
+    -webkit-<span class="hljs-attribute">border-radius</span>: <span class="hljs-number">30px</span> <span class="hljs-number">10px</span>;
+    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">30px</span> <span class="hljs-number">10px</span>;
+&#125;</code></pre>
+
+<div style="width:100px;height:50px;background:#ccc;text-align:center;line-height:50px;border-radius: 30px 10px;-webkit-border-radius: 30px 10px;margin-bottom:20px;">div1</div>
+
+<div style="width:100px;height:50px;background:#ccc;text-align:center;line-height:50px;-webkit-border-radius: 30px 10px;border-radius: 30px 10px;margin-bottom:20px;">div1</div>
+
+<h2 id="禁止页面事项列表"><a href="#禁止页面事项列表" class="headerlink" title="禁止页面事项列表"></a>禁止页面事项列表</h2><blockquote>
+<p>禁止弹出IE菜单</p>
+</blockquote>
+<pre><code class="hljs routeros">&lt;body <span class="hljs-attribute">oncontextmenu</span>=<span class="hljs-string">&quot;return false&quot;</span>&gt;</code></pre>
+
+<blockquote>
+<p>禁止页面选取</p>
+</blockquote>
+<pre><code class="hljs routeros">&lt;body <span class="hljs-attribute">onselectstart</span>=<span class="hljs-string">&quot;return false&quot;</span>&gt;</code></pre>
+
+<blockquote>
+<p>禁止鼠标拖拽</p>
+</blockquote>
+<pre><code class="hljs routeros">&lt;body <span class="hljs-attribute">ondragstart</span>=<span class="hljs-string">&quot;return false&quot;</span>&gt;</code></pre>
+
+<h2 id="IE-条件注释兼容性"><a href="#IE-条件注释兼容性" class="headerlink" title="IE 条件注释兼容性"></a>IE 条件注释兼容性</h2><p>由于微软的决策，IE10及以上版本不在支持IE条件注释，所以需要靠第四行代码来实现在IE9以上的浏览器解析为<code>&lt;html&gt;</code>的目的</p>
+<pre><code class="hljs xml"><span class="hljs-comment">&lt;!--[if lt IE 7]&gt; &lt;html class=&quot;ie6&quot;&gt; &lt;![endif]--&gt;</span>
+<span class="hljs-comment">&lt;!--[if IE 7]&gt;    &lt;html class=&quot;ie7&quot;&gt; &lt;![endif]--&gt;</span>
+<span class="hljs-comment">&lt;!--[if IE 8]&gt;    &lt;html class=&quot;ie8&quot;&gt; &lt;![endif]--&gt;</span>
+<span class="hljs-comment">&lt;!--[if gt IE 8]&gt;&lt;!--&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>    <span class="hljs-comment">&lt;!--&lt;![endif]--&gt;</span></code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%A0%B7%E5%BC%8F"><span class="toc-text">按钮样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%88%97%E7%AD%89%E9%AB%98"><span class="toc-text">多列等高</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%87%E5%88%86%E7%AD%89%E9%9A%99"><span class="toc-text">均分等隙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%AFCSS-%E6%97%8B%E8%BD%AC-loading"><span class="toc-text">纯CSS 旋转 loading</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E5%88%87%E6%8D%A2%E6%98%BE%E7%A4%BA"><span class="toc-text">背景颜色切换显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E5%8F%82%E8%80%83"><span class="toc-text">水平垂直居中参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%99%A4textarea%E6%A0%B7%E5%BC%8F"><span class="toc-text">去除textarea样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B4%E5%BD%B1%E6%A8%A1%E6%8B%9F%E6%A0%87%E7%AD%BE%E8%B4%B4%E7%BA%B8"><span class="toc-text">阴影模拟标签贴纸</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%874px%E5%83%8F%E7%B4%A0%E9%97%AE%E9%A2%98"><span class="toc-text">图片4px像素问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E7%BA%A7%E7%AA%81%E7%A0%B4%E7%88%B6%E7%BA%A7%E5%85%83%E7%B4%A0"><span class="toc-text">子级突破父级元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%9C%80%E5%B0%8F%E5%AD%97%E4%BD%93"><span class="toc-text">浏览器的最小字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E6%9C%BA1%E5%83%8F%E7%B4%A0%E8%BE%B9%E6%A1%86%E5%A4%AA%E7%B2%97"><span class="toc-text">手机1像素边框太粗</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Echarts-%E5%9B%BE%E8%A1%A8"><span class="toc-text">Echarts 图表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AEX%E8%BD%B4%E7%B4%A2%E5%BC%95%E5%80%BC%E8%BF%9B%E8%A1%8C%E5%88%86%E6%AE%B5"><span class="toc-text">根据X轴索引值进行分段</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS-%E5%8A%9F%E8%83%BD%E5%8F%82%E8%80%83"><span class="toc-text">CSS 功能参考</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%AA%E7%B1%BB%E8%8E%B7%E5%8F%96%E5%B1%9E%E6%80%A7%E5%86%85%E5%AE%B9"><span class="toc-text">伪类获取属性内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E4%BC%AA%E7%B1%BB%E5%AE%9E%E7%8E%B0%E5%88%86%E9%9A%94"><span class="toc-text">使用伪类实现分隔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A0%E9%9C%80-JS-%E7%9A%84VW%E5%B8%83%E5%B1%80"><span class="toc-text">无需 JS 的VW布局</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E5%A4%8D%E5%88%B6%E9%A1%B5%E9%9D%A2%E6%96%87%E5%AD%97"><span class="toc-text">禁止复制页面文字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS-%E6%A0%B7%E5%BC%8F%E4%B9%A6%E5%86%99%E9%A1%BA%E5%BA%8F"><span class="toc-text">CSS 样式书写顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%81%E6%AD%A2%E9%A1%B5%E9%9D%A2%E4%BA%8B%E9%A1%B9%E5%88%97%E8%A1%A8"><span class="toc-text">禁止页面事项列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IE-%E6%9D%A1%E4%BB%B6%E6%B3%A8%E9%87%8A%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="toc-text">IE 条件注释兼容性</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2025/03/21/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91%E6%A0%B7%E5%BC%8F%E5%8F%82%E8%80%83%E5%8F%8A%E5%8A%9F%E8%83%BD%E5%8F%82%E8%80%83/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

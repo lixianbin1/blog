@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>各种稀奇古怪的思路或者高阶用法 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="功能需求,Javascript," />
+  
+
+  
+  <meta name="description" content="记录一下自己用过的或者别人的骚操作的代码和思路">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-11-18
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82/"><i class="fa fa-bookmark"></i>功能需求</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-4-24 10:49 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    各种稀奇古怪的思路或者高阶用法
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2019081901.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <h2 id="功能类"><a href="#功能类" class="headerlink" title="功能类"></a>功能类</h2><h3 id="离线网站：应用程序缓存"><a href="#离线网站：应用程序缓存" class="headerlink" title="离线网站：应用程序缓存"></a>离线网站：应用程序缓存</h3><blockquote>
+<p>网站可以离线访问：一般用于内容不经常改，但是需要在没网络的情况下浏览的网站；</p>
+</blockquote>
+<p>HTML5 引入了应用程序缓存，这意味着 web 应用可进行缓存，并可在没有因特网连接时进行访问</p>
+<ul>
+<li><strong>在文档声明属性</strong></li>
+</ul>
+<pre><code class="hljs html"><span class="hljs-comment">&lt;!-- 如需启用应用程序缓存，请在文档的 `&lt;html&gt;` 标签中包含 manifest 属性 --&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">HTML</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">manifest</span>=<span class="hljs-string">&quot;demo.appcache&quot;</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<ul>
+<li><strong>建立<code>manifest</code>文件,在服务器配置</strong></li>
+</ul>
+<p>manifest 文件的建议的文件扩展名是：”.appcache”; 正确的 MIME-type，即 “text/cache-manifest”</p>
+<pre><div class="caption"><span>demo.appcache</span></div><code class="hljs md">CACHE MANIFEST
+<span class="hljs-section"># 2012-02-21 v1.0.0</span>
+/theme.css
+/logo.gif
+/main.js
+
+NETWORK:
+<span class="hljs-bullet">*</span>
+
+FALLBACK:
+/html/ /offline.html</code></pre>
+
+<p>CACHE MANIFEST：被缓存的文件；   NETWORK: 永远不被缓存的文件；  FALLBACK: 如果没网所使用的替代文件；<br>**注意：当<code>manifest</code>文件被更改的时候，应用的缓存也会被更改，如需要更新用户的缓存可以更改<code>manifest</code>文件的注释日期 **</p>
+<h3 id="控制台防窥：前端反调试"><a href="#控制台防窥：前端反调试" class="headerlink" title="控制台防窥：前端反调试"></a>控制台防窥：前端反调试</h3><blockquote>
+<p>让其他非技术人员无法调试网站及拉取网站代码； 通过打开控制台的读取时间和当前的事件不一致然后重复执行的思路</p>
+</blockquote>
+<ul>
+<li>**无限debugger反调试 **</li>
+</ul>
+ <pre><code class="hljs js">((<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-keyword">var</span> callbacks = [],
+        timeLimit = <span class="hljs-number">50</span>,
+        open = <span class="hljs-literal">false</span>;
+    <span class="hljs-built_in">setInterval</span>(loop, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> &#123;
+        <span class="hljs-attr">addListener</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+            callbacks.<span class="hljs-title function_">push</span>(fn);
+        &#125;,
+        <span class="hljs-attr">cancleListenr</span>: <span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+            callbacks = callbacks.<span class="hljs-title function_">filter</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">v</span>) &#123;
+                <span class="hljs-keyword">return</span> v !== fn;
+            &#125;);
+        &#125;
+    &#125;
+    <span class="hljs-keyword">function</span> <span class="hljs-title function_">loop</span>(<span class="hljs-params"></span>) &#123;
+        <span class="hljs-keyword">var</span> startTime = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>();
+        <span class="hljs-keyword">debugger</span>;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() - startTime &gt; timeLimit) &#123;
+            <span class="hljs-keyword">if</span> (!open) &#123;
+                callbacks.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">fn</span>) &#123;
+                    fn.<span class="hljs-title function_">call</span>(<span class="hljs-literal">null</span>);
+                &#125;);
+            &#125;
+            open = <span class="hljs-literal">true</span>;
+            <span class="hljs-variable language_">window</span>.<span class="hljs-title function_">stop</span>();
+            <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-title function_">reload</span>();
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            open = <span class="hljs-literal">false</span>;
+        &#125;
+    &#125;
+&#125;)()).<span class="hljs-title function_">addListener</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+    <span class="hljs-variable language_">window</span>.<span class="hljs-property">location</span>.<span class="hljs-title function_">reload</span>();
+&#125;);</code></pre>
+<p>为防止 debugger 被替换，可以通过字符串拼接，然后用eval 执行</p>
+<pre><code class="hljs js"><span class="hljs-built_in">eval</span>(<span class="hljs-string">`((function()&#123;var callbacks=[],timeLimit=50,open=false;setInterval(loop,1);return&#123;addListener:function(fn)&#123;callbacks.push(fn);&#125;,cancleListenr:function(fn)&#123;callbacks=callbacks.filter(function(v)&#123;returnv!==fn;&#125;)&#125;&#125;;function loop()&#123;var startTime=new Date();debugger;if(new Date()-startTime&gt;timeLimit)&#123;if(!open)&#123;callbacks.forEach(function(fn)&#123;fn.call(null);&#125;);&#125;open=true;window.stop();window.location.reload()&#125;else&#123;open = false&#125;&#125;&#125;)()).addListener(function()&#123;window.location.reload()&#125;)`</span>)</code></pre>
+
+<h3 id="控制台输出：彩蛋控制"><a href="#控制台输出：彩蛋控制" class="headerlink" title="控制台输出：彩蛋控制"></a>控制台输出：彩蛋控制</h3><p>控制台输出颜色样式：</p>
+<pre><code class="hljs haml"><span class="hljs-tag">%<span class="hljs-selector-tag">s</span></span>       占位符
+<span class="hljs-tag">%<span class="hljs-selector-tag">d</span></span> 或 %i    整数
+<span class="hljs-tag">%<span class="hljs-selector-tag">f</span></span>       浮点数
+<span class="hljs-tag">%<span class="hljs-selector-tag">o</span></span>%O     object对象
+<span class="hljs-tag">%<span class="hljs-selector-tag">c</span></span>       css样式</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> version = <span class="hljs-string">`1.3.0`</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(
+  <span class="hljs-string">`%c hello uniapp %c v<span class="hljs-subst">$&#123;version&#125;</span> `</span>,
+  <span class="hljs-string">&#x27;background:#35495e ; padding: 1px; border-radius: 3px 0 0 3px;  color: #fff&#x27;</span>,
+  <span class="hljs-string">&#x27;background:#007aff ;padding: 1px; border-radius: 0 3px 3px 0;  color: #fff; font-weight: bold;&#x27;</span>
+)</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E7%B1%BB"><span class="toc-text">功能类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A6%BB%E7%BA%BF%E7%BD%91%E7%AB%99%EF%BC%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E7%BC%93%E5%AD%98"><span class="toc-text">离线网站：应用程序缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8F%B0%E9%98%B2%E7%AA%A5%EF%BC%9A%E5%89%8D%E7%AB%AF%E5%8F%8D%E8%B0%83%E8%AF%95"><span class="toc-text">控制台防窥：前端反调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8F%B0%E8%BE%93%E5%87%BA%EF%BC%9A%E5%BD%A9%E8%9B%8B%E6%8E%A7%E5%88%B6"><span class="toc-text">控制台输出：彩蛋控制</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2021/11/18/%E3%80%90%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E3%80%91%E5%90%84%E7%A7%8D%E7%A8%80%E5%A5%87%E5%8F%A4%E6%80%AA%E7%9A%84%E6%80%9D%E8%B7%AF%E6%88%96%E8%80%85%E9%AB%98%E9%98%B6%E7%94%A8%E6%B3%95/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Javascript/"><i class="fa fa-tags"></i>Javascript</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Redux在开发中该如何使用 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="React," />
+  
+
+  
+  <meta name="description" content="总所周知，Redux是状态管理容器，用于管理项目中过于日渐繁琐的状态。随着需求的不断提出，项目会变得复杂和臃肿，需不需要要在项目中使用 Redux取决于项目的需求。React 禁止异步和直接操作 DOM，但是需要你能很好的控制 State;而 Redux 则可以协助你管理 State。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-16
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2019-10-16 11:3 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Redux在开发中该如何使用
+  </h1>
+  
+    <div class="passage-cover">
+      <figure style="background-image:url(/blog/images/posts/2019092602.jpg);"></figure>
+    </div>
+  
+  <article class="passage-article">
+    <p>在开始前，我们需要知道，在本文中将会是简单的应用Redux，一些复杂和高级阶段的API 可能不会出现，这可能需要自主学习</p>
+<h2 id="开始和安装"><a href="#开始和安装" class="headerlink" title="开始和安装"></a>开始和安装</h2><p>在项目中，当我们需要Redux时，我们需要使用 npm 安装 Redux 和 React绑定库，开发调试工具</p>
+<pre><code class="hljs q">npm install redux --<span class="hljs-built_in">save</span>
+npm install react-redux --<span class="hljs-built_in">save</span>
+npm install redux-devtools --<span class="hljs-built_in">save</span>-<span class="hljs-built_in">dev</span></code></pre>
+
+<h2 id="核心和概念"><a href="#核心和概念" class="headerlink" title="核心和概念"></a>核心和概念</h2><h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><p>把数据从应用传到stort的有效载体，它是store数据的唯一来源.Action 本质上是对象。我们约定，action 内必须使用一个字符串类型的 type 字段来表示将要执行的动作。同时建议使用单独的模块或文件来存放 action</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">const</span> <span class="hljs-variable constant_">ADD_TODO</span> = <span class="hljs-string">&#x27;ADD_TODO&#x27;</span>
+&#123;
+  <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">ADD_TODO</span>,
+  <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Build my first Redux app&#x27;</span>
+&#125;</code></pre>
+
+<p>由于 action 的数量众多，因此需要构建函数方法。 Action 创建函数 就是生成 action 的方法，只是简单的返回一个 action</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">addTodo</span>(<span class="hljs-params">text</span>) &#123;
+  <span class="hljs-keyword">return</span> &#123;
+    <span class="hljs-attr">type</span>: <span class="hljs-variable constant_">ADD_TODO</span>,
+    text
+  &#125;
+&#125;
+
+<span class="hljs-comment">// Redux 中只需把 action 创建函数的结果传给 dispatch() 方法即可发起一次 dispatch 过程</span>
+<span class="hljs-comment">// dispatch(addTodo(text))</span></code></pre>
+
+
+<h3 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h3><p>Reducers 指定了应用状态的变化如何响应 actions 并发送到 store 的，记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state 当我们确定了 state 对象的结构，就可以开始开发 reducer。reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">todoApp</span>(<span class="hljs-params">state = initialState, action</span>) &#123;
+  <span class="hljs-comment">// 这里暂不处理任何 action，</span>
+  <span class="hljs-comment">// 仅返回传入的 state。</span>
+  <span class="hljs-comment">// initialState 可能就是state数据中的一个</span>
+  <span class="hljs-keyword">return</span> state
+&#125;</code></pre>
+
+<p><strong>永远不要在 reducer 里做这些操作</strong>：</p>
+<ul>
+<li>修改传入参数； </li>
+<li>执行有副作用的操作，如 API 请求和路由跳转； </li>
+<li>调用非纯函数，如 Date.now() 或 Math.random()。</li>
+</ul>
+<h3 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h3><p>Store是存储数据的地方，它就像是一个容器。用来维持应用所有的 state 树 的一个对象，整个应用只有一个 Store。redux 提供 createStore(fn) 并接收一个函数来生成一个 Store，</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
+<span class="hljs-keyword">import</span> todoApp <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers&#x27;</span>  <span class="hljs-comment">//由下文中的Reducer集合文件</span>
+<span class="hljs-keyword">let</span> store = <span class="hljs-title function_">createStore</span>(todoApp) 
+
+<span class="hljs-comment">//createStore() 的第二个参数是可选的, 用于设置 state 初始状态</span>
+<span class="hljs-keyword">let</span> store = <span class="hljs-title function_">createStore</span>(todoApp, <span class="hljs-variable language_">window</span>.<span class="hljs-property">STATE_FROM_SERVER</span>)</code></pre>
+
+<p><strong>Store的职责</strong></p>
+<ul>
+<li>提供 getState() 方法获取 state； </li>
+<li>提供 dispatch(action) 方法更新 state； </li>
+<li>通过 subscribe(listener) 注册监听器; </li>
+<li>通过 subscribe(listener) 返回的函数注销监听器。</li>
+</ul>
+<blockquote>
+<p><strong>store.dispatch()</strong></p>
+</blockquote>
+<p>dispactch接受一个action对象作为参数并发送出去。你可以在任何地方调用 store.dispatch(action);Store 会把两个参数传入 reducer： 当前的 state 树和 action 。Action 是把数据传入 store 的惟一途径，所以任何数据，无论来自 UI 事件，网络回调或者是其它资源如 WebSockets，最终都应该以 action 的形式被 dispatch</p>
+<h2 id="Redux-的基本原则"><a href="#Redux-的基本原则" class="headerlink" title="Redux 的基本原则"></a>Redux 的基本原则</h2><ul>
+<li>唯一的数据源</li>
+</ul>
+<p>整个应用的 state 被储存在一棵 object tree 中，且这个 object tree 只存在唯一的 store</p>
+<p>这让同构应用开发变得非常容易。来自服务端的 state 可以在无需编写更多代码的情况下被序列化并注入到客户端中。由于是单一的 state tree ，调试也变得非常容易。在开发中，你可以把应用的 state 保存在本地，从而加快开发速度。此外，受益于单一的 state tree ，以前难以实现的如“撤销/重做”这类功能也变得轻而易举</p>
+<ul>
+<li>State是只读的</li>
+</ul>
+<p>唯一改变 state 的方法就是触发 action，通过 Reducer 对 state 进行修改</p>
+<p>这样确保了视图和网络请求都不能直接修改 state，相反它们只能表达想要修改的意图。因为所有的修改都被集中化处理，且严格按照一个接一个的顺序执行，因此不用担心 race condition 的出现。 Action 就是普通对象而已，因此它们可以被日志打印、序列化、储存、后期调试或测试时回放出来</p>
+<ul>
+<li>使用纯函数进行修改</li>
+</ul>
+<p>Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state。刚开始你可以只有一个 reducer，随着应用变大，你可以把它拆成多个小的 reducers，分别独立地操作 state tree 的不同部分，因为 reducer 只是函数，你可以控制它们被调用的顺序，传入附加数据，甚至编写可复用的 reducer 来处理一些通用任务，如分页器</p>
+<h2 id="项目结构参考"><a href="#项目结构参考" class="headerlink" title="项目结构参考"></a>项目结构参考</h2><pre><code class="hljs x86asm">src/
+  actions/     【存储action创建函数的文件夹】
+    index<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+  components/  【存储展示组件的文件夹】
+    App<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...
+  containers/  【存储容器组件的文件夹】
+    <span class="hljs-keyword">Add</span><span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...
+  reducers/    【存储reducer的的文件夹】
+    index<span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    <span class="hljs-keyword">add</span><span class="hljs-number">.</span><span class="hljs-keyword">js</span>
+    ...</code></pre>
+
+<blockquote>
+<p>展示组件和容器组件的区分</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="left">展示组件</th>
+<th align="left">容器组件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>作用</td>
+<td align="left">描述如何展示(骨架,样式)</td>
+<td align="left">描述如何运行(数据获取,状态更新)</td>
+</tr>
+<tr>
+<td>直接使用redux</td>
+<td align="left">否</td>
+<td align="left">是</td>
+</tr>
+<tr>
+<td>数据来源</td>
+<td align="left">props</td>
+<td align="left">监听Redux state</td>
+</tr>
+<tr>
+<td>数据修改</td>
+<td align="left">从Props调用回调函数</td>
+<td align="left">向Redux 派发action</td>
+</tr>
+</tbody></table>
+<pre><div class="caption"><span>入口文件 index.js</span></div><code class="hljs javascript">...
+<span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Provider</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-redux&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; createStore &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;redux&#x27;</span>
+<span class="hljs-keyword">import</span> rootReducer <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./reducers&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/App&#x27;</span>
+
+<span class="hljs-keyword">const</span> store = <span class="hljs-title function_">createStore</span>(rootReducer)
+
+<span class="hljs-comment">// Provider是React Redux 的高阶组件，用于将 Redux 绑定到 React </span>
+<span class="hljs-title function_">render</span>(
+  <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Provider</span> <span class="hljs-attr">store</span>=<span class="hljs-string">&#123;store&#125;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">App</span> /&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">Provider</span>&gt;</span></span>,
+  <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;root&#x27;</span>)
+)
+...</code></pre>
+
+<pre><div class="caption"><span>容器组件 TodoList.js</span></div><code class="hljs arcade"><span class="hljs-keyword">import</span> &#123; connect &#125; from <span class="hljs-string">&#x27;react-redux&#x27;</span>
+<span class="hljs-keyword">import</span> &#123; toggleTodo &#125; from <span class="hljs-string">&#x27;../actions&#x27;</span>
+<span class="hljs-keyword">import</span> List from <span class="hljs-string">&#x27;../components/TodoList&#x27;</span>
+
+<span class="hljs-comment">// </span>
+const getVisibleTodos = <span class="hljs-function">(<span class="hljs-params">todos, <span class="hljs-built_in">filter</span></span>) =&gt;</span> &#123;
+  <span class="hljs-keyword">switch</span> (<span class="hljs-built_in">filter</span>) &#123;
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_COMPLETED&#x27;</span>:
+      <span class="hljs-keyword">return</span> todos.<span class="hljs-built_in">filter</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> t.completed) <span class="hljs-comment">//数组通过completed属性筛选</span>
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_ACTIVE&#x27;</span>:
+      <span class="hljs-keyword">return</span> todos.<span class="hljs-built_in">filter</span>(<span class="hljs-function"><span class="hljs-params">t</span> =&gt;</span> !t.completed)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">&#x27;SHOW_ALL&#x27;</span>:
+    default:
+      <span class="hljs-keyword">return</span> todos
+  &#125;
+&#125;
+
+const mapStateToProps = <span class="hljs-keyword">function</span>(<span class="hljs-params">state</span>)&#123;
+  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(state)
+  <span class="hljs-keyword">return</span> (&#123;
+    <span class="hljs-attr">todos</span>: getVisibleTodos(state.todos, state.visibilityFilter)
+  &#125;)
+&#125;
+
+const mapDispatchToProps = <span class="hljs-keyword">function</span>(<span class="hljs-params">dispatch</span>)&#123;
+  <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">&#x27;1&#x27;</span>)
+  <span class="hljs-keyword">return</span>(&#123;
+    <span class="hljs-attr">toggleTodo</span>: <span class="hljs-function"><span class="hljs-params">id</span> =&gt;</span> dispatch(toggleTodo(id))
+  &#125;)
+&#125;
+
+<span class="hljs-keyword">export</span> default connect(   <span class="hljs-comment">//以注入对象的方式，以健取值</span>
+  mapStateToProps, <span class="hljs-comment">//注入todos</span>
+  mapDispatchToProps
+)(List)</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%92%8C%E5%AE%89%E8%A3%85"><span class="toc-text">开始和安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-text">核心和概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-text">Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducer"><span class="toc-text">Reducer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Store"><span class="toc-text">Store</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="toc-text">Redux 的基本原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E5%8F%82%E8%80%83"><span class="toc-text">项目结构参考</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2019/10/16/Redux%20%E5%9C%A8%E5%BC%80%E5%8F%91%E4%B8%AD%E8%AF%A5%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/React/"><i class="fa fa-tags"></i>React</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

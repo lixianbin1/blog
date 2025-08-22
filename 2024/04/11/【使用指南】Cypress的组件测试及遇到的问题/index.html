@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Cypress的组件测试及遇到的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,Cypress," />
+  
+
+  
+  <meta name="description" content="Cypress是一个基于JavaScript的前端测试工具，它允许对浏览器中运行的任何内容进行快速、简单、可靠的测试，并且覆盖了测试金字塔模型的所有测试类型，包括界面测试、集成测试和单元测试。">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2024-04-11
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2024-4-11 9:22 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Cypress的组件测试及遇到的问题
+  </h1>
+  
+  <article class="passage-article">
+    <p>什么是Cypress？</p>
+<p>Cypress是一个基于JavaScript的前端测试工具，它允许对浏览器中运行的任何内容进行快速、简单、可靠的测试，并且覆盖了测试金字塔模型的所有测试类型，包括界面测试、集成测试和单元测试。Cypress的特点在于它将测试运行在一个单独的Chrome浏览器实例中，从而更好地模拟用户操作。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><blockquote>
+<p>yarn add -D cypress || npm install -D cypress</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-comment">//package.json</span>
+<span class="hljs-string">&quot;scripts&quot;</span>: &#123;
+    <span class="hljs-string">&quot;cypress:open&quot;</span>: <span class="hljs-string">&quot;cypress open&quot;</span>,
+    <span class="hljs-comment">//...</span>
+&#125;</code></pre>
+
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>执行 <code>cypress open</code> 打开cypress 启动页， 选择 E2E(端对端测试)或者  compoent(组件测试). 之后根据提示进行操作。 <code>安装依赖</code> - <code>添加文件</code> - <code>选择浏览器测试</code></p>
+<p>配置全局变量(可选)</p>
+<pre><code class="hljs js"><span class="hljs-comment">// cypress.config.js</span>
+<span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;  
+  <span class="hljs-attr">env</span>: &#123;  
+    <span class="hljs-attr">myGlobalVar</span>: <span class="hljs-string">&#x27;someValue&#x27;</span>  
+  &#125;  
+&#125;;</code></pre>
+
+<p>配置全局样式，在component文件中直接引入，全局样式</p>
+<pre><code class="hljs js"><span class="hljs-comment">// cypress/support/component.ts</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;@/assets/styles/index.css&#x27;</span></code></pre>
+
+<p>配置全局方法(自定义方法)</p>
+<pre><code class="hljs js"><span class="hljs-comment">// cypress/support/commands.ts</span>
+<span class="hljs-title class_">Cypress</span>.<span class="hljs-property">Commands</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;mount&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">component, options = &#123;&#125;</span>) =&gt;</span> &#123;
+  options.<span class="hljs-property">global</span> = options.<span class="hljs-property">global</span> || &#123;&#125;
+  options.<span class="hljs-property">global</span>.<span class="hljs-property">stubs</span> = options.<span class="hljs-property">global</span>.<span class="hljs-property">stubs</span> || &#123;&#125;
+  options.<span class="hljs-property">global</span>.<span class="hljs-property">stubs</span>.<span class="hljs-property">transition</span> = <span class="hljs-literal">false</span>
+  options.<span class="hljs-property">global</span>.<span class="hljs-property">components</span> = options.<span class="hljs-property">global</span>.<span class="hljs-property">components</span> || &#123;&#125;
+  options.<span class="hljs-property">global</span>.<span class="hljs-property">plugins</span> = options.<span class="hljs-property">global</span>.<span class="hljs-property">plugins</span> || []
+  <span class="hljs-keyword">const</span> &#123;<span class="hljs-comment">/* store = getStore(), */</span> ...mountOptions&#125; = options
+
+  options.<span class="hljs-property">global</span>.<span class="hljs-property">plugins</span>.<span class="hljs-title function_">push</span>(&#123;
+    <span class="hljs-title function_">install</span>(<span class="hljs-params">app</span>) &#123;
+      app.<span class="hljs-title function_">use</span>(i18n)
+    &#125;,
+  &#125;)
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">mount</span>(component, mountOptions)
+&#125;)</code></pre>
+
+<h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><p>在 <code>components</code> 目录添加组件对应的测试文件</p>
+<pre><code class="hljs js"><span class="hljs-comment">//Head.cy.ts</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Head</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./Head.vue&#x27;</span>
+<span class="hljs-keyword">import</span> &#123;i18n&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../modules/i18n&#x27;</span>
+<span class="hljs-keyword">import</span> &#123;router&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../modules/route&#x27;</span>
+
+<span class="hljs-title function_">describe</span>(<span class="hljs-string">&#x27;&lt;Head /&gt;&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">it</span>(<span class="hljs-string">&#x27;renders&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    cy.<span class="hljs-title function_">mount</span>(<span class="hljs-title class_">Head</span>,&#123;
+      <span class="hljs-attr">global</span>: &#123;
+        <span class="hljs-attr">plugins</span>:[i18n,router]
+      &#125;
+    &#125;)
+  &#125;)
+&#125;)</code></pre>
+
+<pre><code class="hljs js"><span class="hljs-comment">//Head.ts</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">testName</span> (<span class="hljs-params">name</span>) &#123;
+    <span class="hljs-keyword">return</span> name
+&#125;</code></pre>
+
+<h2 id="问题集合"><a href="#问题集合" class="headerlink" title="问题集合"></a>问题集合</h2><h3 id="执行vitestui-报错-Cannot-read-properties-of-undefined-reading-‘config’"><a href="#执行vitestui-报错-Cannot-read-properties-of-undefined-reading-‘config’" class="headerlink" title="执行vitestui 报错 Cannot read properties of undefined (reading ‘config’)"></a>执行vitestui 报错 Cannot read properties of undefined (reading ‘config’)</h3><p>vitest 和 vitest/ui 的版本和 vite 不匹配</p>
+<blockquote>
+<p>pnpm i vitest@latest @vitest/ui@latest -D</p>
+</blockquote>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="toc-text">简单示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E9%9B%86%E5%90%88"><span class="toc-text">问题集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A7%E8%A1%8Cvitestui-%E6%8A%A5%E9%94%99-Cannot-read-properties-of-undefined-reading-%E2%80%98config%E2%80%99"><span class="toc-text">执行vitestui 报错 Cannot read properties of undefined (reading ‘config’)</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2024/04/11/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Cypress%E7%9A%84%E7%BB%84%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Cypress/"><i class="fa fa-tags"></i>Cypress</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+      <div id="gitalk-container"></div>
+      <link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+<script src="https://priesttomb.github.io/js/md5.min.js"></script>
+<script type="text/javascript">
+    new Gitalk({
+        clientID: '8241a8fad9233906dbd6',
+        clientSecret: '938605d4f670768b4cb9c9bdec2151bc1287dd29',
+        repo: 'blog',
+        owner: 'lixianbin1',
+        admin: 'lixianbin1',
+        id: md5(location.pathname),
+        distractionFreeMode: true
+    }).render('gitalk-container')
+</script>
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>高德地图在实际应用的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="参考手册," />
+  
+
+  
+  <meta name="description" content="金麟岂是池中物，一遇风云便化龙，九霄龙吟惊天变，风云际会浅水游。马荣成 《风云》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-07-20
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E5%8F%82%E8%80%83%E6%89%8B%E5%86%8C/"><i class="fa fa-bookmark"></i>参考手册</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-7-21 10:37 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    高德地图在实际应用的问题
+  </h1>
+  
+  <article class="passage-article">
+    <ol>
+<li>首先，注册开发者账号，成为高德开放平台开发者</li>
+<li>登陆之后，在进入「应用管理」 页面「创建新应用」</li>
+<li>为应用添加 Key，「服务平台」一项请选择「 Web 端 ( JSAPI )</li>
+</ol>
+<h2 id="引入项目"><a href="#引入项目" class="headerlink" title="引入项目"></a>引入项目</h2><h3 id="JS-API-引入"><a href="#JS-API-引入" class="headerlink" title="JS API 引入"></a>JS API 引入</h3><p>在 <code>html</code> 文件 通过 <code>&lt;script&gt;</code> 引入;</p>
+<pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;content&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+...
+
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span>
+<span class="language-css">  <span class="hljs-selector-id">#container</span> &#123;<span class="hljs-attribute">width</span>:<span class="hljs-number">300px</span>; <span class="hljs-attribute">height</span>: <span class="hljs-number">180px</span>; &#125;  </span>
+<span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+...
+
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span>
+<span class="language-javascript">  <span class="hljs-variable language_">window</span>.<span class="hljs-property">onLoad</span>  = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span>
+<span class="language-javascript">    <span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Map</span>(<span class="hljs-string">&#x27;container&#x27;</span>);</span>
+<span class="language-javascript">  &#125;</span>
+<span class="language-javascript">  <span class="hljs-keyword">var</span> url = <span class="hljs-string">&#x27;https://webapi.amap.com/maps?v=1.4.15&amp;key=您申请的key值&amp;callback=onLoad&#x27;</span>;</span>
+<span class="language-javascript">  <span class="hljs-keyword">var</span> jsapi = doc.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&#x27;script&#x27;</span>);</span>
+<span class="language-javascript">  jsapi.<span class="hljs-property">charset</span> = <span class="hljs-string">&#x27;utf-8&#x27;</span>;</span>
+<span class="language-javascript">  jsapi.<span class="hljs-property">src</span> = url;</span>
+<span class="language-javascript">  <span class="hljs-variable language_">document</span>.<span class="hljs-property">head</span>.<span class="hljs-title function_">appendChild</span>(jsapi);</span>
+<span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<h3 id="Require-JS-引入"><a href="#Require-JS-引入" class="headerlink" title="Require JS 引入"></a>Require JS 引入</h3><p>通过 <code>npm</code> 安装库引入项目，再通过 import 引入</p>
+<blockquote>
+<p>npm install @amap/amap-jsapi-loader</p>
+</blockquote>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">AMapLoader</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@amap/amap-jsapi-loader&quot;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-variable constant_">HC</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/static/img.png&#x27;</span>
+
+<span class="hljs-comment">//初始化地图</span>
+<span class="hljs-title function_">initMap</span>(<span class="hljs-params"></span>) &#123;
+  <span class="hljs-title class_">AMapLoader</span>.<span class="hljs-title function_">load</span>(&#123;
+    <span class="hljs-attr">key</span>: <span class="hljs-string">&quot;5daef797f2a3134241fd7dee3ba06566&quot;</span>,  <span class="hljs-comment">// 申请的key值</span>
+    <span class="hljs-comment">//version: &quot;2.0&quot;, // 默认为 1.4.15。建议不使用2.0 兼容性太差</span>
+    <span class="hljs-attr">plugins</span>: [<span class="hljs-string">&quot;AMap.MoveAnimation&quot;</span>]    <span class="hljs-comment">//插件列表</span>
+  &#125;)
+  .<span class="hljs-title function_">then</span>(<span class="hljs-function"><span class="hljs-params">AMap</span> =&gt;</span> &#123;
+    
+    <span class="hljs-comment">//地图实例</span>
+    <span class="hljs-keyword">var</span> map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Map</span>(<span class="hljs-string">&quot;mymap&quot;</span>, &#123;
+      <span class="hljs-attr">zoom</span>: <span class="hljs-number">15</span>,       <span class="hljs-comment">//初始化地图层级</span>
+      <span class="hljs-attr">resizeEnable</span>: <span class="hljs-literal">true</span>     <span class="hljs-comment">//调整大小</span>
+      <span class="hljs-attr">center</span>: [<span class="hljs-number">114.22237</span>, <span class="hljs-number">22.33357</span>],   <span class="hljs-comment">//地图中心</span>
+    &#125;);
+
+    <span class="hljs-comment">//Marker覆盖图：车</span>
+    <span class="hljs-keyword">var</span> marker = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Marker</span>(&#123;
+      <span class="hljs-attr">map</span>: map,  <span class="hljs-comment">//地图实例</span>
+      <span class="hljs-attr">position</span>: [<span class="hljs-number">114.22237</span>, <span class="hljs-number">22.33357</span>], <span class="hljs-comment">//覆盖物定位</span>
+      <span class="hljs-attr">icon</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Icon</span>(&#123;   <span class="hljs-comment">//图标配置</span>
+        <span class="hljs-attr">image</span>: <span class="hljs-variable constant_">HC</span>,            <span class="hljs-comment">//图片地址</span>
+        <span class="hljs-attr">size</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Size</span>(<span class="hljs-number">60</span>, <span class="hljs-number">50</span>),   <span class="hljs-comment">//图标大小</span>
+        <span class="hljs-attr">imageSize</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Size</span>(<span class="hljs-number">60</span>, <span class="hljs-number">50</span>)
+      &#125;),
+      <span class="hljs-attr">offset</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Pixel</span>(-<span class="hljs-number">16</span>, -<span class="hljs-number">25</span>), <span class="hljs-comment">//位置偏移</span>
+      <span class="hljs-attr">autoRotation</span>: <span class="hljs-literal">true</span>,     <span class="hljs-comment">//是否根据路线调整位置</span>
+      <span class="hljs-attr">angle</span>: <span class="hljs-number">0</span>
+    &#125;);
+
+    <span class="hljs-comment">//实例化信息窗体</span>
+    <span class="hljs-keyword">var</span> content = <span class="hljs-string">`</span>
+<span class="hljs-string">      &lt;div&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;订单号：&lt;span style=&quot;font-weight:bold&quot;&gt;ZG80191223444&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;车牌号：&lt;span style=&quot;font-weight:bold&quot;&gt;粤ZY12港&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;GPS时间：&lt;span style=&quot;font-weight:bold&quot;&gt;2021-01-01 14:12:45&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;司机信息：&lt;span style=&quot;font-weight:bold&quot;&gt;朱文静&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;速度：&lt;span style=&quot;font-weight:bold&quot;&gt;52KM/H&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;里程：&lt;span style=&quot;font-weight:bold&quot;&gt;7270.10KM&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;启动/熄火时间：&lt;span style=&quot;font-weight:bold&quot;&gt;33分钟54秒&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;客户：&lt;span style=&quot;font-weight:bold&quot;&gt;张小红&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;货物信息：&lt;span style=&quot;font-weight:bold&quot;&gt;衬衫&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;提货地址：&lt;span style=&quot;font-weight:bold&quot;&gt;广东省深圳市龙岗区南湾街道理&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">        &lt;p style=&quot;margin:5px&quot;&gt;送货地址：&lt;span style=&quot;font-weight:bold&quot;&gt;广东省深圳市龙岗区南湾街道理兆产业园232.965连理栋路2000米处&lt;/span&gt;&lt;/p&gt;</span>
+<span class="hljs-string">      &lt;/div&gt;</span>
+<span class="hljs-string">    `</span>
+    <span class="hljs-keyword">var</span> infoWindow = <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">titleCon</span>(<span class="hljs-title class_">AMap</span>, content);
+    <span class="hljs-title class_">AMap</span>.<span class="hljs-property">event</span>.<span class="hljs-title function_">addListener</span>(marker, <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+      infoWindow.<span class="hljs-title function_">open</span>(map, marker.<span class="hljs-title function_">getPosition</span>());
+    &#125;);
+
+    <span class="hljs-comment">// 起点标记</span>
+    <span class="hljs-keyword">var</span> viaMarker = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Marker</span>(&#123;
+      <span class="hljs-attr">position</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">LngLat</span>(<span class="hljs-number">114.22237</span>, <span class="hljs-number">22.33357</span>), <span class="hljs-comment">// 经纬度转换为像素坐标</span>
+      <span class="hljs-attr">icon</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Icon</span>(&#123;    <span class="hljs-comment">//图标配置</span>
+        <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;//a.amap.com/jsapi_demos/static/demo-center/icons/dir-marker.png&#x27;</span>,
+        <span class="hljs-attr">size</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Size</span>(<span class="hljs-number">135</span>, <span class="hljs-number">40</span>),
+        <span class="hljs-attr">imageSize</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Size</span>(<span class="hljs-number">135</span>, <span class="hljs-number">40</span>),
+        <span class="hljs-attr">imageOffset</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Pixel</span>(-<span class="hljs-number">9</span>, -<span class="hljs-number">3</span>)
+      &#125;),
+      <span class="hljs-attr">offset</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Pixel</span>(-<span class="hljs-number">18</span>, -<span class="hljs-number">37</span>)
+    &#125;);
+    map.<span class="hljs-title function_">add</span>(viaMarker);
+      <span class="hljs-comment">//添加 movseover 事件</span>
+    <span class="hljs-title class_">AMap</span>.<span class="hljs-property">event</span>.<span class="hljs-title function_">addListener</span>(viaMarker, <span class="hljs-string">&quot;mouseover&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+      viaMarker.<span class="hljs-title function_">setLabel</span>(&#123;
+        <span class="hljs-attr">direction</span>:<span class="hljs-string">&#x27;top&#x27;</span>,
+        <span class="hljs-attr">offset</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Pixel</span>(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>),  <span class="hljs-comment">//设置文本标注偏移量</span>
+        <span class="hljs-attr">content</span>: <span class="hljs-string">&quot;&lt;div style=&#x27;margin:5px&#x27;&gt;广东省深圳市龙岗区南湾街道理&lt;/div&gt;&quot;</span>, <span class="hljs-comment">//设置文本标注内容</span>
+      &#125;);
+    &#125;);
+      <span class="hljs-comment">//添加 mouseout 事件</span>
+    <span class="hljs-title class_">AMap</span>.<span class="hljs-property">event</span>.<span class="hljs-title function_">addListener</span>(viaMarker, <span class="hljs-string">&quot;mouseout&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123;
+      viaMarker.<span class="hljs-title function_">setLabel</span>(&#123;
+        <span class="hljs-attr">direction</span>:<span class="hljs-string">&#x27;top&#x27;</span>,
+        <span class="hljs-attr">offset</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Pixel</span>(<span class="hljs-number">10</span>, <span class="hljs-number">0</span>),  <span class="hljs-comment">//设置文本标注偏移量</span>
+        <span class="hljs-attr">content</span>: <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">//设置文本标注内容</span>
+      &#125;);
+    &#125;);
+
+    <span class="hljs-comment">// 绘制轨迹</span>
+    <span class="hljs-keyword">var</span> passedPolyline = <span class="hljs-keyword">new</span> <span class="hljs-title class_">AMap</span>.<span class="hljs-title class_">Polyline</span>(&#123;
+      <span class="hljs-attr">map</span>: map,
+      <span class="hljs-attr">path</span>: [[<span class="hljs-number">114.22237</span>,<span class="hljs-number">22.33357</span>],[<span class="hljs-number">114.22237</span>,<span class="hljs-number">22.33357</span>]],  <span class="hljs-comment">//根据坐标绘制轨迹</span>
+      <span class="hljs-attr">showDir</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">strokeColor</span>: <span class="hljs-string">&quot;#28F&quot;</span>, <span class="hljs-comment">//线颜色</span>
+      <span class="hljs-comment">// strokeOpacity: 1,     //线透明度</span>
+      <span class="hljs-attr">strokeWeight</span>: <span class="hljs-number">6</span> <span class="hljs-comment">//线宽</span>
+      <span class="hljs-comment">// strokeStyle: &quot;solid&quot;  //线样式</span>
+    &#125;);
+    <span class="hljs-comment">// 绑定事件。线随车移动动</span>
+    marker.<span class="hljs-title function_">on</span>(<span class="hljs-string">&quot;moving&quot;</span>, <span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) &#123;
+      passedPolyline.<span class="hljs-title function_">setPath</span>(e.<span class="hljs-property">passedPath</span>);
+    &#125;);
+    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
+      marker.<span class="hljs-title function_">moveAlong</span>(lineArr, <span class="hljs-number">200</span>);
+    &#125;, <span class="hljs-number">2000</span>);
+
+  &#125;)
+&#125;
+</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E9%A1%B9%E7%9B%AE"><span class="toc-text">引入项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JS-API-%E5%BC%95%E5%85%A5"><span class="toc-text">JS API 引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Require-JS-%E5%BC%95%E5%85%A5"><span class="toc-text">Require JS 引入</span></a></li></ol></li></ol>
+  </div>
+</aside>
+
+  
+  
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

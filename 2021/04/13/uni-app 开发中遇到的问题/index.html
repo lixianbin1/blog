@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>uni-app 开发中遇到的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="APP," />
+  
+
+  
+  <meta name="description" content="革命不是请客吃饭，不是绘画绣花，不能那样雅致，那样从容不迫，文质彬彬，那样温良恭俭让，革命是暴动，是一个阶级推翻另外一个阶级的运动。毛泽东《毛泽东选集》">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-04-13
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2021-4-13 10:26 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    uni-app 开发中遇到的问题
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="导航上字体图标的引入"><a href="#导航上字体图标的引入" class="headerlink" title="导航上字体图标的引入"></a>导航上字体图标的引入</h2><blockquote>
+<p>1:先下载字体文件 <a href="https://fontawesome.dashgame.com/">https://fontawesome.dashgame.com/</a></p>
+</blockquote>
+<blockquote>
+<p>2:在pages.json文件中引入</p>
+</blockquote>
+<pre><code class="hljs json"><span class="hljs-attr">&quot;app-plus&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;titleNView&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;buttons&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-punctuation">&#123;</span>
+      <span class="hljs-attr">&quot;text&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;\uf011&quot;</span><span class="hljs-punctuation">,</span>    <span class="hljs-comment">// 以 \u 开头,后接字体图标的后四位</span>
+      <span class="hljs-attr">&quot;fontSrc&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;/static/fonts/fontawesome-webfont.ttf&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;fontSize&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;22px&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;color&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;#FFFFFF&quot;</span>
+    <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">]</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
+
+
+<h2 id="生成-Android-自有证书"><a href="#生成-Android-自有证书" class="headerlink" title="生成 Android 自有证书"></a>生成 Android 自有证书</h2><blockquote>
+<p>1:查看本地是否安装JAVA环境;如下图</p>
+</blockquote>
+<pre><code class="hljs applescript">java -<span class="hljs-built_in">version</span></code></pre>
+<p><img src="/blog/images/list/2021041301.png" alt="Bubbling"></p>
+<p>如未安装，需要安装jdk环境且配置环境变量</p>
+<blockquote>
+<p>2:使用java 生成证书</p>
+</blockquote>
+<p>keytool -genkey -alias 证书别名 -keyalg RSA -validity 天数 -keystore 秘钥库名称</p>
+<p>例如;</p>
+<pre><code class="hljs pgsql">keytool -genkey -<span class="hljs-keyword">alias</span> <span class="hljs-keyword">storage</span> -keyalg RSA -validity <span class="hljs-number">20000</span> -keystore D:\<span class="hljs-keyword">storage</span>.keystore</code></pre>
+
+<h2 id="PDA手持扫描器，扫描转跳下一个input及计数"><a href="#PDA手持扫描器，扫描转跳下一个input及计数" class="headerlink" title="PDA手持扫描器，扫描转跳下一个input及计数"></a>PDA手持扫描器，扫描转跳下一个input及计数</h2><p>思路：通过uniapp-input组件的 @input事件会被扫描器输入触发，之后通过js失去焦点，在通过refs获取下一个input输入框获取焦点；在到达最后一个input后再失去焦点，在每次input失去焦点的时候通过触发@blur 计数；</p>
+<pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;container&quot;</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;domes&quot;</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_item&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_label&quot;</span>&gt;</span>姓名:<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_con&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;arr[0]&quot;</span> <span class="hljs-attr">:focus</span>=<span class="hljs-string">&quot;focus[0]&quot;</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;showPen(focus[0],arr[0])&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;text1&quot;</span>  @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;changes(old,0,$event,&#x27;text1&#x27;)&quot;</span> @<span class="hljs-attr">focus</span>=<span class="hljs-string">&quot;textFocus(focus,0)&quot;</span> @<span class="hljs-attr">blur</span>=<span class="hljs-string">&quot;textblur(focus,0)&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_input&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请扫码&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;!focus[0]&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;$set(focus,0,true)&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">arr</span>[0]&#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_item&quot;</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_label&quot;</span>&gt;</span>姓名:<span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_con&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;arr[1]&quot;</span> <span class="hljs-attr">:focus</span>=<span class="hljs-string">&quot;focus[1]&quot;</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;showPen(focus[1],arr[1])&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;text2&quot;</span> @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;changes(old,1,$event,&#x27;text2&#x27;)&quot;</span> @<span class="hljs-attr">focus</span>=<span class="hljs-string">&quot;textFocus(focus,1)&quot;</span> @<span class="hljs-attr">blur</span>=<span class="hljs-string">&quot;textblur(focus,1)&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;field_input&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;请扫码&quot;</span>&gt;</span></span>
+<span class="language-xml">          <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">v-show</span>=<span class="hljs-string">&quot;!focus[1]&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;$set(focus,1,true)&quot;</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">arr</span>[1]&#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span>
+<span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml">    </span>
+<span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span>
+<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span></span>
+<span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> music <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../../common/utils.js&#x27;</span></span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-keyword">return</span> &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">demo</span>:<span class="hljs-string">&#x27;&#x27;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">goTo</span>:<span class="hljs-literal">false</span>,<span class="hljs-comment">// 是否可以转跳；</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">timeFun</span>:<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-comment">//定时器函数</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">demo</span>:[<span class="hljs-string">&#x27;text1&#x27;</span>,<span class="hljs-string">&#x27;text2&#x27;</span>],</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">focus</span>:[<span class="hljs-literal">true</span>],</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">old</span>:[],</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">arr</span>:[],</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">arr1</span>:<span class="hljs-string">&quot;&quot;</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-attr">formData</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-attr">quantity</span>:<span class="hljs-variable language_">this</span>.<span class="hljs-property">num</span>,</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">computed</span>:&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">number</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">let</span> num=<span class="hljs-number">0</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">arr</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">let</span> value=data.<span class="hljs-title function_">trim</span>()</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">if</span>(value)&#123;num++&#125;</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;)</span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">return</span> num</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">  <span class="hljs-attr">methods</span>: &#123;</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">setVal</span>(<span class="hljs-params">obj,i,val</span>)&#123; <span class="hljs-comment">//</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-variable language_">this</span>.$set(obj,i,val)</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">showPen</span>(<span class="hljs-params">focus,text=<span class="hljs-string">&quot;&quot;</span></span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">let</span> val=text.<span class="hljs-title function_">trim</span>()</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span>(focus||!val)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;<span class="hljs-keyword">else</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">textblur</span>(<span class="hljs-params">focus,n</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-variable language_">this</span>.$set(focus,n,<span class="hljs-literal">false</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-title function_">textFocus</span>(<span class="hljs-params">focus,n</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-variable language_">this</span>.$set(focus,n,<span class="hljs-literal">true</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">changes</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">old,k,event,text</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">let</span> isDelete=<span class="hljs-literal">false</span> <span class="hljs-comment">//是否删除</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">var</span> value = event.<span class="hljs-property">target</span>.<span class="hljs-property">value</span>;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span>(old[k])&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">if</span>(value.<span class="hljs-property">length</span>&gt;old[k].<span class="hljs-property">length</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">          isDelete=<span class="hljs-literal">false</span></span></span>
+<span class="language-javascript"><span class="language-xml">        &#125;<span class="hljs-keyword">else</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">          isDelete=<span class="hljs-literal">true</span></span></span>
+<span class="language-javascript"><span class="language-xml">        &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;<span class="hljs-keyword">else</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        isDelete=<span class="hljs-literal">true</span></span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">      old[k]=value</span></span>
+<span class="language-javascript"><span class="language-xml"></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">const</span> array=<span class="hljs-variable language_">this</span>.<span class="hljs-property">demo</span></span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">let</span> index=array.<span class="hljs-title function_">indexOf</span>(text)</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-keyword">if</span>(index&gt;=<span class="hljs-number">0</span> &amp;&amp; index&lt;array.<span class="hljs-property">length</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">        <span class="hljs-keyword">if</span>(index==array.<span class="hljs-property">length</span>-<span class="hljs-number">1</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">          <span class="hljs-built_in">clearTimeout</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">timeFun</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">          <span class="hljs-keyword">if</span>(!isDelete)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">timeFun</span>=<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">              <span class="hljs-variable language_">this</span>.$set(<span class="hljs-variable language_">this</span>.<span class="hljs-property">focus</span>,index,<span class="hljs-literal">false</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">              music.<span class="hljs-title function_">play_dede</span>()</span></span>
+<span class="language-javascript"><span class="language-xml">            &#125;,<span class="hljs-number">1500</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">          &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">        &#125;<span class="hljs-keyword">else</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">          <span class="hljs-built_in">clearTimeout</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">timeFun</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">          <span class="hljs-keyword">if</span>(!isDelete)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">            <span class="hljs-variable language_">this</span>.<span class="hljs-property">timeFun</span>=<span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">()=&gt;</span>&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">              <span class="hljs-variable language_">this</span>.$set(<span class="hljs-variable language_">this</span>.<span class="hljs-property">focus</span>,index,<span class="hljs-literal">false</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">              <span class="hljs-variable language_">this</span>.$set(<span class="hljs-variable language_">this</span>.<span class="hljs-property">focus</span>,index+<span class="hljs-number">1</span>,<span class="hljs-literal">true</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">              <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(index,<span class="hljs-variable language_">this</span>.<span class="hljs-property">focus</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">            &#125;,<span class="hljs-number">1500</span>)</span></span>
+<span class="language-javascript"><span class="language-xml">          &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">        &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">      &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">    <span class="hljs-attr">changeNum</span>:<span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)&#123;</span></span>
+<span class="language-javascript"><span class="language-xml">      <span class="hljs-variable language_">this</span>.<span class="hljs-property">formData</span>.<span class="hljs-property">quantity</span> = value;</span></span>
+<span class="language-javascript"><span class="language-xml">    &#125;,</span></span>
+<span class="language-javascript"><span class="language-xml">  &#125;</span></span>
+<span class="language-javascript"><span class="language-xml">&#125;</span></span>
+<span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span>
+<span class="language-xml"></span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span></span>
+<span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.container</span>&#123;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">padding-bottom</span>: <span class="hljs-number">90</span>rpx;</span></span>
+<span class="language-css"><span class="language-xml">&#125;</span></span>
+<span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.field_img</span>&#123;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">height</span>: <span class="hljs-number">90px</span>;;</span></span>
+<span class="language-css"><span class="language-xml">&#125;</span></span>
+<span class="language-css"><span class="language-xml"><span class="hljs-selector-class">.icon-saoma</span>&#123;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">position</span>: absolute;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">right</span>: <span class="hljs-number">0</span>;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">width</span>: <span class="hljs-number">50</span>rpx;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">50</span>rpx;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">font-size</span>: <span class="hljs-number">40</span>rpx;</span></span>
+<span class="language-css"><span class="language-xml">  <span class="hljs-attribute">font-weight</span>: bold;</span></span>
+<span class="language-css"><span class="language-xml">&#125;</span></span>
+<span class="language-css"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span>
+<span class="language-xml"></span></code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E4%B8%8A%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E7%9A%84%E5%BC%95%E5%85%A5"><span class="toc-text">导航上字体图标的引入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E6%88%90-Android-%E8%87%AA%E6%9C%89%E8%AF%81%E4%B9%A6"><span class="toc-text">生成 Android 自有证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PDA%E6%89%8B%E6%8C%81%E6%89%AB%E6%8F%8F%E5%99%A8%EF%BC%8C%E6%89%AB%E6%8F%8F%E8%BD%AC%E8%B7%B3%E4%B8%8B%E4%B8%80%E4%B8%AAinput%E5%8F%8A%E8%AE%A1%E6%95%B0"><span class="toc-text">PDA手持扫描器，扫描转跳下一个input及计数</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2021/04/13/uni-app%20%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/APP/"><i class="fa fa-tags"></i>APP</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

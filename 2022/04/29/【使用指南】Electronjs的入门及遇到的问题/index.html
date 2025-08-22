@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="饿包子" />
+  
+  
+  <title>Electronjs的入门及遇到的问题 | 饿包子博客</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="使用指南,Electron," />
+  
+
+  
+  <meta name="description" content="Electron是一个使用 JavaScript、HTML 和 CSS 构建桌面应用程序的框架。 嵌入 Chromium 和 Node.js 到 二进制的 Electron 允许您保持一个 JavaScript 代码代码库并创建 在Windows上运行的跨平台应用">
+
+  
+  
+    <link rel="icon" href="/blog/images/xian.ico">
+    <link rel="apple-touch-icon" href="/blog/images/Logo.png">
+  
+
+  
+<link rel="stylesheet" href="/blog/css/Awesome.min.css">
+
+
+  <!-- 引入主CSS -->
+  
+<link rel="stylesheet" href="/blog/css/index.css">
+
+
+  <!-- 引入自定义highlightCSS -->
+  
+<link rel="stylesheet" href="/blog/styles/highlight/a11y-dark.min.css">
+<link rel="stylesheet" href="/blog/styles/highlight/index.css">
+
+
+  
+  
+<script src="/blog/common/jquery.min.js"></script>
+
+
+  
+    
+<script src="/blog/common/MathJax.js"></script>
+
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-06-10",
+    passwords: ["a621ab606db2a11f63edc576a729843b8269250dc324206871d90635ac5e531c", ],
+    is_post: true,
+    lock: false,
+    author: "饿包子",
+    share: {"twitter":false,"facebook":false,"weibo":true,"qq":true,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/blog/"
+  };
+</script>
+
+  
+<script src="/blog/vendor/sha256.min.js"></script>
+<script src="/blog/js/auth.js"></script>
+<script src="/blog/js/index.js"></script>
+<script src="/blog/vendor/qrcode.min.js"></script>
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+  <body>
+    <canvas id="canvas" style="width: 100vw;height: 100vh;background: #fff;"></canvas>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/blog/">清风逐月</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 我思故我在</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        
+          <a href="/blog/" target="_self">主页</a>
+        
+      
+        
+          <a href="/blog/archives/" target="_self">归档</a>
+        
+      
+        
+          <a href="/blog/tags/" target="_self">标签</a>
+        
+      
+        
+          <a href="/blog/categories/" target="_self">分类</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/diary/" target="_self">日记</a>
+        
+      
+        
+          <a class="loginTo" href="/blog/about/" target="_self">关于</a>
+        
+      
+      <a href="javascript:void(0)" target="_self" id="site-login">Login</a>
+    </nav>
+    <div class="site-header-btn">
+              
+        <a href="https://github.com/lixianbin1/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/blog/" target="_self">
+            主页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/diary/" target="_self">
+            日记
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/blog/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <!-- passage -->
+<div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-04-29
+    </span>
+    
+      <span>
+        | <a href="/blog/categories/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"><i class="fa fa-bookmark"></i>使用指南</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+    <span>
+       | <i class="fa fa-calendar"></i>更新时间:2022-11-25 10:3 
+    </span>
+  </div>
+  <h1 class="passage-title">
+    Electronjs的入门及遇到的问题
+  </h1>
+  
+  <article class="passage-article">
+    <p>Electron是一个使用 JavaScript、HTML 和 CSS 构建桌面应用程序的框架。 嵌入 Chromium 和 Node.js 到 二进制的 Electron 允许您保持一个 JavaScript 代码代码库并创建 在Windows上运行的跨平台应用</p>
+<h2 id="使用须知"><a href="#使用须知" class="headerlink" title="使用须知"></a>使用须知</h2><p>Electron 需要 node 的支持，文中举例，默认 yarn 和 node 是已经安装了，如果没有安装，请先安装后；</p>
+<h2 id="项目开始构建"><a href="#项目开始构建" class="headerlink" title="项目开始构建"></a>项目开始构建</h2><pre><code class="hljs sh"><span class="hljs-comment"># 创建文件夹并进入文件夹</span>
+<span class="hljs-built_in">mkdir</span> demo &amp;&amp; <span class="hljs-built_in">cd</span> demo
+
+<span class="hljs-comment"># 初始化项目</span>
+yarn init -y
+
+<span class="hljs-comment"># 安装 electron</span>
+yarn add --dev electron</code></pre>
+
+<h2 id="添加配置命令"><a href="#添加配置命令" class="headerlink" title="添加配置命令"></a>添加配置命令</h2><pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-attr">&quot;main&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;main.js&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//入口文件</span>
+<span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;start&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;electron .&quot;</span> <span class="hljs-comment">//启动命令</span>
+<span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span></code></pre>
+
+<h2 id="添加入口文件"><a href="#添加入口文件" class="headerlink" title="添加入口文件"></a>添加入口文件</h2><pre><div class="caption"><span>index.html</span></div><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Security-Policy&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;default-src &#x27;self&#x27;; script-src &#x27;self&#x27;&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    We are using Node.js <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;node-version&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>,
+    Chromium <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;chrome-version&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>,
+    and Electron <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;electron-version&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>.
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- 执行脚本，可以添加其他的执行脚本 --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; app, <span class="hljs-title class_">BrowserWindow</span> ,<span class="hljs-title class_">Menu</span>&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>) <span class="hljs-comment">// 路径模块</span>
+
+<span class="hljs-comment">// 设置自定义菜单</span>
+<span class="hljs-keyword">const</span> template=[]
+<span class="hljs-keyword">const</span> menu = <span class="hljs-title class_">Menu</span>.<span class="hljs-title function_">buildFromTemplate</span>(template)
+<span class="hljs-title class_">Menu</span>.<span class="hljs-title function_">setApplicationMenu</span>(menu)
+
+<span class="hljs-comment">// 创建窗口函数</span>
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">createWindow</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123;
+    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+    <span class="hljs-attr">resizable</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">//禁止缩放</span>
+    <span class="hljs-attr">show</span>:<span class="hljs-literal">false</span>, <span class="hljs-comment">//配合优化渲染</span>
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#fff&#x27;</span>, <span class="hljs-comment">//背景颜色</span>
+    <span class="hljs-attr">webPreferences</span>: &#123;
+      <span class="hljs-comment">// __dirname 字符串指向当前正在执行脚本的路径 (在本例中，它指向你的项目的根文件夹)</span>
+      <span class="hljs-attr">preload</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;preload.js&#x27;</span>)
+    &#125;
+  &#125;)
+
+  <span class="hljs-comment">//开启调试模式 =&gt; 模式：`right` `left` `bottom` `detach`</span>
+  win.<span class="hljs-property">webContents</span>.<span class="hljs-title function_">openDevTools</span>(&#123;<span class="hljs-attr">mode</span>:<span class="hljs-string">&#x27;detach&#x27;</span>&#125;)
+
+  <span class="hljs-comment">// 加载渲染html文件，也可以指定URL</span>
+  win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>)
+
+  <span class="hljs-comment">// 优化渲染：第一次完成绘制时，如果窗口还没有被显示，渲染进程会发出 ready-to-show 事件 </span>
+  win.<span class="hljs-title function_">once</span>(<span class="hljs-string">&#x27;ready-to-show&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+    win.<span class="hljs-title function_">show</span>()
+  &#125;)
+&#125;
+
+<span class="hljs-comment">// 只有在app模块的ready事件被激发后才能创建浏览器窗口</span>
+app.<span class="hljs-title function_">whenReady</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-title function_">createWindow</span>() <span class="hljs-comment">//通过调用createWindow</span>
+  app.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;activate&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-comment">// 兼容：在macOS上，当单击图标，并没有其他窗口打开</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-title class_">BrowserWindow</span>.<span class="hljs-title function_">getAllWindows</span>().<span class="hljs-property">length</span> === <span class="hljs-number">0</span>) <span class="hljs-title function_">createWindow</span>()
+  &#125;)
+&#125;)
+
+<span class="hljs-comment">// 监听关闭窗口，在所有窗口关闭后，退出</span>
+app.<span class="hljs-title function_">on</span>(<span class="hljs-string">&#x27;window-all-closed&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  <span class="hljs-keyword">if</span> (process.<span class="hljs-property">platform</span> !== <span class="hljs-string">&#x27;darwin&#x27;</span>) app.<span class="hljs-title function_">quit</span>()
+&#125;)</code></pre>
+
+<p>在执行 yarn start 后，可以看到一个应用窗口被打开。</p>
+<h2 id="添加预加载脚本"><a href="#添加预加载脚本" class="headerlink" title="添加预加载脚本"></a>添加预加载脚本</h2><p>为了将 Electron 的不同类型的进程桥接在一起，我们需要使用被称为 预加载 的特殊脚本</p>
+<pre><div class="caption"><span>preload.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; contextBridge &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>);
+contextBridge.<span class="hljs-title function_">exposeInMainWorld</span>(<span class="hljs-string">&#x27;versions&#x27;</span>, &#123;
+  <span class="hljs-attr">node</span>: <span class="hljs-function">() =&gt;</span> process.<span class="hljs-property">versions</span>.<span class="hljs-property">node</span>,
+  <span class="hljs-attr">chrome</span>: <span class="hljs-function">() =&gt;</span> process.<span class="hljs-property">versions</span>.<span class="hljs-property">chrome</span>,
+  <span class="hljs-attr">electron</span>: <span class="hljs-function">() =&gt;</span> process.<span class="hljs-property">versions</span>.<span class="hljs-property">electron</span>,
+&#125;);</code></pre>
+
+<p>** 注意：如果发现报错提示contextBridge API can only **</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">createWindow</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123;
+    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>,
+    <span class="hljs-attr">webPreferences</span>: &#123;
+      <span class="hljs-comment">// __dirname 字符串指向当前正在执行脚本的路径 (在本例中，它指向你的项目的根文件夹)</span>
+      <span class="hljs-comment">// path.join API 将多个路径联结在一起，创建一个跨平台的路径字符串</span>
+      <span class="hljs-attr">preload</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;preload.js&#x27;</span>)
+    &#125;
+  &#125;)
+  win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>)
+&#125;
+<span class="hljs-comment">// ...</span></code></pre>
+
+<pre><div class="caption"><span>index.html</span></div><code class="hljs html">    <span class="hljs-tag">&lt;<span class="hljs-name">p</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;info&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;./renderer.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+
+<pre><div class="caption"><span>renderer.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> information = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&#x27;info&#x27;</span>);
+information.<span class="hljs-property">innerText</span> = <span class="hljs-string">`This app is using Chrome (v<span class="hljs-subst">$&#123;versions.chrome()&#125;</span>), Node.js (v<span class="hljs-subst">$&#123;versions.node()&#125;</span>), and Electron (v<span class="hljs-subst">$&#123;versions.electron()&#125;</span>)`</span>;</code></pre>
+
+<h2 id="界面配置"><a href="#界面配置" class="headerlink" title="界面配置"></a>界面配置</h2><p>界面设置，可以通过关闭所有菜单，然后自定义菜单去管理，也可以简单的通过预设菜单去管理</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; app, <span class="hljs-title class_">BrowserWindow</span> ,<span class="hljs-title class_">Menu</span>&#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> template=[] <span class="hljs-comment">//菜单为空</span>
+<span class="hljs-keyword">const</span> menu = <span class="hljs-title class_">Menu</span>.<span class="hljs-title function_">buildFromTemplate</span>(template)
+<span class="hljs-title class_">Menu</span>.<span class="hljs-title function_">setApplicationMenu</span>(menu)
+
+<span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123; 
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-comment">// frame: false, //关闭所有菜单</span>
+  <span class="hljs-comment">// resizable: false, //界面缩放</span>
+  <span class="hljs-comment">// titleBarStyle: &#x27;hidden&#x27;, //隐藏边框</span>
+&#125;)
+<span class="hljs-comment">// 穿透窗口：忽略所有点击事件</span>
+win.<span class="hljs-title function_">setIgnoreMouseEvents</span>(<span class="hljs-literal">true</span>)</code></pre>
+
+<h2 id="调试模式"><a href="#调试模式" class="headerlink" title="调试模式"></a>调试模式</h2><p>打开调试控制台 模式：<code>right</code> <code>left</code> <code>bottom</code> <code>detach</code> ； 关闭控制台 <code>closeDevTools()</code></p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; app, <span class="hljs-title class_">BrowserWindow</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
+<span class="hljs-keyword">const</span> <span class="hljs-title function_">createWindow</span> = (<span class="hljs-params"></span>) =&gt; &#123;
+  <span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123;
+    <span class="hljs-attr">width</span>: <span class="hljs-number">800</span>,
+    <span class="hljs-attr">height</span>: <span class="hljs-number">600</span>
+  &#125;)
++ win.<span class="hljs-property">webContents</span>.<span class="hljs-title function_">openDevTools</span>(&#123;<span class="hljs-attr">mode</span>:<span class="hljs-string">&#x27;detach&#x27;</span>&#125;)
+  win.<span class="hljs-title function_">loadFile</span>(<span class="hljs-string">&#x27;index.html&#x27;</span>)
+&#125;
+<span class="hljs-comment">// ...</span></code></pre>
+
+<h2 id="优雅显示"><a href="#优雅显示" class="headerlink" title="优雅显示"></a>优雅显示</h2><ul>
+<li>ready-to-show </li>
+</ul>
+<p>在项目第一次渲染的时候，可能会出现闪烁，可以通过设置 <code>show:false</code> ,在特定的时候显示出来</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123; 
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">show</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">//关闭显示</span>
+&#125;)
+
+<span class="hljs-comment">// 第一次完成绘制时，如果窗口还没有被显示，渲染进程会发出 ready-to-show 事件 </span>
+win.<span class="hljs-title function_">once</span>(<span class="hljs-string">&#x27;ready-to-show&#x27;</span>, <span class="hljs-function">() =&gt;</span> &#123;
+  win.<span class="hljs-title function_">show</span>()
+&#125;)
+<span class="hljs-string">``</span><span class="hljs-string">`  </span>
+<span class="hljs-string"></span>
+<span class="hljs-string"> - backgroundColor</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">当项目过于复杂的时候，ready-to-show事件可能会比较缓慢，可以不使用 `</span>ready-to-show<span class="hljs-string">` 简单的设置背景颜色就好了，</span>
+<span class="hljs-string">使用了 `</span>ready-to-show<span class="hljs-string">` 也可以使用背景色，使应用更贴近原生</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">`</span><span class="hljs-string">``</span>js main.<span class="hljs-property">js</span>
+<span class="hljs-comment">// ...</span>
+<span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123; 
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#fff&#x27;</span>, <span class="hljs-comment">//应用背景色</span>
+&#125;)</code></pre>
+
+<h2 id="自动更新"><a href="#自动更新" class="headerlink" title="自动更新"></a>自动更新</h2><h3 id="update-electronjs-org"><a href="#update-electronjs-org" class="headerlink" title="update.electronjs.org"></a>update.electronjs.org</h3><p>Electron 官方在 <a href="https://update.electronjs.org/">https://update.electronjs.org</a> 上为开源应用程序提供了免费的自动更新服务。 使用它有以下几点要求：</p>
+<ul>
+<li>你的应用在 macOS 或 Windows 上运行</li>
+<li>你的应用有一个公开的 GitHub 仓库</li>
+<li>应用程序需要发布到 GitHub releases 中</li>
+<li>应用程序需要完成 签名</li>
+</ul>
+<h2 id="Electron-forge打包"><a href="#Electron-forge打包" class="headerlink" title="Electron-forge打包"></a>Electron-forge打包</h2><pre><code class="hljs sh"><span class="hljs-comment"># 安装 Electron Forge 打包脚手架. 并通过import自动化设置</span>
+yarn add --dev @electron-forge/cli
+npx electron-forge import</code></pre>
+
+<pre><code class="hljs sh"><span class="hljs-comment"># 自动配置后执行</span>
+
+<span class="hljs-comment"># 打包命令</span>
+npm run package
+
+<span class="hljs-comment"># 配置分发资源 exe执行软件资产</span>
+npm run make
+</code></pre>
+
+<h3 id="Electron-forge-配置"><a href="#Electron-forge-配置" class="headerlink" title="Electron-forge 配置"></a>Electron-forge 配置</h3><p>如果没有在 <code>package.json</code>文件中设置config.forge，Forge将尝试项目根目录中找到 <code>forge.config.js</code>文件.<br>可以在 <code>package.json</code> 中配置，也可以通过 <code>forge.config.js</code> 配置</p>
+<ul>
+<li>package.json</li>
+</ul>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;my-app&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;0.0.1&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;config&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+    <span class="hljs-attr">&quot;forge&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span>
+      <span class="hljs-attr">&quot;packagerConfig&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;makers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+        <span class="hljs-punctuation">&#123;</span>
+          <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;@electron-forge/maker-zip&quot;</span>
+        <span class="hljs-punctuation">&#125;</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">&#125;</span>
+  <span class="hljs-punctuation">&#125;</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
+
+<ul>
+<li>forge.config.js</li>
+</ul>
+<pre><div class="caption"><span>forge.config.js</span></div><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+  <span class="hljs-attr">packagerConfig</span>: &#123;&#125;,
+  <span class="hljs-attr">makers</span>: [
+    &#123;
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;@electron-forge/maker-zip&#x27;</span>
+    &#125;
+  ]
+&#125;</code></pre>
+
+<h3 id="配置图标"><a href="#配置图标" class="headerlink" title="配置图标"></a>配置图标</h3><p>准备图标，MacOS:icns(512px x 512px) Linux:png(512px x 512px) Windows:ico(256px x 256px)</p>
+<pre><code class="hljs llvm">images/
+├── icon.png
+├── icon<span class="hljs-title">@2</span><span class="hljs-keyword">x</span>.png
+└── icon<span class="hljs-title">@3</span><span class="hljs-keyword">x</span>.png</code></pre>
+
+<p>window 平台配置</p>
+<pre><div class="caption"><span>forge.config.js</span></div><code class="hljs js"><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-attr">config</span>: &#123;
+        <span class="hljs-attr">forge</span>: &#123;
+            <span class="hljs-attr">packagerConfig</span>: &#123;
+                <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;/path/to/icon&#x27;</span>
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-keyword">const</span> &#123; <span class="hljs-title class_">BrowserWindow</span> &#125; = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;electron&#x27;</span>)
+<span class="hljs-keyword">const</span> win = <span class="hljs-keyword">new</span> <span class="hljs-title class_">BrowserWindow</span>(&#123;
+  <span class="hljs-comment">// ...</span>
+  <span class="hljs-attr">icon</span>: <span class="hljs-string">&#x27;/path/to/icon.png&#x27;</span>
+&#125;)</code></pre>
+
+
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="安装时间太长"><a href="#安装时间太长" class="headerlink" title="安装时间太长"></a>安装时间太长</h3><p>国内的网络问题及安装地址的指向问题，导致国内安装的很慢</p>
+<pre><code class="hljs md">nrm use taobao
+npm config edit</code></pre>
+
+<pre><div class="caption"><span>C:\Users\用户名\.npmrc</span></div><code class="hljs md">registry=https://registry.npmmirror.com/
+// 在 registry 下添加指向地址
+ELECTRON<span class="hljs-emphasis">_MIRROR=&quot;https://npmmirror.com/mirrors/electron/&quot;</span></code></pre>
+
+<h3 id="资源被锁定或太忙-EBUSY-resource-busy-or-locked"><a href="#资源被锁定或太忙-EBUSY-resource-busy-or-locked" class="headerlink" title="资源被锁定或太忙 EBUSY: resource busy or locked"></a>资源被锁定或太忙 EBUSY: resource busy or locked</h3><p>项目在运行导致安装失败,关闭执行中的项目在安装；</p>
+<h3 id="打包时候报错-Making-a-squirrel-distributable-for-win32-x64"><a href="#打包时候报错-Making-a-squirrel-distributable-for-win32-x64" class="headerlink" title="打包时候报错 Making a squirrel distributable for win32/x64"></a>打包时候报错 Making a squirrel distributable for win32/x64</h3><p>package.json 缺少必要字段 <code>authors</code> <code>description</code></p>
+<pre><div class="caption"><span>package.json</span></div><code class="hljs json"><span class="hljs-punctuation">&#123;</span>
+  <span class="hljs-comment">//...</span>
+  <span class="hljs-attr">&quot;authors&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;xianbin&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//作者</span>
+  <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;a electron demo&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//描述</span>
+<span class="hljs-punctuation">&#125;</span></code></pre>
+
+<h3 id="报错-contextBridge-API-can-only-be-used-when-contextIsolation-is-enabled"><a href="#报错-contextBridge-API-can-only-be-used-when-contextIsolation-is-enabled" class="headerlink" title="报错 contextBridge API can only be used when contextIsolation is enabled"></a>报错 contextBridge API can only be used when contextIsolation is enabled</h3><p>需要启动 contextIsolation 才能对 contextIsolation 进行编程，从Electron12.0开始，会默认启用contextIsolation</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-attr">webPreferences</span>: &#123;
+  <span class="hljs-attr">contextIsolation</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-comment">// __dirname 字符串指向当前正在执行脚本的路径 (在本例中，它指向你的项目的根文件夹)</span>
+  <span class="hljs-attr">preload</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;preload.js&#x27;</span>)
+&#125;</code></pre>
+
+<h3 id="报错-require-is-not-defined"><a href="#报错-require-is-not-defined" class="headerlink" title="报错 require is not defined"></a>报错 require is not defined</h3><p>需要在启动时候设置 contextIsolation 为 false</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+<span class="hljs-attr">webPreferences</span>: &#123;
+  <span class="hljs-attr">nodeIntegration</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">contextIsolation</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-comment">// __dirname 字符串指向当前正在执行脚本的路径 (在本例中，它指向你的项目的根文件夹)</span>
+  <span class="hljs-attr">preload</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;preload.js&#x27;</span>)
+&#125;</code></pre>
+
+<h3 id="警告-DevTools-failed-to-load-source-map"><a href="#警告-DevTools-failed-to-load-source-map" class="headerlink" title="警告 DevTools failed to load source map"></a>警告 DevTools failed to load source map</h3><p>打开控制台设置，将 Preferences =&gt; sources 中的  Enable tab moves focus 和 Enable CSS source maps 关闭。</p>
+<h2 id="警告-Electron-Security-Warning-Insecure-Content-Security-Policy"><a href="#警告-Electron-Security-Warning-Insecure-Content-Security-Policy" class="headerlink" title="警告 Electron Security Warning (Insecure Content-Security-Policy)"></a>警告 Electron Security Warning (Insecure Content-Security-Policy)</h2><p>有两种解决方式，</p>
+<p>1: 设置安全策略</p>
+<pre><div class="caption"><span>index.html</span></div><code class="hljs html">...
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">&quot;Content-Security-Policy&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;default-src &#x27;self&#x27; &#x27;unsafe-inline&#x27;;&quot;</span>&gt;</span></code></pre>
+
+<p>2: 屏蔽警告</p>
+<pre><div class="caption"><span>main.js</span></div><code class="hljs js"><span class="hljs-comment">// ...</span>
+process.<span class="hljs-property">env</span>[<span class="hljs-string">&#x27;ELECTRON_DISABLE_SECURITY_WARNINGS&#x27;</span>] = <span class="hljs-string">&#x27;true&#x27;</span>;</code></pre>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E9%A1%BB%E7%9F%A5"><span class="toc-text">使用须知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA"><span class="toc-text">项目开始构建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%85%8D%E7%BD%AE%E5%91%BD%E4%BB%A4"><span class="toc-text">添加配置命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6"><span class="toc-text">添加入口文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E9%A2%84%E5%8A%A0%E8%BD%BD%E8%84%9A%E6%9C%AC"><span class="toc-text">添加预加载脚本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%95%8C%E9%9D%A2%E9%85%8D%E7%BD%AE"><span class="toc-text">界面配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E8%AF%95%E6%A8%A1%E5%BC%8F"><span class="toc-text">调试模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E9%9B%85%E6%98%BE%E7%A4%BA"><span class="toc-text">优雅显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0"><span class="toc-text">自动更新</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#update-electronjs-org"><span class="toc-text">update.electronjs.org</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Electron-forge%E6%89%93%E5%8C%85"><span class="toc-text">Electron-forge打包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Electron-forge-%E9%85%8D%E7%BD%AE"><span class="toc-text">Electron-forge 配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%9B%BE%E6%A0%87"><span class="toc-text">配置图标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-text">问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%97%B6%E9%97%B4%E5%A4%AA%E9%95%BF"><span class="toc-text">安装时间太长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E8%A2%AB%E9%94%81%E5%AE%9A%E6%88%96%E5%A4%AA%E5%BF%99-EBUSY-resource-busy-or-locked"><span class="toc-text">资源被锁定或太忙 EBUSY: resource busy or locked</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E6%97%B6%E5%80%99%E6%8A%A5%E9%94%99-Making-a-squirrel-distributable-for-win32-x64"><span class="toc-text">打包时候报错 Making a squirrel distributable for win32&#x2F;x64</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99-contextBridge-API-can-only-be-used-when-contextIsolation-is-enabled"><span class="toc-text">报错 contextBridge API can only be used when contextIsolation is enabled</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99-require-is-not-defined"><span class="toc-text">报错 require is not defined</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AD%A6%E5%91%8A-DevTools-failed-to-load-source-map"><span class="toc-text">警告 DevTools failed to load source map</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AD%A6%E5%91%8A-Electron-Security-Warning-Insecure-Content-Security-Policy"><span class="toc-text">警告 Electron Security Warning (Insecure Content-Security-Policy)</span></a></li></ol>
+  </div>
+</aside>
+
+  
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 饿包子</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://lixianbin1.github.io/blog/2022/04/29/%E3%80%90%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97%E3%80%91Electronjs%E7%9A%84%E5%85%A5%E9%97%A8%E5%8F%8A%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/blog/tags/Electron/"><i class="fa fa-tags"></i>Electron</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+
+    <!-- gitalk评论系统 -->
+    
+
+    
+<div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">网站推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://tympanus.net/codrops/" target="_blank">Codrops</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">文档教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://es6.ruanyifeng.com/" target="_blank">ES6入门</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://developer.mozilla.org/zh-CN/docs/Web" target="_blank">MDN Web文档</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">兴趣前沿</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://threejs.org/" target="_blank">threejs</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://github.com/justadudewhohacks/face-api.js" target="_blank">face-api</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: xianbin.me@qq.com
+      </div>
+    
+  </footer>
+</div>
+    <div id="site-toLogin" style="display:none;">
+  <div class="site-toLogin-content">
+    <div class="site-toLogin-body" id="site-toLogin-container">
+      <div class="close-box">
+        <i class="fa fa-close" id="site-layer-close"></i>
+      </div>
+      <form class="">
+        <h2 class="title-login">登录</h2>
+        <div class="input-Box">
+          <span>Password</span>
+          <input class="" type="password" autocomplete="off" tabindex="0" placeholder="Please enter your password" id="Password"/>
+        </div>
+        <div class="input-Box center">
+          <button type="button" class="submit">
+            <span>Submit</span>
+          </button>
+        </div>
+        <div class="text">
+          <p>Client v1.3.4 Build 20240102</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  
+  
+  
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
